@@ -1,0 +1,87 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'gtk+-2.13.2.ebuild' from Gentoo which is:
+#    Copyright 1999-2008 Gentoo Foundation
+
+require gnome.org
+
+DESCRIPTION="The GIMP Toolkit"
+HOMEPAGE="http://www.gtk.org/"
+
+LICENSE="LGPL-2"
+SLOT="2"
+PLATFORMS="~x86"
+MYOPTIONS="X jpeg tiff xinerama xkb vim-syntax"
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/atk-1.13.0
+        >=dev-libs/glib-2.17.3
+        >=x11-libs/cairo-1.6[X?]
+        >=x11-libs/pango-1.20[X?]
+          media-libs/libpng
+        X?  (
+                x11-libs/libXrender
+                x11-libs/libX11
+                x11-libs/libXi
+                x11-libs/libXt
+                x11-libs/libXext
+                x11-libs/libXrandr
+                x11-libs/libXcursor
+                x11-libs/libXfixes
+                x11-libs/libXcomposite
+                x11-libs/libXdamage
+                xinerama? ( x11-libs/libXinerama )
+            )
+        jpeg? ( >=media-libs/jpeg-6b )
+        tiff? ( >=media-libs/tiff-3.5.7 )
+    build:
+        sys-devel/gettext
+        dev-util/pkg-config
+        X?  (
+                x11-proto/xproto
+                x11-proto/xextproto
+                x11-proto/inputproto
+                x11-proto/damageproto
+                xinerama? ( x11-proto/xineramaproto )
+            )
+    run+post:
+        vim-syntax? ( app-vim/gtk-syntax )
+"
+
+RESTRICT="test"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
+                              -p0 "${FILESDIR}/${PN}-2.12.0-openoffice-freeze-workaround.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS="--with-xinput --with-libpng --without-libjasper"
+
+src_configure()
+{
+    # We dont have directfb yet
+    DEFAULT_SRC_CONFIGURE_PARAMS+=" --with-gdktarget=x11"
+
+    # jpeg should use jasper as well
+    econf ${DEFAULT_SRC_CONFIGURE_PARAMS}   \
+          $(option_with jpeg libjpeg)       \
+          $(option_with tiff libtiff)       \
+          $(option_enable xinerama)
+}
+
+src_install()
+{
+    default
+
+    # Setup default icon theme
+    echo 'gtk-fallback-icon-theme = "gnome"' > "${D}/etc/gtk-2.0/gtkrc"
+
+    # Use XFT
+    echo 'GDK_USE_XFT=1' > "${D}/etc/env.d/50gtk2"
+}
+
+pkg_postinst()
+{
+    ebegin "Generating pixbuf and immodules list"
+        gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
+        gtk-query-immodules-2.0 > "${ROOT}/etc/gtk-2.0/gtk.immodules"
+    eend $?
+}
