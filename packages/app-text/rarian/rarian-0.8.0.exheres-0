@@ -1,0 +1,23 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+DESCRIPTION="Documentation metadata library"
+HOMEPAGE="http://rarian.freedesktop.org/"
+SRC_URI="http://rarian.freedesktop.org/Releases/${P}.tar.bz2"
+
+LICENSE="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/libxslt-1.1.8
+"
+
+src_install()
+{
+    default
+
+    keepdir /var/lib/lib/rarian
+}
