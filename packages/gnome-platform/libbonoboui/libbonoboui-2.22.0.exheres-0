@@ -1,0 +1,37 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="[DEPRECATED] "
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+          x11-apps/xrdb
+          x11-libs/pango[X]
+          dev-libs/popt
+        >=gnome-platform/libgnomecanvas-1.116.0
+        >=gnome-platform/libbonobo-2.13.0
+        >=gnome-platform/libgnome-2.13.7
+        >=dev-libs/libxml2-2.4.20
+        >=gnome-platform/GConf-1.1.9
+        >=x11-libs/gtk+-2.6.0
+        >=dev-libs/glib-2.6.0
+        >=gnome-platform/gnome-vfs-2.8.0
+        >=gnome-platform/libglade-1.99.11
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.18
+"
+
+src_test()
+{
+    export HOME="${T}" default
+}
