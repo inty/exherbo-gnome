@@ -1,0 +1,121 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'avahi-0.6.22-r1.ebuild' from Gentoo, which was
+#     Copyright 2000-2008 Gentoo Foundation.
+
+require eutils multilib
+
+DESCRIPTION="mDNS discovery agent"
+HOMEPAGE="http://avahi.org/"
+SRC_URI="http://avahi.org/download/${P}.tar.gz"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="autoipd doc dbus gdbm gtk ipv6"
+
+DEPENDENCIES="
+    build+run:
+          dev-libs/expat
+        >=dev-libs/glib-2.4
+        >=dev-libs/libdaemon-0.11
+        dbus? ( >=sys-apps/dbus-0.34 )
+        gdbm? ( sys-libs/gdbm )
+        gtk? (
+                >=x11-libs/gtk+-2.4
+                >=gnome-platform/libglade-2.4
+             )
+    build:
+        >=dev-util/intltool-0.35
+        >=dev-util/pkg-config-0.20
+"
+
+pkg_setup() {
+    enewgroup netdev
+    enewgroup avahi
+    enewuser avahi -1 -1 -1 avahi
+}
+
+src_prepare() {
+    expatch "${FILESDIR}/${P}-vncviewer.patch"
+    expatch "${FILESDIR}/${P}-gobject.patch"
+
+    eautomake
+
+    if option ipv6 ; then
+        sed -i -e 's/use-ipv6=no/use-ipv6=yes/' avahi-daemon/avahi-daemon.conf
+    fi
+
+    sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
+              doxygen_to_devhelp.xsl
+}
+
+src_configure() {
+    # TODO Implement exherbo specific init scripts
+    econf --localstatedir=/var              \
+          --with-distro=gentoo              \
+          --disable-compat-libdns_sd        \
+          --disable-compat-howl             \
+          --disable-python-dbus             \
+          --disable-xmltoman                \
+          --enable-glib                     \
+          --disable-python                  \
+          --disable-pygtk                   \
+          --disable-qt3                     \
+          --disable-qt4                     \
+          --disable-mono                    \
+          --disable-monodoc                 \
+          $(option_enable autoipd)          \
+          $(option_enable doc doxygen-doc)  \
+          $(option_enable dbus)             \
+          $(option_enable gtk)              \
+          $(option_enable gdbm)
+}
+
+src_compile() {
+    emake || die "build failed"
+
+    if option doc ; then
+        emake avahi.devhelp
+    fi
+}
+
+src_install() {
+    emake DESTDIR="${D}" install py_compile=true || die "install failed"
+    rm -f "${D}/usr/bin/avahi-bookmarks"
+
+    rmdir "${D}/var/run"
+    rmdir "${D}/var"
+    rmdir "${D}/usr/lib/avahi"
+    rmdir "${D}/usr/share/applications"
+
+    if option autoipd ; then
+        insinto /$(get_libdir)/rcscripts/net
+        doins "${FILESDIR}/autoipd.sh"
+    fi
+
+    dodoc docs/{AUTHORS,README,TODO}
+
+    if option doc ; then
+        insinto /usr/share/doc/${P}/html
+        doins doxygen/html/*
+
+        insinto /usr/share/devhelp/books/avahi
+        doins avahi.devhelp
+    fi
+}
+
+pkg_postinst() {
+    if option autoipd ; then
+        elog
+        elog "To use avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
+        elog "addresses, configure your network interface to use autoipd."
+        elog
+    fi
+
+    if option dbus ; then
+        elog
+        elog "If this is your first install of avahi, please reload your dbus config."
+        elog
+    fi
+}
