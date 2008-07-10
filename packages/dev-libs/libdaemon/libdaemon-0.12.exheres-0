@@ -1,0 +1,24 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools
+
+DESCRIPTION="A lightweight C library that eases the writing of UNIX daemons"
+HOMEPAGE="http://0pointer.de/lennart/projects/libdaemon/"
+SRC_URI="http://0pointer.de/lennart/projects/libdaemon/${P}.tar.gz"
+
+LICENSE="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+src_configure() {
+    econf --disable-lynx
+}
+
+src_install() {
+    emake DESTDIR="${D}" install || die "install failed"
+    dodoc README
+}
