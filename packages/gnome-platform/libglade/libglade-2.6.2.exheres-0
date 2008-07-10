@@ -1,0 +1,23 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="[DEPRECATED] XML based UI generator"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/libxml2-2.4.10
+        >=dev-libs/glib-2.5.0
+        >=dev-libs/atk-1.9.0
+        >=x11-libs/gtk+-2.5.0
+    build:
+        >=dev-util/pkg-config-0.18
+          sys-devel/gettext
+"
