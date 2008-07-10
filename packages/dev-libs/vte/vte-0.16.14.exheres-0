@@ -1,0 +1,29 @@
+# Copyright (C) 2008 Stephen Bennett <spb@exherbo.org>
+# Copyright (C) 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="A terminal emulator widget"
+HOMEPAGE="http://developer.gnome.org/arch/gnome/widgets/vte.html"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/glib-2.9.0
+        >=x11-libs/gtk+-2.6.0
+        >=x11-libs/pango-1.1
+        >=media-libs/freetype-2.0.2
+          media-libs/fontconfig
+          sys-libs/ncurses
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.35
+        >=dev-util/pkg-config-0.19
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS="--disable-python --with-xft2 --with-pangox --with-glX"
