@@ -1,0 +1,32 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="Terminal Application for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/vte-0.15.3
+        >=dev-libs/glib-2.16.0
+        >=x11-libs/gtk+-2.12.0
+        >=x11-libs/pango-1.1.1
+        >=x11-libs/libXft-2.0.0
+        >=x11-libs/startup-notification-0.8
+        >=gnome-platform/GConf-2.14.0
+        >=gnome-platform/libgnome-2.14
+        >=gnome-platform/libgnomeui-2.14
+    build:
+          sys-devel/gettext
+        >=dev-libs/libxml2-2.4.20[python]
+        >=dev-util/intltool-0.40.0
+        >=gnome-desktop/gnome-doc-utils-0.3.2
+
+          app-text/docbook-xml-dtd:4.1.2
+"
