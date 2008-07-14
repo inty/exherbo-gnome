@@ -1,0 +1,35 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="File Manager for GNOME"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=gnome-platform/libbonobo-2.1.0
+        >=gnome-desktop/eel-2.23.2
+        >=dev-libs/glib-2.15.6
+        >=gnome-desktop/gnome-desktop-2.9.91
+        >=gnome-platform/libgnome-2.14
+        >=gnome-platform/libgnomeui-2.6.0
+        >=gnome-platform/ORBit-2.4.0
+        >=x11-libs/pango-1.1.2
+        >=x11-libs/gtk+-2.11.6
+        >=gnome-desktop/librsvg-2.0.1
+        >=dev-libs/libxml2-2.4.7
+        >=x11-libs/startup-notification-0.8
+    build:
+        >=dev-util/pkg-config-0.19
+        >=dev-util/intltool-0.35.0
+"
+
+RESTRICT="test" # touches things it shouldnt
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/nautilus-2.23.3-include-stat.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS="--disable-update-mimedb"

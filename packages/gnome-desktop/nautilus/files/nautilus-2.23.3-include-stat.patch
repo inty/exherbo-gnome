@@ -1,0 +1,23 @@
+Author: Saleem Abdulrasool <compnerd@compnerd.org>
+Upstream: No
+Reason: Fix compile failures
+--- nautilus-2.23.3/libnautilus-private/nautilus-emblem-utils.c	2008-07-13 23:35:28.000000000 -0700
++++ nautilus-2.23.3/libnautilus-private/nautilus-emblem-utils.c	2008-07-13 23:35:44.000000000 -0700
+@@ -24,6 +24,7 @@
+ 
+ #include <config.h>
+ 
++#include <sys/stat.h>
+ #include <sys/types.h>
+ #include <utime.h>
+ #include <stdio.h>
+--- nautilus-2.23.3/libnautilus-private/nautilus-file.c	2008-07-13 23:40:08.000000000 -0700
++++ nautilus-2.23.3/libnautilus-private/nautilus-file.c	2008-07-13 23:40:20.000000000 -0700
+@@ -64,6 +64,7 @@
+ #include <libxml/parser.h>
+ #include <pwd.h>
+ #include <stdlib.h>
++#include <sys/stat.h>
+ #include <sys/time.h>
+ #include <time.h>
+ #include <unistd.h>
