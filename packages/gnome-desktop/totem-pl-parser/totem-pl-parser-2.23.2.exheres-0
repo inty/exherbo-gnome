@@ -1,0 +1,35 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools gnome.org
+
+DESCRIPTION="Playlist parsing library"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="hal"
+
+DEPENDENCIES="
+    build+run:
+          dev-libs/libxml2
+        >=x11-libs/gtk+-2.10
+        >=dev-libs/glib-2.16.3
+        >=dev-libs/dbus-glib-0.61
+        hal? ( =sys-apps/hal-0.5* )
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.35.0
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/${PN}-2.23.2-no-eds.patch"
+                              "${FILESDIR}/${PN}-includes.patch"
+                              "${FILESDIR}/${PN}-2.23.2-gthread.patch" )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE="hal"
+
+src_prepare()
+{
+    default
+    eautoreconf
+}

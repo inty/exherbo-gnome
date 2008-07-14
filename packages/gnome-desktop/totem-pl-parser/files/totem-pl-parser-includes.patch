@@ -1,0 +1,10 @@
+--- totem-pl-parser-2.23.2/plparse/totem-pl-parser.c	2008-07-12 00:01:09.000000000 -0700
++++ totem-pl-parser-2.23.2/plparse/totem-pl-parser.c	2008-07-12 00:00:25.000000000 -0700
+@@ -99,6 +99,7 @@
+ #include <glib.h>
+ #include <glib/gi18n-lib.h>
+ #include <gio/gio.h>
++#include <sys/stat.h>
+ 
+ #ifndef TOTEM_PL_PARSER_MINI
+ #include <gobject/gvaluecollector.h>
