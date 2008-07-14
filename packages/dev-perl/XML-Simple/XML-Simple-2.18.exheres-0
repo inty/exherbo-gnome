@@ -1,0 +1,15 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+# Based upon 'XML-Simple-2.18.ebuild' from Gentoo which is:
+#    Copyright 1999-2008 Gentoo Foundation
+
+MODULE_AUTHOR="GRANTM"
+require perl-module
+
+DESCRIPTION="XML::Simple - Easy API to read/write XML (esp config files)"
+
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
