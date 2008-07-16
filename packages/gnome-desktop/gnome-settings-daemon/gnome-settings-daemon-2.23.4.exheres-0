@@ -1,0 +1,38 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="Settings Daemon"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/dbus-glib-0.74
+        >=dev-libs/glib-2.13.0
+        >=x11-libs/gtk+-2.10.0
+        >=gnome-platform/GConf-2.15.0
+        >=gnome-desktop/gnome-desktop-2.23.2
+        >=gnome-platform/libglade-2.0.0
+        >=gnome-platform/libgnome-2.0
+        >=gnome-platform/libgnomeui-2.0
+        >=x11-libs/libxklavier-3.3
+        >=gnome-desktop/libgnomekbd-2.21.4
+          x11-libs/libXi
+          x11-libs/libX11
+          x11-libs/libXext
+          x11-libs/libXrandr
+          x11-libs/libXrender
+          x11-libs/libXxf86misc
+          media-libs/fontconfig
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.35.0
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS="--disable-esd --disable-gstreamer"
