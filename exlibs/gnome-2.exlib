@@ -36,50 +36,44 @@ gnome_exlib_restart_gconfd()
 
 gnome_exlib_install_gconf_schemas()
 {
-    if [[ ! -x "${GCONFTOOL}" ]] ; then
-        return
-    fi
+    local retval=0
 
-    if [[ -z "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] ; then
-        einfo "No GConf schemas found"
-        return
-    fi
+    [[ -x "${GCONFTOOL}" ]] || return
+    [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
 
     unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
     export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source)
 
-    einfo "Installing GConf schemas"
+    ebegin "Installing GConf schemas"
 
     for schema in ${GNOME_EXLIB_GCONF_SCHEMAS} ; do
-        if [[ -e "${ROOT}${schema}" ]] ; then
-            "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" 1>/dev/null
-        fi
+        [[ -e "${ROOT}${schema}" ]] || continue
+        "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" 1>/dev/null || retval=1
     done
+
+    eend ${retval}
 
     gnome_exlib_restart_gconfd
 }
 
 gnome_exlib_uninstall_gconf_schemas()
 {
-    if [[ ! -x "${GCONFTOOL}" ]] ; then
-        return
-    fi
+    local retval=0
 
-    if [[ -z "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] ; then
-        einfo "No GConf schemas found"
-        return
-    fi
+    [[ -x "${GCONFTOOL}" ]] || return
+    [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
 
     unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
     export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source)
 
-    einfo "Uninstalling GConf schemas"
+    einfo "Uninstalling GConf schemas ..."
 
     for schema in ${GCONF_EXLIB_GCONF_SCHEMAS} ; do
-        if [[ -e "${ROOT}${schema}" ]] ; then
-            "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" 1>/dev/null
-        fi
+        [[ -e "${ROOT}${schema}" ]] || continue
+        "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" 1>/dev/null || retval=1
     done
+
+    eend ${retval}
 
     gnome_exlib_restart_gconfd
 }
@@ -89,23 +83,17 @@ gnome_exlib_update_icon_cache()
     local failures=( )
     local retval=0
 
-    if [[ ! -x "${GTK_UPDATE_ICON_CACHE}" ]] ; then
-        return
-    fi
-
-    if [[ -z "${GNOME_EXLIB_ICONS}" ]] ; then
-        return
-    fi
+    [[ -x "${GTK_UPDATE_ICON_CACHE}" ]] || return
+    [[ -n "${GNOME_EXLIB_ICON_INDEX_DIRS}" ]] || return
 
     ebegin "Updating icons cache"
 
     for dir in ${GNOME_EXLIB_ICON_INDEX_DIRS} ; do
-        if [[ -f "${ROOT}${dir}/index.theme" ]] ; then
-            "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" || {
-                failures[$(( ${#failures[@]} + 1 ))]="${ROOT}${dir}"
-                retval=1
-            }
-        fi
+        [[ -f "${ROOT}${dir}/index.theme" ]] || continue
+        "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" || {
+            failures[$(( ${#failures[@]} + 1 ))]="${ROOT}${dir}"
+            retval=1
+        }
     done
 
     eend ${retval}
