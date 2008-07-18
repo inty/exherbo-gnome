@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome-2
 
 DESCRIPTION="Library for Keyboard Management"
 HOMEPAGE="http://www.gnome.org/"
@@ -23,5 +23,6 @@ DEPENDENCIES="
         >=gnome-platform/libgnomeui-2.16.0
         >=x11-libs/libxklavier-3.2
     build:
+        >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
 "
