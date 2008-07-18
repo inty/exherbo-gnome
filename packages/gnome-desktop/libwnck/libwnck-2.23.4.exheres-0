@@ -1,0 +1,26 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+DESCRIPTION="Window Navigator Construction Key Library"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=x11-libs/gtk+-2.11.3
+        >=dev-libs/glib-2.13.0
+        >=x11-libs/startup-notification-0.4
+          x11-libs/libX11
+          x11-libs/libXres
+          x11-libs/libXext
+    build:
+          sys-devel/gettext
+        >=dev-util/pkg-config-0.20
+        >=dev-util/intltool-0.40.0
+"
