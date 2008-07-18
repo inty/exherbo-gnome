@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome-2
 
 DESCRIPTION="Settings Daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -32,6 +32,7 @@ DEPENDENCIES="
           media-libs/fontconfig
     build:
           sys-devel/gettext
+        >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
 "
 
