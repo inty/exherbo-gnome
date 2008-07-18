@@ -1,0 +1,49 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+DESCRIPTION="Panel Application for GNOME"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=gnome-desktop/gnome-desktop-2.11.1
+        >=x11-libs/gtk+-2.11.3
+        >=x11-libs/pango-1.15.4
+        >=dev-libs/glib-2.15.6
+        >=gnome-platform/libglade-2.5.0
+        >=gnome-platform/libgnome-2.13.0
+        >=gnome-platform/libgnomeui-2.5.4
+        >=gnome-platform/libbonoboui-2.1.1
+        >=gnome-platform/ORBit-2.4.0
+        >=gnome-desktop/libwnck-2.19.5
+        >=gnome-platform/GConf-2.6.1
+        >=x11-libs/cairo-1.0.0
+        >=dev-libs/dbus-glib-0.60
+        >=gnome-desktop/libgweather-2.22.1
+        >=gnome-desktop/gnome-menus-2.23.3
+          x11-libs/libXau
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.40.0
+    post,suggested:
+        >=gnome-desktop/gnome-applets-2.23.3
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS="--disable-eds --enable-polkit=no
+--enable-network-manager=no --with-in-process-applets=clock,notification-area,wncklet"
+
+src_install()
+{
+    default
+
+    rmdir "${D}/usr/share/dbus-1/system-services" "${D}/usr/share/dbus-1"
+    rmdir "${D}/usr/share/PolicyKit/policy" "${D}/usr/share/PolicyKit/"
+    rmdir "${D}/etc/dbus-1/system.d" "${D}/etc/dbus-1/"
+}
