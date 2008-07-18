@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome-2
 
 DESCRIPTION="File Manager for GNOME"
 HOMEPAGE="http://www.gnome.org/"
