@@ -13,11 +13,11 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.6
+        >=dev-libs/glib-2.6:2
         >=sys-apps/dbus-0.92
         >=dev-libs/dbus-glib-0.34
         >=gnome-platform/GConf-2.14.0
-        >=x11-libs/gtk+-2.10.3
+        >=x11-libs/gtk+-2.10.3:2
         >=gnome-platform/libglade-2.6.0
         >=gnome-platform/libgnome-2.16.0
         >=gnome-platform/libgnomeui-2.16.0

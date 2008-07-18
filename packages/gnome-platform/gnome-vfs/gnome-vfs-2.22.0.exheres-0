@@ -15,7 +15,7 @@ DEPENDENCIES="
     build+run:
           net-misc/neon
           dev-libs/openssl
-        >=dev-libs/glib-2.9.3
+        >=dev-libs/glib-2.9.3:2
         >=dev-libs/libxml2-2.6.0
         >=gnome-platform/GConf-1.1.1
         >=gnome-platform/gnome-mime-data-2.0

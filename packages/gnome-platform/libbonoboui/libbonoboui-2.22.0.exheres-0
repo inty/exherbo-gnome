@@ -21,8 +21,8 @@ DEPENDENCIES="
         >=gnome-platform/libgnome-2.13.7
         >=dev-libs/libxml2-2.4.20
         >=gnome-platform/GConf-1.1.9
-        >=x11-libs/gtk+-2.6.0
-        >=dev-libs/glib-2.6.0
+        >=x11-libs/gtk+-2.6.0:2
+        >=dev-libs/glib-2.6.0:2
         >=gnome-platform/gnome-vfs-2.8.0
         >=gnome-platform/libglade-1.99.11
     build:

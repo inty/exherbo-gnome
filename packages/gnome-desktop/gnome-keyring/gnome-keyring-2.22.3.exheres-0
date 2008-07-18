@@ -13,8 +13,8 @@ MYOPTIONS="hal pam"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.8.0
-        >=x11-libs/gtk+-2.6.0
+        >=dev-libs/glib-2.8.0:2
+        >=x11-libs/gtk+-2.6.0:2
         >=gnome-platform/GConf-2.0
         >=sys-apps/dbus-1.0
         >=dev-libs/libtasn1-0.3.4

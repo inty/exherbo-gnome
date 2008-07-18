@@ -14,8 +14,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.9.0
-        >=x11-libs/gtk+-2.6.0
+        >=dev-libs/glib-2.9.0:2
+        >=x11-libs/gtk+-2.6.0:2
         >=x11-libs/pango-1.1
         >=media-libs/freetype-2.0.2
           media-libs/fontconfig

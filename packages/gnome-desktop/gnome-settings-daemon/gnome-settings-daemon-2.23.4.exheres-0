@@ -14,8 +14,8 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         >=dev-libs/dbus-glib-0.74
-        >=dev-libs/glib-2.13.0
-        >=x11-libs/gtk+-2.10.0
+        >=dev-libs/glib-2.13.0:2
+        >=x11-libs/gtk+-2.10.0:2
         >=gnome-platform/GConf-2.15.0
         >=gnome-desktop/gnome-desktop-2.23.2
         >=gnome-platform/libglade-2.0.0

@@ -13,8 +13,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.0
-        >=dev-libs/glib-2.14
+        >=x11-libs/gtk+-2.0:2
+        >=dev-libs/glib-2.14:2
         >=sys-apps/dbus-1.0.0
         >=dev-libs/dbus-glib-0.74
         >=gnome-platform/ORBit-2.4

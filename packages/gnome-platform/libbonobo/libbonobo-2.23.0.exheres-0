@@ -13,7 +13,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.8.0
+        >=dev-libs/glib-2.8.0:2
         >=dev-libs/libxml2-2.4.20
         >=gnome-platform/ORBit-2.11.2
     build:

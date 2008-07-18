@@ -22,8 +22,8 @@ DEPENDENCIES="
         >=gnome-platform/libglade-2.0.0
         >=gnome-desktop/gnome-keyring-0.4
         >=x11-libs/pango-1.1.2
-        >=dev-libs/glib-2.16.0
-        >=x11-libs/gtk+-2.12.0
+        >=dev-libs/glib-2.16.0:2
+        >=x11-libs/gtk+-2.12.0:2
           dev-libs/popt
     build:
           sys-devel/gettext

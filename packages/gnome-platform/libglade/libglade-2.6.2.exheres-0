@@ -14,9 +14,9 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         >=dev-libs/libxml2-2.4.10
-        >=dev-libs/glib-2.5.0
+        >=dev-libs/glib-2.5.0:2
         >=dev-libs/atk-1.9.0
-        >=x11-libs/gtk+-2.5.0
+        >=x11-libs/gtk+-2.5.0:2
     build:
         >=dev-util/pkg-config-0.18
           sys-devel/gettext

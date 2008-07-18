@@ -14,9 +14,9 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         >=gnome-desktop/gnome-desktop-2.11.1
-        >=x11-libs/gtk+-2.11.3
+        >=x11-libs/gtk+-2.11.3:2
         >=x11-libs/pango-1.15.4
-        >=dev-libs/glib-2.15.6
+        >=dev-libs/glib-2.15.6:2
         >=gnome-platform/libglade-2.5.0
         >=gnome-platform/libgnome-2.13.0
         >=gnome-platform/libgnomeui-2.5.4
