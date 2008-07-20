@@ -1,0 +1,54 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+DESCRIPTION="Configuration Applications for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="hal"
+
+DEPENDENCIES="
+    build+run:
+        >=gnome-desktop/gnome-settings-daemon-2.20
+        >=gnome-desktop/gnome-desktop-2.23.4
+        >=gnome-desktop/libgnomekbd-2.21.4.1
+        >=gnome-desktop/gnome-menus-2.11.1
+        >=gnome-desktop/gnome-panel-2.0
+        >=gnome-desktop/nautilus-2.6.0
+        >=media-libs/fontconfig-1.0
+        >=gnome-desktop/librsvg-2.0
+        >=x11-libs/libxklavier-3.6
+        >=dev-libs/dbus-glib-0.74
+        >=gnome-desktop/eel-2.0
+        >=x11-libs/libXft-2.1.2
+        >=dev-libs/libxml2-2.6
+        >=x11-libs/gtk+-2.11.6
+        >=dev-libs/glib-2.15.5
+        >=x11-libs/pango-1.20
+        >=gnome-platform/GConf-2.2.0
+        >=gnome-platform/libglade-2.0
+        >=gnome-platform/gnome-vfs-2.0
+        >=gnome-platform/libbonobo-2.0
+        >=gnome-platform/libgnomeui-2.2.0
+          x11-libs/libXScrnSaver
+          x11-libs/libXxf86misc
+          x11-libs/libXrender
+          x11-libs/libXcursor
+          x11-libs/libXrandr
+          x11-libs/libXext
+          x11-libs/libX11
+        hal? ( >=sys-apps/hal-0.5.6 )
+    build:
+          sys-devel/gettext
+          dev-util/desktop-file-utils
+        >=dev-util/intltool-0.35
+        >=dev-util/pkg-config-0.20
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS="--enable-vfs-methods --disable-esd
+--disable-gstreamer --disable-update-mimedb"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="hal"
