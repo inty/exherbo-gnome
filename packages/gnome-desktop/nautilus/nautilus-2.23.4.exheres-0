@@ -28,6 +28,8 @@ DEPENDENCIES="
     build:
         >=dev-util/pkg-config-0.19
         >=dev-util/intltool-0.35.0
+    run,post:
+        >=gnome-desktop/gvfs-0.1.2
 "
 
 RESTRICT="test" # touches things it shouldnt
