@@ -16,6 +16,8 @@ DEPENDENCIES="
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.19
         >=x11-apps/icon-naming-utils-0.8.1
+    run:
+        >=x11-themes/hicolor-icon-theme-0.10
 "
 
 src_install()
