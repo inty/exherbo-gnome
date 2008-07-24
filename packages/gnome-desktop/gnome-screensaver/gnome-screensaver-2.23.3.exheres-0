@@ -29,7 +29,6 @@ DEPENDENCIES="
 "
 # libnotify? ( dev-libs/libnotify )
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/${PN}-2.23.2-svn-r1462.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS="--with-xf86gamma-ext --enable-locking --with-gl
 --with-kbd-layout-indicator"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="pam"
