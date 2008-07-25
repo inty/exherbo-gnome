@@ -1,0 +1,57 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome-2
+
+DESCRIPTION="Document Viewer for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="dbus nautilus keyring tiff document_format:pdf" # document_format:djvu document_format:dvi document_format:ps
+
+DEPENDENCIES="
+    build+run:
+        >=x11-libs/gtk+-2.10.0:2
+        >=dev-libs/glib-2.15.6:2
+        >=gnome-desktop/gnome-icon-theme-2.17.1
+        >=dev-libs/libxml2-2.5.0
+        >=gnome-platform/libglade-2.0
+        >=gnome-platform/GConf-2.0
+        dbus? ( >=dev-libs/dbus-glib-0.70 )
+        nautilus?  ( >=gnome-desktop/nautilus-2.0 )
+        keyring? ( >=gnome-desktop/gnome-keyring-0.4.0 )
+        tiff? ( >=media-libs/tiff-3.6 )
+        document_format:pdf? (
+                                >=x11-libs/cairo-1.0
+                                >=app-text/poppler-0.8.0[gtk]
+                             )
+    build:
+        >=dev-util/intltool-0.35
+        >=dev-util/pkg-config-0.20
+"
+
+# requires X and dogtail
+RESTRICT="test"
+
+DEFAULT_SRC_CONFIGURE_PARAMS="--enable-thumbnailer --enable-pixbuf
+--disable-libgnome"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="dbus nautilus tiff"
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS="keyring"
+
+src_configure()
+{
+    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:djvu djvu)"
+    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-djvu"
+
+    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:dvi dvi)"
+    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-dvi"
+
+    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:ps ps)"
+    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-ps"
+
+    DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:pdf pdf)"
+
+    default
+}
