@@ -1,0 +1,36 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome-2
+
+DESCRIPTION="IM client for GNOME"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="spell"
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/glib-2.16.0:2
+        >=x11-libs/gtk+-2.12.0:2
+        >=gnome-platform/GConf-2.0
+        >=gnome-platform/libglade-2.0
+        >=gnome-desktop/gnome-panel-2.10
+        >=net-im/telepathy-glib-0.7.7
+        >=net-im/mission-control-4.61
+        >=gnome-desktop/evolution-data-server-2.23.5
+        spell? (
+                    >=app-text/enchant-1.2.0
+                    >=app-text/iso-codes-0.35
+               )
+    build:
+        >=dev-libs/check-0.9.4
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+"
+
+DEFAULT_SRC_CONFIGURE_PARAM="--enable-megaphone --enable-nothere
+--disable-python"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="spell"
