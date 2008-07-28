@@ -37,11 +37,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-    expatch "${FILESDIR}/${P}-vncviewer.patch"
-    expatch "${FILESDIR}/${P}-gobject.patch"
-
-    eautomake
-
     if option ipv6 ; then
         sed -i -e 's/use-ipv6=no/use-ipv6=yes/' avahi-daemon/avahi-daemon.conf
     fi
