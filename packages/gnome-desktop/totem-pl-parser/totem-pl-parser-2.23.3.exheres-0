@@ -23,13 +23,4 @@ DEPENDENCIES="
         >=dev-util/intltool-0.35.0
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/${PN}-2.23.2-no-eds.patch"
-                              "${FILESDIR}/${PN}-includes.patch"
-                              "${FILESDIR}/${PN}-2.23.2-gthread.patch" )
 DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE="hal"
-
-src_prepare()
-{
-    default
-    eautoreconf
-}
