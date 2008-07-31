@@ -25,7 +25,7 @@ DEPENDENCIES="
         tiff? ( >=media-libs/tiff-3.6 )
         document_format:pdf? (
                                 >=x11-libs/cairo-1.0
-                                >=app-text/poppler-0.8.0[gtk]
+                                >=app-text/poppler-0.8.0[glib]
                              )
     build:
         >=dev-util/intltool-0.35
