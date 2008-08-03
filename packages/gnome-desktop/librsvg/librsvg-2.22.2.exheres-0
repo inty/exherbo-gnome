@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org multilib
 
 DESCRIPTION="SVG parsing library"
 HOMEPAGE="http://www.gnome.org/"
@@ -27,6 +27,6 @@ src_install()
 {
     default
 
-    rmdir "${D}/usr/lib/mozilla/plugins"
-    rmdir "${D}/usr/lib/mozilla"
+    rmdir "${D}/usr/$(get_libdir)/mozilla/plugins" || die
+    rmdir "${D}/usr/$(get_libdir)/mozilla" || die
 }
