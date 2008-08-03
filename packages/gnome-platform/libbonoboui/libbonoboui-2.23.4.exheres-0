@@ -27,7 +27,7 @@ DEPENDENCIES="
         >=gnome-platform/libglade-1.99.11
     build:
           sys-devel/gettext
-        >=dev-util/intltool-0.35.0
+        >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.18
 "
 
