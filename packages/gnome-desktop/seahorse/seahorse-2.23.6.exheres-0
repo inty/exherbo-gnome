@@ -27,7 +27,6 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/seahorse-svn2297.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS="--enable-pgp --disable-ldap --enable-hkp
 --disable-libnotify --enable-pkcs11 --enable-ssh"
 
