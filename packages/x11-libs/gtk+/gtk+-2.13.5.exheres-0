@@ -10,7 +10,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="X jpeg tiff xinerama xkb vim-syntax"
 
 DEPENDENCIES="
