@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Configuration Applications for the GNOME Desktop"
+SUMMARY="Configuration Applications for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

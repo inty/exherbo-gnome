@@ -5,7 +5,7 @@ XORG_RELEASE="7.3"
 
 require xorg
 
-DESCRIPTION="Pixman is a library that provides low-level pixel manipulation"
+SUMMARY="Pixman is a library that provides low-level pixel manipulation"
 
 SRC_URI="http://xorg.freedesktop.org/archive/individual/lib/${P}.tar.bz2"
 

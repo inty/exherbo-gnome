@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Window Manager for the GNOME environment"
+SUMMARY="Window Manager for the GNOME environment"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

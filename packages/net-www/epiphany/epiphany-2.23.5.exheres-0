@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION=""
+SUMMARY=""
 HOMEPAGE=""
 
 LICENSE="GPL-2"

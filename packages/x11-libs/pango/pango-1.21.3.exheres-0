@@ -5,7 +5,7 @@
 
 require gnome.org
 
-DESCRIPTION="A library for layout and rendering of text"
+SUMMARY="A library for layout and rendering of text"
 HOMEPAGE="http://www.gtk.org"
 
 LICENSE="GPL-2"

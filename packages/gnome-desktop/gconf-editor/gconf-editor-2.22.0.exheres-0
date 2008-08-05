@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="UI to the GConf system"
+SUMMARY="UI to the GConf system"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

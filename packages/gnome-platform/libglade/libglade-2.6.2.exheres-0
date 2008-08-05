@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] XML based UI generator"
+SUMMARY="[DEPRECATED] XML based UI generator"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

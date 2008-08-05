@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="Backend store for contact data"
+SUMMARY="Backend store for contact data"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

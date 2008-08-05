@@ -5,7 +5,7 @@ MY_PN="ORBit2"
 MY_P="${MY_PN}-${PV}"
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] (C)ORB(A) Helper"
+SUMMARY="[DEPRECATED] (C)ORB(A) Helper"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

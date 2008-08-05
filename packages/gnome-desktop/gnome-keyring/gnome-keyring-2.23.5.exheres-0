@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="GTK+ based keyring"
+SUMMARY="GTK+ based keyring"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] gnome canvas"
+SUMMARY="[DEPRECATED] gnome canvas"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

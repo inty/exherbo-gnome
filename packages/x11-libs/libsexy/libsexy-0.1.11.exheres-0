@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-DESCRIPTION="Sexy GTK+ Widgets"
+SUMMARY="Sexy GTK+ Widgets"
 HOMEPAGE="http://www.chipx86.com/wiki/Libsexy"
 SRC_URI="http://releases.chipx86.com/libsexy/${PN}/${P}.tar.bz2"
 

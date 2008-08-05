@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Library for Keyboard Management"
+SUMMARY="Library for Keyboard Management"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

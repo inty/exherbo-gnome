@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="[DEPRECATED] gnome widget library"
+SUMMARY="[DEPRECATED] gnome widget library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Session Manager for the GNOME Desktop"
+SUMMARY="Session Manager for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

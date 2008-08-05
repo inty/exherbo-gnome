@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="HTTP library implemented in C"
+SUMMARY="HTTP library implemented in C"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

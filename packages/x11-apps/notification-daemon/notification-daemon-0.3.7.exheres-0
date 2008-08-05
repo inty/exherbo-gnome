@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION=""
+SUMMARY=""
 HOMEPAGE="http://www.galago-project.org/"
 SRC_URI="http://www.galago-project.org/files/releases/source/${PN}/${P}.tar.bz2"
 

@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Keyring and PGP manager"
+SUMMARY="Keyring and PGP manager"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

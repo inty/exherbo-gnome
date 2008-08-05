@@ -4,7 +4,7 @@
 # Based in part upon 'cairo-1.6.4.ebuild' from Gentoo which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
-DESCRIPTION="Cairo is a 2D graphics library"
+SUMMARY="Cairo is a 2D graphics library"
 HOMEPAGE="http://www.cairographics.org"
 SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 

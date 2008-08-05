@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] extensible easel widget library"
+SUMMARY="[DEPRECATED] extensible easel widget library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] GNOME GTK+ Widgets Library"
+SUMMARY="[DEPRECATED] GNOME GTK+ Widgets Library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

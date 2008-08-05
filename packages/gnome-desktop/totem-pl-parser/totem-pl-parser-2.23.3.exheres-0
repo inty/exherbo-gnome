@@ -3,7 +3,7 @@
 
 require autotools gnome.org
 
-DESCRIPTION="Playlist parsing library"
+SUMMARY="Playlist parsing library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

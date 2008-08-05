@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="Window Navigator Construction Key Library"
+SUMMARY="Window Navigator Construction Key Library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

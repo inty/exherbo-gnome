@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="UI for extracting files"
+SUMMARY="UI for extracting files"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-DESCRIPTION="Utilities for mapping icons to the FDO spec"
+SUMMARY="Utilities for mapping icons to the FDO spec"
 HOMEPAGE="http://tango.freedesktop.org/"
 SRC_URI="http://tango.freedesktop.org/releases/${P}.tar.gz"
 

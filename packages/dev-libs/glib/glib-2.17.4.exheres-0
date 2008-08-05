@@ -4,7 +4,7 @@
 
 require gnome.org multilib
 
-DESCRIPTION="The GLib library of C routines"
+SUMMARY="The GLib library of C routines"
 HOMEPAGE="http://www.gnome.org"
 
 LICENSE="GPL-2"

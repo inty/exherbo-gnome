@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Weather data parsing library"
+SUMMARY="Weather data parsing library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

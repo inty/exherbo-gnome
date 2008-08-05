@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="[DEPRECATED] "
+SUMMARY="[DEPRECATED] "
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

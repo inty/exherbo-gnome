@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="Documentation Utilities"
+SUMMARY="Documentation Utilities"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="( GPL-2 LGPL-2 )"

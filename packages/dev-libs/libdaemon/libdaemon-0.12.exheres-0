@@ -3,7 +3,7 @@
 
 require autotools
 
-DESCRIPTION="A lightweight C library that eases the writing of UNIX daemons"
+SUMMARY="A lightweight C library that eases the writing of UNIX daemons"
 HOMEPAGE="http://0pointer.de/lennart/projects/libdaemon/"
 SRC_URI="http://0pointer.de/lennart/projects/libdaemon/${P}.tar.gz"
 

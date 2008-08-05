@@ -3,7 +3,7 @@
 
 require autotools
 
-DESCRIPTION="Name Service Switch module for Multicast DNS"
+SUMMARY="Name Service Switch module for Multicast DNS"
 HOMEPAGE="http://0pointer.de/lennart/projects/nss-mdns/"
 SRC_URI="http://0pointer.de/lennart/projects/nss-mdns/${P/_/-}.tar.gz"
 

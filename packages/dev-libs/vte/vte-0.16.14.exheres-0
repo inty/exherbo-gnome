@@ -4,7 +4,7 @@
 
 require gnome.org
 
-DESCRIPTION="A terminal emulator widget"
+SUMMARY="A terminal emulator widget"
 HOMEPAGE="http://developer.gnome.org/arch/gnome/widgets/vte.html"
 
 LICENSE="GPL-2"

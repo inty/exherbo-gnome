@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Power Management Utility for GNOME"
+SUMMARY="Power Management Utility for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"

@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="VFS interfaces for GTK+"
+SUMMARY="VFS interfaces for GTK+"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

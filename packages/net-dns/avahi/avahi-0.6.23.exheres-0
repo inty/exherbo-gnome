@@ -5,7 +5,7 @@
 
 require eutils multilib
 
-DESCRIPTION="mDNS discovery agent"
+SUMMARY="mDNS discovery agent"
 HOMEPAGE="http://avahi.org/"
 SRC_URI="http://avahi.org/download/${P}.tar.gz"
 

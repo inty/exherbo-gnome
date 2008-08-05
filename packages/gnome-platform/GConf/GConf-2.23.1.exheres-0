@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="GConf(iguration)"
+SUMMARY="GConf(iguration)"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

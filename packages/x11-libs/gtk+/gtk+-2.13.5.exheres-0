@@ -5,7 +5,7 @@
 
 require gnome.org
 
-DESCRIPTION="The GIMP Toolkit"
+SUMMARY="The GIMP Toolkit"
 HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"

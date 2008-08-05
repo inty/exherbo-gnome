@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="Menus for GNOME Panel"
+SUMMARY="Menus for GNOME Panel"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"

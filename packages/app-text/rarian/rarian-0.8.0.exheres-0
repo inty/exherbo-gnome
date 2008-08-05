@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-DESCRIPTION="Documentation metadata library"
+SUMMARY="Documentation metadata library"
 HOMEPAGE="http://rarian.freedesktop.org/"
 SRC_URI="http://rarian.freedesktop.org/Releases/${P}.tar.bz2"
 
