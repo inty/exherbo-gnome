@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="IM client for GNOME"
+SUMMARY="IM client for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
@@ -26,6 +26,7 @@ DEPENDENCIES="
                     >=app-text/iso-codes-0.35
                )
     build:
+          dev-libs/libxslt
         >=dev-libs/check-0.9.4
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
