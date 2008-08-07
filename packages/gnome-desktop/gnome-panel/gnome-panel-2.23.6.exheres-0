@@ -9,14 +9,14 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS=""
+MYOPTIONS="eds"
 
 DEPENDENCIES="
     build+run:
         >=gnome-desktop/gnome-desktop-2.11.1
-        >=x11-libs/gtk+-2.11.3:2
         >=x11-libs/pango-1.15.4
         >=dev-libs/glib-2.15.6:2
+        >=x11-libs/gtk+-2.13.1:2
         >=gnome-platform/libglade-2.5.0
         >=gnome-platform/libgnome-2.13.0
         >=gnome-platform/libgnomeui-2.5.4
@@ -26,9 +26,10 @@ DEPENDENCIES="
         >=gnome-platform/GConf-2.6.1
         >=x11-libs/cairo-1.0.0
         >=dev-libs/dbus-glib-0.60
-        >=gnome-desktop/libgweather-2.22.1
+        >=gnome-desktop/libgweather-2.23.6
         >=gnome-desktop/gnome-menus-2.23.3
           x11-libs/libXau
+        eds? ( >=gnome-desktop/evolution-data-server-1.2.0 )
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.40.0
@@ -36,14 +37,15 @@ DEPENDENCIES="
         >=gnome-desktop/gnome-applets-2.23.3
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-eds --enable-polkit=no
---enable-network-manager=no --with-in-process-applets=clock,notification-area,wncklet"
+DEFAULT_SRC_CONFIGURE_PARAMS="--enable-polkit=no --enable-network-manager=no
+--with-in-process-applets=clock,notification-area,wncklet"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="eds"
 
 src_install()
 {
     default
 
-    rmdir "${D}/usr/share/dbus-1/system-services" "${D}/usr/share/dbus-1"
-    rmdir "${D}/usr/share/PolicyKit/policy" "${D}/usr/share/PolicyKit/"
-    rmdir "${D}/etc/dbus-1/system.d" "${D}/etc/dbus-1/"
+    rmdir "${D}"/usr/share/dbus-1/{system-services,} || die
+    rmdir "${D}"/usr/share/PolicyKit/{policy,} || die
+    rmdir "${D}"/etc/dbus-1/{system.d,} || die
 }
