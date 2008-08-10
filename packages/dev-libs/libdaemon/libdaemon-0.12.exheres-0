@@ -17,8 +17,3 @@ DEPENDENCIES=""
 src_configure() {
     econf --disable-lynx
 }
-
-src_install() {
-    emake DESTDIR="${D}" install || die "install failed"
-    dodoc README
-}

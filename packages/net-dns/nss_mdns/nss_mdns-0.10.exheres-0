@@ -31,10 +31,8 @@ src_configure() {
 }
 
 src_install() {
-    emake DESTDIR="${D}" install || die "install failed"
+    default
 
     insinto /etc
     doins "${FILESDIR}/mdns.allow"
-
-    dodoc README
 }

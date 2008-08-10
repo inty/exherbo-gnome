@@ -68,7 +68,7 @@ src_configure() {
 }
 
 src_compile() {
-    emake || die "build failed"
+    emake
 
     if option doc ; then
         emake avahi.devhelp
@@ -76,7 +76,7 @@ src_compile() {
 }
 
 src_install() {
-    emake DESTDIR="${D}" install py_compile=true || die "install failed"
+    emake DESTDIR="${D}" install py_compile=true
     rm -f "${D}/usr/bin/avahi-bookmarks"
 
     rmdir "${D}/var/run"
