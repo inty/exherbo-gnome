@@ -33,4 +33,5 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # touches things it shouldnt
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-update-mimedb"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )
