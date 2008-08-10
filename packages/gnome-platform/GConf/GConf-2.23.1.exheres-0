@@ -24,7 +24,7 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.18
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--enable-gtk"
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' )
 
 src_install() {
     default
