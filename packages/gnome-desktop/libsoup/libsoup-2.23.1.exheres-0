@@ -19,4 +19,4 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-ssl"
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-ssl )
