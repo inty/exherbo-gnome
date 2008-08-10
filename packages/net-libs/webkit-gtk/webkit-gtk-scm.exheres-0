@@ -3,7 +3,7 @@
 
 require autotools
 
-DESCRIPTION="Web Browser Engine based on WebKit"
+SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 SRC_URI=""
 
