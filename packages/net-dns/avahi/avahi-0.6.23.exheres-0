@@ -77,8 +77,12 @@ src_compile() {
     fi
 }
 
+DEFAULT_SRC_INSTALL_PARAMS=( py_compile=true )
+DEFAULT_SRC_INSTALL_EXTRA_PREFIXES=( docs/ )
+
 src_install() {
-    emake DESTDIR="${D}" install py_compile=true
+    default
+
     rm -f "${D}/usr/bin/avahi-bookmarks"
 
     rmdir "${D}/var/run"
@@ -90,8 +94,6 @@ src_install() {
         insinto /$(get_libdir)/rcscripts/net
         doins "${FILESDIR}/autoipd.sh"
     fi
-
-    dodoc docs/{AUTHORS,README,TODO}
 
     if option doc ; then
         insinto /usr/share/doc/${P}/html
