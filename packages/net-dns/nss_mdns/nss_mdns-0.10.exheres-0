@@ -19,8 +19,10 @@ DEPENDENCIES="
 
 S="${WORKDIR}/${P/_/-}"
 
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILESDIR}/${PN}-0.8-avahi-socket.patch" )
+
 src_prepare() {
-    expatch -p0 "${FILESDIR}/${PN}-0.8-avahi-socket.patch"
+    default
     eautomake
 }
 
