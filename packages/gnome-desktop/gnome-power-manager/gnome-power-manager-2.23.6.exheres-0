@@ -34,8 +34,9 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-policykit --disable-gconfdefaults
---disable-checkfg --disable-schemas-install --enable-xevents --enable-applets"
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-policykit' '--disable-gconfdefaults'
+'--disable-checkfg' '--disable-schemas-install' '--enable-xevents'
+'--enable-applets' )
 
 src_install() {
     default
