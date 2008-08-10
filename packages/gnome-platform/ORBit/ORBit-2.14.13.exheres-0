@@ -22,4 +22,5 @@ DEPENDENCIES="
 "
 
 S="${WORKDIR}/${MY_P}"
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-http"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-http )
