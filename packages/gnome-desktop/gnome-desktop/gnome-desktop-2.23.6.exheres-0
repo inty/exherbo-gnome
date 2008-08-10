@@ -26,4 +26,4 @@ DEPENDENCIES="
           app-text/docbook-xml-dtd:4.1.2
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--with-gnome-distributor=exherbo"
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
