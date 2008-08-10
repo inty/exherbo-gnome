@@ -35,22 +35,7 @@ DEPENDENCIES="
 # requires X and dogtail
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--enable-thumbnailer --enable-pixbuf
---disable-libgnome"
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="dbus nautilus tiff"
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS="keyring"
-
-src_configure() {
-    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:djvu djvu)"
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-djvu"
-
-    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:dvi dvi)"
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-dvi"
-
-    #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:ps ps)"
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-ps"
-
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:pdf pdf)"
-
-    default
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--disable-libgnome' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus nautilus tiff 'document_format:pdf pdf' )
+# 'document_format:djvu djvu' 'document_format:dvi div' 'document_format:ps ps')
