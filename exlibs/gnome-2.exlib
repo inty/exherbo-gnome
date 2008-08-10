@@ -9,22 +9,19 @@
 require gnome.org
 export_exlib_phases pkg_preinst src_install pkg_postinst
 
-gnome_exlib_save_gconf_schemas()
-{
+gnome_exlib_save_gconf_schemas() {
     pushd "${D}" &> /dev/null
     export GNOME_EXLIB_GCONF_SCHEMAS=$(find 'etc/gconf/schemas' -name '*.schemas' 2>/dev/null)
     popd &> /dev/null
 }
 
-gnome_exlib_save_icon_index_dirs()
-{
+gnome_exlib_save_icon_index_dirs() {
     pushd "${D}" &> /dev/null
     export GNOME_EXLIB_ICON_INDEX_DIRS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2>/dev/null)
     popd &> /dev/null
 }
 
-gnome_exlib_restart_gconfd()
-{
+gnome_exlib_restart_gconfd() {
     local pids=$(pgrep -x gconfd-2)
 
     if [[ -n "${pids}" ]] ; then
@@ -34,8 +31,7 @@ gnome_exlib_restart_gconfd()
     fi
 }
 
-gnome_exlib_install_gconf_schemas()
-{
+gnome_exlib_install_gconf_schemas() {
     local retval=0
 
     [[ -x "${GCONFTOOL}" ]] || return
@@ -56,8 +52,7 @@ gnome_exlib_install_gconf_schemas()
     gnome_exlib_restart_gconfd
 }
 
-gnome_exlib_uninstall_gconf_schemas()
-{
+gnome_exlib_uninstall_gconf_schemas() {
     local retval=0
 
     [[ -x "${GCONFTOOL}" ]] || return
@@ -78,8 +73,7 @@ gnome_exlib_uninstall_gconf_schemas()
     gnome_exlib_restart_gconfd
 }
 
-gnome_exlib_update_icon_cache()
-{
+gnome_exlib_update_icon_cache() {
     local failures=( )
     local retval=0
 
@@ -103,22 +97,19 @@ gnome_exlib_update_icon_cache()
     done
 }
 
-gnome-2_pkg_preinst()
-{
+gnome-2_pkg_preinst() {
     gnome_exlib_save_gconf_schemas
     gnome_exlib_save_icon_index_dirs
     default
 }
 
-gnome-2_src_install()
-{
+gnome-2_src_install() {
     export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
     default
     unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 }
 
-gnome-2_pkg_postinst()
-{
+gnome-2_pkg_postinst() {
     gnome_exlib_install_gconf_schemas
     gnome_exlib_update_icon_cache
     default

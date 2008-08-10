@@ -23,8 +23,7 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.18
 "
 
-src_install()
-{
+src_install() {
     default
 
     rmdir "${D}/usr/$(get_libdir)/mozilla/plugins" || die

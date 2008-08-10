@@ -15,8 +15,7 @@ DEPENDENCIES="
         >=dev-libs/libxslt-1.1.8
 "
 
-src_install()
-{
+src_install() {
     default
 
     keepdir /var/lib/lib/rarian

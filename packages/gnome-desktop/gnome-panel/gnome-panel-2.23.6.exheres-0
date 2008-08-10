@@ -41,8 +41,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS="--enable-polkit=no --enable-network-manager=no
 --with-in-process-applets=clock,notification-area,wncklet"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="eds"
 
-src_install()
-{
+src_install() {
     default
 
     rmdir "${D}"/usr/share/dbus-1/{system-services,} || die

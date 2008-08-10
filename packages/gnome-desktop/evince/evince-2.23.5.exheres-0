@@ -40,8 +40,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS="--enable-thumbnailer --enable-pixbuf
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES="dbus nautilus tiff"
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS="keyring"
 
-src_configure()
-{
+src_configure() {
     #DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable document_format:djvu djvu)"
     DEFAULT_SRC_CONFIGURE_PARAMS+=" --disable-djvu"
 

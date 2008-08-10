@@ -33,22 +33,19 @@ DEPENDENCIES="
         X? ( x11-proto/xproto )
 "
 
-src_configure()
-{
+src_configure() {
     DEFAULT_SRC_CONFIGURE_PARAMS="$(option_with X x) $(option_enable doc gtk-doc)"
     default
 }
 
-src_install()
-{
+src_install() {
     default
 
     # this is generated in the postinst
     rm "${D}/etc/pango/pango.modules"
 }
 
-pkg_postinst()
-{
+pkg_postinst() {
     ebegin "Generating pango.modules file"
         mkdir -p "${ROOT}/etc/pango/"
         pango-querymodules > "${ROOT}/etc/pango/pango.modules"

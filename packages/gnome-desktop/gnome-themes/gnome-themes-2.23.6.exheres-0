@@ -21,8 +21,7 @@ DEPENDENCIES="
         >=x11-apps/icon-naming-utils-0.8.0
 "
 
-src_configure()
-{
+src_configure() {
     DEFAULT_SRC_CONFIGURE_PARAMS=$(option_enable accessibility all-themes)
     default
 }
