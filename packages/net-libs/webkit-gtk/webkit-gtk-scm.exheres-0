@@ -1,12 +1,15 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-EGIT_REPO_URI="git://git.webkit.org/WebKit.git"
-
-require git autotools
+require autotools
 
 DESCRIPTION="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
+SRC_URI=""
+
+SCM_TYPE="git"
+SCM_REPOSITORY="git://git.webkit.org/WebKit.git"
+require scm
 
 LICENSE="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
