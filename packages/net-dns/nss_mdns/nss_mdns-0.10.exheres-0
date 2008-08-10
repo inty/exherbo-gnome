@@ -26,9 +26,7 @@ src_prepare() {
     eautomake
 }
 
-src_configure() {
-    econf --enable-search-domains --enable-avahi
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-search-domains --enable-avahi )
 
 src_install() {
     default

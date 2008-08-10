@@ -45,27 +45,29 @@ src_prepare() {
               doxygen_to_devhelp.xsl
 }
 
-src_configure() {
-    # TODO Implement exherbo specific init scripts
-    econf --localstatedir=/var              \
-          --with-distro=gentoo              \
-          --disable-compat-libdns_sd        \
-          --disable-compat-howl             \
-          --disable-python-dbus             \
-          --disable-xmltoman                \
-          --enable-glib                     \
-          --disable-python                  \
-          --disable-pygtk                   \
-          --disable-qt3                     \
-          --disable-qt4                     \
-          --disable-mono                    \
-          --disable-monodoc                 \
-          $(option_enable autoipd)          \
-          $(option_enable doc doxygen-doc)  \
-          $(option_enable dbus)             \
-          $(option_enable gtk)              \
-          $(option_enable gdbm)
-}
+# TODO Implement exherbo specific init scripts
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --localstatedir=/var
+    --with-distro=gentoo
+    --disable-compat-libdns_sd
+    --disable-compat-howl
+    --disable-python-dbus
+    --disable-xmltoman
+    --enable-glib
+    --disable-python
+    --disable-pygtk
+    --disable-qt3
+    --disable-qt4
+    --disable-mono
+    --disable-monodoc
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    autoipd
+    "doc doxygen-doc"
+    dbus
+    gtk
+    gdbm
+)
 
 src_compile() {
     emake
