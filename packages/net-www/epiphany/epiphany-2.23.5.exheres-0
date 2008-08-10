@@ -33,13 +33,9 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--with-engine=webkit --disable-python
---disable-network-manager --with-distributor-name=exherbo"
-
-src_configure() {
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" $(option_enable avahi zeroconf)"
-    default
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-engine=webkit' '--disable-python'
+'--disable-network-manager' '--with-distributor-name=exherbo' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' )
 
 src_install() {
     gnome-2_src_install
