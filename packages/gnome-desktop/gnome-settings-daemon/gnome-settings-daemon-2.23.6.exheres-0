@@ -35,4 +35,4 @@ DEPENDENCIES="
         >=dev-util/intltool-0.37.1
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-esd --disable-gstreamer"
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-esd --disable-gstreamer )
