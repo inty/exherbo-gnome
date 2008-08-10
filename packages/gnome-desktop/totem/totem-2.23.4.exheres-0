@@ -37,14 +37,14 @@ DEPENDENCIES="
 # gstreamer
 # epc (publish)
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--disable-nvtv --enable-xine --disable-gstreamer
---enable-gtk --disable-python --disable-vala --with-dbus
---disable-browser-plugins"
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-nvtv --enable-xine --disable-gstreamer
+    --enable-gtk --disable-python --disable-vala --with-dbus
+    --disable-browser-plugins )
 
 src_configure() {
     local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto
 
-    DEFAULT_SRC_CONFIGURE_PARAMS+=" --with-plugins=${plugins}"
+    DEFAULT_SRC_CONFIGURE_PARAMS+=( --with-plugins=${plugins} )
 
     default
 }

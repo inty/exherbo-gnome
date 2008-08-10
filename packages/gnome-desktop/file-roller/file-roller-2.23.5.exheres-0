@@ -27,7 +27,7 @@ DEPENDENCIES="
 
 src_configure() {
     if option nautilus ; then
-        DEFAULT_SRC_CONFIGURE_PARAMS="--enable-nautilus-actions"
+        DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-nautilus-actions )
     fi
 
     default
