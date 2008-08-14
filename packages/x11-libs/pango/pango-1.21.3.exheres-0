@@ -42,8 +42,6 @@ src_install() {
     pango-module_add_path 00pango "$(pango-module_standard_path)"
 
     # this is generated in the postinst
-    if [[ -e "${D}/etc/pango/pango.modules" ]]; then
-        rm "${D}/etc/pango/pango.modules" || die "rm failed"
-    fi
+    rm -f "${D}/etc/pango/pango.modules"
 }
 
