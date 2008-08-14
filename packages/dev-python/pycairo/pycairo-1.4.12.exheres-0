@@ -1,0 +1,27 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+SUMMARY="Python bindings for Cairo"
+HOMEPAGE="http://www.cairographics.org/pycairo/"
+SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
+
+LICENSE="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-lang/python-2.4
+        >=x11-libs/cairo-1.4.12
+    build:
+        >=dev-util/pkg-config-0.20
+"
+
+src_prepare() {
+    default
+
+    # disable python byte compiling
+    rm py-compile
+    ln -s "$(type -P true)" py-compile
+}
