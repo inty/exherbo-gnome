@@ -7,8 +7,8 @@ SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 SOURCES=""
 
-SCM_TYPE="git"
-SCM_REPOSITORY="git://git.webkit.org/WebKit.git"
+SCM_TYPE="svn"
+SCM_REPOSITORY="http://svn.webkit.org/repository/webkit"
 require scm
 
 LICENCES="LGPL-2 LGPL-2.1 BSD"
