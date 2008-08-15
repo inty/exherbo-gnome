@@ -1,0 +1,37 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome-2
+
+SUMMARY="Editor for the GNOME environment"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENSE="GPL-2"
+SLOT="2.20"
+PLATFORMS="~x86"
+MYOPTIONS="spell"
+
+DEPENDENCIES="
+    build+run:
+        >=x11-libs/libSM-1.0.0
+        >=dev-libs/libxml2-2.5.0
+        >=dev-libs/glib-2.16.0:2
+        >=x11-libs/gtk+-2.13.0:2
+        >=gnome-desktop/gtksourceview-2.2.0:2
+        >=gnome-platform/GConf-2.0
+        spell? ( >=app-text/enchant-1.2.0
+                 >=app-text/iso-codes-0.35 )
+    build:
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+"
+
+DEFATULT_SRC_CONFIGURE_PARAMS=( --disable-attr --disable-python )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( spell )
+
+src_install() {
+    default
+
+    # remove empty dirs
+    rmdir "${D}"/usr/share/gedit-2/plugins/{indent,sample,changecase} || die
+}
