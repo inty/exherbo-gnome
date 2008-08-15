@@ -13,10 +13,10 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="X doc"
 
-DEPENDENCIES="
+DEPENDENCIES+="
     build+run:
         >=dev-libs/glib-2.16.3:2
-        >=x11-libs/cairo-1.6.4
+        >=x11-libs/cairo-1.7.4
         >=media-libs/freetype-2
         >=media-libs/fontconfig-1.0.1
         X? (
@@ -44,4 +44,3 @@ src_install() {
     # this is generated in the postinst
     rm -f "${D}/etc/pango/pango.modules"
 }
-
