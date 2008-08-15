@@ -13,7 +13,7 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="X doc"
 
-DEPENDENCIES+="
+DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.3:2
         >=x11-libs/cairo-1.7.4
