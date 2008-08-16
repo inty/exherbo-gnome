@@ -5,13 +5,13 @@ require autotools
 
 SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
-SRC_URI=""
+SOURCES=""
 
 SCM_TYPE="git"
 SCM_REPOSITORY="git://git.webkit.org/WebKit.git"
 require scm
 
-LICENSE="LGPL-2 LGPL-2.1 BSD"
+LICENCES="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="svg"
