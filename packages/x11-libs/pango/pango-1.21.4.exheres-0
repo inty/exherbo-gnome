@@ -8,7 +8,7 @@ require gnome.org pango-module
 SUMMARY="A library for layout and rendering of text"
 HOMEPAGE="http://www.gtk.org"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="X doc"

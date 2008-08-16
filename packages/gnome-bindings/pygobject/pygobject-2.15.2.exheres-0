@@ -6,7 +6,7 @@ require gnome.org
 SUMMARY="Python Bindings for GObject"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE=""
+LICENCES=""
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="doc"

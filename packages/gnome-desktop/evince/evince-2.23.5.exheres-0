@@ -6,7 +6,7 @@ require gnome-2
 SUMMARY="Document Viewer for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="dbus nautilus keyring tiff document_format:pdf" # document_format:djvu document_format:dvi document_format:ps

@@ -3,9 +3,9 @@
 
 SUMMARY="Utilities for mapping icons to the FDO spec"
 HOMEPAGE="http://tango.freedesktop.org/"
-SRC_URI="http://tango.freedesktop.org/releases/${P}.tar.gz"
+SOURCES="http://tango.freedesktop.org/releases/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""

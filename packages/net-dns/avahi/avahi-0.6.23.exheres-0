@@ -7,9 +7,9 @@ require eutils multilib
 
 SUMMARY="mDNS discovery agent"
 HOMEPAGE="http://avahi.org/"
-SRC_URI="http://avahi.org/download/${P}.tar.gz"
+SOURCES="http://avahi.org/download/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="autoipd doc dbus gdbm gtk ipv6"

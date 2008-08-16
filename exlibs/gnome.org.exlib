@@ -4,4 +4,4 @@
 #     Copyright 1999-2004 Gentoo Foundation
 
 PVP=( ${PV//[-\._]/ } )
-SRC_URI="mirror://gnome/sources/${MY_PN:-${PN}}/${PVP[0]}.${PVP[1]}/${MY_P:-${P}}.tar.${GNOME_TARBALL_SUFFIX:-bz2}"
+SOURCES="mirror://gnome/sources/${MY_PN:-${PN}}/${PVP[0]}.${PVP[1]}/${MY_P:-${P}}.tar.${GNOME_TARBALL_SUFFIX:-bz2}"

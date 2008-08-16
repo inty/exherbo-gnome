@@ -4,9 +4,9 @@
 
 SUMMARY="Pixman is a library that provides low-level pixel manipulation"
 HOMEPAGE="http://www.x.org/"
-SRC_URI="http://xorg.freedesktop.org/archive/individual/lib/${P}.tar.bz2"
+SOURCES="http://xorg.freedesktop.org/archive/individual/lib/${P}.tar.bz2"
 
-LICENSE="fixme"
+LICENCES="fixme"
 SLOT="1"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gtk"

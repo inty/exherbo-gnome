@@ -3,9 +3,9 @@
 
 SUMMARY="Python bindings for Cairo"
 HOMEPAGE="http://www.cairographics.org/pycairo/"
-SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
+SOURCES="http://cairographics.org/releases/${P}.tar.gz"
 
-LICENSE="LGPL-2"
+LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""

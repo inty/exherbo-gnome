@@ -3,9 +3,9 @@
 
 SUMMARY="Notification Interface Library"
 HOMEPAGE="http://www.galago-project.org/"
-SRC_URI="http://www.galago-project.org/files/releases/source/${PN}/${P}.tar.bz2"
+SOURCES="http://www.galago-project.org/files/releases/source/${PN}/${P}.tar.bz2"
 
-LICENSE="LGPL-2.1"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""

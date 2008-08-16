@@ -7,7 +7,7 @@ require gnome.org multilib
 SUMMARY="The GLib library of C routines"
 HOMEPAGE="http://www.gnome.org"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~ia64 ~x86"
 MYOPTIONS="fam"

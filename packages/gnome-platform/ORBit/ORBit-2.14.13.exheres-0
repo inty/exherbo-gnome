@@ -8,7 +8,7 @@ require gnome.org
 SUMMARY="[DEPRECATED] (C)ORB(A) Helper"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""

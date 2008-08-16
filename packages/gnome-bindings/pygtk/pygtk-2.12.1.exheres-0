@@ -6,7 +6,7 @@ require gnome.org
 SUMMARY="Python bindings for GTK+"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="LGPL-2.1"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="doc"

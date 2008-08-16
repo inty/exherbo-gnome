@@ -8,7 +8,7 @@ require gnome.org
 SUMMARY="The GIMP Toolkit"
 HOMEPAGE="http://www.gtk.org/"
 
-LICENSE="LGPL-2"
+LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="jpeg tiff xinerama vim-syntax"

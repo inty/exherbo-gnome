@@ -6,7 +6,7 @@ require gnome-2
 SUMMARY="[DEPRECATED] GNOME Volume/File System library"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="avahi hal ipv6"

@@ -6,7 +6,7 @@ require gnome.org
 SUMMARY="HTTP library implemented in C"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="LGPL-2"
+LICENCES="LGPL-2"
 SLOT="2.4"
 PLATFORMS="~x86"
 MYOPTIONS="" # ssl

@@ -3,9 +3,9 @@
 
 SUMMARY="Documentation metadata library"
 HOMEPAGE="http://rarian.freedesktop.org/"
-SRC_URI="http://rarian.freedesktop.org/Releases/${P}.tar.bz2"
+SOURCES="http://rarian.freedesktop.org/Releases/${P}.tar.bz2"
 
-LICENSE="LGPL-2.1"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""

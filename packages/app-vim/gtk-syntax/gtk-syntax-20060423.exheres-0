@@ -6,7 +6,7 @@ require vim-plugin
 SUMMARY="Syntax highlighting for glib, GTK+, xlib, gimp, and gnome"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1000"
 
-LICENSE="as-is"
+LICENCES="as-is"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""

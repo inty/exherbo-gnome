@@ -7,7 +7,7 @@ require gnome.org
 SUMMARY="A terminal emulator widget"
 HOMEPAGE="http://developer.gnome.org/arch/gnome/widgets/vte.html"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""

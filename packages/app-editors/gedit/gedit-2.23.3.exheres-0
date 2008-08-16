@@ -6,7 +6,7 @@ require gnome-2
 SUMMARY="Editor for the GNOME environment"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENSE="GPL-2"
+LICENCES="GPL-2"
 SLOT="2.20"
 PLATFORMS="~x86"
 MYOPTIONS="spell"

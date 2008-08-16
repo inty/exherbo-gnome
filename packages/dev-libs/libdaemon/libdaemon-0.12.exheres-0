@@ -5,9 +5,9 @@ require autotools
 
 SUMMARY="A lightweight C library that eases the writing of UNIX daemons"
 HOMEPAGE="http://0pointer.de/lennart/projects/libdaemon/"
-SRC_URI="http://0pointer.de/lennart/projects/libdaemon/${P}.tar.gz"
+SOURCES="http://0pointer.de/lennart/projects/libdaemon/${P}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS=""
