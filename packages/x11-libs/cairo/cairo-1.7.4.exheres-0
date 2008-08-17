@@ -30,7 +30,7 @@ DEPENDENCIES="
                             >=x11-libs/libxcb-0.92
                         )
             )
-        pdf? ( >=app-text/popperl-0.8.0[glib] )
+        pdf? ( >=app-text/poppler-0.8.0[glib] )
         svg? (
                >=x11-libs/gtk+-2.0:2
                >=gnome-desktop/librsvg-2.15.0
