@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="pam"
+MYOPTIONS="libnotify pam"
 
 DEPENDENCIES="
     build+run:
@@ -23,15 +23,15 @@ DEPENDENCIES="
         >=gnome-desktop/libgnomekbd-0.1
           x11-libs/libXext
           x11-libs/libX11
+        libnotify? ( >=x11-libs/libnotify-0.4.4 )
         pam? ( sys-libs/pam )
     build:
         >=dev-util/intltool-0.35.0
 "
-# libnotify? ( dev-libs/libnotify )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xf86gamma-ext' '--enable-locking'
 '--with-gl' '--with-kbd-layout-indicator' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( libnotify )
 
 src_install() {
     gnome-2_src_install
