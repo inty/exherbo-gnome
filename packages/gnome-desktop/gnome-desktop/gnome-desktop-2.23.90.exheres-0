@@ -7,7 +7,7 @@ SUMMARY="Desktop environment for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="0"
+SLOT="2"
 PLATFORMS="~x86"
 MYOPTIONS=""
 
