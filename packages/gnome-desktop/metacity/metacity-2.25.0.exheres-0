@@ -21,7 +21,7 @@ DEPENDENCIES="
         >=x11-libs/libXcomposite-0.2
         xinerama? ( x11-libs/libXinerama )
     build:
-        >=dev-util/intltool-0.35
+        >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
 "
 
