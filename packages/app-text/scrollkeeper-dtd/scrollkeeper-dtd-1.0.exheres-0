@@ -1,0 +1,50 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+# Based in part upon 'scrollkeeper-dtd-1.0.ebuild' which is:
+#    Copyright 1999-2008 Gentoo Foundation
+
+DTD="scrollkeeper-omf.dtd"
+
+SUMMARY="DTD for the scrollkeeper package"
+HOMEPAGE="http://scrollkeeper.sourceforge.net/"
+SOURCES="http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/${DTD}"
+
+LICENCES="FDL-1.1"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    run:
+        >=dev-libs/libxml2-2.4.19
+"
+
+src_install() {
+    insinto /usr/share/xml/scrollkeeper/dtds
+    doins "${FETCHEDDIR}/${DTD}"
+}
+
+pkg_postinst() {
+    local original="-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN"
+    local replacement="/usr/share/xml/scrollkeeper/dtds/${DTD}"
+
+    ebegin "Installing catalog"
+
+    # install DOCTYPE catalog entry
+    /usr/bin/xmlcatalog --noout --add "public" \
+        "${original}" "${replacement}" /etc/xml/catalog || die
+
+    # install catalog entry
+    /usr/bin/xmlcatalog --noout --add "system" \
+        "${SOURCES}" "${replacement}" /etc/xml/catalog || die
+
+    eend $?
+}
+
+pkg_postrm() {
+    local value="/usr/share/xml/scrollkeeper/dtds/${DTD}"
+
+    ebegin "Cleaning catalog"
+    /usr/bin/xmlcatalog --noout --del "${value}" /etc/xml/catalog || die
+    eend $?
+}
