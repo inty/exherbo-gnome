@@ -20,7 +20,7 @@ DEPENDENCIES="
         avahi? ( >=net-dns/avahi-0.6 )
         gnome? ( >=gnome-platform/GConf-2.0 )
         hal? ( >=sys-apps/hal-0.5.10 )
-        keyring? ( >=gnome-desktop/gnome-keyring-2.0 )
+        keyring? ( >=gnome-desktop/gnome-keyring-2.0:1 )
     build:
         >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
