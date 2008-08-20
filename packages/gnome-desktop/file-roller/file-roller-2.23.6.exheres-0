@@ -17,7 +17,7 @@ DEPENDENCIES="
         >=x11-libs/gtk+-2.13.0:2
         >=gnome-platform/libgnome-2.6
         >=gnome-platform/libgnomeui-2.6
-        >=gnome-platform/libglade-2.4
+        >=gnome-platform/libglade-2.4:2
         >=gnome-platform/GConf-2.0
         nautilus? ( >=gnome-desktop/nautilus-2.22.2 )
     build:
