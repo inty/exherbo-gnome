@@ -26,6 +26,11 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' )
 
+src_configure() {
+    export POLKIT_POLICY_FILE_VALIDATE=$(type -P true)
+    default
+}
+
 src_install() {
     default
 
