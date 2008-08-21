@@ -7,7 +7,7 @@ SUMMARY="[DEPRECATED] GNOME GTK+ Widgets Library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
-SLOT="0"
+SLOT="2"
 PLATFORMS="~x86"
 MYOPTIONS=""
 
@@ -15,18 +15,18 @@ DEPENDENCIES="
     build+run:
         >=dev-libs/libxml2-2.4.20
         >=gnome-platform/GConf-1.1.11
-        >=gnome-platform/libgnome-2.13.7
+        >=gnome-platform/libgnome-2.13.7:2
         >=gnome-platform/libgnomecanvas-2.0.0
         >=gnome-platform/libbonoboui-2.13.1
         >=gnome-platform/gnome-vfs-2.7.3
-        >=gnome-platform/libglade-2.0.0
-        >=gnome-desktop/gnome-keyring-0.4
+        >=gnome-platform/libglade-2.0.0:2
+        >=gnome-desktop/gnome-keyring-0.4:1
         >=x11-libs/pango-1.1.2
         >=dev-libs/glib-2.16.0:2
         >=x11-libs/gtk+-2.12.0:2
           dev-libs/popt
     build:
           sys-devel/gettext
-        >=dev-util/intltool-0.35.0
+        >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.18
 "
