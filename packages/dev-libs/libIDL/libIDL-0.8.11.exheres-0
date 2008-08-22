@@ -1,0 +1,16 @@
+# Copyright (C) 2008 Stephen Bennett <spb@exherbo.org>
+# Distributed under the terms of the GNU General Public Licence v2
+
+require gnome.org
+
+SUMMARY="IDL parsing and compilation library"
+HOMEPAGE="http://andrewtv.org/libIDL"
+
+LICENCES="GPL-2"
+SLOT="2"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/glib-2.4.0:2"
