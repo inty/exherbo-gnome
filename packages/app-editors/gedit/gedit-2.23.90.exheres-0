@@ -18,7 +18,7 @@ DEPENDENCIES="
         >=dev-libs/glib-2.16.0:2
         >=x11-libs/gtk+-2.13.0:2
         >=gnome-desktop/gtksourceview-2.2.0:2
-        >=gnome-platform/GConf-2.0
+        >=gnome-platform/GConf-2.0:2
         spell? ( >=app-text/enchant-1.2.0
                  >=app-text/iso-codes-0.35 )
     build:
