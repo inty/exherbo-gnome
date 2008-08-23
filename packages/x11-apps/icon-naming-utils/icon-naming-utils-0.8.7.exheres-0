@@ -7,7 +7,7 @@ SOURCES="http://tango.freedesktop.org/releases/${P}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES=">=dev-perl/XML-Simple-2"
