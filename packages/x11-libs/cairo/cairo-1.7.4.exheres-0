@@ -6,7 +6,7 @@
 
 SUMMARY="Cairo is a 2D graphics library"
 HOMEPAGE="http://www.cairographics.org"
-SOURCES="http://cairographics.org/snapshots/${P}.tar.gz"
+DOWNLOADS="http://cairographics.org/snapshots/${PNV}.tar.gz"
 
 LICENCES="LGPL-2.1 MPL-1.1"
 SLOT="0"

@@ -31,5 +31,5 @@ DEPENDENCIES="
 "
 
 src_test() {
-    export HOME="${T}" default
+    export HOME="${TEMP}" default
 }

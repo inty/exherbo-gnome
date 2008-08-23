@@ -42,5 +42,5 @@ src_install() {
     default
 
     # Remove empty directories
-    rmdir "${D}"/usr/share/man/{man1,} || die
+    rmdir "${IMAGE}"/usr/share/man/{man1,} || die
 }

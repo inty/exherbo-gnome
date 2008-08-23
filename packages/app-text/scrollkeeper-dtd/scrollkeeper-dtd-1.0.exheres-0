@@ -7,7 +7,7 @@ DTD="scrollkeeper-omf.dtd"
 
 SUMMARY="DTD for the scrollkeeper package"
 HOMEPAGE="http://scrollkeeper.sourceforge.net/"
-SOURCES="http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/${DTD}"
+DOWNLOADS="http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/${DTD}"
 
 LICENCES="FDL-1.1"
 SLOT="0"
@@ -36,7 +36,7 @@ pkg_postinst() {
 
     # install catalog entry
     /usr/bin/xmlcatalog --noout --add "system" \
-        "${SOURCES}" "${replacement}" /etc/xml/catalog || die
+        "${DOWNLOADS}" "${replacement}" /etc/xml/catalog || die
 
     eend $?
 }

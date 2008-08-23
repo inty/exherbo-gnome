@@ -5,7 +5,7 @@ require autotools
 
 SUMMARY="Name Service Switch module for Multicast DNS"
 HOMEPAGE="http://0pointer.de/lennart/projects/nss-mdns/"
-SOURCES="http://0pointer.de/lennart/projects/nss-mdns/${P/_/-}.tar.gz"
+DOWNLOADS="http://0pointer.de/lennart/projects/nss-mdns/${PNV/_/-}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -17,9 +17,9 @@ DEPENDENCIES="
         net-dns/avahi
 "
 
-S="${WORKDIR}/${P/_/-}"
+WORK="${WORKBASE}/${PNV/_/-}"
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILESDIR}/${PN}-0.8-avahi-socket.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PN}-0.8-avahi-socket.patch" )
 
 src_prepare() {
     default
@@ -32,5 +32,5 @@ src_install() {
     default
 
     insinto /etc
-    doins "${FILESDIR}/mdns.allow"
+    doins "${FILES}/mdns.allow"
 }

@@ -8,7 +8,7 @@ require freedesktop-mime
 
 DESCRIPTION="The Shared MIME-info Database specification"
 HOMEPAGE="http://freedesktop.org/wiki/Software/shared-mime-info"
-SOURCES="http://freedesktop.org/~hadess/${P}.tar.bz2"
+DOWNLOADS="http://freedesktop.org/~hadess/${PNV}.tar.bz2"
 
 LICENCES="|| ( GPL-2 GPL-3 )"
 SLOT="0"

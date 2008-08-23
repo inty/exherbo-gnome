@@ -26,5 +26,5 @@ src_install() {
     default
 
     # libiconv provides the character set aliases
-    rm -f "${D}/usr/$(get_libdir)/charset.alias" || die
+    rm -f "${IMAGE}/usr/$(get_libdir)/charset.alias" || die
 }

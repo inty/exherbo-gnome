@@ -26,6 +26,6 @@ DEPENDENCIES="
 src_install() {
     default
 
-    rmdir "${D}/usr/$(get_libdir)/mozilla/plugins" || die
-    rmdir "${D}/usr/$(get_libdir)/mozilla" || die
+    rmdir "${IMAGE}/usr/$(get_libdir)/mozilla/plugins" || die
+    rmdir "${IMAGE}/usr/$(get_libdir)/mozilla" || die
 }

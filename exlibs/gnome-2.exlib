@@ -10,13 +10,13 @@ require gnome.org
 export_exlib_phases pkg_preinst src_install pkg_postinst
 
 gnome_exlib_save_gconf_schemas() {
-    pushd "${D}" &> /dev/null
+    pushd "${IMAGE}" &> /dev/null
     export GNOME_EXLIB_GCONF_SCHEMAS=$(find 'etc/gconf/schemas' -name '*.schemas' 2>/dev/null)
     popd &> /dev/null
 }
 
 gnome_exlib_save_icon_index_dirs() {
-    pushd "${D}" &> /dev/null
+    pushd "${IMAGE}" &> /dev/null
     export GNOME_EXLIB_ICON_INDEX_DIRS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2>/dev/null)
     popd &> /dev/null
 }

@@ -47,8 +47,8 @@ DEPENDENCIES="
 
 RESTRICT="test"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
-                              -p0 "${FILESDIR}/${PN}-2.12.0-openoffice-freeze-workaround.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-2.12.0-flash-workaround.patch"
+                              -p0 "${FILES}/${PN}-2.12.0-openoffice-freeze-workaround.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-libpng' '--without-libjasper' '--with-gdktarget=x11' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg libjpeg' 'tiff libtiff' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama )
@@ -57,10 +57,10 @@ src_install() {
     default
 
     # Setup default icon theme
-    echo 'gtk-fallback-icon-theme = "gnome"' > "${D}/etc/gtk-2.0/gtkrc"
+    echo 'gtk-fallback-icon-theme = "gnome"' > "${IMAGE}/etc/gtk-2.0/gtkrc"
 
     # Use XFT
-    echo 'GDK_USE_XFT=1' > "${D}/etc/env.d/50gtk2"
+    echo 'GDK_USE_XFT=1' > "${IMAGE}/etc/env.d/50gtk2"
 }
 
 pkg_postinst() {

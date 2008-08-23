@@ -39,5 +39,5 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' )
 
 src_install() {
     gnome-2_src_install
-    rmdir "${D}/usr/share/epiphany/art"
+    rmdir "${IMAGE}/usr/share/epiphany/art"
 }

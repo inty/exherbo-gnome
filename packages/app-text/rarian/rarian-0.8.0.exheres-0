@@ -3,7 +3,7 @@
 
 SUMMARY="Documentation metadata library"
 HOMEPAGE="http://rarian.freedesktop.org/"
-SOURCES="http://rarian.freedesktop.org/Releases/${P}.tar.bz2"
+DOWNLOADS="http://rarian.freedesktop.org/Releases/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2.1"
 SLOT="0"

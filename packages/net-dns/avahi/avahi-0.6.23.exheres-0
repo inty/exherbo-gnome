@@ -7,7 +7,7 @@ require eutils multilib
 
 SUMMARY="mDNS discovery agent"
 HOMEPAGE="http://avahi.org/"
-SOURCES="http://avahi.org/download/${P}.tar.gz"
+DOWNLOADS="http://avahi.org/download/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -42,7 +42,7 @@ src_prepare() {
         sed -i -e 's/use-ipv6=no/use-ipv6=yes/' avahi-daemon/avahi-daemon.conf
     fi
 
-    sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
+    sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PNVR}/html/:" \
               doxygen_to_devhelp.xsl
 }
 
@@ -84,20 +84,20 @@ DEFAULT_SRC_INSTALL_EXTRA_PREFIXES=( docs/ )
 src_install() {
     default
 
-    rm -f "${D}/usr/bin/avahi-bookmarks"
+    rm -f "${IMAGE}/usr/bin/avahi-bookmarks"
 
-    rmdir "${D}/var/run"
-    rmdir "${D}/var"
-    rmdir "${D}/usr/$(get_libdir)/avahi"
-    rmdir "${D}/usr/share/applications"
+    rmdir "${IMAGE}/var/run"
+    rmdir "${IMAGE}/var"
+    rmdir "${IMAGE}/usr/$(get_libdir)/avahi"
+    rmdir "${IMAGE}/usr/share/applications"
 
     if option autoipd ; then
         insinto /$(get_libdir)/rcscripts/net
-        doins "${FILESDIR}/autoipd.sh"
+        doins "${FILES}/autoipd.sh"
     fi
 
     if option doc ; then
-        insinto /usr/share/doc/${P}/html
+        insinto /usr/share/doc/${PNV}/html
         doins doxygen/html/*
 
         insinto /usr/share/devhelp/books/avahi

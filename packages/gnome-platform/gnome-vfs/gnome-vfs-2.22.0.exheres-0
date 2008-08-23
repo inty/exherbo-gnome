@@ -30,5 +30,5 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-cdda --disable-samba --enable-openssl -
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLE=( avahi hal ipv6 )
 
 src_test() {
-    export HOME="${T}" default
+    export HOME="${TEMP}" default
 }

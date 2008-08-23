@@ -3,7 +3,7 @@
 
 SUMMARY="Notification Interface Library"
 HOMEPAGE="http://www.galago-project.org/"
-SOURCES="http://www.galago-project.org/files/releases/source/${PN}/${P}.tar.bz2"
+DOWNLOADS="http://www.galago-project.org/files/releases/source/${PN}/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2.1"
 SLOT="0"

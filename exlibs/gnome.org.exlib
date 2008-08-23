@@ -5,4 +5,4 @@
 
 require versionator
 
-SOURCES="mirror://gnome/sources/${MY_PN:-${PN}}/$(get_version_component_range 1-2)/${MY_P:-${P}}.tar.${GNOME_TARBALL_SUFFIX:-bz2}"
+DOWNLOADS="mirror://gnome/sources/${MY_PN:-${PN}}/$(get_version_component_range 1-2)/${MY_PNV:-${PNV}}.tar.${GNOME_TARBALL_SUFFIX:-bz2}"

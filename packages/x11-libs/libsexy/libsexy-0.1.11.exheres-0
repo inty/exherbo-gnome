@@ -3,7 +3,7 @@
 
 SUMMARY="Sexy GTK+ Widgets"
 HOMEPAGE="http://www.chipx86.com/wiki/Libsexy"
-SOURCES="http://releases.chipx86.com/libsexy/${PN}/${P}.tar.bz2"
+DOWNLOADS="http://releases.chipx86.com/libsexy/${PN}/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2"
 SLOT="0"
