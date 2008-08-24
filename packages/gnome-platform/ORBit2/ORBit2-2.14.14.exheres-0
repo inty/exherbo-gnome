@@ -1,8 +1,6 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-MY_PN="ORBit2"
-MY_PNV="${MY_PN}-${PV}"
 require gnome.org
 
 SUMMARY="[DEPRECATED] (C)ORB(A) Helper"
@@ -16,12 +14,10 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.8:2
-        >=dev-libs/libIDL-0.8.2
+        >=dev-libs/libIDL-0.8.2:2
     build:
         >=dev-util/pkg-config-0.18
 "
-
-WORK="${WORKBASE}/${MY_PNV}"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
