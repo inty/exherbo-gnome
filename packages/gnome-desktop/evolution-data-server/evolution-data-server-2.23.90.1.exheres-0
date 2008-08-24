@@ -15,7 +15,7 @@ DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.1:2
         >=x11-libs/gtk+-2.10.0:2
-        >=gnome-platform/ORBit-2.9.8
+        >=gnome-platform/ORBit2-2.9.8:2
         >=gnome-platform/libbonobo-2.20.3
         >=gnome-platform/GConf-2.0
         >=gnome-platform/libglade-2.0:2
