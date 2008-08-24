@@ -28,6 +28,7 @@ DEPENDENCIES="
         >=dev-libs/dbus-glib-0.60
         >=gnome-desktop/libgweather-2.23.6
         >=gnome-desktop/gnome-menus-2.23.3
+        >=gnome-desktop/librsvg-2.0
           x11-libs/libXau
         eds? ( >=gnome-desktop/evolution-data-server-1.2.0 )
     build:
