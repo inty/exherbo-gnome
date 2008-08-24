@@ -3,7 +3,7 @@
 
 require gnome.org
 
-SUMMARY="[DEPRECATED]"
+SUMMARY="[DEPRECATED] Library to render UIs from a glade definition"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
