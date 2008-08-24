@@ -15,7 +15,7 @@ DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.8.0:2
         >=dev-libs/libxml2-2.4.20
-        >=gnome-platform/ORBit-2.11.2
+        >=gnome-platform/ORBit2-2.11.2:2
         >=sys-apps/dbus-1.0.0
         >=dev-libs/dbus-glib-0.74
     build:
