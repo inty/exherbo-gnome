@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS=""
+MYOPTIONS="tracker"
 
 DEPENDENCIES="
     build+run:
@@ -25,13 +25,18 @@ DEPENDENCIES="
         >=gnome-desktop/librsvg-2.0.1
         >=dev-libs/libxml2-2.4.7
         >=x11-libs/startup-notification-0.8
+        tracker? ( >=app-pim/tracker-0.6.4 )
     build:
+          sys-devel/gettext
         >=dev-util/pkg-config-0.19
         >=dev-util/intltool-0.36.3
     run,post:
         >=gnome-desktop/gvfs-0.1.2
+    post,suggested:
+        >=x11-themes/gnome-icon-theme-1.1.91
 "
 
-RESTRICT="test" # touches things it shouldnt
+RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( tracker )
