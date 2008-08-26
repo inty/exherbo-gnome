@@ -7,9 +7,8 @@ SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 DOWNLOADS=""
 
-SCM_TYPE="git"
 SCM_REPOSITORY="git://git.webkit.org/WebKit.git"
-require scm
+require scm-git
 
 LICENCES="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
