@@ -28,6 +28,7 @@ DEPENDENCIES="
                                 >=app-text/poppler-0.8.0[glib]
                              )
     build:
+        >=gnome-desktop/gnome-doc-utils-0.3.2
         >=dev-util/intltool-0.35
         >=dev-util/pkg-config-0.20
 "
