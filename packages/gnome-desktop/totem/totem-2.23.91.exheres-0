@@ -9,21 +9,22 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="tracker"
+MYOPTIONS="nautilus python tracker"
 
 DEPENDENCIES="
     build+run:
           app-text/iso-codes
         >=dev-libs/glib-2.15:2
-        >=x11-libs/gtk+-2.12.6:2
-        >=gnome-desktop/totem-pl-parser-2.21.90
-        >=gnome-platform/libgnomeui-2.3.3
-        >=gnome-platform/libgnome-2.14
+        >=x11-libs/gtk+-2.13:2
+          gnome-platform/GConf:2
+        >=gnome-desktop/totem-pl-parser-2.23.91
         >=gnome-desktop/gnome-icon-theme-2.15.90
-        >=gnome-platform/GConf-2.0
         >=dev-libs/dbus-glib-0.74
-        >=media-libs/xine-lib-1.1.7
-        tracker? ( >=app-pim/tracker-0.0.1 )
+        >=media-libs/gstreamer-0.10.12:0.10
+        >=media-plugins/gst-plugins-base-0.10.12:0.10
+        nautilus? ( gnome-desktop/nautilus )
+        python? ( >=gnome-bindings/pygtk-2.12.0 )
+        tracker? ( app-pim/tracker )
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.35
@@ -34,21 +35,25 @@ DEPENDENCIES="
 # bluetooth (bemused)
 # galago
 # lirc
-# gstreamer
 # epc (publish)
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-nvtv --enable-xine --disable-gstreamer
---enable-gtk --disable-python --disable-vala --with-dbus
---disable-browser-plugins )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-nvtv' '--disable-xine'
+'--enable-easy-codec-installation' '--enable-gtk' '--disable-vala' '--with-dbus'
+'--disable-browser-plugins' )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( nautilus python )
 
 src_configure() {
     local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto
+
+    if option python ; then
+        plugins+=,pythonconsole
+    fi
 
     if option tracker ; then
         plugins+=,tracker
     fi
 
-    DEFAULT_SRC_CONFIGURE_PARAMS+=( --with-plugins=${plugins} )
+    DEFAULT_SRC_CONFIGURE_PARAMS+=( "--with-plugins=${plugins}" )
 
     default
 }
