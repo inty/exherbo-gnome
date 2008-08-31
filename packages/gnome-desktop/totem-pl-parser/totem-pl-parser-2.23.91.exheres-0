@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools gnome.org
+require gnome.org
 
 SUMMARY="Playlist parsing library"
 HOMEPAGE="http://www.gnome.org/"
@@ -13,11 +13,11 @@ MYOPTIONS="hal"
 
 DEPENDENCIES="
     build+run:
-          dev-libs/libxml2
         >=x11-libs/gtk+-2.10:2
         >=dev-libs/glib-2.16.3:2
         >=dev-libs/dbus-glib-0.61
-        >=gnome-desktop/evolution-data-server-1.12
+          dev-libs/libxml2
+          gnome-desktop/evolution-data-server:1.2
         hal? ( =sys-apps/hal-0.5* )
     build:
           sys-devel/gettext
