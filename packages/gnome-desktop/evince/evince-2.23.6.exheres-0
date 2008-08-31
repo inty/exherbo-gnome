@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="dbus nautilus keyring tiff document_format:pdf" # document_format:djvu document_format:dvi document_format:ps
+MYOPTIONS="dbus nautilus keyring tiff document_format:dvi document_format:pdf document_format:ps" # document_format:djvu
 
 DEPENDENCIES="
     build+run:
@@ -17,16 +17,18 @@ DEPENDENCIES="
         >=dev-libs/glib-2.15.6:2
         >=gnome-desktop/gnome-icon-theme-2.17.1
         >=dev-libs/libxml2-2.5.0
-        >=gnome-platform/libglade-2.0
-        >=gnome-platform/GConf-2.0
+          gnome-platform/libglade:2
+          gnome-platform/GConf:2
         dbus? ( >=dev-libs/dbus-glib-0.70 )
         nautilus?  ( >=gnome-desktop/nautilus-2.0 )
-        keyring? ( >=gnome-desktop/gnome-keyring-0.4.0 )
+        keyring? ( >=gnome-desktop/gnome-keyring-0.4.0:1 )
         tiff? ( >=media-libs/tiff-3.6 )
+        document_format:dvi? ( >=app-text/libspectre-0.2.0 )
         document_format:pdf? (
                                 >=x11-libs/cairo-1.0
                                 >=app-text/poppler-0.8.0[glib]
                              )
+        document_format:ps? ( >=app-text/libspectre-0.2.0 )
     build:
         >=gnome-desktop/gnome-doc-utils-0.3.2
         >=dev-util/intltool-0.35
@@ -36,7 +38,8 @@ DEPENDENCIES="
 # requires X and dogtail
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--disable-libgnome' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--without-libgnome' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus nautilus tiff 'document_format:pdf pdf' )
-# 'document_format:djvu djvu' 'document_format:dvi div' 'document_format:ps ps')
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus nautilus tiff 'document_format:dvi dvi'
+'document_format:pdf pdf' 'document_format:ps ps' )
+# 'document_format:djvu djvu'
