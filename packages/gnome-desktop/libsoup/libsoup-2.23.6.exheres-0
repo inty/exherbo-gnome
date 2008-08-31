@@ -9,14 +9,15 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="2.4"
 PLATFORMS="~x86"
-MYOPTIONS="" # ssl
+MYOPTIONS="ssl"
 
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.15.3:2
           dev-libs/libxml2
+        ssl? ( dev-libs/gnutls )
     build:
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-ssl )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
