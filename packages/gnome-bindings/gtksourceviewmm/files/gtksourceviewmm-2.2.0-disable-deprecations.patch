@@ -1,0 +1,16 @@
+--- gtksourceviewmm-2.2.0/configure.ac	2008-09-01 12:12:20.000000000 -0700
++++ gtksourceviewmm-2.2.0/configure.ac	2008-09-01 12:12:40.000000000 -0700
+@@ -195,11 +195,11 @@
+ 
+ # Add an --enable-use-deprecations configure option:
+ AC_ARG_ENABLE(deprecations,
+-              [AC_HELP_STRING([--enable-use-deprecations],
++              [AC_HELP_STRING([--enable-deprecations],
+                               [warn about deprecated usages [default=no]])],,
+               [enable_deprecations=no])
+               
+-if test "x$enable_use_deprecations" = "xyes"; then
++if test "x$enable_deprecations" = "xyes"; then
+    DISABLE_DEPRECATED_CFLAGS="\
+ -DG_DISABLE_DEPRECATED \
+ -DGDK_DISABLE_DEPRECATED \
