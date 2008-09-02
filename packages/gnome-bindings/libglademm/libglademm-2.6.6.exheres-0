@@ -1,0 +1,22 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org
+
+SUMMARY="C++ bindings for glade"
+HOMEPAGE="http://www.gtkmm.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="2.4"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        >=gnome-platform/libglade-2.6.1:2
+        >=gnome-bindings/gtkmm-2.6.0:2.4
+          gnome-bindings/glibmm:2.4
+    build:
+        >=dev-lang/perl-5.6.0
+        >=dev-util/pkg-config-0.20.0
+"
