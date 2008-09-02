@@ -1,0 +1,42 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require autotools gnome.org
+
+SUMMARY=""
+HOMEPAGE="http://www.gtkmm.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="2.4"
+PLATFORMS="~x86"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build+run:
+        >=dev-cpp/cairomm-1.2.2:1.0
+        >=gnome-bindings/glibmm-2.16.0:2.4
+        >=gnome-bindings/pangomm-2.13.5:1.4
+        >=x11-libs/gtk+-2.13.4:2
+        >=dev-libs/glib-2.4.0:2
+        >=dev-libs/atk-1.9.0
+    build:
+        >=dev-lang/perl-5.6.0
+        >=dev-util/pkg-config-0.20
+        doc? ( app-doc/doxygen )
+"
+
+AT_M4DIR=( "${WORK}/scripts" "${WORK}/tools/m4" )
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-2.13.7-disable-deprecations.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-deprecations' '--disable-deprecated-api' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
+
+src_prepare() {
+    default
+
+    find "${WORK}" -name '*.cc*' -or -name '*.h*' -print0 | xargs -0    \
+        sed -i -e 's:GtkType:GType:g'                   \
+               -e 's:GtkNotifyDestroy:GNotifyDestroy:g' \
+    || die
+}
