@@ -15,9 +15,9 @@ DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2.13.1:2
         >=dev-libs/glib-2.15.3:2
-        >=gnome-platform/libgnomeui-2.6
-        >=gnome-platform/libglade-2.3.6
-        >=gnome-platform/GConf-2.5.90
+        >=gnome-platform/libgnomeui-2.6:2
+        >=gnome-platform/libglade-2.3.6:2
+        >=gnome-platform/GConf-2.5.90:2
         >=gnome-platform/libart_lgpl-2.3.16
         >=gnome-desktop/gnome-desktop-2.10
         >=gnome-desktop/gnome-icon-theme-2.19.1
