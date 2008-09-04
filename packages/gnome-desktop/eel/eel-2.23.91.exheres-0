@@ -13,7 +13,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=gnome-platform/GConf-2.0:2
+          gnome-platform/GConf:2
         >=dev-libs/glib-2.15.0:2
         >=x11-libs/gtk+-2.13.0:2
         >=gnome-platform/libgnome-2.23.0:2
