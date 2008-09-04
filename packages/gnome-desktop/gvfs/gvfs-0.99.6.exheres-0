@@ -16,9 +16,9 @@ DEPENDENCIES="
         >=dev-libs/glib-2.17.6:2
         >=sys-apps/dbus-1.0
           net-misc/openssh
-        >=gnome-desktop/libsoup-2.3.0:2.4
+        >=gnome-desktop/libsoup-2.23.91:2.4
         avahi? ( >=net-dns/avahi-0.6 )
-        gnome? ( >=gnome-platform/GConf-2.0 )
+        gnome? ( >=gnome-platform/GConf-2.0:2 )
         hal? ( >=sys-apps/hal-0.5.10 )
         keyring? ( >=gnome-desktop/gnome-keyring-2.0:1 )
     build:
