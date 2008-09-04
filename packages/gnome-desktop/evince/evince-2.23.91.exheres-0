@@ -38,7 +38,7 @@ DEPENDENCIES="
 # requires X and dogtail
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--without-libgnome' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus nautilus tiff 'document_format:dvi dvi'
 'document_format:pdf pdf' 'document_format:ps ps' )
