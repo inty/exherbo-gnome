@@ -16,13 +16,13 @@ DEPENDENCIES="
         >=dev-libs/glib-2.16.1:2
         >=x11-libs/gtk+-2.10.0:2
         >=gnome-platform/ORBit2-2.9.8:2
-        >=gnome-platform/libbonobo-2.20.3
-        >=gnome-platform/GConf-2.0
+        >=gnome-platform/libbonobo-2.20.3:2
+        >=gnome-platform/GConf-2.0:2
         >=gnome-platform/libglade-2.0:2
-        >=gnome-platform/libgnome-2.0
+        >=gnome-platform/libgnome-2.0:2
         >=dev-libs/libxml2-2.0
         >=gnome-desktop/libsoup-2.3.0:2.4
-        >=gnome-desktop/gnome-keyring-2.20.1
+        >=gnome-desktop/gnome-keyring-2.20.1:1
         >=dev-db/sqlite-3.5:3
     build:
         >=dev-util/intltool-0.35.5
