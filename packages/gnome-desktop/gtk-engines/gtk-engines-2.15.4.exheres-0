@@ -17,16 +17,16 @@ DEPENDENCIES="
     build:
         >=dev-util/intltool-0.35.0
           sys-devel/gettext
-          dev-util/pkgconfig
+          dev-util/pkg-config
 "
 
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-animation --enable-lua --disable-deprecated )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-animation' '--enable-lua' '--disable-deprecated' )
 
 src_configure() {
     if ! option accessibility ; then
-        DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-hc )
+        DEFAULT_SRC_CONFIGURE_PARAMS+=( '--disable-hc' )
     fi
 
     default
