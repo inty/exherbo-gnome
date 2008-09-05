@@ -1,0 +1,27 @@
+# Copyright 2008 Ingmar Vanhassel <ingmar@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="C++ wrapper for the libxml2 XML parser library"
+HOMEPAGE="http://libxmlplusplus.sourceforge.net/"
+REMOTE_IDS="sourceforge:libxmlplusplus"
+
+LICENCES="LGPL-2" # ++
+SLOT="2"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        >=dev-libs/libxml2-2.6.1
+        >=gnome-bindings/glibmm-2.4"
+
+src_install() {
+    default
+    if option !doc; then
+        rm -r "${IMAGE}/usr/share/doc/${PN}-2.6" || die "Failed to remove docs"
+    fi
+}
+
