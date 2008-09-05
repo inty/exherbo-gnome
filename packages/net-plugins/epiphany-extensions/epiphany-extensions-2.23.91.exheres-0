@@ -1,0 +1,51 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org
+
+SUMMARY="Plugins for Epiphany"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+          gnome-platform/GConf:2
+          gnome-platform/libglade:2
+          net-www/epiphany:2.22
+        >=dev-libs/libxml2-2.6.0
+        >=dev-libs/glib-2.16.5:2
+        >=x11-libs/gtk+-2.11.6:2
+        epiphany_extension:rss? (
+                                    >=sys-apps/dbus-0.34
+                                    >=dev-libs/dbus-glib-0.34
+                                )
+        epiphany_extension:adblock? ( dev-libs/libpcre )
+    build:
+          sys-devel/gettext
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+"
+
+EXTENSIONS=( actions adblock auto-reload auto-scroller certificates gestures
+permissions push-scroller rss sidebar tab-groups tab-states )
+
+for option in "${EXTENSIONS[@]}" ; do
+    MYOPTIONS+=" epiphany_extension:${option}"
+done
+
+src_configure() {
+    local extension= extensions=extensions-manager-ui
+
+    for extension in "${EXTENSIONS[@]}" ; do
+        if option "epiphany_extension:${extension}" ; then
+            extensions+=",${extension}"
+        fi
+    done
+
+    DEFAULT_SRC_CONFIGURE_PARAMS+="--with-extensions=${extensions}"
+    default
+}
