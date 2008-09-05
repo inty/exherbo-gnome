@@ -4,11 +4,15 @@
 require gnome.org
 
 SUMMARY="[DEPRECATED] gnome canvas"
-HOMEPAGE="http://www.gnome.org/"
+REMOTE_IDS="freshmeat:libart"
+HOMEPAGE="http://www.levien.com/libart/"
 
-LICENCES="LGPL-2"
+LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config"
+
