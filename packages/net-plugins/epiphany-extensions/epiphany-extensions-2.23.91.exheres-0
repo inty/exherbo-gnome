@@ -23,7 +23,7 @@ DEPENDENCIES="
                                     >=sys-apps/dbus-0.34
                                     >=dev-libs/dbus-glib-0.34
                                 )
-        epiphany_extension:adblock? ( dev-libs/pcre )
+        epiphany_extension:adblock? ( dev-libs/pcre[unicode] )
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.35.0
