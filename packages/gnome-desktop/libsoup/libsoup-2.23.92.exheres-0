@@ -28,6 +28,5 @@ src_prepare() {
            -e 's/SSL_TESTS =.*/SSL_TESTS =/'    \
         "${WORK}/tests/Makefile.am" || die
 
-    default_src_prepare
-    eautoreconf
+    autotools_src_prepare
 }
