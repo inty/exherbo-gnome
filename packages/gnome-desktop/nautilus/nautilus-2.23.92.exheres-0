@@ -33,7 +33,7 @@ DEPENDENCIES="
     run,post:
         >=gnome-desktop/gvfs-0.1.2
     post,suggested:
-        >=x11-themes/gnome-icon-theme-1.1.91
+        >=gnome-desktop/gnome-icon-theme-1.1.91
 "
 
 RESTRICT="test" # requires X
