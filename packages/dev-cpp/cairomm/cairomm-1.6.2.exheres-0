@@ -7,7 +7,7 @@ DOWNLOADS="http://www.cairographics.org/releases/${PNV}.tar.gz"
 
 LICENCES="LGPL-2"
 SLOT="1.0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
@@ -15,17 +15,18 @@ DEPENDENCIES="
         >=x11-libs/cairo-1.2.0
     build:
         >=dev-util/pkg-config-0.20
-        doc? ( app-doc/doxygen media-gfx/graphviz )
+        doc? (
+            app-doc/doxygen
+            media-gfx/graphviz
+        )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
 
 src_install() {
     default
 
-    if ! option doc ; then
-        rmdir "${IMAGE}/usr/share/doc/libcairomm-${SLOT}/reference/html" \
-              "${IMAGE}/usr/share/doc/libcairomm-${SLOT}/reference"      \
-              "${IMAGE}/usr/share/doc/libcairomm-${SLOT}" || die
+    if option !doc; then
+        find "${IMAGE}/usr/share/doc/libcairomm-${SLOT}" -depth -type d -empty -delete || die "Failed to remove empty directories"
     fi
 }
