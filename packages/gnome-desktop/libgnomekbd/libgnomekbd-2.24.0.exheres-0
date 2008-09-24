@@ -21,6 +21,7 @@ DEPENDENCIES="
         >=gnome-platform/libglade-2.6.0:2
         >=x11-libs/libxklavier-3.2
     build:
+          sys-devel/gettext
         >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
 "
