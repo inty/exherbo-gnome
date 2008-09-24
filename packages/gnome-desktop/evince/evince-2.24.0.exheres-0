@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="dbus nautilus keyring tiff document_format:dvi document_format:pdf document_format:ps" # document_format:djvu
+MYOPTIONS="dbus doc nautilus keyring tiff document_format:dvi document_format:pdf document_format:ps" # document_format:djvu
 
 DEPENDENCIES="
     build+run:
@@ -30,9 +30,11 @@ DEPENDENCIES="
                              )
         document_format:ps? ( >=app-text/libspectre-0.2.0 )
     build:
-        >=gnome-desktop/gnome-doc-utils-0.3.2
+          sys-devel/gettext
         >=dev-util/intltool-0.35
         >=dev-util/pkg-config-0.20
+        >=gnome-desktop/gnome-doc-utils-0.3.2
+        doc? ( >=dev-doc/gtk-doc-1.0 )
 "
 
 # requires X and dogtail
@@ -40,6 +42,6 @@ RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus nautilus tiff 'document_format:dvi dvi'
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'doc gtk-doc' 'nautilus' 'tiff' 'document_format:dvi dvi'
 'document_format:pdf pdf' 'document_format:ps ps' )
 # 'document_format:djvu djvu'
