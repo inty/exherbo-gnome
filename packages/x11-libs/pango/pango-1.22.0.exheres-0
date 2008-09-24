@@ -16,7 +16,7 @@ MYOPTIONS="X doc"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.3:2
-        >=x11-libs/cairo-1.7.4
+        >=x11-libs/cairo-1.7.6
           media-libs/freetype:2
         >=media-libs/fontconfig-1.0.1
         X? (
