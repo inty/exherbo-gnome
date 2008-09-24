@@ -26,6 +26,7 @@ DEPENDENCIES="
           x11-libs/libXau
     build:
           dev-libs/libxslt
+          sys-devel/gettext
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
 "
