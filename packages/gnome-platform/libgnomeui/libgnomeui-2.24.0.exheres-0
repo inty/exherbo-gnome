@@ -9,15 +9,15 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~x86"
-MYOPTIONS=""
+MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
         >=dev-libs/libxml2-2.4.20
-        >=gnome-platform/GConf-1.1.11
+        >=gnome-platform/GConf-1.1.11:2
         >=gnome-platform/libgnome-2.13.7:2
         >=gnome-platform/libgnomecanvas-2.0.0
-        >=gnome-platform/libbonoboui-2.13.1
+        >=gnome-platform/libbonoboui-2.13.1:2
         >=gnome-platform/gnome-vfs-2.7.3
         >=gnome-platform/libglade-2.0.0:2
         >=gnome-desktop/gnome-keyring-0.4:1
@@ -29,4 +29,7 @@ DEPENDENCIES="
           sys-devel/gettext
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.18
+        doc? ( >=dev-doc/gtk-doc-1.0 )
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
