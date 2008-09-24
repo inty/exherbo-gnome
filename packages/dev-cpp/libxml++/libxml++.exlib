@@ -8,20 +8,21 @@ HOMEPAGE="http://libxmlplusplus.sourceforge.net/"
 REMOTE_IDS="sourceforge:libxmlplusplus"
 
 LICENCES="LGPL-2" # ++
-SLOT="2"
+SLOT="2.6"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
-    build:
-        dev-util/pkg-config
     build+run:
         >=dev-libs/libxml2-2.6.1
-        >=gnome-bindings/glibmm-2.4"
+        >=gnome-bindings/glibmm-2.4:2.4
+    build:
+          dev-util/pkg-config"
 
 src_install() {
     default
+
     if option !doc; then
-        rm -r "${IMAGE}/usr/share/doc/${PN}-2.6" || die "Failed to remove docs"
+        rm -r "${IMAGE}/usr/share/doc/${PN}-${SLOT}" || die "Failed to remove docs"
     fi
 }
 
