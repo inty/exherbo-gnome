@@ -14,9 +14,9 @@ MYOPTIONS="nautilus python tracker"
 DEPENDENCIES="
     build+run:
           app-text/iso-codes
+          gnome-platform/GConf:2
         >=dev-libs/glib-2.15:2
         >=x11-libs/gtk+-2.13:2
-          gnome-platform/GConf:2
         >=gnome-desktop/totem-pl-parser-2.23.91
         >=gnome-desktop/gnome-icon-theme-2.15.90
         >=dev-libs/dbus-glib-0.74
@@ -28,7 +28,7 @@ DEPENDENCIES="
         tracker? ( app-pim/tracker )
     build:
           sys-devel/gettext
-        >=dev-util/intltool-0.35
+        >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
           gnome-desktop/gnome-doc-utils
 "
