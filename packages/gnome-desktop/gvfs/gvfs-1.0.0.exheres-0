@@ -9,13 +9,14 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="avahi bash-completion bluetooth gnome hal keyring" # fuse cdda gphoto2 samba
+MYOPTIONS="avahi bash-completion bluetooth doc gnome hal keyring" # fuse cdda gphoto2 samba
 
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.17.6:2
         >=sys-apps/dbus-1.0
           net-misc/openssh
+          dev-libs/libxml2
         >=gnome-desktop/libsoup-2.23.91:2.4
         avahi? ( >=net-dns/avahi-0.6 )
         bluetooth? (   dev-libs/expat
@@ -25,18 +26,21 @@ DEPENDENCIES="
         hal? ( >=sys-apps/hal-0.5.10 )
         keyring? ( >=gnome-desktop/gnome-keyring-2.0:1 )
     build:
+          sys-devel/gettext
         >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
+        doc? ( dev-doc/gtk-doc )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-archive' '--enable-http'
 '--disable-cdda' '--disable-fuse' '--disable-gphoto2' '--disable-samba' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi 'bluetooth obexftp' hal keyring bash-completion 'gnome gconf' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi' 'bluetooth obexftp' 'doc gtk-doc'
+'hal' 'keyring' 'bash-completion' 'gnome gconf' )
 
 src_install() {
     default
 
-    if ! option hal ; then
+    if option !hal ; then
         keepdir "/usr/share/gvfs/remote-volume-monitors"
     fi
 }
