@@ -9,19 +9,19 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="hal"
+MYOPTIONS="doc hal"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.10:2
-        >=dev-libs/glib-2.16.3:2
-        >=dev-libs/dbus-glib-0.61
+          x11-libs/gtk+:2
           dev-libs/libxml2
           gnome-desktop/evolution-data-server:1.2
+        >=dev-libs/glib-2.16.3:2
         hal? ( =sys-apps/hal-0.5* )
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.35.0
+        doc? ( >=dev-doc/gtk-doc-1.0 )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( hal )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( 'doc gtk-doc' hal )
