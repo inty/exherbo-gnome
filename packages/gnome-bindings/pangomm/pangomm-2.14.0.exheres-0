@@ -9,18 +9,17 @@ HOMEPAGE="http://www.gtkmm.org/"
 LICENCES="LGPL-2.1"
 SLOT="1.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="doc disable-deprecated"
 
 DEPENDENCIES="
     build+run:
         >=gnome-bindings/glibmm-2.14.1:2.4
         >=dev-cpp/cairomm-1.2.2:1.0
-        >=x11-libs/pango-1.5.2
+        >=x11-libs/pango-1.21.4
     build:
         >=dev-lang/perl-5.6.0
         >=dev-util/pkg-config-0.20
         doc? ( app-doc/doxygen )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-deprecations' '--disable-deprecated-api' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' 'disable-deprecated deprecations' '!disable-deprecated deprecated-api' )
