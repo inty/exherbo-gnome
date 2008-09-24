@@ -14,7 +14,7 @@ MYOPTIONS="eds hal"
 DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2.11.6:2
-        >=dev-libs/glib-2.15.5:2
+        >=dev-libs/glib-2.17.4:2
         >=gnome-platform/GConf-2.2.0
         >=gnome-platform/libgnomeui-2.2.0
         >=gnome-platform/libglade-2.0:2
@@ -26,7 +26,6 @@ DEPENDENCIES="
         >=gnome-desktop/gnome-panel-2.0
         >=sys-apps/dbus-1.0
         >=dev-libs/dbus-glib-0.74
-        >=gnome-platform/gnome-vfs-2.0
         >=dev-libs/libxml2-2.6
         >=gnome-desktop/metacity-2.23.1
         >=gnome-desktop/gnome-settings-daemon-2.20
@@ -50,5 +49,5 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-gstreamer --disable-update-mimedb )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-gstreamer --disable-update-mimedb --without-libcanberra )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( hal 'eds aboutme' )
