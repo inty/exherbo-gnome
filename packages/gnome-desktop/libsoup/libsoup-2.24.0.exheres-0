@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="2.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="ssl"
+MYOPTIONS="doc ssl"
 
 DEPENDENCIES="
     build+run:
@@ -18,9 +18,10 @@ DEPENDENCIES="
         ssl? ( dev-libs/gnutls )
     build:
         >=dev-util/pkg-config-0.20
+        doc? ( >=dev-doc/gtk-doc-1.0 )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ssl )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'ssl' )
 
 src_prepare() {
     # these tests require secure memory
