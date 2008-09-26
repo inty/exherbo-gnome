@@ -6,19 +6,20 @@
 
 SUMMARY="Cairo is a 2D graphics library"
 HOMEPAGE="http://www.cairographics.org"
-DOWNLOADS="http://cairographics.org/snapshots/${PNV}.tar.gz"
+DOWNLOADS="http://cairographics.org/releases/${PNV}.tar.gz"
 
 LICENCES="LGPL-2.1 MPL-1.1"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="X svg pdf xcb"
+MYOPTIONS="X doc svg pdf xcb"
 
 DEPENDENCIES="
     build+run:
           sys-libs/zlib
-          media-libs/libpng
+          app-text/ghostscript
           media-libs/fontconfig
         >=x11-libs/pixman-0.12.0
+        >=media-libs/libpng-1.2.8
         >=media-libs/freetype-2.1.9:2
         X?  (
                 x11-libs/libX11
@@ -30,9 +31,13 @@ DEPENDENCIES="
                             >=x11-libs/libxcb-0.92
                         )
             )
-        pdf? ( >=app-text/poppler-0.8.0[glib] )
+        pdf? (
+                 x11-libs/pango
+                 x11-libs/gtk+:2
+               >=app-text/poppler-0.9.2[glib]
+             )
         svg? (
-               >=x11-libs/gtk+-2.0:2
+                 x11-libs/gtk+:2
                >=gnome-desktop/librsvg-2.15.0
              )
     build:
@@ -41,10 +46,11 @@ DEPENDENCIES="
                 x11-proto/renderproto
                 xcb? ( x11-proto/xcb-proto )
             )
+        doc? ( >=dev-doc/gtk-doc-1.6 )
 "
 
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-freetype' '--enable-ps' '--enable-pdf' '--enable-png' )
-DEFAULT_SRC_CONFIGURE_ENABLES=( pdf svg xcb 'X xlib' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ft' '--enable-ps' '--enable-pdf' '--enable-png' )
+DEFAULT_SRC_CONFIGURE_ENABLES=( 'doc gtk-doc' pdf svg xcb 'X xlib' 'X xlib-xrender' )
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=( BIBLIOGRAPHY CODING_STYLE PORTING_GUIDE RELEASING ROADMAP )
