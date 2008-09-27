@@ -1,11 +1,6 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-SUPPORTED_AUTOCONF=( 2.5 )
-SUPPORTED_AUTOMAKE=( 1.10 )
-
-require autotools
-
 SUMMARY="A lightweight C library that eases the writing of UNIX daemons"
 HOMEPAGE="http://0pointer.de/lennart/projects/libdaemon/"
 DOWNLOADS="http://0pointer.de/lennart/projects/libdaemon/${PNV}.tar.gz"
