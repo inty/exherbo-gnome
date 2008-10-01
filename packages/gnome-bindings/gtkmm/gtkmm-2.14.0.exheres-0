@@ -1,6 +1,9 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
+SUPPORTED_AUTOCONF=( 2.5 )
+SUPPORTED_AUTOMAKE=( 1.10 )
+
 require autotools gnome.org
 
 SUMMARY="C++ bindings for GTK+"
