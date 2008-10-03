@@ -39,7 +39,7 @@ pkg_setup() {
 
 src_prepare() {
     if option ipv6 ; then
-        sed -i -e 's/use-ipv6=no/use-ipv6=yes/' avahi-daemon/avahi-daemon.conf
+        sed -i -e 's/use-ipv6=no/use-ipv6=yes/' "avahi-daemon/avahi-daemon.conf"
     fi
 
     sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PNVR}/html/:" \
@@ -48,27 +48,22 @@ src_prepare() {
 
 # TODO Implement exherbo specific init scripts
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --localstatedir=/var
-    --with-distro=gentoo
-    --disable-compat-libdns_sd
-    --disable-compat-howl
-    --disable-python-dbus
-    --disable-xmltoman
-    --enable-glib
-    --disable-python
-    --disable-pygtk
-    --disable-qt3
-    --disable-qt4
-    --disable-mono
-    --disable-monodoc
+    '--localstatedir=/var'
+    '--with-distro=gentoo'
+    '--disable-compat-libdns_sd'
+    '--disable-compat-howl'
+    '--disable-python-dbus'
+    '--disable-xmltoman'
+    '--enable-glib'
+    '--disable-python'
+    '--disable-pygtk'
+    '--disable-qt3'
+    '--disable-qt4'
+    '--disable-mono'
+    '--disable-monodoc'
 )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    autoipd
-    "doc doxygen-doc"
-    dbus
-    gtk
-    gdbm
-)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'autoipd' 'doc doxygen-doc' 'dbus' 'gtk' 'gdbm' )
 
 src_compile() {
     emake
@@ -86,10 +81,13 @@ src_install() {
 
     rm -f "${IMAGE}/usr/bin/avahi-bookmarks"
 
-    rmdir "${IMAGE}/var/run"
-    rmdir "${IMAGE}/var"
+    rmdir "${IMAGE}"/var/{run,}
     rmdir "${IMAGE}/usr/$(get_libdir)/avahi"
     rmdir "${IMAGE}/usr/share/applications"
+
+    if ! option dbus ; then
+        rmdir "${IMAGE}/usr/share/avahi/introspection"
+    fi
 
     if option autoipd ; then
         insinto /$(get_libdir)/rcscripts/net
@@ -107,15 +105,11 @@ src_install() {
 
 pkg_postinst() {
     if option autoipd ; then
-        elog
         elog "To use avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
         elog "addresses, configure your network interface to use autoipd."
-        elog
     fi
 
     if option dbus ; then
-        elog
         elog "If this is your first install of avahi, please reload your dbus config."
-        elog
     fi
 }
