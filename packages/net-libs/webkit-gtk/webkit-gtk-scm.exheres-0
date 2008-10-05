@@ -37,6 +37,6 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-font-backend=pango'
-'--with-http-backend=soup' '--enable-xslt' )
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/webkit-gtk-fix-destructor-order.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-font-backend=pango' '--with-http-backend=soup' '--enable-xslt' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( svg )
