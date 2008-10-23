@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~x86"
-MYOPTIONS="dbus doc nautilus keyring tiff document_format:dvi document_format:pdf document_format:ps" # document_format:djvu
+MYOPTIONS="dbus doc nautilus keyring tiff dvi pdf ps" # djvu
 
 DEPENDENCIES="
     build+run:
@@ -20,15 +20,15 @@ DEPENDENCIES="
           gnome-platform/libglade:2
           gnome-platform/GConf:2
         dbus? ( >=dev-libs/dbus-glib-0.70 )
-        nautilus?  ( >=gnome-desktop/nautilus-2.0 )
+        dvi? ( >=app-text/libspectre-0.2.0 )
         keyring? ( >=gnome-desktop/gnome-keyring-0.4.0:1 )
-        tiff? ( >=media-libs/tiff-3.6 )
-        document_format:dvi? ( >=app-text/libspectre-0.2.0 )
-        document_format:pdf? (
+        nautilus?  ( >=gnome-desktop/nautilus-2.0 )
+        ps? ( >=app-text/libspectre-0.2.0 )
+        pdf? (
                                 >=x11-libs/cairo-1.0
                                 >=app-text/poppler-0.8.0[glib]
                              )
-        document_format:ps? ( >=app-text/libspectre-0.2.0 )
+        tiff? ( >=media-libs/tiff-3.6 )
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.35
@@ -42,6 +42,5 @@ RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'doc gtk-doc' 'nautilus' 'tiff' 'document_format:dvi dvi'
-'document_format:pdf pdf' 'document_format:ps ps' )
-# 'document_format:djvu djvu'
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'doc gtk-doc' 'nautilus' 'tiff' 'dvi' 'pdf' 'ps' )
+# 'djvu'
