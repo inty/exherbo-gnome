@@ -27,3 +27,9 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-threads' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
+src_test() {
+    export HOME="${TEMP}"
+    default
+}
+
