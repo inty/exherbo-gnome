@@ -22,7 +22,7 @@ DEPENDENCIES="
         >=dev-libs/dbus-glib-0.74
         >=media-libs/gstreamer-0.10.12:0.10
         >=media-plugins/gst-plugins-base-0.10.12:0.10
-          media-plugins/gst-plugins-good:0.10[gstreamer_plugin:gconf][gstreamer_plugin:goom]
+          media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf][gstreamer_plugins:goom]
         nautilus? ( gnome-desktop/nautilus )
         python? ( >=gnome-bindings/pygtk-2.12.0 )
         tracker? ( app-pim/tracker )
