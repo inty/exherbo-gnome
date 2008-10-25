@@ -8,7 +8,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
 SLOT="1"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="hal pam"
 
 DEPENDENCIES="
