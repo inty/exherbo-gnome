@@ -11,7 +11,7 @@ DOWNLOADS="http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/${DTD}"
 
 LICENCES="FDL-1.1"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
