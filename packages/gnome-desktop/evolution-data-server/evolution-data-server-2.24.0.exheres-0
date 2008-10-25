@@ -8,7 +8,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
 SLOT="1.2"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc ipv6 keyring"
 
 DEPENDENCIES="
