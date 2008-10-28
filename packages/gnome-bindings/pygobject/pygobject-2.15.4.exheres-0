@@ -13,7 +13,7 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-        >=dev-lang/python-2.3.5
+        >=dev-lang/python-2.3.5:=
         >=dev-libs/glib-2.16.0
     build:
         doc? (
