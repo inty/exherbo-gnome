@@ -15,8 +15,10 @@ DEPENDENCIES="
         >=dev-libs/libxslt-1.1.8
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--localstatedir=/var' )
+
 src_install() {
     default
-
-    keepdir /var/lib/lib/rarian
+    keepdir /var/lib/rarian
 }
+
