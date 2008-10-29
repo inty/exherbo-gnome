@@ -29,6 +29,8 @@ DEPENDENCIES="
         >=dev-util/intltool-0.35
         >=dev-util/pkg-config-0.20
         doc? ( app-doc/doxygen )
+    post,recommended:
+        net-dns/nss_mdns
 "
 
 pkg_setup() {
