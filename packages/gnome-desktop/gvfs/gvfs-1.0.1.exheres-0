@@ -8,7 +8,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi bash-completion bluetooth doc gnome hal keyring" # fuse cdda gphoto2 samba
 
 DEPENDENCIES="
