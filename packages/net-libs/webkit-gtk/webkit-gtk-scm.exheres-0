@@ -15,7 +15,7 @@ require scm-git
 
 LICENCES="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="svg"
 
 DEPENDENCIES="
