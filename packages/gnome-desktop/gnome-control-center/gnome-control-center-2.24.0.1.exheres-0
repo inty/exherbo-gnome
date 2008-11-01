@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="eds hal"
+MYOPTIONS="eds gstreamer hal"
 
 DEPENDENCIES="
     build+run:
@@ -41,6 +41,8 @@ DEPENDENCIES="
           x11-libs/libXext
           x11-libs/libX11
         eds? ( >=gnome-desktop/evolution-data-server-1.7.90 )
+        gstreamer? ( >=media-libs/gstreamer-0.10.1.2:0.10
+                     >=media-plugins/gst-plugins-base-0.10.1.2:0.10 )
         hal? ( >=sys-apps/hal-0.5.6 )
     build:
           sys-devel/gettext
@@ -49,5 +51,5 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-gstreamer --disable-update-mimedb --without-libcanberra )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( hal 'eds aboutme' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libcanberra )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'eds aboutme' gstreamer hal )
