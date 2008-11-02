@@ -28,7 +28,7 @@ DEPENDENCIES="
         tracker? ( app-pim/tracker )
     build:
           sys-devel/gettext
-        >=dev-util/intltool-0.35.0
+        >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
           gnome-desktop/gnome-doc-utils
 "
@@ -58,3 +58,4 @@ src_configure() {
 
     default
 }
+
