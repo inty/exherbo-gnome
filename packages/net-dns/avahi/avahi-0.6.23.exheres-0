@@ -81,14 +81,19 @@ DEFAULT_SRC_INSTALL_EXTRA_PREFIXES=( docs/ )
 src_install() {
     default
 
-    rm -f "${IMAGE}/usr/bin/avahi-bookmarks"
+    rm -f "${IMAGE}/usr/bin/avahi-bookmarks" || die "rm failed"
 
-    rmdir "${IMAGE}"/var/{run,}
-    rmdir "${IMAGE}/usr/$(get_libdir)/avahi"
-    rmdir "${IMAGE}/usr/share/applications"
+    rmdir "${IMAGE}"/var/{run,} || die "rmdir in /var failed"
+    rmdir "${IMAGE}"/usr/$(get_libdir)/avahi || die "rmdir /usr/$(get_libdir)/avahi failed"
+    if option !dbus || option !gtk; then
+        rmdir "${IMAGE}"/usr/share/applications || die "rmdir /usr/share/applications failed"
+    fi
 
-    if ! option dbus ; then
-        rmdir "${IMAGE}/usr/share/avahi/introspection"
+    if option !dbus ; then
+        rmdir "${IMAGE}"/usr/share/{avahi/introspection,man/man1} || die "rmdir when !dbus failed"
+        if option !gtk; then
+            rmdir "${IMAGE}"/usr/bin || die "rmdir /usr/bin failed"
+        fi
     fi
 
     if option autoipd ; then
