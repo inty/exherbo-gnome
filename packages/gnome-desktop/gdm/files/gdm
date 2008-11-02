@@ -1,0 +1,27 @@
+#!/sbin/runscript
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the temrs of the GNU General Publice License v2
+
+depend() {
+	need localmount
+	use dbus
+}
+
+start() {
+	ebegin "Starting GDM"
+	start-stop-daemon --start --exec /usr/sbin/gdm
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping GDM"
+	/usr/sbin/gdm-stop
+	eend $?
+}
+
+restart() {
+	ebegin "Restarting GDM"
+	/usr/sbin/gdm-safe-restart
+	eend $?
+}
+
