@@ -25,3 +25,4 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( 'doc gtk-doc' hal )
+
