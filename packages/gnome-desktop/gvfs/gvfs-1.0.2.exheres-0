@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi bash-completion bluetooth doc gnome hal keyring" # fuse cdda gphoto2 samba
+MYOPTIONS="avahi bash-completion bluetooth doc gnome hal keyring" # archive fuse cdda gphoto2 samba
 
 DEPENDENCIES="
     build+run:
@@ -32,7 +32,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-archive' '--enable-http'
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-http' '--disable-archive'
 '--disable-cdda' '--disable-fuse' '--disable-gphoto2' '--disable-samba' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi' 'bluetooth obexftp' 'doc gtk-doc'
 'hal' 'keyring' 'bash-completion' 'gnome gconf' )
@@ -44,3 +44,4 @@ src_install() {
         keepdir "/usr/share/gvfs/remote-volume-monitors"
     fi
 }
+
