@@ -34,3 +34,4 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-pgp' '--disable-ldap' '--enable-hkp'
 '--enable-pkcs11' '--enable-ssh' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi sharing' 'libnotify' )
+
