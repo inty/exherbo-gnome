@@ -21,10 +21,8 @@ DEPENDENCIES="
         >=dev-libs/libxml2-2.6.0
         >=dev-libs/glib-2.16.5:2
         >=x11-libs/gtk+-2.11.6:2
-        epiphany_extensions:rss? (
-                                    >=sys-apps/dbus-0.34
-                                    >=dev-libs/dbus-glib-0.34
-                                )
+        epiphany_extensions:rss? ( >=sys-apps/dbus-0.34
+                                   >=dev-libs/dbus-glib-0.34 )
         epiphany_extensions:adblock? ( dev-libs/pcre[unicode] )
     build:
           sys-devel/gettext
@@ -44,3 +42,4 @@ src_configure() {
     DEFAULT_SRC_CONFIGURE_PARAMS+="--with-extensions=${extensions}"
     default
 }
+
