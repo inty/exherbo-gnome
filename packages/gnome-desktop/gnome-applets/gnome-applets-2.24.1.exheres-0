@@ -45,3 +45,4 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-battstat' '--disable-polkit' '--enable-cpufreq' '--enable-frequency-selector' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'hal' 'gstreamer gstreamer 0.10' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'ipv6' )
+
