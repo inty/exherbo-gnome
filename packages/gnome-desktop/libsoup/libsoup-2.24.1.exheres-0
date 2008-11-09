@@ -30,7 +30,8 @@ src_prepare() {
     # these tests require secure memory
     sed -i -e 's/CURL_TESTS =.*/CURL_TESTS =/'  \
            -e 's/SSL_TESTS =.*/SSL_TESTS =/'    \
-        "${WORK}/tests/Makefile.am" || die
+        "${WORK}/tests/Makefile.am" || die "failed to disable tests requiring secure memory"
 
     autotools_src_prepare
 }
+
