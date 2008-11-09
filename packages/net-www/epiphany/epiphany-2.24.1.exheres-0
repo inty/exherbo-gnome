@@ -46,3 +46,4 @@ src_install() {
     gnome-2_src_install
     rmdir "${IMAGE}/usr/share/epiphany/art" || die
 }
+
