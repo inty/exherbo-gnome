@@ -9,13 +9,13 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="xinerama"
+MYOPTIONS="doc xinerama"
 
 DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2.10.0:2
-        >=x11-libs/pango-1.2.0
-        >=gnome-platform/GConf-2
+        >=x11-libs/pango-1.2.0[X]
+        >=gnome-platform/GConf-1.2:2
         >=x11-libs/startup-notification-0.7
         >=dev-libs/glib-2.6:2
         >=x11-libs/libXcomposite-0.2
@@ -23,8 +23,10 @@ DEPENDENCIES="
     build:
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
+          app-text/docbook-xml-dtd:4.5
+        doc? ( >=app-doc/gtk-doc-0.9 )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-sm' '--enable-startup-notification'
-'--enable-compositor' '--enable-xsync' '--enable-render' '--enable-shape' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' xinerama )
+
