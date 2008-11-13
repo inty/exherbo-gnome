@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc eds"
+MYOPTIONS="doc eds policykit"
 
 DEPENDENCIES="
     build+run:
@@ -31,6 +31,8 @@ DEPENDENCIES="
         >=gnome-desktop/librsvg-2.0
           x11-libs/libXau
         eds? ( >=gnome-desktop/evolution-data-server-1.2.0 )
+        policykit? ( >=sys-auth/PolicyKit-0.7
+                     >=gnome-desktop/PolicyKit-gnome-0.7 )
     build:
           sys-devel/gettext
           app-text/scrollkeeper-dtd
@@ -40,15 +42,17 @@ DEPENDENCIES="
         >=gnome-desktop/gnome-applets-2.23.3
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-scrollkeeper --disable-polkit --disable-network-manager
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-scrollkeeper --disable-network-manager
 '--with-in-process-applets=clock,notification-area,wncklet' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' 'policykit polkit' )
 
 src_install() {
     default
 
-    rmdir "${IMAGE}"/usr/share/dbus-1/{system-services,} || die
-    rmdir "${IMAGE}"/usr/share/PolicyKit/{policy,} || die
-    rmdir "${IMAGE}"/etc/dbus-1/{system.d,} || die
+    if ! option policykit ; then
+        rmdir "${IMAGE}"/usr/share/PolicyKit/{policy,}          \
+              "${IMAGE}"/usr/share/dbus-1/{system-services,}    \
+              "${IMAGE}"/etc/dbus-1/{system.d,} || die "failed to prune empty dirs"
+    fi
 }
 
