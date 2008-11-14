@@ -41,3 +41,4 @@ src_install() {
         fperms u+s /usr/libexec/gnome-screensaver-dialog
     fi
 }
+
