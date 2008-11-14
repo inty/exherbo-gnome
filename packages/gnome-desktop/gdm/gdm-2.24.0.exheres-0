@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS=""
+MYOPTIONS="consolekit policykit"
 
 DEPENDENCIES="
     build+run:
@@ -23,12 +23,15 @@ DEPENDENCIES="
         >=x11-libs/libxklavier-3.5
         >=media-libs/fontconfig-2.5
           sys-libs/pam
+        consolekit? ( sys-auth/ConsoleKit )
+        policykit? ( >=gnome-desktop/PolicyKit-gnome-0.8 )
     build:
         >=dev-util/pkg-config-0.20
         >=dev-libs/check-0.9.4
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-polkit --without-console-kit '--with-working-directory=/var/lib/gdm' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-working-directory=/var/lib/gdm' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'consolekit console-kit' 'policykit polkit' )
 
 pkg_setup() {
     enewgroup gdm

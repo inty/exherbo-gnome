@@ -10,7 +10,7 @@ depend() {
 
 start() {
 	ebegin "Starting GDM"
-	start-stop-daemon --start --exec /usr/sbin/gdm
+	start-stop-daemon --start --exec /usr/sbin/gdm-binary
 	eend $?
 }
 
