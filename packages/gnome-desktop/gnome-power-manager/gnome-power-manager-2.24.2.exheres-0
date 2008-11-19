@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="policykit"
 
 DEPENDENCIES="
     build+run:
@@ -34,7 +34,8 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-policykit' '--disable-gconf-defaults' '--disable-schemas-install' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-schemas-install' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( policykit 'policykit gconf-defaults' )
 
 src_install() {
     default
