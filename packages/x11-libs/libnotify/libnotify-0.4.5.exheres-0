@@ -21,3 +21,4 @@ DEPENDENCIES="
     run,post:
         >=x11-apps/notification-daemon-0.3.7
 "
+
