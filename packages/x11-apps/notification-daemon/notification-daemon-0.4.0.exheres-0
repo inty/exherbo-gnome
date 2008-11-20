@@ -3,7 +3,7 @@
 
 require gnome-2
 
-SUMMARY=""
+SUMMARY="Daemon for displaying notifications"
 HOMEPAGE="http://www.galago-project.org/"
 DOWNLOADS="http://www.galago-project.org/files/releases/source/${PN}/${PNV}.tar.bz2"
 
@@ -14,7 +14,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.4:2
+        >=x11-libs/gtk+-2.10:2
         >=dev-libs/glib-2.4:2
         >=sys-apps/dbus-0.36
         >=dev-libs/dbus-glib-0.36
@@ -24,3 +24,4 @@ DEPENDENCIES="
     build:
         >=dev-util/pkg-config-0.20
 "
+
