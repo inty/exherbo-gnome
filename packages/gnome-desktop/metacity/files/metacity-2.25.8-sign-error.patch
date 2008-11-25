@@ -1,0 +1,11 @@
+--- metacity-2.25.8/src/core/xprops.c	2008-11-24 21:02:58.000000000 -0800
++++ metacity-2.25.8/src/core/xprops.c	2008-11-24 21:02:44.000000000 -0800
+@@ -675,7 +675,7 @@
+ #if SIZEOF_VOID_P == 8
+ #define cvtINT8toInt(val)   (((val) & 0x00000080) ? ((val) | 0xffffffffffffff00) : (val))
+ #define cvtINT16toInt(val)  (((val) & 0x00008000) ? ((val) | 0xffffffffffff0000) : (val))
+-#define cvtINT32toInt(val)  (((val) & 0x80000000) ? ((val) | 0xffffffff00000000) : (val))
++#define cvtINT32toInt(val)  (((unsigned long long)(val) & 0x80000000) ? ((unsigned long long)(val) | 0xffffffff00000000) : (unsigned long long)(val))
+ #define cvtINT8toShort(val)  cvtINT8toInt(val)
+ #define cvtINT16toShort(val) cvtINT16toInt(val)
+ #define cvtINT32toShort(val) cvtINT32toInt(val)
