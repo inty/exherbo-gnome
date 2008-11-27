@@ -28,7 +28,6 @@ DEPENDENCIES="
         doc? ( >=app-doc/gtk-doc-0.9 )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/metacity-2.25.8-sign-error.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' xinerama )
 
