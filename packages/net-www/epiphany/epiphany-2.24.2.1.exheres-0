@@ -1,10 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-SUPPORTED_AUTOCONF=( 2.5 )
-SUPPORTED_AUTOMAKE=( 1.10 )
-
-require autotools gnome-2
+require gnome-2
 
 SUMMARY="GTK+ based Web Browser"
 HOMEPAGE="http://www.gnome.org/"
@@ -12,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="2.22"
 PLATFORMS="~x86"
-MYOPTIONS="avahi doc"
+MYOPTIONS="avahi doc networkmanager"
 
 DEPENDENCIES="
     build+run:
@@ -31,6 +28,7 @@ DEPENDENCIES="
           net-libs/webkit-gtk
         >=app-text/iso-codes-0.35
         avahi? ( >=net-dns/avahi-0.6.22 )
+        networkmanager? ( net-apps/NetworkManager )
     build:
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
@@ -41,21 +39,8 @@ DEPENDENCIES="
           net-plugins/epiphany-extensions
 "
 
-AT_M4DIR="m4"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-engine=webkit' '--disable-python'
-'--disable-network-manager' '--with-distributor-name=exherbo' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' )
-
-src_prepare() {
-    sed -i -e '/^GNOME_COMMON_INIT/c#&' \
-           -e '/^GNOME_DEBUG_CHECK/c#&' \
-           -e '/^GNOME_COMPILE_WARNINGS/c#&' \
-           -e '/^GNOME_CXX_WARNINGS/c#&' \
-        configure.ac || die 'unable to remove gnome checks'
-
-    autotools_src_prepare
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-engine=webkit' '--disable-python' '--with-distributor-name=exherbo' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'networkmanager network-manager' )
 
 src_install() {
     gnome-2_src_install
