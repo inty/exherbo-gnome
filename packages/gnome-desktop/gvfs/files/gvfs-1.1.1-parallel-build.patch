@@ -1,0 +1,11 @@
+--- gvfs-1.1.1/common/Makefile.am	2008-12-01 21:18:40.000000000 -0800
++++ gvfs-1.1.1/common/Makefile.am	2008-12-01 21:19:33.000000000 -0800
+@@ -35,7 +35,7 @@
+ 	$(AVAHI_CFLAGS)
+ 
+ libgvfscommon_dnssd_la_LIBADD =	\
+-	$(top_builddir)/common/libgvfscommon.la \
++	libgvfscommon.la \
+ 	$(AVAHI_LIBS)
+ endif
+ 
