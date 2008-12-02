@@ -20,7 +20,7 @@ DEPENDENCIES="
         >=gnome-desktop/gnome-desktop-2.23.90:2
         >=gnome-platform/libglade-2.0.0:2
         >=gnome-desktop/libgnomekbd-2.21.4
-        >=x11-libs/libxklavier-3.3
+        >=x11-libs/libxklavier-3.8
           x11-libs/libXi
           x11-libs/libX11
           x11-libs/libXext
