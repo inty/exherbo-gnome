@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -z "$GPG_AGENT_INFO" ] ; then
+   command="/usr/bin/seahorse-agent --execute $command"
+fi
+

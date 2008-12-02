@@ -1,0 +1,46 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Plugins for Seahorse"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="applet gedit libnotify nautilus" # eds epiphany
+
+DEPENDENCIES="
+    build+run:
+          gnome-platform/GConf:2
+          gnome-platform/libglade:2
+        >=x11-libs/gtk+-2.10:2
+        >=dev-libs/glib-2.16:2
+         =app-crypt/gnupg-2.0*
+        >=app-crypt/gpgme-1.0
+          gnome-desktop/gnome-keyring:1
+        >=dev-libs/dbus-glib-0.35
+        >=gnome-desktop/seahorse-${PV}
+        applet? ( >=gnome-desktop/gnome-panel-2.9.4 )
+        >=gnome-desktop/evolution-data-server-1.7.90:1.2
+        gedit? ( >=app-editors/gedit-2.20 )
+        libnotify? ( >=x11-libs/libnotify-0.3 )
+        nautilus? ( >=gnome-desktop/nautilus-2.12.0
+                    >=dev-libs/glib-2.18:2
+                    >=gnome-platform/gnome-vfs-2.0 )
+    build:
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--enable-tests' '--disable-update-mime-database' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit libnotify nautilus )
+
+src_install() {
+    default
+
+    exeinto /etc/X11/xinit/xinitrc.d/
+    doexe "${FILES}/70-seahorse-agent"
+}
+
