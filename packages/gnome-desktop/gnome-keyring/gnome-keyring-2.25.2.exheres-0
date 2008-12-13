@@ -18,7 +18,7 @@ DEPENDENCIES="
           gnome-platform/GConf:2
         >=sys-apps/dbus-1.0
         >=dev-libs/libgcrypt-1.2.2
-        >=dev-libs/libtasn1-0.3.4
+        >=dev-libs/libtasn1-1.0
         hal? ( >=sys-apps/hal-0.5.7 )
         pam? ( sys-libs/pam )
     build:
