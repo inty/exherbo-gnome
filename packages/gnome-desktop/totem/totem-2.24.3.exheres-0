@@ -56,6 +56,6 @@ src_configure() {
 
     DEFAULT_SRC_CONFIGURE_PARAMS+=( "--with-plugins=${plugins}" )
 
-    default
+    GST_REGISTRY="${TEMP}/.gstreamer-0.10" default
 }
 
