@@ -3,8 +3,8 @@
 
 require gnome-2
 
-SUMMARY=""
-HOMEPAGE=""
+SUMMARY="A GTK+ desktop calculator"
+HOMEPAGE="http://calctool.sourceforge.net/"
 
 LICENCES="GPL-2"
 SLOT="0"
