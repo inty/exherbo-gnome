@@ -7,7 +7,7 @@ SUMMARY="Window Navigator Construction Key Library"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
-SLOT="0"
+SLOT="1"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
