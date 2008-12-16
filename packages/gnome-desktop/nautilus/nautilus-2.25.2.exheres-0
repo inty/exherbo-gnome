@@ -13,21 +13,22 @@ MYOPTIONS="doc tracker"
 
 DEPENDENCIES="
     build+run:
-        >=gnome-desktop/eel-2.25.1:2
         >=dev-libs/glib-2.19.0:2
         >=gnome-desktop/gnome-desktop-2.9.91:2
         >=x11-libs/pango-1.1.2[X]
         >=x11-libs/gtk+-2.13:2
         >=dev-libs/libxml2-2.4.71.6
+          app-text/rarian
           dev-libs/unique:1
+          dev-libs/dbus-glib
           gnome-platform/GConf:2
+          gnome-platform/libgnomeui:2
         tracker? ( >=app-pim/tracker-0.6.4 )
     build:
-          sys-devel/gettext
         >=dev-util/pkg-config-0.19
         >=dev-util/intltool-0.36.3
         doc? ( >=dev-doc/gtk-doc-1.4 )
-    run,post:
+    run:
         >=gnome-desktop/gvfs-1.0.3
     post,recommended:
         >=sys-apps/gnome-mount-0.8
@@ -37,6 +38,6 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-dock' tracker )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' tracker )
 
