@@ -22,7 +22,6 @@ DEPENDENCIES="
           dev-libs/unique:1
           dev-libs/dbus-glib
           gnome-platform/GConf:2
-          gnome-platform/libgnomeui:2
         tracker? ( >=app-pim/tracker-0.6.4 )
     build:
         >=dev-util/pkg-config-0.19
