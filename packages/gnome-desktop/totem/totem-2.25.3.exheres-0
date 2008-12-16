@@ -1,0 +1,63 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Media Player for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="nautilus nsplugin python tracker"
+
+DEPENDENCIES="
+    build+run:
+          app-text/iso-codes
+          gnome-platform/GConf:2
+        >=dev-libs/glib-2.15:2
+        >=x11-libs/gtk+-2.13:2
+        >=gnome-desktop/totem-pl-parser-2.23.91
+        >=gnome-desktop/gnome-icon-theme-2.15.90
+        >=dev-libs/dbus-glib-0.74
+        >=media-libs/gstreamer-0.10.12:0.10
+        >=media-plugins/gst-plugins-base-0.10.12:0.10
+          media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf][gstreamer_plugins:goom]
+        nautilus? ( gnome-desktop/nautilus )
+        nsplugin? ( >=x11-misc/shared-mime-info-0.22
+                    >=x11-libs/startup-notification-0.8
+                      dev-libs/xulrunner )
+        python? ( >=gnome-bindings/pygtk-2.12.0 )
+        tracker? ( app-pim/tracker )
+    build:
+        >=dev-util/intltool-0.40.0
+        >=dev-util/pkg-config-0.20
+"
+
+# galago
+# lirc
+# mythtv
+# bluetooth (bemused)
+# epc (publish)
+# jamendo
+# opensubtitles
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-easy-codec-installation' '--disable-xine' '--enable-gtk' '--with-dbus' '--disable-vala' )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( nautilus 'nsplugin browser-plugins' python )
+
+src_configure() {
+    local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto
+
+    if option python ; then
+        plugins+=,pythonconsole,youtube
+    fi
+
+    if option tracker ; then
+        plugins+=,tracker
+    fi
+
+    DEFAULT_SRC_CONFIGURE_PARAMS+=( "--with-plugins=${plugins}" )
+
+    GST_REGISTRY="${TEMP}/.gstreamer-0.10" default
+}
+
