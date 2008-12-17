@@ -19,7 +19,7 @@ DEPENDENCIES="
                app-text/docbook-xml-dtd:4.1.2 )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-slice-threadinit-tests-fix.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-2.19.2-slice-threadinit-tests-fix.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-static' '--with-threads=posix' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' fam man )
