@@ -13,27 +13,21 @@ MYOPTIONS="alsa gstreamer libnotify"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/dbus-glib-0.74
         >=dev-libs/glib-2.17.3:2
         >=x11-libs/gtk+-2.13.1:2
         >=gnome-platform/GConf-2.6.1:2
-        >=gnome-desktop/gnome-desktop-2.23.90:2
+        >=dev-libs/dbus-glib-0.74
+        >=gnome-desktop/gnome-desktop-2.25.3:2
         >=gnome-platform/libglade-2.0.0:2
         >=gnome-desktop/libgnomekbd-2.21.4
         >=x11-libs/libxklavier-3.8
-          x11-libs/libXi
-          x11-libs/libX11
-          x11-libs/libXext
-          x11-libs/libXrandr
-          x11-libs/libXrender
-          x11-libs/libXxf86misc
           media-libs/fontconfig
+          x11-libs/libXxf86misc
         alsa? ( >=sys-sound/alsa-lib-0.9.0 )
         gstreamer? ( >=media-libs/gstreamer-0.10.1.2:0.10
                      >=media-plugins/gst-plugins-base-0.10:0.10 )
         libnotify? ( >=x11-libs/libnotify-0.4.3 )
     build:
-          sys-devel/gettext
         >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.37.1
 "
