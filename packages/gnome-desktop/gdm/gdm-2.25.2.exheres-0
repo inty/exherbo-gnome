@@ -26,7 +26,6 @@ DEPENDENCIES="
         consolekit? ( sys-auth/ConsoleKit )
         policykit? ( >=gnome-desktop/PolicyKit-gnome-0.8 )
     build:
-          sys-devel/gettext
         >=dev-libs/check-0.9.4
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
