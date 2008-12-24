@@ -13,8 +13,8 @@ MYOPTIONS="applet gedit libnotify nautilus" # eds epiphany
 
 DEPENDENCIES="
     build+run:
-          gnome-platform/GConf:2
           gnome-platform/libglade:2
+          gnome-platform/GConf:2
         >=x11-libs/gtk+-2.10:2
         >=dev-libs/glib-2.16:2
          =app-crypt/gnupg-2.0*
@@ -22,12 +22,11 @@ DEPENDENCIES="
           gnome-desktop/gnome-keyring:1
         >=dev-libs/dbus-glib-0.35
         >=gnome-desktop/seahorse-${PV}
-        applet? ( >=gnome-desktop/gnome-panel-2.9.4 )
         >=gnome-desktop/evolution-data-server-1.7.90:1.2
+        applet? ( >=gnome-desktop/gnome-panel-2.9.4 )
         gedit? ( >=app-editors/gedit-2.20 )
         libnotify? ( >=x11-libs/libnotify-0.3 )
-        nautilus? ( >=gnome-desktop/nautilus-2.12.0
-                    >=dev-libs/glib-2.18:2 )
+        nautilus? ( >=gnome-desktop/nautilus-2.12.0 )
     build:
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
