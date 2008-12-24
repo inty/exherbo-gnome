@@ -22,6 +22,7 @@ DEPENDENCIES="
           gnome-desktop/libsoup:2.4
         >=gnome-desktop/gnome-keyring-2.23.6:1
         >=dev-libs/dbus-glib-0.35
+        >=dev-libs/libtasn1-0.3.4
         avahi? ( >=net-dns/avahi-0.6 )
         libnotify? ( >=x11-libs/libnotify-0.4.4 )
     build:
