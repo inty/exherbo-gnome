@@ -23,10 +23,3 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
 
-src_install() {
-    default
-
-    if option !doc; then
-        find "${IMAGE}/usr/share/doc/libcairomm-${SLOT}" -depth -type d -empty -delete || die "Failed to remove empty directories"
-    fi
-}
