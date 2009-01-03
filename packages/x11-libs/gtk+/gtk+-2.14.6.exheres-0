@@ -11,12 +11,12 @@ HOMEPAGE="http://www.gtk.org/"
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="jpeg tiff xinerama vim-syntax"
+MYOPTIONS="cups jpeg tiff xinerama vim-syntax"
 
 DEPENDENCIES="
     build+run:
         >=dev-libs/atk-1.13.0
-        >=dev-libs/glib-2.17.3:2
+        >=dev-libs/glib-2.17.6:2
         >=x11-libs/cairo-1.6[X][pdf]
         >=x11-libs/pango-1.20[X]
           media-libs/libpng
@@ -30,6 +30,7 @@ DEPENDENCIES="
           x11-libs/libXfixes
           x11-libs/libXcomposite
           x11-libs/libXdamage
+        cups? ( net-print/cups )
         jpeg? ( >=media-libs/jpeg-6b )
         tiff? ( >=media-libs/tiff-3.5.7 )
         xinerama? ( x11-libs/libXinerama )
@@ -51,7 +52,7 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-2.12.0-flash-workaround.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-libpng' '--without-libjasper' '--with-gdktarget=x11' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg libjpeg' 'tiff libtiff' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( xinerama )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cups xinerama )
 
 src_install() {
     default
