@@ -1,0 +1,33 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require vim-plugin
+
+SUMMARY="Syntax highlighting for glib, GTK+, xlib, gimp, and gnome"
+HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1000"
+DOWNLOADS="http://www.vim.org/scripts/download_script.php?src_id=9761 -> ${PNV}.tar.gz"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+WORK="${WORKBASE}"
+
+src_install() {
+    cd "${WORKBASE}/gtk-vim-syntax"
+
+    dodoc README
+    rm -f README
+
+    dodir /usr/share/vim/vimfiles/after/syntax/c.vim.d/
+    mv c.vim.example "${IMAGE}/usr/share/vim/vimfiles/after/syntax/c.vim.d/gtk-syntax.vim"
+
+    dodir /usr/share/vim/vimfiles/syntax
+    mv * "${IMAGE}/usr/share/vim/vimfiles/syntax" || die "Couldn't move syntax files to /usr/share/vim/vimfiles/syntax"
+
+    chmod -R -x+X "${IMAGE}/usr/share/vim/vimfiles" || die "chmod failed"
+}
+
