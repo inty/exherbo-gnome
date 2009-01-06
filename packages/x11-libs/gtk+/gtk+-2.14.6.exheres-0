@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="cups jpeg tiff xinerama vim-syntax"
+MYOPTIONS="cups jpeg tiff xinerama"
 
 DEPENDENCIES="
     build+run:
@@ -42,8 +42,8 @@ DEPENDENCIES="
         x11-proto/inputproto
         x11-proto/damageproto
         xinerama? ( x11-proto/xineramaproto )
-    run+post:
-        vim-syntax? ( app-vim/gtk-syntax )
+    post,suggested:
+        app-vim/gtk-syntax [[ description = [ A collection of vim syntax files for various GTK+ C extensions ] ]]
 "
 
 RESTRICT="test"
