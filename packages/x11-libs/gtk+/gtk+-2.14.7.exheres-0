@@ -11,7 +11,9 @@ HOMEPAGE="http://www.gtk.org/"
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="cups jasper jpeg tiff xinerama"
+MYOPTIONS="cups
+jasper [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
+jpeg tiff xinerama"
 
 DEPENDENCIES="
     build+run:
