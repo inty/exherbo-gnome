@@ -1,0 +1,34 @@
+From 29c59ca06de6094a4d697f7a8f48f5b77222a0f6 Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Thu, 8 Jan 2009 19:37:26 -0800
+Subject: [PATCH] use %lu instead of %u to fix compiles on 64-bit systems
+
+---
+ pkcs11/gck/gck-file-store.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pkcs11/gck/gck-file-store.c b/pkcs11/gck/gck-file-store.c
+index 3773d50..5e1b1f5 100644
+--- a/pkcs11/gck/gck-file-store.c
++++ b/pkcs11/gck/gck-file-store.c
+@@ -135,7 +135,7 @@ read_all_bytes (int fd, guchar *buf, gsize len)
+ 			if (errno == EAGAIN && errno == EINTR)
+ 				continue;
+ 			if (res < 0 || len != all)
+-				g_warning ("couldn't read %u bytes from store file: %s", all, 
++				g_warning ("couldn't read %lu bytes from store file: %s", all, 
+ 				           g_strerror (errno));
+ 			return FALSE;
+ 		} else  {
+@@ -160,7 +160,7 @@ write_all_bytes (int fd, const guchar *buf, gsize len)
+ 		if (res <= 0) {
+ 			if (errno == EAGAIN && errno == EINTR)
+ 				continue;
+-			g_warning ("couldn't write %u bytes to store file: %s", all, 
++			g_warning ("couldn't write %lu bytes to store file: %s", all, 
+ 			           res < 0 ? g_strerror (errno) : "");
+ 			return FALSE;
+ 		} else  {
+-- 
+1.6.1
+
