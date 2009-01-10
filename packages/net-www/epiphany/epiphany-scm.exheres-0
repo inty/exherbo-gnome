@@ -15,7 +15,7 @@ require scm-svn autotools
 
 LICENCES="GPL-2"
 SLOT="2.22"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi doc networkmanager"
 
 DEPENDENCIES="
