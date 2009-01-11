@@ -31,7 +31,9 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-working-directory=/var/lib/gdm' )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fork-gdm-binary.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--localstatedir=/var' '--with-working-directory=/var/lib/gdm' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'consolekit console-kit' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'policykit polkit' )
 
@@ -43,8 +45,10 @@ pkg_setup() {
 src_install() {
     default
 
+    rmdir "${IMAGE}/var/gdm" || die "failed to remove empty directory"
+
     keepdir /var/lib/gdm        # GDM_WORKING_DIR
-    keepdir /var/lib/run/gdm    # GDM_XAUTH_DIR
+    keepdir /var/run/gdm        # GDM_XAUTH_DIR
     keepdir /var/log/gdm        # GDM_LOG_DIR
 
     fperms g+w /var/lib/gdm
