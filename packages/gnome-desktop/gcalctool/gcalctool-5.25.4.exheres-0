@@ -21,7 +21,7 @@ DEPENDENCIES="
           app-text/rarian
     build:
         >=dev-util/pkg-config-0.20
-        doc? ( app-text/gtk-doc )
+        doc? ( dev-doc/gtk-doc )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
