@@ -27,7 +27,7 @@ DEPENDENCIES="
           sys-devel/gettext
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-use-lu-instead-of-u-to-fix-compiles-on-64-bit-syst.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/gnome-keyring-2.25.5-type-check.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ssh-agent' '--enable-tests'
 '--with-root-certs=/usr/share/ca-certificates/' '--enable-acl-prompts' )
