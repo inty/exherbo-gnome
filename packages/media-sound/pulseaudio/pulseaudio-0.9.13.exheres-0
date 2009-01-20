@@ -1,0 +1,74 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GnU General Public License v2
+
+require autotools eutils
+
+SUMMARY="A sound server for POSIX and Win32 systems"
+HOMEPAGE="http://www.pulseaudio.org/"
+DOWNLOADS="http://0pointer.de/lennart/projects/pulseaudio/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="X alsa avahi bluetooth caps dbus hal policykit"
+
+DEPENDENCIES="
+    build+run:
+        >=media-libs/libsndfile-0.0.10
+        >=media-libs/speex-1.2_beta
+        >=dev-libs/liboil-0.3.0
+        >=dev-libs/glib-2.4:2
+          sys-libs/gdbm
+        alsa? ( >=sys-sound/alsa-lib-1.0.17 )
+        avahi? ( >=net-dns/avahi-0.6.0 )
+        bluetooth? ( >=net-wireless/bluez-3.0 )
+        caps? ( sys-libs/libcap )
+        dbus? ( >=sys-apps/dbus-1.0 )
+        hal? ( >=sys-apps/hal-0.5.10 )
+        policykit? ( >=sys-auth/PolicyKit-0.7 )
+    build:
+        >=dev-util/pkg-config-0.20
+        >=dev-util/intltool-0.35.0
+"
+
+AT_M4DIR="m4"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+--disable-oss
+--disable-solaris
+
+--localstatedir=/var
+
+--disable-per-user-esound-socket
+
+--disable-gconf
+
+--enable-glib2
+
+# unpackaed dependencies
+--disable-asyncns
+--disable-jack
+--disable-lirc
+--disable-samplerate
+--disable-tcpwrap
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' caps )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi 'bluetooth bluez' hal 'policykit polkit' )
+
+pkg_setup() {
+    enewgroup audio 18
+
+    enewgroup pulse
+    enewgroup pulse-rt
+    enewgroup pulse-access
+    enewuser pulse -1 -1 /var/run/pulse pulse,audio
+}
+
+src_install() {
+    default
+
+    rmdir "${IMAGE}/etc/xdg/autostart" \
+          "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
+}
+
