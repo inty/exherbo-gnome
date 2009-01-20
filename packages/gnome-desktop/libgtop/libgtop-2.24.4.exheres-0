@@ -6,7 +6,7 @@ require gnome.org
 DESCRIPTION="Process Monitoring API"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENCES="LGPL-2"
+LICENCES="GPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
