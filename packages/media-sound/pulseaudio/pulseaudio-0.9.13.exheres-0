@@ -68,6 +68,10 @@ pkg_setup() {
 src_install() {
     default
 
+    if ! option bluetooth ; then
+        rmdir "${IMAGE}/usr/libexec/"{pulse,} || die "failed to remove empty directories"
+    fi
+
     rmdir "${IMAGE}/etc/xdg/autostart" \
           "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
 }
