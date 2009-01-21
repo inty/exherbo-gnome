@@ -157,3 +157,16 @@ gnome-2_pkg_postinst() {
     default
 }
 
+gnome-2_pkg_prerm() {
+    gnome_exlib_uninstall_gconf_schemas
+    gnome_exlib_unload_gconf_entries
+
+    default
+}
+
+gnome-2_pkg_postrm() {
+    gnome_exlib_update_icon_cache
+
+    default
+}
+
