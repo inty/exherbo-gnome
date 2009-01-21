@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="grecord gstreamer ipv6 profiles"
+MYOPTIONS="grecord gstreamer ipv6 profiles pulseaudio"
 
 DEPENDENCIES="
     build+run:
@@ -26,10 +26,11 @@ DEPENDENCIES="
         profiles? ( media-libs/gstreamer:0.10
                     gnome-platform/libglade:2
                     gnome-platform/libgnomeui:2 )
+        pulseaudio? ( >=media-sound/pulseaudio-0.9.12 )
     build:
         >=dev-util/intltool-0.35.0
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-pulseaudio --disable-esound )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 grecord 'gstreamer gstmix' 'gstreamer gstprops' profiles )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-esound )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 grecord 'gstreamer gstprops' profiles pulseaudio )
 
