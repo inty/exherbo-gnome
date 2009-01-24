@@ -6,8 +6,8 @@ require gnome.org
 SUMMARY="Python Bindings for GObject"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENCES=""
-SLOT="0"
+LICENCES="LGPL-2.1"
+SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
