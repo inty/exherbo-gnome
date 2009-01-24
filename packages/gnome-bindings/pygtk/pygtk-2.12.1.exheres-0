@@ -29,6 +29,8 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-numpy )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
 
+RESTRICT="test"
+
 src_prepare() {
     default
 
@@ -36,3 +38,4 @@ src_prepare() {
     rm py-compile
     ln -s "$(type -P true)" py-compile
 }
+
