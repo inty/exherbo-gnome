@@ -15,7 +15,8 @@ MYOPTIONS="alsa gstreamer gtk"
 DEPENDENCIES="
     build+run:
         alsa? ( >=sys-sound/alsa-lib-1.0.0 )
-        gstreamer? ( >=media-libs/gstreamer-0.10.15:0.10 )
+        gstreamer? ( >=media-libs/gstreamer-0.10.15:0.10
+                       media-plugins/gst-plugins-base[vorbis] )
         gtk? ( >=x11-libs/gtk+-2.13.4:2
                  dev-libs/glib:2
                  gnome-platform/GConf:2 )
