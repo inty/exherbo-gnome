@@ -9,7 +9,7 @@ DOWNLOADS="mirror://gnome/sources/${PN}/$(get_version_component_range 1-2)/${PNV
 
 LICENCES=""
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
