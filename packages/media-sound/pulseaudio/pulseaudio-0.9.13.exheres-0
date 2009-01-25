@@ -72,7 +72,9 @@ src_install() {
         rmdir "${IMAGE}/usr/libexec/"{pulse,} || die "failed to remove empty directories"
     fi
 
-    rmdir "${IMAGE}/etc/xdg/autostart" \
-          "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
+    if ! option X ; then
+        rmdir "${IMAGE}/etc/xdg/autostart" \
+              "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
+    fi
 }
 
