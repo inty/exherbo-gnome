@@ -17,8 +17,6 @@ DEPENDENCIES="
         >=dev-libs/glib-2.18.0:2
         >=x11-libs/gtk+-2.13.0:2
         >=gnome-desktop/gnome-panel-2.13.4
-        >=gnome-platform/libgnome-2.8.0:2
-        >=gnome-platform/libgnomeui-2.8.0:2
         >=gnome-desktop/gnome-desktop-2.11.1
         >=gnome-desktop/libgtop-2.11.92
         >=gnome-desktop/libgnomekbd-2.21.4.1
@@ -31,9 +29,9 @@ DEPENDENCIES="
         >=gnome-desktop/libgweather-2.22.1
           gnome-platform/GConf:2
         >=app-text/rarian-0.8.0
+        hal? ( >=sys-apps/hal-0.5.3 )
         policykit? ( >=sys-auth/PolicyKit-0.7
                      >=gnome-desktop/PolicyKit-gnome-0.7 )
-        hal? ( >=sys-apps/hal-0.5.3 )
     build:
           dev-libs/libxslt
         >=dev-lang/python-2.4:*
@@ -41,7 +39,7 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.19
         doc? ( app-doc/gtk-doc )
     post,suggested:
-          gnome-desktop/gnome-media
+        >=gnome-desktop/gnome-media-2.25
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-battstat )
