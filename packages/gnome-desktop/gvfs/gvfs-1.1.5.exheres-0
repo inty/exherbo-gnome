@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="archive avahi bash-completion bluetooth cdda doc gnome hal keyring" # fuse gphoto2 samba
+MYOPTIONS="archive avahi bash-completion bluetooth cdda doc gnome gphoto2 hal keyring" # fuse samba
 
 DEPENDENCIES="
     build+run:
@@ -26,6 +26,7 @@ DEPENDENCIES="
         cdda? ( >=dev-libs/libcdio-0.78.2
                 >=sys-apps/hal-0.5.10 )
         gnome? ( gnome-platform/GConf:2 )
+        gphoto2? ( >=media-libs/libgphoto2-2.4 ) [[ requires = [ hal ] ]]
         hal? ( >=sys-apps/hal-0.5.10 )
         keyring? ( gnome-desktop/gnome-keyring:1 )
     build:
@@ -34,8 +35,9 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-http' '--disable-fuse' '--disable-gphoto2' '--disable-samba' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bluetooth obexftp' 'cdda' 'doc gtk-doc' 'hal' 'keyring' 'bash-completion' 'gnome gconf' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-http' '--disable-fuse' '--disable-samba' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bluetooth obexftp'
+'cdda' 'doc gtk-doc' 'gnome gconf' 'gphoto2' 'hal' 'keyring' 'bash-completion' )
 
 src_install() {
     default
