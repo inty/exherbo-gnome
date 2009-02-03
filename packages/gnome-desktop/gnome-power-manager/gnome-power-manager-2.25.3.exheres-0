@@ -27,7 +27,7 @@ DEPENDENCIES="
           gnome-platform/GConf:2
         >=x11-libs/libnotify-0.4.3
         >=dev-libs/unique-0.9.4:1
-          sys-apps/DeviceKit-power
+        >=sys-apps/DeviceKit-power-001
         policykit? ( >=sys-auth/PolicyKit-0.8
                      >=gnome-desktop/PolicyKit-gnome-0.8 )
     build:
