@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="nautilus nsplugin python tracker"
+MYOPTIONS="bluetooth nautilus nsplugin python tracker"
 
 DEPENDENCIES="
     build+run:
@@ -23,6 +23,8 @@ DEPENDENCIES="
         >=media-libs/gstreamer-0.10.12:0.10
         >=media-plugins/gst-plugins-base-0.10.12:0.10
           media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
+          x11-libs/cairo
+        bluetooth? ( net-wireless/bluez )
         nautilus? ( gnome-desktop/nautilus )
         nsplugin? ( >=x11-misc/shared-mime-info-0.22
                     >=x11-libs/startup-notification-0.8
@@ -34,10 +36,10 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
+# brasero
 # galago
 # lirc
 # mythtv
-# bluetooth (bemused)
 # epc (publish)
 # jamendo
 # opensubtitles
@@ -46,7 +48,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-easy-codec-installation' '--disable-xin
 DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( nautilus 'nsplugin browser-plugins' python )
 
 src_configure() {
-    local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto
+    local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto,screenshot
+
+    if option bluetooth ; then
+        plugins+=,bemused
+    fi
 
     if option python ; then
         plugins+=,pythonconsole,youtube
