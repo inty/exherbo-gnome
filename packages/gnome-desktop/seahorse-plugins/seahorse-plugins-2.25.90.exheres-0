@@ -32,7 +32,7 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--enable-tests' '--disable-update-mime-database' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--disable-update-mime-database' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit libnotify nautilus )
 
 src_install() {
