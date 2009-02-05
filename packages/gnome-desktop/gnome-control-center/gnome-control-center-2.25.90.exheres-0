@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc eds hal"
+MYOPTIONS="audio doc eds hal"
 
 DEPENDENCIES="
     build+run:
@@ -33,6 +33,7 @@ DEPENDENCIES="
         >=x11-libs/libxklavier-3.6
           x11-libs/libXScrnSaver
           x11-libs/libXxf86misc
+        audio? ( media-libs/libcanberra[gtk] )
         eds? ( >=gnome-desktop/evolution-data-server-1.7.90
                  gnome-desktop/PolicyKit-gnome )
         hal? ( >=sys-apps/hal-0.5.6 )
@@ -42,5 +43,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds aboutme' hal )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'audio libcanberra-gtk' 'doc gtk-doc' 'eds aboutme' hal )
 
