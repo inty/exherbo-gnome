@@ -37,5 +37,9 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.20
 "
 
+AT_M4DIR="autotools"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-Add-missing-call-to-AC_PROG_CXX.patch" )
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'svg' 'svg svg-experimental' 'svg svg-filters' )
 
