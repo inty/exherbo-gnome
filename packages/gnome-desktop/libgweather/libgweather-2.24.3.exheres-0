@@ -18,7 +18,7 @@ DEPENDENCIES="
         >=gnome-desktop/libsoup-2.4:2.4
         >=gnome-platform/GConf-2.8:2
         >=dev-libs/libxml2-2.6
-        python? ( gnome-desktop/pygobject:2
+        python? ( gnome-bindings/pygobject:2
                   gnome-bindings/pygtk:2 )
     build:
           sys-devel/gettext
