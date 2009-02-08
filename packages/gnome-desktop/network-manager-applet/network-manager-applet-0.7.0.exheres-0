@@ -1,11 +1,9 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require versionator
-
 SUMMARY="A panel applet to configure networking"
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager"
-DOWNLOADS="mirror://gnome/sources/${PN}/$(get_version_component_range 1-2)/${PNV/_/-}.tar.bz2"
+DOWNLOADS="mirror://gnome/sources/${PN}/$(ever range 1-2)/${PNV/_/-}.tar.bz2"
 
 LICENCES=""
 SLOT="0"
