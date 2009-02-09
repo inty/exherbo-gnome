@@ -12,7 +12,7 @@ LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="cups
-jasper [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
+jpeg2000 [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
 jpeg tiff xinerama"
 
 DEPENDENCIES="
@@ -33,7 +33,7 @@ DEPENDENCIES="
           x11-libs/libXcomposite
           x11-libs/libXdamage
         cups? ( net-print/cups )
-        jasper? ( media-libs/jasper )
+        jpeg2000? ( media-libs/jasper )
         jpeg? ( >=media-libs/jpeg-6b )
         tiff? ( >=media-libs/tiff-3.5.7 )
         xinerama? ( x11-libs/libXinerama )
@@ -54,7 +54,7 @@ RESTRICT="test"
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-2.12.0-flash-workaround.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-libpng' '--with-gdktarget=x11' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg libjpeg' 'jasper libjasper' 'tiff libtiff' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg libjpeg' 'jpeg2000 libjasper' 'tiff libtiff' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cups xinerama )
 
 src_install() {
