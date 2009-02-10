@@ -21,7 +21,7 @@ DEPENDENCIES="
         avahi? ( >=net-dns/avahi-0.6 )
         bluetooth? (   dev-libs/expat
                        dev-libs/dbus-glib
-                     >=net-wireless/bluez-3.12 )
+                     >=net-wireless/bluez-4 )
         gnome? ( >=gnome-platform/GConf-2.0:2 )
         hal? ( >=sys-apps/hal-0.5.10 )
         keyring? ( >=gnome-desktop/gnome-keyring-2.0:1 )
@@ -31,6 +31,8 @@ DEPENDENCIES="
         >=dev-util/intltool-0.35.0
         doc? ( dev-doc/gtk-doc )
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/gvfs-1.0-update-to-bluez-4.x-api.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-http' '--disable-archive'
 '--disable-cdda' '--disable-fuse' '--disable-gphoto2' '--disable-samba' )
