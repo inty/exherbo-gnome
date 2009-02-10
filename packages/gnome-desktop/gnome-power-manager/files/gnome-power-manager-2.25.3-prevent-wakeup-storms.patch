@@ -1,0 +1,14 @@
+--- trunk/src/egg-idletime.c	2009/01/27 17:32:08	3191
++++ trunk/src/egg-idletime.c	2009/02/04 22:49:09	3230
+@@ -83,9 +83,9 @@
+ 
+ 	/* which way do we do the test? */
+ 	if (positive)
+-		test = XSyncPositiveComparison;
++		test = XSyncPositiveTransition;
+ 	else
+-		test = XSyncNegativeComparison;
++		test = XSyncNegativeTransition;
+ 
+ 	XSyncIntToValue (&delta, 0);
+ 

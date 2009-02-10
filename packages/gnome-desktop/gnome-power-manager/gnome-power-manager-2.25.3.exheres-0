@@ -37,6 +37,8 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/gnome-power-manager-2.25.3-prevent-wakeup-storms.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-devicekit-power' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applets policykit 'policykit gconf-defaults' )
 
