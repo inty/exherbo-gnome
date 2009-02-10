@@ -24,7 +24,7 @@ DEPENDENCIES="
         nautilus?  ( >=gnome-desktop/nautilus-2.0 )
         ps? ( >=app-text/libspectre-0.2.0 )
         pdf? ( >=x11-libs/cairo-1.0
-               >=app-text/poppler-0.8.0[glib] )
+               >=app-text/poppler-0.8.0[cairo][glib] )
         tiff? ( >=media-libs/tiff-3.6 )
     build:
           sys-devel/gettext
