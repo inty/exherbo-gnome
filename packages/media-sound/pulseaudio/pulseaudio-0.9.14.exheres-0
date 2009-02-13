@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GnU General Public License v2
 
-require autotools eutils
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ] eutils
 
 SUMMARY="A sound server for POSIX and Win32 systems"
 HOMEPAGE="http://www.pulseaudio.org/"
