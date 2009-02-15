@@ -33,7 +33,7 @@ DEPENDENCIES="
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
         doc? ( >=dev-util/gtk-doc-1.0 )
-    run,post:
+    run:
           gnome-desktop/gnome-icon-theme
     post,suggested:
           net-plugins/epiphany-extensions

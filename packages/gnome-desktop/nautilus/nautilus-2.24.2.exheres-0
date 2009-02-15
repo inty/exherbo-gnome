@@ -32,7 +32,7 @@ DEPENDENCIES="
         >=dev-util/pkg-config-0.19
         >=dev-util/intltool-0.36.3
         doc? ( >=dev-doc/gtk-doc-1.4 )
-    run,post:
+    run:
         >=gnome-desktop/gvfs-1.0.3
     post,recommended:
         >=sys-apps/gnome-mount-0.8
