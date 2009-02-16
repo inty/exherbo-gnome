@@ -35,3 +35,11 @@ src_install() {
         rmdir "${IMAGE}"/usr/$(get_libdir)/mozilla/{plugins,} || die "Cleaning up empty directories failed."
     fi
 }
+
+pkg_postinst() {
+    gdk-pixbuf-query-loaders > "${ROOT}"/etc/gtk-2.0/gdk-pixbuf.loaders
+}
+
+pkg_postrm() {
+    gdk-pixbuf-query-loaders > "${ROOT}"/etc/gtk-2.0/gdk-pixbuf.loaders
+}
