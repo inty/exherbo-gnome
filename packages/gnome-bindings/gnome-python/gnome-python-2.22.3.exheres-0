@@ -1,0 +1,39 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="Python bindings for GNOME platform components"
+HOMEPAGE="http://www.gnome.org"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc gconf"
+
+DEPENDENCIES="
+    build+run:
+        >=dev-lang/python-2.2:*
+        >=gnome-bindings/pygtk-2.10.3:2
+          gnome-bindings/pygobject:2
+        >=dev-libs/glib-2.6:2
+        >=x11-libs/gtk+-2.10:2
+        gconf? ( >=gnome-platform/GConf-2.11.1:2 )
+    build:
+        >=dev-util/pkg-config-0.20
+        doc? ( dev-doc/gtk-doc )
+"
+
+RESTRICT="test" # dont work with recent python
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-allbindings )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' gconf )
+
+src_prepare() {
+    default
+
+    # disable python byte compiling
+    rm py-compile
+    ln -s "$(type -P true)" py-compile
+}
+
