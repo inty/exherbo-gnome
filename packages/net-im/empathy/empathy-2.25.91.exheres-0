@@ -14,15 +14,16 @@ MYOPTIONS="applet doc python spell"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.0:2
-        >=x11-libs/gtk+-2.14.0:2
-        >=gnome-platform/GConf-1.2.0:2
-        >=gnome-platform/libglade-2.0.0:2
-          net-im/telepathy-farsight
-        >=net-im/telepathy-glib-0.7.15
-        >=net-im/mission-control-4.61
           dev-libs/libxml2
+        >=net-im/telepathy-glib-0.7.21
+        >=net-im/mission-control-4.61
+          net-im/telepathy-farsight
+        >=gnome-platform/GConf-1.2.0:2
+        >=x11-libs/gtk+-2.14.0:2
+        >=gnome-platform/libglade-2.0.0:2
           gnome-desktop/evolution-data-server:1.2
         >=media-libs/libcanberra-0.4[gtk]
+          media-libs/gstreamer:0.10
         >=x11-libs/libnotify-0.4.4
         applet? ( >=gnome-desktop/gnome-panel-2.10.0 )
         python? ( >=dev-lang/python-2.5:=
