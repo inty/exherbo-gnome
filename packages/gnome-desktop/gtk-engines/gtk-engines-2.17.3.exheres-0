@@ -6,7 +6,7 @@ require gnome.org
 SUMMARY="Theme engines for GTK+ 2.0"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENCES="GPL-2"
+LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="accessibility"
@@ -15,8 +15,7 @@ DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2.12:2
     build:
-          sys-devel/gettext
-          dev-util/pkg-config
+        >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.35.0
 "
 
