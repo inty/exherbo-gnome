@@ -11,7 +11,8 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="doc
 gconf [[ description = [ build python bindings for gconf ] ]]
-gnome [[ description = [ build python bindings for libgnome ] ]]"
+gnome [[ description = [ build python bindings for libgnome ] ]]
+gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]"
 
 DEPENDENCIES="
     build+run:
@@ -22,6 +23,7 @@ DEPENDENCIES="
         >=x11-libs/gtk+-2.10:2
         gconf? ( >=gnome-platform/GConf-2.11.1:2 )
         gnome? ( >=gnome-platform/libgnome-2.8:2 )
+        gnomevfs? ( >=gnome-platform/gnome-vfs-2.14 )
     build:
         >=dev-util/pkg-config-0.20
         doc? ( dev-doc/gtk-doc )
@@ -30,7 +32,7 @@ DEPENDENCIES="
 RESTRICT="test" # dont work with recent python
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-allbindings )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' gconf gnome )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' gconf gnome gnomevfs )
 
 src_prepare() {
     default
@@ -38,5 +40,11 @@ src_prepare() {
     # disable python byte compiling
     rm py-compile
     ln -s "$(type -P true)" py-compile
+}
+
+src_install() {
+    default
+
+    rmdir "${IMAGE}"/usr/lib64/gnome-vfs-2.0/{modules,}
 }
 
