@@ -14,7 +14,7 @@ MYOPTIONS="doc eds networkmanager policykit"
 DEPENDENCIES="
     build+run:
         >=gnome-platform/ORBit2-2.4.0:2
-        >=x11-libs/gtk+-2.13.1:2
+        >=x11-libs/gtk+-2.15.1:2
         >=x11-libs/pango-1.15.4
         >=dev-libs/glib-2.18.0:2
         >=gnome-platform/libgnome-2.13.0:2
