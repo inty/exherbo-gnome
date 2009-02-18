@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="bluetooth nautilus nsplugin python tracker"
+MYOPTIONS="bluetooth doc nautilus nsplugin python tracker"
 
 DEPENDENCIES="
     build+run:
@@ -34,6 +34,7 @@ DEPENDENCIES="
     build:
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
+        doc? ( >=dev-doc/gtk-doc-1.11 )
 "
 
 # brasero
@@ -45,7 +46,7 @@ DEPENDENCIES="
 # opensubtitles
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-easy-codec-installation' '--disable-xine' '--enable-gtk' '--with-dbus' '--disable-vala' )
-DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( nautilus 'nsplugin browser-plugins' python )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( 'doc gtk-doc' nautilus 'nsplugin browser-plugins' python )
 
 src_configure() {
     local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto,screenshot
@@ -65,5 +66,14 @@ src_configure() {
     DEFAULT_SRC_CONFIGURE_PARAMS+=( "--with-plugins=${plugins}" )
 
     GST_REGISTRY="${TEMP}/.gstreamer-0.10" default
+}
+
+src_test() {
+    if ! option doc ; then
+        sed -e '/^GTKDOC_CHECK/cGTKDOC_CHECK = true' \
+            -i "${WORK}//docs/reference/Makefile" || die "failed to disable gtk-doc test"
+    fi
+
+    default
 }
 
