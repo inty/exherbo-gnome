@@ -37,9 +37,13 @@ src_install() {
 }
 
 pkg_postinst() {
-    gdk-pixbuf-query-loaders > "${ROOT}"/etc/gtk-2.0/gdk-pixbuf.loaders
+    ebegin "Generating pixbuf list"
+        gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
+    eend $?
 }
 
 pkg_postrm() {
-    gdk-pixbuf-query-loaders > "${ROOT}"/etc/gtk-2.0/gdk-pixbuf.loaders
+    ebegin "Generating pixbuf list"
+        gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
+    eend $?
 }
