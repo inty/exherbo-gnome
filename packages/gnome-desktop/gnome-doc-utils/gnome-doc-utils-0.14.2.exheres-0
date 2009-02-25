@@ -13,10 +13,12 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/libxml2-2.6.12
+        >=dev-libs/libxml2-2.6.12[python]
         >=dev-libs/libxslt-1.1.8
         >=app-text/rarian-0.6
     build:
           sys-devel/gettext
         >=dev-util/intltool-0.35.0
+    run:
+        dev-lang/python
 "
