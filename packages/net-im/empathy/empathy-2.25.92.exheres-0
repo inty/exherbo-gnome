@@ -15,7 +15,7 @@ DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.0:2
           dev-libs/libxml2
-        >=net-im/telepathy-glib-0.7.21
+        >=net-im/telepathy-glib-0.7.23
         >=net-im/mission-control-4.61
           net-im/telepathy-farsight
         >=gnome-platform/GConf-1.2.0:2
