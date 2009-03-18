@@ -14,7 +14,7 @@ MYOPTIONS="doc calendar ipv6 keyring weather"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.16.1:2
-        >=x11-libs/gtk+-2.10.0:2
+        >=x11-libs/gtk+-2.14.0:2
         >=gnome-platform/ORBit2-2.9.8:2
         >=gnome-platform/libbonobo-2.20.3:2
         >=gnome-platform/GConf-2.0:2
