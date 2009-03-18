@@ -13,7 +13,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        >=dev-util/intltool-0.35.0
+        >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.19
         >=x11-apps/icon-naming-utils-0.8.1
     run:
@@ -26,3 +26,4 @@ src_install() {
     # remove pointless locale directories
     find "${IMAGE}/usr/share/locale/" -type d -empty -delete
 }
+
