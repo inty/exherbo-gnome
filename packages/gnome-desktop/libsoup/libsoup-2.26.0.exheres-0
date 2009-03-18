@@ -16,6 +16,7 @@ DEPENDENCIES="
         >=dev-libs/glib-2.15.3:2
           dev-libs/libxml2
           net-libs/libproxy:1
+          gnome-platform/GConf:2
           dev-db/sqlite:3
         ssl? ( dev-libs/gnutls )
     build:
