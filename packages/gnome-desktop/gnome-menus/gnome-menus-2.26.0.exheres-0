@@ -15,7 +15,6 @@ DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.15.2:2
     build:
-          sys-devel/gettext
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
 "
