@@ -14,13 +14,13 @@ MYOPTIONS="doc tracker"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.19.0:2
-        >=gnome-desktop/gnome-desktop-2.9.91:2
+        >=gnome-desktop/gnome-desktop-2.25.5:2
         >=x11-libs/pango-1.1.2[X]
         >=x11-libs/gtk+-2.13:2
         >=dev-libs/libxml2-2.4.71.6
           app-text/rarian
           dev-libs/unique:1
-          dev-libs/dbus-glib
+          dev-libs/dbus-glib:1
           gnome-platform/GConf:2
         tracker? ( >=app-pim/tracker-0.6.4 )
     build:
