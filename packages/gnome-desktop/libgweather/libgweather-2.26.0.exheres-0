@@ -21,7 +21,6 @@ DEPENDENCIES="
         python? ( gnome-bindings/pygobject:2
                   gnome-bindings/pygtk:2 )
     build:
-          sys-devel/gettext
         >=dev-util/pkg-config-0.19
         >=dev-util/intltool-0.40.3
         doc? ( >=app-doc/gtk-doc-1.9 )
