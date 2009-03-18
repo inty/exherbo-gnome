@@ -19,6 +19,8 @@ DEPENDENCIES="
         >=dev-libs/libxml2-2.4.19
 "
 
+WORK="${WORKBASE}"
+
 src_install() {
     insinto /usr/share/xml/scrollkeeper/dtds
     doins "${FETCHEDDIR}/${DTD}"
