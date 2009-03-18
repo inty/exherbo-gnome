@@ -23,13 +23,13 @@ DEPENDENCIES="
         >=gnome-desktop/gnome-desktop-2.11.1:2
         >=gnome-platform/libglade-2.5.0:2
         >=gnome-desktop/gnome-menus-2.23.3
-        >=dev-libs/dbus-glib-0.60
+        >=dev-libs/dbus-glib-0.60:1
         >=gnome-platform/GConf-2.6.1:2
         >=x11-libs/cairo-1.0.0
         >=gnome-desktop/libwnck-2.19.5
           gnome-desktop/librsvg:2
         >=gnome-desktop/libgweather-2.24.1
-        eds? ( >=gnome-desktop/evolution-data-server-1.2.0[calendar] )
+        eds? ( >=gnome-desktop/evolution-data-server-1.6.0:1.2[calendar] )
         networkmanager? ( >=net-apps/NetworkManager-0.6 )
         policykit? ( >=gnome-desktop/PolicyKit-gnome-0.7 )
           x11-libs/libXau
