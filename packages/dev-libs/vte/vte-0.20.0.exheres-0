@@ -15,7 +15,7 @@ MYOPTIONS="doc"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.18.0:2
-        >=x11-libs/gtk+-2.12.0:2
+        >=x11-libs/gtk+-2.14.0:2
         >=x11-libs/pango-1.22.0
           sys-libs/ncurses
     build:
