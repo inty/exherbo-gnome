@@ -24,10 +24,10 @@ DEPENDENCIES="
         >=gnome-desktop/libwnck-2.9.3
         >=x11-libs/libnotify-0.3.2
         >=sys-apps/dbus-1.1.2
-        >=dev-libs/dbus-glib-0.74
+        >=dev-libs/dbus-glib-0.74:1
         >=dev-libs/libxml2-2.5.0
         >=gnome-desktop/libgweather-2.22.1
-          gnome-platform/GConf:2
+        >=gnome-platform/GConf-2.8:2
         >=app-text/rarian-0.8.0
         hal? ( >=sys-apps/hal-0.5.3 )
         policykit? ( >=sys-auth/PolicyKit-0.7
