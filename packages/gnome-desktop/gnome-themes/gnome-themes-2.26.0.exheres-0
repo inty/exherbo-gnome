@@ -16,7 +16,6 @@ DEPENDENCIES="
         >=x11-libs/gtk+-2.0:2
         >=gnome-desktop/gtk-engines-2.15.3:2
     build:
-          sys-devel/gettext
         >=dev-util/intltool-0.35
         >=dev-util/pkg-config-0.20
         >=x11-apps/icon-naming-utils-0.8.7
