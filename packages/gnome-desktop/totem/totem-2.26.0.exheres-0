@@ -19,7 +19,7 @@ DEPENDENCIES="
         >=x11-libs/gtk+-2.13:2
         >=gnome-desktop/totem-pl-parser-2.23.91
         >=gnome-desktop/gnome-icon-theme-2.15.90
-        >=dev-libs/dbus-glib-0.74
+        >=dev-libs/dbus-glib-0.74:1
         >=media-libs/gstreamer-0.10.12:0.10
         >=media-plugins/gst-plugins-base-0.10.12:0.10
           media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
