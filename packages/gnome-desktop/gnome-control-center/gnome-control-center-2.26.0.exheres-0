@@ -24,7 +24,7 @@ DEPENDENCIES="
           x11-libs/pango
         >=gnome-desktop/gnome-panel-2.0
         >=sys-apps/dbus-1.0
-        >=dev-libs/dbus-glib-0.74
+        >=dev-libs/dbus-glib-0.74:1
           dev-libs/libxml2
         >=gnome-desktop/metacity-2.23.1
           gnome-desktop/gnome-settings-daemon
