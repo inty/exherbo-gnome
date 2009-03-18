@@ -14,10 +14,11 @@ MYOPTIONS="grecord gstreamer ipv6 profiles pulseaudio"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.18.2:2
-        >=x11-libs/gtk+-2.10.0:2
-        >=dev-libs/dbus-glib-0.74
+        >=x11-libs/gtk+-2.15.1:2
+        >=dev-libs/dbus-glib-0.74:1
         >=media-libs/libcanberra-0.4[gtk]
-          gnome-platform/GConf:2
+        >=gnome-platform/GConf-2.6.1:2
+        grecord? ( >=gnome-platform/libgnomeui-1.102:2 )
         gstreamer? ( >=media-libs/gstreamer-0.10.3:0.10
                      >=media-plugins/gst-plugins-base-0.10.3:0.10
                        dev-libs/libxml2
