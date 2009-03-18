@@ -20,7 +20,6 @@ DEPENDENCIES="
           x11-libs/libXres
           x11-libs/libXext
     build:
-          sys-devel/gettext
         >=dev-util/pkg-config-0.20
         >=dev-util/intltool-0.40.0
         doc? ( >=app-doc/gtk-doc-1.9 )
