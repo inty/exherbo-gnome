@@ -17,7 +17,7 @@ DEPENDENCIES="
         >=dev-libs/atk-1.9.0
         >=dev-cpp/cairomm-1.2.2:1.0
         >=gnome-bindings/pangomm-2.14.0:1.4
-        >=x11-libs/gtk+-2.15.1:2
+        >=x11-libs/gtk+-2.15.5:2
     build:
         >=dev-lang/perl-5.6.0
         >=dev-util/pkg-config-0.20
