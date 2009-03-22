@@ -3,7 +3,7 @@
 # Based in part upon 'avahi-0.6.22-r1.ebuild' from Gentoo, which was
 #     Copyright 2000-2008 Gentoo Foundation.
 
-require eutils multilib
+require multilib
 
 SUMMARY="mDNS discovery agent"
 HOMEPAGE="http://avahi.org/"
@@ -21,10 +21,11 @@ DEPENDENCIES="
         >=dev-libs/libdaemon-0.11
         dbus? ( >=sys-apps/dbus-0.34 )
         gdbm? ( sys-libs/gdbm )
-        gtk? (
-                >=x11-libs/gtk+-2.4:2
-                >=gnome-platform/libglade-2.4
-             )
+        gtk? ( >=x11-libs/gtk+-2.4:2
+                >=gnome-platform/libglade-2.4 )
+        group/avahi
+        group/netdev
+        user/avahi
     build:
         >=dev-util/intltool-0.35
         >=dev-util/pkg-config-0.20
@@ -32,12 +33,6 @@ DEPENDENCIES="
     post,recommended:
         net-dns/nss_mdns
 "
-
-pkg_setup() {
-    enewgroup netdev
-    enewgroup avahi
-    enewuser avahi -1 -1 -1 avahi
-}
 
 src_prepare() {
     if option ipv6 ; then
@@ -81,16 +76,20 @@ DEFAULT_SRC_INSTALL_EXTRA_PREFIXES=( docs/ )
 src_install() {
     default
 
-    rm -f "${IMAGE}/usr/bin/avahi-bookmarks" || die "rm failed"
-
+    # empty directories
     rmdir "${IMAGE}"/var/{run,} || die "rmdir in /var failed"
     rmdir "${IMAGE}"/usr/$(get_libdir)/avahi || die "rmdir /usr/$(get_libdir)/avahi failed"
-    if option !dbus || option !gtk; then
+
+    if ! ( option dbus && option gtk ) ; then
         rmdir "${IMAGE}"/usr/share/applications || die "rmdir /usr/share/applications failed"
     fi
 
+    # requires python, dbus, gtk
+    rm -f "${IMAGE}/usr/bin/avahi-bookmarks" || die "rm failed"
+
     if option !dbus ; then
         rmdir "${IMAGE}"/usr/share/{avahi/introspection,man/man1} || die "rmdir when !dbus failed"
+
         if option !gtk; then
             rmdir "${IMAGE}"/usr/bin || die "rmdir /usr/bin failed"
         fi
@@ -113,7 +112,7 @@ src_install() {
 pkg_postinst() {
     if option autoipd ; then
         elog "To use avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
-        elog "addresses, configure your network interface to use autoipd."
+        elog "addresses, and configure your network interface to use autoipd."
     fi
 
     if option dbus ; then
