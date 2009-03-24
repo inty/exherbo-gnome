@@ -14,7 +14,7 @@ DEPENDENCIES="
     build:
         >=sys-devel/gettext-0.11
         >=dev-util/pkg-config-0.16
-        doc? ( >=app-doc/gtk-doc-1.11 )
+        doc? ( >=dev-doc/gtk-doc-1.11 )
         man? ( dev-libs/libxslt
                app-text/docbook-xml-dtd:4.1.2 )
     post,recommended:
