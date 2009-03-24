@@ -18,7 +18,7 @@ DEPENDENCIES="
         >=dev-libs/dbus-glib-0.36
     build:
         >=dev-util/pkg-config-0.20
-        doc? ( >=app-doc/gtk-doc-1.4 )
+        doc? ( >=dev-doc/gtk-doc-1.4 )
     run:
         >=x11-apps/notification-daemon-0.3.7
 "
