@@ -1,0 +1,64 @@
+Author: Saleem Abdulrasool <compnerd@compnerd.org>
+Reason: Build without html5 support
+Upstream: No
+--- 
+--- WebCore/bindings/js/ScriptObjectQuarantine.cpp.orig	2009-03-31 20:12:54.000000000 -0700
++++ WebCore/bindings/js/ScriptObjectQuarantine.cpp	2009-03-31 20:13:43.000000000 -0700
+@@ -31,11 +31,17 @@
+ #include "config.h"
+ #include "ScriptObjectQuarantine.h"
+ 
++#if ENABLE(DATABASE)
+ #include "Database.h"
++#endif
+ #include "Document.h"
+ #include "Frame.h"
++#if ENABLE(DATABASE)
+ #include "JSDatabase.h"
++#endif
++#if ENABLE(DOM_STORAGE)
+ #include "JSStorage.h"
++#endif
+ #include "JSDOMBinding.h"
+ #include "JSInspectedObjectWrapper.h"
+ #include "ScriptObject.h"
+@@ -53,6 +59,7 @@
+     return ScriptValue(JSInspectedObjectWrapper::wrap(scriptState, value.jsValue()));
+ }
+ 
++#if ENABLE(DATABASE)
+ bool getQuarantinedScriptObject(Database* database, ScriptObject& quarantinedObject)
+ {
+     ASSERT(database);
+@@ -68,7 +75,9 @@
+ 
+     return true;
+ }
++#endif
+ 
++#if ENABLE(DOM_STORAGE)
+ bool getQuarantinedScriptObject(Frame* frame, Storage* storage, ScriptObject& quarantinedObject)
+ {
+     ASSERT(frame);
+@@ -81,5 +90,6 @@
+ 
+     return true;
+ }
++#endif
+ 
+ } // namespace WebCore
+--- WebCore/bindings/js/ScriptObjectQuarantine.h.orig	2009-03-31 20:13:46.000000000 -0700
++++ WebCore/bindings/js/ScriptObjectQuarantine.h	2009-03-31 20:14:07.000000000 -0700
+@@ -43,8 +43,12 @@
+ 
+     ScriptValue quarantineValue(ScriptState*, const ScriptValue&);
+ 
++#if ENABLE(DATABASE)
+     bool getQuarantinedScriptObject(Database* database, ScriptObject& quarantinedObject);
++#endif
++#if ENABLE(DOM_STORAGE)
+     bool getQuarantinedScriptObject(Frame* frame, Storage* storage, ScriptObject& quarantinedObject);
++#endif
+ 
+ }
+ 
