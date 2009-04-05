@@ -44,3 +44,8 @@ RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'applet megaphone' 'applet nothere' 'doc gtk-doc' python spell )
 
+src_install() {
+    cp "${FILES}/empathy-new-account.png" "${WORK}/help/C/figures/" || die "failed to add missing file"
+    default
+}
+
