@@ -26,10 +26,10 @@ DEPENDENCIES="
                      >=net-wireless/bluez-4.0 )
         cdda? ( >=dev-libs/libcdio-0.78.2
                 >=sys-apps/hal-0.5.10 )
-        dav? ( >=gnome-desktop/libsoup-2.25.1:2.4 )
         gnome? ( gnome-platform/GConf:2 )
         gphoto2? ( >=media-libs/libgphoto2-2.4 ) [[ requires = [ hal ] ]]
         hal? ( >=sys-apps/hal-0.5.10 )
+        http? ( >=gnome-desktop/libsoup-2.25.1:2.4 )
         keyring? ( gnome-desktop/gnome-keyring:1 )
     build:
         >=dev-util/pkg-config-0.20
