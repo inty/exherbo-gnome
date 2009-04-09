@@ -1,0 +1,35 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="( GPL-2 LGPL-2.1 )"
+SLOT="1"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build+run:
+          dev-libs/libxml2
+          gnome-platform/GConf:2
+        >=dev-libs/dbus-glib-0.73:1
+        >=x11-libs/gtk+-2.15:2
+          dev-libs/unique:1
+        >=x11-libs/libnotify-0.4.3
+        >=dev-libs/glib-2.16:2
+        >=sys-apps/hal-0.5.8
+    run:
+          net-wireless/bluez
+          net-wireless/obexd
+    build:
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+        doc? ( >=dev-doc/gtk-doc-1.9 )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-desktop-update --disable-icon-update )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "doc gtk-doc" )
+
