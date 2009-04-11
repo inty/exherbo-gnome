@@ -21,6 +21,7 @@ DEPENDENCIES="
           app-text/docbook-xml-dtd:4.3
           app-text/docbook-xsl-stylesheets
     build:
+        >=gnome-desktop/gnome-doc-utils-0.2.3
         >=dev-util/pkg-config-0.20
 "
 
