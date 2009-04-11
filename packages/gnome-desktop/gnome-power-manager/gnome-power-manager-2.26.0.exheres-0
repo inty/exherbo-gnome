@@ -14,6 +14,7 @@ MYOPTIONS="applets policykit"
 DEPENDENCIES="
     build+run:
         >=dev-libs/glib-2.13.0:2
+        >=sys-apps/hal-0.5.8
         >=media-libs/libcanberra-0.10[gtk]
         >=dev-libs/dbus-glib-0.70:1
         >=sys-apps/dbus-0.70
