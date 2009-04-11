@@ -9,27 +9,32 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="doc policykit"
 
 DEPENDENCIES="
     build+run:
         >=x11-libs/gtk+-2.0:2
         >dev-libs/glib-2.14:2
         >=sys-apps/dbus-1.0.0
-        >=dev-libs/dbus-glib-0.74
+        >=dev-libs/dbus-glib-0.74:1
         >=gnome-platform/ORBit2-2.4:2
+          dev-libs/libxml2
+        policykit? ( sys-auth/PolicyKit )
     build:
-          sys-devel/gettext
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.18
+        doc? ( >=dev-doc/gtk-doc-1.0 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'policykit defaults-service' )
 
 src_install() {
     default
 
     # This is where gconf keeps its schemas
+    keepdir /etc/gconf/gconf.xml.system
     keepdir /etc/gconf/gconf.xml.defaults
     keepdir /etc/gconf/gconf.xml.mandatory
 }
+
