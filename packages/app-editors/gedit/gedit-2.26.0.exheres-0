@@ -24,6 +24,7 @@ DEPENDENCIES="
     build:
         >=dev-util/intltool-0.40.0
         >=dev-util/pkg-config-0.20
+        >=gnome-desktop/gnome-doc-utils-0.3.2
         doc? ( >=dev-doc/gtk-doc-1.0 )
 "
 
