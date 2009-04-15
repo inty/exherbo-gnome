@@ -26,7 +26,7 @@ DEPENDENCIES="
         alsa? ( >=sys-sound/alsa-lib-0.9.0 )
         gstreamer? ( >=media-libs/gstreamer-0.10.1.2:0.10
                      >=media-plugins/gst-plugins-base-0.10:0.10 )
-        libnotify? ( >=x11-libs/libnotify-0.4.3 )
+        libnotify? ( >=x11-libs/libnotify-0.4.5 )
         pulseaudio? ( >=media-sound/pulseaudio-0.9.12 )
     build:
         >=dev-util/pkg-config-0.20
