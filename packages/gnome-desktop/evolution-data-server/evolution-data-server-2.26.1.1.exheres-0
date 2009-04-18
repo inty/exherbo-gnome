@@ -37,3 +37,12 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-nss' '--disable-smime' '--enable-large
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'weather' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'calendar' 'doc gtk-doc' 'ipv6' 'keyring gnome-keyring' )
 
+src_compile() {
+    if ! option doc ; then
+        sed -i -e 's,gtkdoc-rebase,true,' "${WORK}/docs/reference/camel/Makefile" ||
+            die "failed to fix gtkdoc-rebase reference"
+    fi
+
+    default
+}
+
