@@ -1,0 +1,26 @@
+# Copyright 2009 Wulf C. Krueger <philantrop@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="GNet is a simple network library built upon GLib"
+DESCRIPTION="
+GNet is intended to be easy to use and port. It supports abstract Internet
+addresses, TCP, UDP, IP Multicast, IPv6, asynchronous DNS lookups, SHA, MD5,
+Base64, URIs, and SOCKS.
+"
+HOMEPAGE="http://www.gnetlibrary.org"
+
+LICENCES="LGPL-2"
+SLOT="2"
+PLATFORMS="~amd64"
+
+MYOPTIONS="doc"
+DEPENDENCIES="
+    build:
+        >=dev-libs/check-0.9.4
+        dev-util/pkg-config
+        doc? ( >=dev-doc/gtk-doc-1.11 )
+    build+run:
+        >=dev-libs/glib-2.20.0
+"
