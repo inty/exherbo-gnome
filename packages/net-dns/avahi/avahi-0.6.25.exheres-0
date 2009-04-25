@@ -119,3 +119,4 @@ pkg_postinst() {
         elog "If this is your first install of avahi, please reload your dbus config."
     fi
 }
+
