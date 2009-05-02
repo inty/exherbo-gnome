@@ -23,7 +23,7 @@ DEPENDENCIES="
         >=sys-apps/hal-0.5.8
     run:
           net-wireless/bluez
-          net-wireless/obexd
+          || ( net-wireless/obexd net-wireless/obex-data-server )
     build:
         >=dev-util/intltool-0.35.0
         >=dev-util/pkg-config-0.20
