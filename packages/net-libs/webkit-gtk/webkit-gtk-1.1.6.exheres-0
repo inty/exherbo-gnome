@@ -9,6 +9,7 @@ MYOPTIONS="doc html5 icon-database keyring"
 
 DEPENDENCIES="
     build+run:
+        >=app-spell/enchant-0.22
         >=media-libs/jpeg-6b
         >=media-libs/libpng-1.2
         >=dev-libs/glib-2.0:2
