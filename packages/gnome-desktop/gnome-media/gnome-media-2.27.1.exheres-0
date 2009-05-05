@@ -1,0 +1,39 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="GNOME Media"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="grecord [[ requires = [ profiles ] ]] gstreamer ipv6 profiles pulseaudio"
+
+DEPENDENCIES="
+    build+run:
+        >=dev-libs/glib-2.18.2:2
+        >=x11-libs/gtk+-2.15.1:2
+        >=gnome-platform/GConf-2.6.1:2
+        >=media-libs/libcanberra-0.4[gtk]
+          dev-libs/libxml2
+          dev-libs/unique:1
+        grecord? ( >=media-libs/gstreamer-0.10.3:0.10
+                   >=media-plugins/gst-plugins-base-0.10.3:0.10 )
+        gstreamer? (   gnome-platform/libglade:2
+                     >=media-libs/gstreamer-0.10.3:0.10
+                     >=media-plugins/gst-plugins-base-0.10.3:0.10 )
+        profiles? ( media-libs/gstreamer:0.10
+                    gnome-platform/libglade:2 )
+        pulseaudio? ( >=media-sound/pulseaudio-0.9.15 )
+    build:
+        >=dev-util/intltool-0.35.0
+        >=dev-util/pkg-config-0.20
+"
+
+RESTRICT="test"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-esound --disable-gstmix )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 grecord 'gstreamer gstprops' profiles pulseaudio )
+
