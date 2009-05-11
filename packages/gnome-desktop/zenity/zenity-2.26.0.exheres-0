@@ -3,7 +3,7 @@
 
 require gnome.org
 
-SUMMARY="A utility for displaing dialog boxes from the commandline"
+SUMMARY="A utility for displaying dialog boxes from the commandline"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2"
