@@ -27,10 +27,7 @@ DEPENDENCIES="
 "
 
 src_configure() {
-    if option python ; then
-        DEFAULT_SRC_CONFIGURE_PARAMS+=( '--enable-python' )
-    fi
-
-    default
+    econf \
+        $(option python && echo --enable-python)
 }
 
