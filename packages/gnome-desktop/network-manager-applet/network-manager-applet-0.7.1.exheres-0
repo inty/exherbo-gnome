@@ -14,19 +14,19 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/dbus-glib-0.72:1
-        >=dev-libs/glib-2.10:2
-        >=net-apps/NetworkManager-0.7.0
-        >=x11-libs/gtk+-2.10:2
-          gnome-platform/libglade:2
-          gnome-platform/GConf:2
-          gnome-desktop/gnome-keyring:1
-        >=x11-libs/libnotify-0.4.3
-        >=sys-apps/dbus-1.2.6
-        >=gnome-desktop/PolicyKit-gnome-0.7
-        >=net-wireless/wireless_tools-28_pre9
+        dev-libs/dbus-glib:1[>=0.72]
+        dev-libs/glib:1[>=2.10]
+        net-apps/NetworkManager[>=0.7.0]
+        x11-libs/gtk+:2[>=2.10]
+        gnome-platform/libglade:2
+        gnome-platform/GConf:2
+        gnome-desktop/gnome-keyring:1
+        x11-libs/libnotify[>=0.4.3]
+        sys-apps/dbus[>=1.2.6]
+        gnome-desktop/PolicyKit-gnome[>=0.7]
+        net-wireless/wireless_tools[>=28_pre9]
     build:
-          sys-devel/gettext
-        >=dev-util/intltool-0.35.0
+        sys-devel/gettext
+        dev-util/intltool[>=0.35.0]
 "
 
