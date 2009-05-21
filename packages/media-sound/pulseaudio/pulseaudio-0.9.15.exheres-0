@@ -26,7 +26,7 @@ DEPENDENCIES="
         gtk? ( x11-libs/gtk+:2[>=2.4] )
         hal? ( sys-apps/hal[>=0.5.11] )
         policykit? ( sys-auth/PolicyKit[>=0.7] )
-        ssl? ( ev-libs/openssl[>=0.9] )
+        ssl? ( dev-libs/openssl[>=0.9] )
         group/audio
         group/pulse
         group/pulse-rt
