@@ -13,10 +13,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=gnome-platform/libglade-2.6.1:2
-        >=gnome-bindings/gtkmm-2.6.0:2.4
-          gnome-bindings/glibmm:2.4
+        gnome-platform/libglade:2[>=2.6.1]
+        gnome-bindings/gtkmm:2.4[>=2.6.0]
+        gnome-bindings/glibmm:2.4
     build:
-        >=dev-lang/perl-5.6.0
-        >=dev-util/pkg-config-0.20.0
+        dev-lang/perl[>=5.6.0]
+        dev-util/pkg-config[>=0.20.0]
 "

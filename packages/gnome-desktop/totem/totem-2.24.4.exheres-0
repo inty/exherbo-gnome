@@ -13,24 +13,24 @@ MYOPTIONS="nautilus python tracker"
 
 DEPENDENCIES="
     build+run:
-          app-text/iso-codes
-          gnome-platform/GConf:2
-        >=dev-libs/glib-2.15:2
-        >=x11-libs/gtk+-2.13:2
-        >=gnome-desktop/totem-pl-parser-2.23.91
-        >=gnome-desktop/gnome-icon-theme-2.15.90
-        >=dev-libs/dbus-glib-0.74
-        >=media-libs/gstreamer-0.10.12:0.10
-        >=media-plugins/gst-plugins-base-0.10.12:0.10
-          media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
+        app-text/iso-codes
+        gnome-platform/GConf:2
+        dev-libs/glib:2[>=2.15]
+        x11-libs/gtk+:2[>=2.13]
+        gnome-desktop/totem-pl-parser[>=2.23.91]
+        gnome-desktop/gnome-icon-theme[>=2.15.90]
+        dev-libs/dbus-glib[>=0.74]
+        media-libs/gstreamer:0.10[>=0.10.12]
+        media-plugins/gst-plugins-base:0.10[>=0.10.12]
+            media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         nautilus? ( gnome-desktop/nautilus )
-        python? ( >=gnome-bindings/pygtk-2.12.0 )
+        python? ( gnome-bindings/pygtk[>=2.12.0] )
         tracker? ( app-pim/tracker )
     build:
-          sys-devel/gettext
-        >=dev-util/intltool-0.40.0
-        >=dev-util/pkg-config-0.20
-          gnome-desktop/gnome-doc-utils
+        sys-devel/gettext
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils
 "
 
 # bluetooth (bemused)

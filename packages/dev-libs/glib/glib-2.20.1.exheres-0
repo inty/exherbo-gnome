@@ -10,10 +10,10 @@ MYOPTIONS="doc fam man-pages"
 
 DEPENDENCIES="
     build:
-        >=sys-devel/gettext-0.11
-        >=dev-util/pkg-config-0.16
+        sys-devel/gettext[>=0.11]
+        dev-util/pkg-config[>=0.16]
         dev-util/desktop-file-utils [[ note = [ Needed to run the testsuite, see #172 ] ]]
-        doc? ( >=dev-doc/gtk-doc-1.11 )
+        doc? ( dev-doc/gtk-doc[>=1.11] )
         man-pages? ( dev-libs/libxslt
                      app-text/docbook-xml-dtd:4.1.2 )
     build+run:

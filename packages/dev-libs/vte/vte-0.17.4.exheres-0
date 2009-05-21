@@ -14,18 +14,18 @@ MYOPTIONS="python"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.14.0:2
-        >=x11-libs/gtk+-2.6.0:2
-        >=x11-libs/pango-1.1.0[X]
-        >=media-libs/freetype-2.0.2:2
-          media-libs/fontconfig
-          sys-libs/ncurses
-        python? ( >=dev-lang/python-2.2
-                    gnome-bindings/pygtk:2 )
+        dev-libs/glib:2[>=2.14.0]
+        x11-libs/gtk+:2[>=2.6.0]
+        x11-libs/pango[>=1.1.0][X]
+        media-libs/freetype:2[>=2.0.2]
+        media-libs/fontconfig
+        sys-libs/ncurses
+        python? ( dev-lang/python[>=2.2]
+                  gnome-bindings/pygtk:2 )
     build:
-          sys-devel/gettext
-        >=dev-util/intltool-0.35
-        >=dev-util/pkg-config-0.19
+        sys-devel/gettext
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.19]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --with-xft2 --with-pangox --with-glX )

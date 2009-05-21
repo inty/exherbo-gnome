@@ -12,29 +12,29 @@ MYOPTIONS="X alsa avahi bluetooth caps dbus gtk hal policykit ssl"
 
 DEPENDENCIES="
     build+run:
-        >=media-libs/libsndfile-1.0.10
-        >=media-libs/speex-1.2_beta
-        >=dev-libs/liboil-0.3.0
-        >=dev-libs/glib-2.4:2
-          sys-libs/gdbm
-          sys-fs/udev
-        alsa? ( >=sys-sound/alsa-lib-1.0.17 )
-        avahi? ( >=net-dns/avahi-0.6.0 )
-        bluetooth? ( >=net-wireless/bluez-3.0 )
+        media-libs/libsndfile[>=1.0.10]
+        media-libs/speex[>=1.2_beta]
+        dev-libs/liboil[>=0.3.0]
+        dev-libs/glib:2[>=2.4]
+        sys-libs/gdbm
+        sys-fs/udev
+        alsa? ( sys-sound/alsa-lib[>=1.0.17] )
+        avahi? ( net-dns/avahi[>=0.6.0] )
+        bluetooth? ( net-wireless/bluez[>=3.0] )
         caps? ( sys-libs/libcap )
-        dbus? ( >=sys-apps/dbus-1.0 )
-        gtk? ( >=x11-libs/gtk+-2.4:2 )
-        hal? ( >=sys-apps/hal-0.5.11 )
-        policykit? ( >=sys-auth/PolicyKit-0.7 )
-        ssl? ( >dev-libs/openssl-0.9 )
+        dbus? ( sys-apps/dbus[>=1.0] )
+        gtk? ( x11-libs/gtk+:2[>=2.4] )
+        hal? ( sys-apps/hal[>=0.5.11] )
+        policykit? ( sys-auth/PolicyKit[>=0.7] )
+        ssl? ( ev-libs/openssl[>=0.9] )
         group/audio
         group/pulse
         group/pulse-rt
         group/pulse-access
         user/pulse
     build:
-        >=dev-util/pkg-config-0.20
-        >=dev-util/intltool-0.35.0
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
 "
 
 RESTRICT="test"

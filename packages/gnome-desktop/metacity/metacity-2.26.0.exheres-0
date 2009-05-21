@@ -13,19 +13,19 @@ MYOPTIONS="doc xinerama"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.10.0:2
-        >=x11-libs/pango-1.2.0[X]
-        >=gnome-platform/GConf-1.2:2
-        >=x11-libs/startup-notification-0.7
-        >=dev-libs/glib-2.6:2
-        >=x11-libs/libXcomposite-0.2
-          gnome-desktop/zenity
+        x11-libs/gtk+:2[>=2.10.0]
+        x11-libs/pango[>=1.2.0][X]
+        gnome-platform/GConf:2[>=1.2]
+        x11-libs/startup-notification[>=0.7]
+        dev-libs/glib:2[>=2.6]
+        x11-libs/libXcomposite[>=0.2]
+        gnome-desktop/zenity
         xinerama? ( x11-libs/libXinerama )
     build:
-        >=dev-util/intltool-0.35.0
-        >=dev-util/pkg-config-0.20
-          app-text/docbook-xml-dtd:4.5
-        doc? ( >=dev-doc/gtk-doc-0.9 )
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        app-text/docbook-xml-dtd:4.5
+        doc? ( dev-doc/gtk-doc[>=0.9] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )

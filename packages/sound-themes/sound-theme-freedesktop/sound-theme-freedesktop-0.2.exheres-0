@@ -12,6 +12,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        >=dev-util/intltool-0.40
+        dev-util/intltool[>=0.40]
 "
 

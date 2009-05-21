@@ -13,11 +13,11 @@ MYOPTIONS="accessibility"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.12:2
+        x11-libs/gtk+:2[>=2.12]
     build:
-          sys-devel/gettext
-          dev-util/pkg-config
-        >=dev-util/intltool-0.35.0
+        sys-devel/gettext
+        dev-util/pkg-config
+        dev-util/intltool[>=0.35.0]
 "
 
 RESTRICT="test"

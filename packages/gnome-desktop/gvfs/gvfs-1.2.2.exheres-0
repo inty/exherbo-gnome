@@ -15,25 +15,25 @@ keyring" # fuse samba
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.19.1:2
-        >=sys-apps/dbus-1.0
-          net-misc/openssh
-          dev-libs/libxml2
+        dev-libs/glib:2[>=2.19.1]
+        sys-apps/dbus[>=1.0]
+        net-misc/openssh
+        dev-libs/libxml2
         archive? ( app-arch/libarchive )
-        avahi? ( >=net-dns/avahi-0.6 )
-        bluetooth? (   dev-libs/expat
-                       dev-libs/dbus-glib
-                     >=net-wireless/bluez-4.0 )
-        cdda? ( >=dev-libs/libcdio-0.78.2
-                >=sys-apps/hal-0.5.10 )
+        avahi? ( net-dns/avahi[>=0.6] )
+        bluetooth? ( dev-libs/expat
+                     dev-libs/dbus-glib
+                     net-wireless/bluez[>=4.0] )
+        cdda? ( dev-libs/libcdio[>=0.78.2]
+                sys-apps/hal[>=0.5.10] )
         gnome? ( gnome-platform/GConf:2 )
-        gphoto2? ( >=media-libs/libgphoto2-2.4 ) [[ requires = [ hal ] ]]
-        hal? ( >=sys-apps/hal-0.5.10 )
-        http? ( >=gnome-desktop/libsoup-2.25.1:2.4 )
+        gphoto2? ( media-libs/libgphoto2[>=2.4] ) [[ requires = [ hal ] ]]
+        hal? ( sys-apps/hal[>=0.5.10] )
+        http? ( gnome-desktop/libsoup:2.4[>=2.25.1] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
     build:
-        >=dev-util/pkg-config-0.20
-        >=dev-util/intltool-0.35.0
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
 "
 

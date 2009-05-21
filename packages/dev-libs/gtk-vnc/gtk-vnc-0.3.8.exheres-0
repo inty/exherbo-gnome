@@ -12,14 +12,14 @@ MYOPTIONS="python mozilla-plugin"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.14.7:2
-        >=dev-libs/gnutls-2.6.4
-          dev-libs/glib:2
-        python? ( >=dev-lang/python-2.4:=
-                    gnome-bindings/pygtk:2 )
-        mozilla-plugin? ( >=dev-libs/nspr-4
-                          || ( >=dev-libs/xulrunner-1.8
-                               >=net-www/firefox-2 ) )
+        x11-libs/gtk+:2[>=2.14.7]
+        dev-libs/gnutls[>=2.6.4]
+        dev-libs/glib:2
+        python? ( dev-lang/python:=[>=2.4]
+                  gnome-bindings/pygtk:2 )
+        mozilla-plugin? ( dev-libs/nspr[>=4]
+                          || ( dev-libs/xulrunner[>=1.8]
+                               net-www/firefox[>=2] ) )
     build:
         dev-util/pkg-config
 "

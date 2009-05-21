@@ -13,22 +13,22 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-          x11-apps/xrdb
-          x11-libs/pango[X]
-          dev-libs/popt
-        >=gnome-platform/libgnomecanvas-1.116.0
-        >=gnome-platform/libbonobo-2.13.0:2
-        >=gnome-platform/libgnome-2.13.7:2
-        >=dev-libs/libxml2-2.4.20
-        >=gnome-platform/GConf-1.1.9:2
-        >=x11-libs/gtk+-2.6.0:2
-        >=dev-libs/glib-2.6.0:2
-        >=gnome-platform/libglade-1.99.11:2
+        x11-apps/xrdb
+        x11-libs/pango[X]
+        dev-libs/popt
+        gnome-platform/libgnomecanvas[>=1.116.0]
+        gnome-platform/libbonobo:2[>=2.13.0]
+        gnome-platform/libgnome:2[>=2.13.7]
+        dev-libs/libxml2[>=2.4.20]
+        gnome-platform/GConf:2[>=1.1.9]
+        x11-libs/gtk+:2[>=2.6.0]
+        dev-libs/glib:2[>=2.6.0]
+        gnome-platform/libglade:2[>=1.99.11]
     build:
-          sys-devel/gettext
-        >=dev-util/intltool-0.40.0
-        >=dev-util/pkg-config-0.18
-        doc? ( >=dev-doc/gtk-doc-1.0 )
+        sys-devel/gettext
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.18]
+        doc? ( dev-doc/gtk-doc[>=1.0] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )

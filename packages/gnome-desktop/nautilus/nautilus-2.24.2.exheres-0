@@ -13,31 +13,31 @@ MYOPTIONS="doc tracker"
 
 DEPENDENCIES="
     build+run:
-        >=gnome-platform/libbonobo-2.1.0:2
-        >=gnome-desktop/eel-2.24.0:2
-        >=dev-libs/glib-2.17.5:2
-        >=gnome-desktop/gnome-desktop-2.9.91:2
-        >=gnome-platform/libgnome-2.14:2
-        >=gnome-platform/libgnomeui-2.6.0:2
-        >=gnome-platform/ORBit2-2.4.0:2
-        >=x11-libs/pango-1.1.2
-        >=x11-libs/gtk+-2.13:2
-        >=gnome-desktop/librsvg-2.0.1
-        >=dev-libs/libxml2-2.4.71.6
-        >=x11-libs/startup-notification-0.8
-          gnome-platform/GConf:2
-        tracker? ( >=app-pim/tracker-0.6.4 )
+        gnome-platform/libbonobo:2[>=2.1.0]
+        gnome-desktop/eel:2[>=2.24.0]
+        dev-libs/glib:2[>=2.17.5]
+        gnome-desktop/gnome-desktop:2[>=2.9.91]
+        gnome-platform/libgnome:2[>=2.14]
+        gnome-platform/libgnomeui:2[>=2.6.0]
+        gnome-platform/ORBit2:2[>=2.4.0]
+        x11-libs/pango[>=1.1.2]
+        x11-libs/gtk+:2[>=2.13]
+        gnome-desktop/librsvg[>=2.0.1]
+        dev-libs/libxml2[>=2.4.71.6]
+        x11-libs/startup-notification[>=0.8]
+        gnome-platform/GConf:2
+        tracker? ( app-pim/tracker[>=0.6.4] )
     build:
-          sys-devel/gettext
-        >=dev-util/pkg-config-0.19
-        >=dev-util/intltool-0.36.3
-        doc? ( >=dev-doc/gtk-doc-1.4 )
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.36.3]
+        doc? ( dev-doc/gtk-doc[>=1.4] )
     run:
-        >=gnome-desktop/gvfs-1.0.3
+        gnome-desktop/gvfs[>=1.0.3]
     post,recommended:
-        >=sys-apps/gnome-mount-0.8
+        sys-apps/gnome-mount[>=0.8]
     post,suggested:
-        >=gnome-desktop/gnome-icon-theme-1.1.91
+        gnome-desktop/gnome-icon-theme[>=1.1.91]
 "
 
 RESTRICT="test" # requires X

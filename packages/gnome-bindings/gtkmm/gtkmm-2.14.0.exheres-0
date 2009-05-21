@@ -13,14 +13,14 @@ MYOPTIONS="disable-deprecated doc"
 
 DEPENDENCIES="
     build+run:
-        >=dev-cpp/cairomm-1.2.2:1.0
-        >=gnome-bindings/glibmm-2.18.0:2.4
-        >=gnome-bindings/pangomm-2.14.0:1.4
-        >=x11-libs/gtk+-2.14:2
-        >=dev-libs/atk-1.9.0
+        dev-cpp/cairomm:1.0[>=1.2.2]
+        gnome-bindings/glibmm:2.4[>=2.18.0]
+        gnome-bindings/pangomm:1.4[>=2.14.0]
+        x11-libs/gtk+:2[>=2.14]
+        dev-libs/atk[>=1.9.0]
     build:
-        >=dev-lang/perl-5.6.0
-        >=dev-util/pkg-config-0.20
+        dev-lang/perl[>=5.6.0]
+        dev-util/pkg-config[>=0.20]
         doc? ( app-doc/doxygen )
 "
 

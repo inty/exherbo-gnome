@@ -19,37 +19,37 @@ tiff xinerama"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/atk-1.13.0
-        >=dev-libs/glib-2.19.7:2
-        >=x11-libs/cairo-1.6[X][pdf]
-        >=x11-libs/pango-1.20[X]
-          media-libs/libpng
-          media-libs/fontconfig
-          x11-libs/libX11
-          x11-libs/libXext
-          x11-libs/libXrender
-          x11-libs/libXi
-        >=x11-libs/libXrandr-1.2
-          x11-libs/libXcursor
-          x11-libs/libXfixes
-          x11-libs/libXcomposite
-          x11-libs/libXdamage
-        cups? ( >=net-print/cups-1.2 )
+        dev-libs/atk[>=1.13.0]
+        dev-libs/glib:2[>=2.19.7]
+        x11-libs/cairo[>=1.6][X][pdf]
+        x11-libs/pango[>=1.20][X]
+        media-libs/libpng
+        media-libs/fontconfig
+        x11-libs/libX11
+        x11-libs/libXext
+        x11-libs/libXrender
+        x11-libs/libXi
+        x11-libs/libXrandr[>=1.2]
+        x11-libs/libXcursor
+        x11-libs/libXfixes
+        x11-libs/libXcomposite
+        x11-libs/libXdamage
+        cups? ( net-print/cups[>=1.2] )
         jpeg2000? ( media-libs/jasper )
-        jpeg? ( >=media-libs/jpeg-6b )
-        tiff? ( >=media-libs/tiff-3.5.7 )
+        jpeg? ( media-libs/jpeg[>=6b] )
+        tiff? ( media-libs/tiff[>=3.5.7] )
         xinerama? ( x11-libs/libXinerama )
     build:
-          sys-devel/gettext
-        >=dev-util/pkg-config-0.20
-          x11-proto/xproto
-          x11-proto/xextproto
-          x11-proto/inputproto
-          x11-proto/damageproto
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.20]
+        x11-proto/xproto
+        x11-proto/xextproto
+        x11-proto/inputproto
+        x11-proto/damageproto
         man-pages? ( dev-libs/libxslt
                      app-text/docbook-xml-dtd:4.1.2
                      app-text/docbook-xsl-stylesheets )
-        doc? ( >=dev-doc/gtk-doc-1.11 )
+        doc? ( dev-doc/gtk-doc[>=1.11] )
         xinerama? ( x11-proto/xineramaproto )
     run:
           x11-themes/hicolor-icon-theme

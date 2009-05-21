@@ -13,28 +13,28 @@ MYOPTIONS="bluetooth doc nautilus nsplugin python tracker"
 
 DEPENDENCIES="
     build+run:
-          app-text/iso-codes
-          gnome-platform/GConf:2
-        >=dev-libs/glib-2.15:2
-        >=x11-libs/gtk+-2.13:2
-        >=gnome-desktop/totem-pl-parser-2.23.91
-        >=gnome-desktop/gnome-icon-theme-2.15.90
-        >=dev-libs/dbus-glib-0.74:1
-        >=media-libs/gstreamer-0.10.12:0.10
-        >=media-plugins/gst-plugins-base-0.10.12:0.10
+        app-text/iso-codes
+        gnome-platform/GConf:2
+        dev-libs/glib:2[>=2.15]
+        x11-libs/gtk+:2[>=2.13]
+        gnome-desktop/totem-pl-parser[>=2.23.91]
+        gnome-desktop/gnome-icon-theme[>=2.15.90]
+        dev-libs/dbus-glib:1[>=0.74]
+        media-libs/gstreamer:0.10[>=0.10.12]
+        media-plugins/gst-plugins-base:0.10[>=0.10.12]
           media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
-          x11-libs/cairo
+        x11-libs/cairo
         bluetooth? ( net-wireless/bluez )
         nautilus? ( gnome-desktop/nautilus )
-        nsplugin? ( >=x11-misc/shared-mime-info-0.22
-                    >=x11-libs/startup-notification-0.8
-                      dev-libs/xulrunner )
-        python? ( >=gnome-bindings/pygtk-2.12.0 )
+        nsplugin? ( x11-misc/shared-mime-info[>=0.22]
+                    x11-libs/startup-notification[>=0.8]
+                    dev-libs/xulrunner )
+        python? ( gnome-bindings/pygtk[>=2.12.0] )
         tracker? ( app-pim/tracker )
     build:
-        >=dev-util/intltool-0.40.0
-        >=dev-util/pkg-config-0.20
-        doc? ( >=dev-doc/gtk-doc-1.11 )
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc[>=1.11] )
 "
 
 # brasero

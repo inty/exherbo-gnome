@@ -16,7 +16,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     run:
-        >=dev-libs/libxml2-2.4.19
+        dev-libs/libxml2[>=2.4.19]
 "
 
 WORK="${WORKBASE}"

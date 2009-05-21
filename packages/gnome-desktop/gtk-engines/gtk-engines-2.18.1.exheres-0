@@ -13,10 +13,10 @@ MYOPTIONS="accessibility"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.12:2
+        x11-libs/gtk+:2[>=2.12]
     build:
-        >=dev-util/pkg-config-0.20
-        >=dev-util/intltool-0.35.0
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
 "
 
 RESTRICT="test" # requires X

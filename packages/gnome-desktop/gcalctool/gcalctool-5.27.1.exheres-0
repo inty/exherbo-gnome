@@ -13,14 +13,14 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/atk-1.5
-        >=x11-libs/gtk+-2.14:2
-          dev-libs/glib:2
-          gnome-platform/libglade:2
-        >=gnome-platform/GConf-1.1.9:2
-          app-text/rarian
+        dev-libs/atk[>=1.5]
+        x11-libs/gtk+:2[>=2.14]
+        dev-libs/glib:2
+        gnome-platform/libglade:2
+        gnome-platform/GConf:2[>=1.1.9]
+        app-text/rarian
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc )
 "
 

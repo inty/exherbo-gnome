@@ -13,43 +13,43 @@ MYOPTIONS="eds gstreamer hal"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.11.6:2
-        >=dev-libs/glib-2.17.4:2
-        >=gnome-platform/GConf-2.2.0
-        >=gnome-platform/libgnomeui-2.2.0
-        >=gnome-platform/libglade-2.0:2
-        >=gnome-desktop/gnome-desktop-2.23.90:2
-        >=gnome-desktop/librsvg-2.0
-        >=gnome-desktop/gnome-menus-2.11.1
-        >=x11-libs/pango-1.20
-        >=gnome-desktop/eel-2.0
-        >=gnome-desktop/gnome-panel-2.0
-        >=sys-apps/dbus-1.0
-        >=dev-libs/dbus-glib-0.74
-        >=dev-libs/libxml2-2.6
-        >=gnome-desktop/metacity-2.23.1
-        >=gnome-desktop/gnome-settings-daemon-2.20
-        >=gnome-desktop/libgnomekbd-2.21.4.1
-        >=x11-libs/libxklavier-3.6
-        >=media-libs/fontconfig-1.0
-        >=x11-libs/libXft-2.1.2
-          x11-libs/libXScrnSaver
-          x11-libs/libXxf86misc
-          x11-libs/libXrender
-          x11-libs/libXcursor
-          x11-libs/libXrandr
-          x11-libs/libXext
-          x11-libs/libX11
-        eds? ( >=gnome-desktop/evolution-data-server-1.7.90 )
-        gstreamer? ( >=media-libs/gstreamer-0.10.1.2:0.10
-                     >=media-plugins/gst-plugins-base-0.10.1.2:0.10
-                     >=media-libs/libcanberra-0.4[gtk] )
-        hal? ( >=sys-apps/hal-0.5.6 )
+        x11-libs/gtk+:2[>=2.11.6]
+        dev-libs/glib:2[>=2.17.4]
+        gnome-platform/GConf[>=2.2.0]
+        gnome-platform/libgnomeui[>=2.2.0]
+        gnome-platform/libglade:2[>=2.0]
+        gnome-desktop/gnome-desktop:2[>=2.23.90]
+        gnome-desktop/librsvg[>=2.0]
+        gnome-desktop/gnome-menus[>=2.11.1]
+        x11-libs/pango[>=1.20]
+        gnome-desktop/eel[>=2.0]
+        gnome-desktop/gnome-panel[>=2.0]
+        sys-apps/dbus[>=1.0]
+        dev-libs/dbus-glib[>=0.74]
+        dev-libs/libxml2[>=2.6]
+        gnome-desktop/metacity[>=2.23.1]
+        gnome-desktop/gnome-settings-daemon[>=2.20]
+        gnome-desktop/libgnomekbd[>=2.21.4.1]
+        x11-libs/libxklavier[>=3.6]
+        media-libs/fontconfig[>=1.0]
+        x11-libs/libXft[>=2.1.2]
+        x11-libs/libXScrnSaver
+        x11-libs/libXxf86misc
+        x11-libs/libXrender
+        x11-libs/libXcursor
+        x11-libs/libXrandr
+        x11-libs/libXext
+        x11-libs/libX11
+        eds? ( gnome-desktop/evolution-data-server[>=1.7.90] )
+        gstreamer? ( media-libs/gstreamer:0.10[>=0.10.1.2]
+                     media-plugins/gst-plugins-base:0.10[>=0.10.1.2]
+                     media-libs/libcanberra[>=0.4][gtk] )
+        hal? ( sys-apps/hal[>=0.5.6] )
     build:
-          sys-devel/gettext
-          dev-util/desktop-file-utils
-        >=dev-util/intltool-0.37.1
-        >=dev-util/pkg-config-0.20
+        sys-devel/gettext
+        dev-util/desktop-file-utils
+        dev-util/intltool[>=0.37.1]
+        dev-util/pkg-config[>=0.20]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )

@@ -14,14 +14,14 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.18.0:2
-        >=x11-libs/gtk+-2.14.0:2
-        >=x11-libs/pango-1.22.0
-          sys-libs/ncurses
+        dev-libs/glib:2[>=2.18.0]
+        x11-libs/gtk+:2[>=2.14.0]
+        x11-libs/pango[>=1.22.0]
+        sys-libs/ncurses
     build:
-        >=dev-util/intltool-0.35
-        >=dev-util/pkg-config-0.19
-        doc? ( >=dev-doc/gtk-doc-1.0 )
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.19]
+        doc? ( dev-doc/gtk-doc[>=1.0] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-python )

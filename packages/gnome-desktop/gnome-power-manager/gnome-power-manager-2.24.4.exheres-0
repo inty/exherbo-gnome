@@ -13,23 +13,23 @@ MYOPTIONS="policykit"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.13.0:2
-        >=x11-libs/gtk+-2.11.0:2
-        >=gnome-desktop/gnome-keyring-0.6.0:1
-        >=gnome-platform/libgnome-2.14.0:2
-        >=gnome-platform/libgnomeui-2.14.0:2
-        >=sys-apps/hal-0.5.8
-        >=sys-apps/dbus-0.70
-        >=gnome-platform/libglade-2.5.0:2
-        >=x11-libs/libnotify-0.4.3
-        >=gnome-desktop/libwnck-2.10.0
-        >=x11-libs/cairo-1.0.0
-        >=gnome-desktop/gnome-panel-2.0.0
-        >=media-libs/gstreamer-0.10:0.10
-        >=x11-libs/libXrandr-1.2.0
+        dev-libs/glib:2[>=2.13.0]
+        x11-libs/gtk+[>=2.11.0]
+        gnome-desktop/gnome-keyring:1[>=0.6.0]
+        gnome-platform/libgnome:2[>=2.14.0]
+        gnome-platform/libgnomeui:2[>=2.14.0]
+        sys-apps/hal[>=0.5.8]
+        sys-apps/dbus[>=0.70]
+        gnome-platform/libglade:2[>=2.5.0]
+        x11-libs/libnotify[>=0.4.3]
+        gnome-desktop/libwnck[>=2.10.0]
+        x11-libs/cairo[>=1.0.0]
+        gnome-desktop/gnome-panel[>=2.0.0]
+        media-libs/gstreamer:0.10[>=0.10]
+        x11-libs/libXrandr[>=1.2.0]
     build:
-        >=dev-util/intltool-0.35.0
-        >=dev-util/pkg-config-0.20
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
 "
 
 RESTRICT="test" # requires X

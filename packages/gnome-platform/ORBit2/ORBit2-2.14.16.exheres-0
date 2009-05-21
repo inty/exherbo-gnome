@@ -13,10 +13,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.8:2
-        >=dev-libs/libIDL-0.8.2:2
+        dev-libs/glib:2[>=2.8]
+        dev-libs/libIDL:2[>=0.8.2]
     build:
-        >=dev-util/pkg-config-0.18
+        dev-util/pkg-config[>=0.18]
 "
 
 MAKEOPTS="${MAKEOPTS} -j1"

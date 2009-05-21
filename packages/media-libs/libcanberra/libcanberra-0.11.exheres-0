@@ -15,15 +15,15 @@ MYOPTIONS="alsa gstreamer gtk pulseaudio"
 DEPENDENCIES="
     build+run:
         media-libs/libvorbis
-        alsa? ( >=sys-sound/alsa-lib-1.0.0 )
-        gstreamer? ( >=media-libs/gstreamer-0.10.15:0.10
-                       media-plugins/gst-plugins-base[gstreamer_plugins:vorbis] )
-        gtk? ( >=x11-libs/gtk+-2.13.4:2
-                 dev-libs/glib:2
-                 gnome-platform/GConf:2 )
-        pulseaudio? ( >=media-sound/pulseaudio-0.9.11 )
+        alsa? ( sys-sound/alsa-lib[>=1.0.0] )
+        gstreamer? ( media-libs/gstreamer:0.10[>=0.10.15]
+                     media-plugins/gst-plugins-base[gstreamer_plugins:vorbis] )
+        gtk? ( x11-libs/gtk+:2[>=2.13.4]
+               dev-libs/glib:2
+               gnome-platform/GConf:2 )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.11] )
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
     post,recommended:
           sound-themes/sound-theme-freedesktop
 "

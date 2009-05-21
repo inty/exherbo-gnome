@@ -13,23 +13,23 @@ MYOPTIONS="grecord [[ requires = [ profiles ] ]] gstreamer ipv6 profiles pulseau
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.18.2:2
-        >=x11-libs/gtk+-2.15.1:2
-        >=gnome-platform/GConf-2.6.1:2
-        >=media-libs/libcanberra-0.4[gtk]
-          dev-libs/libxml2
-          dev-libs/unique:1
-        grecord? ( >=media-libs/gstreamer-0.10.3:0.10
-                   >=media-plugins/gst-plugins-base-0.10.3:0.10 )
-        gstreamer? (   gnome-platform/libglade:2
-                     >=media-libs/gstreamer-0.10.3:0.10
-                     >=media-plugins/gst-plugins-base-0.10.3:0.10 )
+        dev-libs/glib:2[>=2.18.2]
+        x11-libs/gtk+:2[>=2.15.1]
+        gnome-platform/GConf:2[>=2.6.1]
+        media-libs/libcanberra[>=0.4][gtk]
+        dev-libs/libxml2
+        dev-libs/unique:1
+        grecord? ( media-libs/gstreamer:0.10[>=0.10.3]
+                   media-plugins/gst-plugins-base:0.10[>=0.10.3] )
+        gstreamer? ( gnome-platform/libglade:2
+                     media-libs/gstreamer:0.10[>=0.10.3]
+                     media-plugins/gst-plugins-base:0.10[>=0.10.3] )
         profiles? ( media-libs/gstreamer:0.10
                     gnome-platform/libglade:2 )
-        pulseaudio? ( >=media-sound/pulseaudio-0.9.15 )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.15] )
     build:
-        >=dev-util/intltool-0.35.0
-        >=dev-util/pkg-config-0.20
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
 "
 
 RESTRICT="test"

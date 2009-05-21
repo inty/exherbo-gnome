@@ -13,18 +13,18 @@ MYOPTIONS="hal pam"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.16:2
-        >=x11-libs/gtk+-2.8.0:2
-          gnome-platform/GConf:2
-        >=sys-apps/dbus-1.0
-        >=dev-libs/libgcrypt-1.2.2
-        >=dev-libs/libtasn1-0.3.4
-        hal? ( >=sys-apps/hal-0.5.7 )
+        dev-libs/glib:2[>=2.16]
+        x11-libs/gtk+:2[>=2.8.0]
+        gnome-platform/GConf:2
+        sys-apps/dbus[>=1.0]
+        dev-libs/libgcrypt[>=1.2.2]
+        dev-libs/libtasn1[>=0.3.4]
+        hal? ( sys-apps/hal[>=0.5.7] )
         pam? ( sys-libs/pam )
     build:
-        >=dev-util/intltool-0.35.0
-        >=dev-util/pkg-config-0.18
-          sys-devel/gettext
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.18]
+        sys-devel/gettext
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ssh-agent' '--enable-tests'

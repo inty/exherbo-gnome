@@ -15,19 +15,19 @@ MYOPTIONS="epiphany_extensions: ${EXTENSIONS}"
 
 DEPENDENCIES="
     build+run:
-          gnome-platform/GConf:2
-          gnome-platform/libglade:2
-          net-www/epiphany:2.22
-        >=dev-libs/libxml2-2.6.0
-        >=dev-libs/glib-2.16.5:2
-        >=x11-libs/gtk+-2.11.6:2
-        epiphany_extensions:rss? ( >=sys-apps/dbus-0.34
-                                   >=dev-libs/dbus-glib-0.34 )
+        gnome-platform/GConf:2
+        gnome-platform/libglade:2
+        net-www/epiphany:2.22
+        dev-libs/libxml2[>=2.6.0]
+        dev-libs/glib:2[>=2.16.5]
+        x11-libs/gtk+:2[>=2.11.6]
+        epiphany_extensions:rss? ( sys-apps/dbus[>=0.34]
+                                   dev-libs/dbus-glib[>=0.34] )
         epiphany_extensions:adblock? ( dev-libs/pcre[unicode] )
     build:
-          sys-devel/gettext
-        >=dev-util/intltool-0.35.0
-        >=dev-util/pkg-config-0.20
+        sys-devel/gettext
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
 "
 
 src_configure() {

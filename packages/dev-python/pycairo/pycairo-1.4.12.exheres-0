@@ -12,10 +12,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-lang/python-2.4:=
-        >=x11-libs/cairo-1.4.12
+        dev-lang/python:=[>=2.4]
+        x11-libs/cairo[>=1.4.12]
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
 "
 
 src_prepare() {

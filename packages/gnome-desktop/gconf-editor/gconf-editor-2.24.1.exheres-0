@@ -13,13 +13,13 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.0:2
-        >=x11-libs/gtk+-2.5.5:2
-        >=gnome-platform/GConf-2.9.2:2
-        >=gnome-platform/libgnome-2.14.0:2
-        >=gnome-platform/libgnomeui-2.5.4:2
+        dev-libs/glib:2[>=2.0]
+        x11-libs/gtk+:2[>=2.5.5]
+        gnome-platform/GConf:2[>=2.9.2]
+        gnome-platform/libgnome:2[>=2.14.0]
+        gnome-platform/libgnomeui:2[>=2.5.4]
     build:
-          sys-devel/gettext
-        >=dev-util/pkg-config-0.19
-        >=dev-util/intltool-0.35.0
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.35.0]
 "

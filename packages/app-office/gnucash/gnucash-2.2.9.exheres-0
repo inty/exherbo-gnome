@@ -30,26 +30,26 @@ DEPENDENCIES="
         dev-util/pkg-config
         dev-util/intltool
     build+run:
-        >=dev-lang/guile-1.8.6
-        >=dev-libs/glib-2.20.0
+        dev-lang/guile[>=1.8.6]
+        dev-libs/glib[>=2.20.0]
         dev-libs/gtkhtml:3.14
-        >=dev-libs/libxml2-2.6.32
-        >=dev-libs/popt-1.14
-        >=dev-scheme/slib-3.2.1
+        dev-libs/libxml2[>=2.6.32]
+        dev-libs/popt[>=1.14]
+        dev-scheme/slib[>=3.2.1]
         gnome-platform/GConf:2
-        >=gnome-platform/libart_lgpl-2.3.20
-        >=gnome-platform/libglade-2.6.3
-        >=gnome-platform/libgnomeui-2.24.0
-        >=office-libs/goffice-0.7.4[gnome]
-        >=office-libs/libgsf-1.14.11[gnome]
-        >=x11-libs/gtk+-2.16.0
-        >=x11-libs/pango-1.24.0
+        gnome-platform/libart_lgpl[>=2.3.20]
+        gnome-platform/libglade[>=2.6.3]
+        gnome-platform/libgnomeui[>=2.24.0]
+        office-libs/goffice[>=0.7.4][gnome]
+        office-libs/libgsf[>=1.14.11][gnome]
+        x11-libs/gtk+[>=2.16.0]
+        x11-libs/pango[>=1.24.0]
         hbci? (
-            >=dev-libs/aqbanking-3.8.2 [[ description = [ qt3 support must be enabled ] ]]
-            chipcard? ( >=dev-libs/libchipcard-4.2.7 )
+            dev-libs/aqbanking[>=3.8.2] [[ description = [ qt3 support must be enabled ] ]]
+            chipcard? ( dev-libs/libchipcard[>=4.2.7] )
         )
-        ofx? ( >=dev-libs/libofx-0.7.0 )
-        sql? ( >=dev-db/postgresql-8.3.6 )
+        ofx? ( dev-libs/libofx[>=0.7.0] )
+        sql? ( dev-db/postgresql[>=8.3.6] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(

@@ -13,12 +13,12 @@ MYOPTIONS="accessibility"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.0:2
-        >=gnome-desktop/gtk-engines-2.15.3:2
+        x11-libs/gtk+:2[>=2.0]
+        gnome-desktop/gtk-engines:2[>=2.15.3]
     build:
-        >=dev-util/intltool-0.35
-        >=dev-util/pkg-config-0.20
-        >=x11-apps/icon-naming-utils-0.8.7
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.20]
+        x11-apps/icon-naming-utils[>=0.8.7]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'accessibility all-themes' )

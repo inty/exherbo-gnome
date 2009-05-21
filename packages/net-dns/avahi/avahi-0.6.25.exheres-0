@@ -16,19 +16,19 @@ MYOPTIONS="autoipd doc dbus gdbm gtk ipv6"
 
 DEPENDENCIES="
     build+run:
-          dev-libs/expat
-        >=dev-libs/glib-2.4:2
-        >=dev-libs/libdaemon-0.11
-        dbus? ( >=sys-apps/dbus-0.34 )
+        dev-libs/expat
+        dev-libs/glib:2[>=2.4]
+        dev-libs/libdaemon[>=0.11]
+        dbus? ( sys-apps/dbus[>=0.34] )
         gdbm? ( sys-libs/gdbm )
-        gtk? ( >=x11-libs/gtk+-2.4:2
-                >=gnome-platform/libglade-2.4 )
+        gtk? ( x11-libs/gtk+:2[>=2.4]
+               gnome-platform/libglade[>=2.4] )
         group/avahi
         group/netdev
         user/avahi
     build:
-        >=dev-util/intltool-0.35
-        >=dev-util/pkg-config-0.20
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.20]
         doc? ( app-doc/doxygen )
     post,recommended:
         net-dns/nss_mdns

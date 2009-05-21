@@ -12,9 +12,9 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/cairo-1.2.0
+        x11-libs/cairo[>=1.2.0]
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
         doc? (
             app-doc/doxygen
             media-gfx/graphviz

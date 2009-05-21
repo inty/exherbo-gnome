@@ -13,16 +13,16 @@ MYOPTIONS="doc"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.8:2
-        >=x11-libs/pango-1.16
-        >=dev-libs/atk-1.12.0
-        >=x11-libs/gtk+-2.12:2
-        >=dev-lang/python-2.3.5:=
-        >=dev-python/pycairo-1.1.7
-        >=gnome-platform/libglade-2.5
-        >=gnome-bindings/pygobject-2.14
+        dev-libs/glib:2[>=2.8]
+        x11-libs/pango[>=1.16]
+        dev-libs/atk[>=1.12.0]
+        x11-libs/gtk+:2[>=2.12]
+        dev-lang/python:=[>=2.3.5]
+        dev-python/pycairo[>=1.1.7]
+        gnome-platform/libglade[>=2.5]
+        gnome-bindings/pygobject[>=2.14]
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
         doc? ( dev-libs/libxslt )
 "
 

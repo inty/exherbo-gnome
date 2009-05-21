@@ -13,11 +13,11 @@ MYOPTIONS="disable-deprecated"
 
 DEPENDENCIES="
     build+run:
-        >=dev-cpp/libsigc++-2.0.0:2
-        >=dev-libs/glib-2.19.8:2
+        dev-cpp/libsigc++:2[>=2.0.0]
+        dev-libs/glib:2[>=2.19.8]
     build:
-        >=dev-lang/perl-5.6.0:*
-        >=dev-util/pkg-config-0.20
+        dev-lang/perl:*[>=5.6.0]
+        dev-util/pkg-config[>=0.20]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'disable-deprecated deprecations' )

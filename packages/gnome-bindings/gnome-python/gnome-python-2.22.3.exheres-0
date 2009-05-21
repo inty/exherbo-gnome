@@ -16,16 +16,16 @@ gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]"
 
 DEPENDENCIES="
     build+run:
-        >=dev-lang/python-2.2:*
-        >=gnome-bindings/pygtk-2.10.3:2
-          gnome-bindings/pygobject:2
-        >=dev-libs/glib-2.6:2
-        >=x11-libs/gtk+-2.10:2
-        gconf? ( >=gnome-platform/GConf-2.11.1:2 )
-        gnome? ( >=gnome-platform/libgnome-2.8:2 )
-        gnomevfs? ( >=gnome-platform/gnome-vfs-2.14 )
+        dev-lang/python:*[>=2.2]
+        gnome-bindings/pygtk:2[>=2.10.3]
+        gnome-bindings/pygobject:2
+        dev-libs/glib:2[>=2.6]
+        x11-libs/gtk+:2[>=2.10]
+        gconf? ( gnome-platform/GConf:2[>=2.11.1] )
+        gnome? ( gnome-platform/libgnome:2[>=2.8] )
+        gnomevfs? ( gnome-platform/gnome-vfs[>=2.14] )
     build:
-        >=dev-util/pkg-config-0.20
+        dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc )
 "
 

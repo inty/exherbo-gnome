@@ -13,16 +13,16 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        >=x11-libs/gtk+-2.13.0:2
-        >=dev-libs/glib-2.15.0:2
-        >=dev-libs/libxml2-2.4.7
-        >=gnome-platform/GConf-1.1.11:2
-        >=gnome-desktop/gnome-desktop-2.23.3:2
-          x11-libs/pango[X]
+        x11-libs/gtk+:2[>=2.13.0]
+        dev-libs/glib[>=2.15.0]
+        dev-libs/libxml2[>=2.4.7]
+        gnome-platform/GConf:2[>=1.1.11]
+        gnome-desktop/gnome-desktop:2[>=2.23.3]
+        x11-libs/pango[X]
     build:
-          sys-devel/gettext
-        >=dev-util/pkg-config-0.18
-        >=dev-util/intltool-0.35.0
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.18]
+        dev-util/intltool[>=0.35.0]
 "
 
 RESTRICT="test" # accesses things it shouldnt
