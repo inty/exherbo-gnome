@@ -39,7 +39,7 @@ src_configure() {
         fi
     done
 
-    DEFAULT_SRC_CONFIGURE_PARAMS+="--with-extensions=${extensions}"
-    default
+    econf \
+        "--with-extensions=${extensions}"
 }
 

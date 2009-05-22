@@ -38,11 +38,6 @@ DEPENDENCIES="
 # lirc
 # epc (publish)
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-nvtv' '--disable-xine'
-'--enable-easy-codec-installation' '--enable-gtk' '--disable-vala' '--with-dbus'
-'--disable-browser-plugins' )
-DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( nautilus python )
-
 src_configure() {
     local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto
 
@@ -54,8 +49,16 @@ src_configure() {
         plugins+=,tracker
     fi
 
-    DEFAULT_SRC_CONFIGURE_PARAMS+=( "--with-plugins=${plugins}" )
-
-    GST_REGISTRY="${TEMP}/.gstreamer-0.10" default
+    GST_REGISTRY="${TEMP}/.gstreamer-0.10" econf \
+        $(option_enable nautilus) \
+        $(option_enable python) \
+        --disable-nvtv \
+        --disable-xine \
+        --enable-easy-codec-installation \
+        --enable-gtk \
+        --disable-vala \
+        --with-dbus \
+        --disable-browser-plugins \
+        --with-plugins=${plugins}
 }
 
