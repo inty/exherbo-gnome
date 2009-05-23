@@ -15,7 +15,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-libs/dbus-glib:1[>=0.72]
-        dev-libs/glib:1[>=2.10]
+        dev-libs/glib:2[>=2.10]
         net-apps/NetworkManager[>=0.7.0]
         x11-libs/gtk+:2[>=2.10]
         gnome-platform/libglade:2
