@@ -8,7 +8,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="grecord gstreamer ipv6 profiles pulseaudio"
 
 DEPENDENCIES="
@@ -18,6 +18,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.74]
         media-libs/libcanberra[>=0.4][gtk]
         gnome-platform/GConf:2[>=2.6.1]
+        dev-libs/unique:1
         grecord? ( gnome-platform/libgnomeui:2[>=1.102] )
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.3]
                      media-plugins/gst-plugins-base:0.10[>=0.10.3]
