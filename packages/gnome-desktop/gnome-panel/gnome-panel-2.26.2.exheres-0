@@ -29,7 +29,7 @@ DEPENDENCIES="
         gnome-desktop/libwnck[>=2.19.5]
         gnome-desktop/librsvg:2
         gnome-desktop/libgweather[>=2.24.1]
-        eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar] )
+        eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar(+)] )
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
         policykit? ( gnome-desktop/PolicyKit-gnome[>=0.7] )
         x11-libs/libXau
