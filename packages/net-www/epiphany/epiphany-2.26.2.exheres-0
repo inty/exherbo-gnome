@@ -35,9 +35,9 @@ DEPENDENCIES="
         avahi? ( net-dns/avahi[>=0.6.22] )
         networkmanager? ( net-apps/NetworkManager )
     run:
-          gnome-desktop/gnome-icon-theme
+        gnome-desktop/gnome-icon-theme
     post,suggested:
-          net-plugins/epiphany-extensions
+        net-plugins/epiphany-extensions[>=2.26]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gecko=libxul-embedding' '--disable-python' '--with-distributor-name=exherbo' )
