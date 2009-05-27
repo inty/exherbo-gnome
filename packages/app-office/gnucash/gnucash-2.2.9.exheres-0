@@ -21,7 +21,7 @@ UPSTREAM_DOCUMENTATION="${HOMEPAGE}/docs.phtml [[ lang = en ]]"
 
 SLOT="0"
 LICENCES="GPL-2"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 MYOPTIONS="chipcard debug examples hbci ofx sql [[ description = [ Enables the PostgreSQL backend. ] ]]"
 
