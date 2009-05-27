@@ -17,6 +17,7 @@ DEPENDENCIES="
         dev-libs/libxslt[>=1.1.8]
         app-text/rarian[>=0.6]
     build:
+        app-text/docbook-xml-dtd:4.4
         sys-devel/gettext
         dev-util/intltool[>=0.35.0]
 "
