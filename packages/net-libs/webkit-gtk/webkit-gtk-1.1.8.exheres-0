@@ -33,6 +33,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.10] )
 "
 
+RESTRICT="test" # requires X
 WORK="${WORKBASE}/webkit-${PV}"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/webkit-1.1.6-no-database.patch" )
