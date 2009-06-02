@@ -12,16 +12,16 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        doc? ( dev-doc/gtk-doc )
     build+run:
         dev-libs/atk[>=1.5]
         x11-libs/gtk+:2[>=2.14]
         dev-libs/glib:2
-        gnome-platform/libglade:2
         gnome-platform/GConf:2[>=1.1.9]
-        app-text/rarian
-    build:
-        dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
