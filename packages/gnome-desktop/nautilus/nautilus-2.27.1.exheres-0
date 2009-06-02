@@ -13,26 +13,26 @@ MYOPTIONS="doc tracker"
 
 DEPENDENCIES="
     build+run:
-        >=dev-libs/glib-2.19.0:2
-        >=gnome-desktop/gnome-desktop-2.25.5:2
-        >=x11-libs/pango-1.1.2[X]
-        >=x11-libs/gtk+-2.16:2
-        >=dev-libs/libxml2-2.4.71.6
-          app-text/rarian
-          dev-libs/unique:1
-          dev-libs/dbus-glib:1
-          gnome-platform/GConf:2
-        tracker? ( >=app-pim/tracker-0.6.4 )
+        dev-libs/glib:2[>=2.19.0]
+        gnome-desktop/gnome-desktop:2[>=2.25.5]
+        x11-libs/pango[>=1.1.2][X]
+        x11-libs/gtk+:2[>=2.16]
+        dev-libs/libxml2[>=2.4.71.6]
+        app-text/rarian
+        dev-libs/unique:1
+        dev-libs/dbus-glib:1
+        gnome-platform/GConf:2
+        tracker? ( app-pim/tracker[>=0.6.4] )
     build:
-        >=dev-util/pkg-config-0.19
-        >=dev-util/intltool-0.40.1
-        doc? ( >=dev-doc/gtk-doc-1.4 )
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.40.1]
+        doc? ( dev-doc/gtk-doc[>=1.4] )
     run:
-        >=gnome-desktop/gvfs-1.0.3
+        gnome-desktop/gvfs[>=1.0.3]
     post,recommended:
-        >=sys-apps/gnome-mount-0.8
+        sys-apps/gnome-mount[>=0.8]
     post,suggested:
-        >=gnome-desktop/gnome-icon-theme-1.1.91
+        gnome-desktop/gnome-icon-theme[>=1.1.91]
 "
 
 RESTRICT="test" # requires X
