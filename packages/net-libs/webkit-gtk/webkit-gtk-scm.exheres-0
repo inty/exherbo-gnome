@@ -10,19 +10,20 @@ require scm-git
 
 SLOT="1"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="html5 icon-database keyring"
+MYOPTIONS="doc html5 icon-database keyring"
 
 DEPENDENCIES="
     build+run:
+        app-spell/enchant[>=0.22]
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
         dev-libs/glib:2[>=2.0]
         dev-libs/icu
         dev-libs/libxml2[>=2.6]
         x11-libs/cairo[>=1.4]
-        x11-libs/gtk+:2[>=2.8]
+        x11-libs/gtk+:2[>=2.10]
         dev-libs/libxslt[>=1.1.7]
-        gnome-desktop/libsoup:2.4[>=2.25.4]
+        gnome-desktop/libsoup:2.4[>=2.25.91]
         x11-libs/pango[>=1.0][X]
         media-libs/fontconfig[>=2.4]
         media-libs/freetype:=[>=2.3.5]
@@ -30,18 +31,27 @@ DEPENDENCIES="
                  media-libs/gstreamer:0.10[>=0.10]
                  media-plugins/gst-plugins-base:0.10 )
         icon-database? ( dev-db/sqlite:3[>=3.0] )
-        keyring? ( gnome-desktop/gnome-keyring:1 )
+        keyring? ( gnome-desktop/gnome-keyring:1[>=2.26.0] )
     build:
+        dev-doc/gtk-doc
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
 "
 
 AT_M4DIR="autotools"
+RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'html5 offline-web-applications'
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/webkit-1.1.6-no-database.patch" )
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
+                                       'html5 offline-web-applications'
                                        'html5 dom-storage'
                                        'html5 database'
                                        'html5 video'
                                        'icon-database'
                                        'keyring gnomekeyring' )
 
+src_prepare() {
+    gtkdocize --copy
+    autotools_src_prepare
+}

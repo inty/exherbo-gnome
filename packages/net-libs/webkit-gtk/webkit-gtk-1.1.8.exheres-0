@@ -45,9 +45,3 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
                                        'html5 video'
                                        'icon-database'
                                        'keyring gnomekeyring' )
-
-src_compile() {
-    mkdir "${WORK}/DerivedSources" || die "failed to create DerivedSources directory"
-    default
-}
-

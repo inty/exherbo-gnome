@@ -7,3 +7,7 @@ DOWNLOADS="http://webkitgtk.org/webkit-${PV}.tar.gz"
 
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
+src_compile() {
+    mkdir "${WORK}/DerivedSources" || die "failed to create DerivedSources directory"
+    default
+}
