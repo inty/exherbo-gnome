@@ -65,8 +65,8 @@ src_prepare() {
 
 
     autotools_src_prepare
-    intltoolize --force --copy
-    gtkdocize --copy
+    intltoolize --force --copy || die "intltoolize failed"
+    gtkdocize --copy || die "gtkdocize failed"
 }
 
 src_install() {
