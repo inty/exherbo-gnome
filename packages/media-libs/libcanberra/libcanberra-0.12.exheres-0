@@ -10,9 +10,12 @@ DOWNLOADS="http://0pointer.de/lennart/projects/${PN}/${PNV}.tar.gz"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa gstreamer gtk pulseaudio"
+MYOPTIONS="alsa doc gstreamer gtk pulseaudio"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         media-libs/libvorbis
         alsa? ( sys-sound/alsa-lib[>=1.0.0] )
@@ -22,12 +25,10 @@ DEPENDENCIES="
                dev-libs/glib:2
                gnome-platform/GConf:2 )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.11] )
-    build:
-        dev-util/pkg-config[>=0.20]
     post,recommended:
           sound-themes/sound-theme-freedesktop
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa gtk gstreamer 'pulseaudio pulse' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' gtk gstreamer 'pulseaudio pulse' )
 
