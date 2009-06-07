@@ -31,7 +31,7 @@ DEPENDENCIES="
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
         ps? ( app-text/libspectre[>=0.2.0] )
         pdf? ( x11-libs/cairo[>=1.0]
-               app-text/poppler[>=0.8.0][cairo][glib] )
+               app-text/poppler[>=0.11.0][cairo][glib] )
         tiff? ( media-libs/tiff[>=3.6] )
 "
 
@@ -40,4 +40,3 @@ RESTRICT="test" # requires X and dogtail
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--without-gconf' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'djvu' 'doc gtk-doc' 'dvi' 'nautilus' 'pdf' 'ps' 'tiff' )
-
