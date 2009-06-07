@@ -38,7 +38,6 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-devicekit-power' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applets policykit 'policykit gconf-defaults' )
 
 src_install() {
