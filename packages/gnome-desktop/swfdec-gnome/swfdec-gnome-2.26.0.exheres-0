@@ -1,0 +1,24 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="A standalone flash player and indexer"
+HOMEPAGE="http://swfdec.freedesktop.org/wiki/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+[>=2.12.0]
+        dev-libs/glib:2
+        gnome-platform/GConf:2
+        media-libs/swfdec:0.8[gtk]
+    build:
+        sys-devel/gettext
+        dev-util/intltool[>=0.35.0]
+"
+
