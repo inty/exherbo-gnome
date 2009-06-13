@@ -12,7 +12,11 @@ LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 
-LANGS="af am ang ar as ast az az_IR be be@latin bg bn bn_IN br bs ca ca@valencia crh cs cy da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu hy ia id io is it ja ka kn ko ku li lt lv mai mi mk ml mn mr ms nb ne nl nn nso oc or pa pl ps pt pt_BR ro ru rw si sk sl sq sr sr@latin sr@ije sv ta te th tk tr tt uk ur uz uz@cyrillic vi wa xh yi zh_CN zh_HK zh_TW"
+LANGS="af am ang ar as ast az az_IR be be@latin bg bn bn_IN br bs ca
+ca@valencia crh cs cy da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he
+hi hr hu hy ia id io is it ja ka kn ko ku li lt lv mai mi mk ml mn mr ms nb ne
+nl nn nso oc or pa pl ps pt pt_BR ro ru rw si sk sl sq sr sr@latin sr@ije sv ta
+te th tk tr tt uk ur uz uz@cyrillic vi wa xh yi zh_CN zh_HK zh_TW"
 
 MYOPTIONS="cups doc
 jpeg2000 [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
