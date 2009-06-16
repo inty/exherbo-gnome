@@ -21,9 +21,6 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.20]
         gnome-platform/GConf:2
         x11-libs/gtk+:2[>=2.16]
-        gnome-platform/libgnome:2[>=2.13.2]
-        gnome-platform/libgnomeui:2[>=2.13.7]
-        gnome-desktop/gnome-desktop:2[>=2.9.91]
         gnome-desktop/gnome-panel[>=2.13.4]
         gnome-desktop/libgtop[>=2.12]
 "
