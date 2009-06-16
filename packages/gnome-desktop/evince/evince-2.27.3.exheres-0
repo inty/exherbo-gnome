@@ -40,3 +40,4 @@ RESTRICT="test" # requires X and dogtail
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf' '--without-gconf' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'djvu' 'doc gtk-doc' 'dvi' 'nautilus' 'pdf' 'ps' 'tiff' )
+
