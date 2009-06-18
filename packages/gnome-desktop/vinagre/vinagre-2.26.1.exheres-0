@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org gnome-2 # for icon cache update
 
 SUMMARY="A VNC client for the GNOME desktop"
 HOMEPAGE="http://projects.gnome.org/vinagre/"
