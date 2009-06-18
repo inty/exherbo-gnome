@@ -6,7 +6,7 @@ require gtk-vnc
 UPSTREAM_RELEASE_NOTES="https://sourceforge.net/project/shownotes.php?group_id=190580&release_id=645598"
 
 SLOT="1"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
 MYOPTIONS="python mozilla-plugin"
 
