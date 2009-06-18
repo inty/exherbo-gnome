@@ -39,9 +39,9 @@ DEPENDENCIES="
         keyring? ( gnome-desktop/gnome-keyring:1 )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--disable-gdu' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bluetooth obexftp'
-'cdda' 'doc gtk-doc' 'fuse' 'gnome gconf' 'gnome gdu' 'gphoto2' 'hal' 'http' 'keyring' 'bash-completion' )
+'cdda' 'doc gtk-doc' 'fuse' 'gnome gconf' 'gphoto2' 'hal' 'http' 'keyring' 'bash-completion' )
 
 src_install() {
     default
@@ -50,4 +50,18 @@ src_install() {
         keepdir "/usr/share/gvfs/remote-volume-monitors"
     fi
 }
+
+src_test() {
+    echo "daemon/gvfsftpconnection.c" >> "${WORK}/po/POTFILES.in"
+    echo "daemon/gvfsftpdircache.c" >> "${WORK}/po/POTFILES.in"
+    echo "daemon/gvfsftpfile.c" >> "${WORK}/po/POTFILES.in"
+    echo "daemon/gvfsftptask.c" >> "${WORK}/po/POTFILES.in"
+    echo "monitor/gdu/gdu-volume-monitor-daemon.c" >> "${WORK}/po/POTFILES.in"
+    echo "monitor/gdu/ggdudrive.c" >> "${WORK}/po/POTFILES.in"
+    echo "monitor/gdu/ggdumount.c" >> "${WORK}/po/POTFILES.in"
+    echo "monitor/gdu/ggduvolume.c" >> "${WORK}/po/POTFILES.in"
+
+    default
+}
+
 
