@@ -28,7 +28,7 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-cdda --disable-samba --enable-openssl
 --disable-howl --enable-daemon --disable-fam --disable-selinux )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLE=( avahi hal ipv6 )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi hal ipv6 )
 
 src_test() {
     export HOME="${TEMP}" default
