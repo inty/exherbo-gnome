@@ -1,0 +1,27 @@
+# Coyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="The GIMP Toolkit"
+HOMEPAGE="http://www.gtk.org/"
+
+LICENCES="LGPL-2"
+
+src_install() {
+    default
+
+    # setup default icon theme
+    echo 'gtk-fallback-icon-theme = "gnome"' > "${IMAGE}/etc/gtk-2.0/gtkrc"
+
+    # use XFT
+    echo 'GDK_USE_XFT=1' > "${IMAGE}/etc/env.d/50gtk2"
+}
+
+pkg_postinst() {
+    ebegin "Generating pixbuf and immodules list"
+        gtk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gtk-pixbuf.loaders"
+        gtk-query-immodules-2.0 > "${ROOT}/etc/gtk-2.0/gtk.immodules"
+    eend $?
+}
+
