@@ -23,7 +23,7 @@ DEPENDENCIES="
         gnome-desktop/evolution-data-server:1.2
 "
 
-DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLE=( 'doc gtk-doc' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
 
 RESTRICT="test" # requires internet access
 
