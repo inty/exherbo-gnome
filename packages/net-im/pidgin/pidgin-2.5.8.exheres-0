@@ -126,3 +126,4 @@ UPSTREAM_DOCUMENTATION="
     http://developer.pidgin.im/wiki/FAQ
 "
 
+RESTRICT="test"
