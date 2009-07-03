@@ -12,6 +12,10 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="bluetooth doc nautilus nsplugin python tracker"
 
 DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
         app-text/iso-codes
         gnome-platform/GConf:2
@@ -31,10 +35,6 @@ DEPENDENCIES="
                     dev-libs/xulrunner )
         python? ( gnome-bindings/pygtk[>=2.12.0] )
         tracker? ( app-pim/tracker )
-    build:
-        dev-util/intltool[>=0.40.0]
-        dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc[>=1.11] )
 "
 
 # brasero
