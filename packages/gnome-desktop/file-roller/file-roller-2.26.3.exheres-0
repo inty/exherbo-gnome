@@ -12,15 +12,15 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="nautilus"
 
 DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         dev-libs/glib:2[>=2.16.0]
         x11-libs/gtk+:2[>=2.16.0]
         gnome-platform/GConf:2[>=2.6]
         nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
-    build:
-        dev-util/intltool[>=0.35]
-        dev-util/pkg-config[>=0.20]
-        gnome-desktop/gnome-doc-utils[>=0.3.2]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'nautilus nautils-actions' )
