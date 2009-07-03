@@ -31,6 +31,7 @@ src_test() {
         ewarn "${PNV} tests need dev-utils/desktop-file-utils to succeed, skipping testsuite"
         return
     fi
+
     default
 }
 
