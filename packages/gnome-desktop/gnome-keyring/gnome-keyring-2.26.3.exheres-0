@@ -12,6 +12,9 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="hal pam"
 
 DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.18]
     build+run:
         dev-libs/glib:2[>=2.16]
         x11-libs/gtk+:2[>=2.8.0]
@@ -21,10 +24,6 @@ DEPENDENCIES="
         dev-libs/libtasn1[>=1.0]
         hal? ( sys-apps/hal[>=0.5.7] )
         pam? ( sys-libs/pam )
-    build:
-        dev-util/intltool[>=0.35.0]
-        dev-util/pkg-config[>=0.18]
-        sys-devel/gettext
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ssh-agent' '--enable-tests'
