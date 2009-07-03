@@ -12,6 +12,10 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc python"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.40.3]
+        doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         x11-libs/gtk+:2[>=2.11]
         dev-libs/glib:2[>=2.13]
@@ -20,15 +24,10 @@ DEPENDENCIES="
         dev-libs/libxml2[>=2.6]
         python? ( gnome-bindings/pygobject:2
                   gnome-bindings/pygtk:2 )
-    build:
-        dev-util/pkg-config[>=0.19]
-        dev-util/intltool[>=0.40.3]
-        doc? ( dev-doc/gtk-doc[>=1.9] )
 "
 
 src_configure() {
-    econf \
-        $(option_enable doc gtk-doc) \
-        $(option python && echo --enable-python)
+    econf $(option_enable doc gtk-doc)              \
+          $(option python && echo --enable-python)
 }
 
