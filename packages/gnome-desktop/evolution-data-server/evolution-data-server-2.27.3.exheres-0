@@ -17,15 +17,15 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
-        dev-libs/glib:2[>=2.16.1]
-        x11-libs/gtk+:2[>=2.14.0]
-        gnome-platform/ORBit2:2[>=2.9.8]
-        gnome-platform/libbonobo:2[>=2.20.3]
-        gnome-platform/GConf:2
-        gnome-platform/libglade:2
-        dev-libs/libxml2
-        gnome-desktop/libsoup:2.4[>=2.3.0]
         dev-db/sqlite:3[>=3.5]
+        dev-libs/glib:2[>=2.16.1]
+        dev-libs/libxml2
+        gnome-platform/GConf:2
+        gnome-platform/libbonobo:2[>=2.20.3]
+        gnome-platform/libglade:2
+        gnome-platform/ORBit2:2[>=2.9.8]
+        gnome-desktop/libsoup:2.4[>=2.3.0]
+        x11-libs/gtk+:2[>=2.14.0]
         calendar? ( office-libs/libical[>=0.43] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.20.1] )
         weather? ( gnome-desktop/libgweather[>=2.25.4] )
