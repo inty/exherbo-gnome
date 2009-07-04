@@ -19,7 +19,7 @@ DEPENDENCIES="
         sys-libs/gdbm
         sys-fs/udev
         alsa? ( sys-sound/alsa-lib[>=1.0.17] )
-        avahi? ( net-dns/avahi[>=0.6.0] )
+        avahi? ( net-dns/avahi[>=0.6.0][dbus] )
         bluetooth? ( net-wireless/bluez[>=3.0] )
         caps? ( sys-libs/libcap )
         dbus? ( sys-apps/dbus[>=1.0] )
