@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi bash-completion bluetooth doc gnome hal keyring" # archive fuse cdda gphoto2 samba
+MYOPTIONS="avahi bash-completion bluetooth doc gconf hal keyring" # archive fuse cdda gphoto2 samba
 
 DEPENDENCIES="
     build+run:
@@ -22,7 +22,7 @@ DEPENDENCIES="
         bluetooth? ( dev-libs/expat
                      dev-libs/dbus-glib
                      net-wireless/bluez[>=4] )
-        gnome? ( gnome-platform/GConf:2[>=2.0] )
+        gconf? ( gnome-platform/GConf:2[>=2.0] )
         hal? ( sys-apps/hal[>=0.5.10] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.0] )
     build:
@@ -37,7 +37,7 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/gvfs-1.0.3-bluez-4.x-support.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-http' '--disable-archive'
 '--disable-cdda' '--disable-fuse' '--disable-gphoto2' '--disable-samba' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi' 'bluetooth obexftp' 'doc gtk-doc'
-'hal' 'keyring' 'bash-completion' 'gnome gconf' )
+'hal' 'keyring' 'bash-completion' 'gconf' )
 
 src_prepare() {
     autotools_src_prepare
