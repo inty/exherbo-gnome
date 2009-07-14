@@ -22,7 +22,7 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.4]
         x11-libs/gtk+:2[>=2.10]
         dev-libs/libxslt[>=1.1.7]
-        gnome-desktop/libsoup:2.4[>=2.25.91]
+        gnome-desktop/libsoup:2.4[>=2.27.4]
         x11-libs/pango[>=1.0][X]
         media-libs/fontconfig[>=2.4]
         media-libs/freetype:=[>=2.3.5]
@@ -36,9 +36,8 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 WORK="${WORKBASE}/webkit-${PV}"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/webkit-1.1.6-no-database.patch" )
-
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
+                                       'html5 channel-messaging'
                                        'html5 offline-web-applications'
                                        'html5 dom-storage'
                                        'html5 database'
