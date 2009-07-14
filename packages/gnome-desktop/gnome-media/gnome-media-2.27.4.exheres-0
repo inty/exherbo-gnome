@@ -9,7 +9,9 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="grecord [[ requires = [ profiles ] ]] gstreamer ipv6 profiles pulseaudio"
+MYOPTIONS="grecord [[ requires = [ profiles ] ]] gstreamer ipv6
+profiles [[ description = [ enable gnome media profiles ] ]]
+pulseaudio"
 
 DEPENDENCIES="
     build:
@@ -23,9 +25,8 @@ DEPENDENCIES="
         dev-libs/libxml2
         grecord? ( media-libs/gstreamer:0.10[>=0.10.3]
                    media-plugins/gst-plugins-base:0.10[>=0.10.3] )
-        gstreamer? ( gnome-platform/libglade:2
-                     media-libs/gstreamer:0.10[>=0.10.3]
-                     media-plugins/gst-plugins-base:0.10[>=0.10.3] )
+        gstreamer? ( media-libs/gstreamer:0.10[>=0.10.23]
+                     media-plugins/gst-plugins-base:0.10[>=0.10.23] )
         profiles? ( media-libs/gstreamer:0.10
                     gnome-platform/libglade:2 )
         pulseaudio? ( dev-libs/unique:1
