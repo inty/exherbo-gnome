@@ -9,9 +9,12 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="archive avahi bash-completion bluetooth cdda doc fuse gconf gphoto2 hal
+MYOPTIONS="archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
+avahi bash-completion bluetooth cdda doc fuse gconf gphoto2 hal
 http [[ description = [ enable support http, ftp, dav, ssl uris ] ]]
-keyring" # fuse samba
+keyring
+monitor [[ description = [ add support for gnome-disk-utility ] ]]
+" # fuse samba
 
 DEPENDENCIES="
     build:
@@ -19,29 +22,30 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
     build+run:
-        dev-libs/glib:2[>=2.21.1]
+        dev-libs/glib:2[>=2.21.2]
         sys-apps/dbus[>=1.0]
         net-misc/openssh
         dev-libs/libxml2
+        sys-fs/udev[>=138][extras]
         archive? ( app-arch/libarchive )
-        avahi? ( net-dns/avahi[>=0.6] )
+        avahi? ( net-dns/avahi[>=0.6][gtk] )
         bluetooth? ( dev-libs/expat
                      dev-libs/dbus-glib:1
                      net-wireless/bluez[>=4.0] ) [[ requires = [ hal ] ]]
         cdda? ( dev-libs/libcdio[>=0.78.2]
                 sys-apps/hal[>=0.5.10] )
         fuse? ( sys-fs/fuse )
-        gconf? ( gnome-platform/GConf:2
-                 base/gnome-disk-utility[>=0.3] )
+        gconf? ( gnome-platform/GConf:2 )
+        monitor? ( base/gnome-disk-utility[>=0.3] )
         gphoto2? ( media-libs/libgphoto2[>=2.4] ) [[ requires = [ hal ] ]]
         hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--disable-gdu' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bluetooth obexftp'
-'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'bash-completion' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-udev' '--enable-gudev' '--disable-samba' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
+'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'monitor gdu' )
 
 src_install() {
     default
@@ -50,18 +54,4 @@ src_install() {
         keepdir "/usr/share/gvfs/remote-volume-monitors"
     fi
 }
-
-src_test() {
-    echo "daemon/gvfsftpconnection.c" >> "${WORK}/po/POTFILES.in"
-    echo "daemon/gvfsftpdircache.c" >> "${WORK}/po/POTFILES.in"
-    echo "daemon/gvfsftpfile.c" >> "${WORK}/po/POTFILES.in"
-    echo "daemon/gvfsftptask.c" >> "${WORK}/po/POTFILES.in"
-    echo "monitor/gdu/gdu-volume-monitor-daemon.c" >> "${WORK}/po/POTFILES.in"
-    echo "monitor/gdu/ggdudrive.c" >> "${WORK}/po/POTFILES.in"
-    echo "monitor/gdu/ggdumount.c" >> "${WORK}/po/POTFILES.in"
-    echo "monitor/gdu/ggduvolume.c" >> "${WORK}/po/POTFILES.in"
-
-    default
-}
-
 
