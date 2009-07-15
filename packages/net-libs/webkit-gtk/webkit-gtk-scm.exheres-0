@@ -23,7 +23,7 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.4]
         x11-libs/gtk+:2[>=2.10]
         dev-libs/libxslt[>=1.1.7]
-        gnome-desktop/libsoup:2.4[>=2.25.91]
+        gnome-desktop/libsoup:2.4[>=2.27.4]
         x11-libs/pango[>=1.0][X]
         media-libs/fontconfig[>=2.4]
         media-libs/freetype:=[>=2.3.5]
