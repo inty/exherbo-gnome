@@ -27,6 +27,8 @@ DEPENDENCIES="
         pam? ( sys-libs/pam )
 "
 
+RESTRICT="test" # requires X
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ssh-agent' '--enable-tests'
 '--with-root-certs=/usr/share/ca-certificates/' '--enable-acl-prompts' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( hal pam )
