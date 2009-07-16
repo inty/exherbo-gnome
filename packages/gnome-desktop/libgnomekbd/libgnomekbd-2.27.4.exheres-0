@@ -21,6 +21,6 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.34]
         gnome-platform/GConf:2[>=2.14]
         x11-libs/gtk+:2[>=2.13]
-        x11-libs/libxklavier[>=3.2]
+        x11-libs/libxklavier[>=4.0]
 "
 
