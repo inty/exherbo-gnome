@@ -5,6 +5,8 @@ require gnome-2
 
 SUMMARY="Configuration Applications for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
+DOWNLOADS="${DOWNLOADS}
+           http://dev.exherbo.org/~compnerd/distfiles/${PNVR}-icons.tbz2"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -22,7 +24,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.13.1]
         dev-libs/glib:2[>=2.17.4]
         gnome-platform/GConf:2
-        gnome-platform/libglade:2[>=2.0]
+        gnome-platform/libglade:2[>=2.0.0]
         gnome-desktop/gnome-desktop:2[>=2.25.1]
         gnome-desktop/gnome-menus[>=2.10.1]
         gnome-platform/libgnomeui:2
@@ -36,7 +38,7 @@ DEPENDENCIES="
         x11-libs/pango[X]
         gnome-desktop/libgnomekbd[>=2.21.4.1]
         x11-libs/libxklavier[>=4.0]
-        eds? ( gnome-desktop/evolution-data-server[>=1.7.90]
+        eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90]
                gnome-desktop/PolicyKit-gnome )
         hal? ( sys-apps/hal[>=0.5.6] )
 "
