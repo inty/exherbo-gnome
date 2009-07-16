@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="applet doc python spell
+MYOPTIONS="applet doc networkmanager python spell
 webkit [[ description = [ add support for adium themes ] ]]"
 
 DEPENDENCIES="
@@ -26,14 +26,15 @@ DEPENDENCIES="
         net-im/telepathy-glib[>=0.7.31]
         net-im/mission-control[>=4.61]
         net-im/telepathy-farsight
-        x11-libs/gtk+:2[>=2.16.0]
-        media-libs/libcanberra[>=0.4][gtk]
         net-im/farsight2:0.10
         media-libs/gstreamer:0.10
+        gnome-platform/GConf:2[>=1.2.0]
+        x11-libs/gtk+:2[>=2.16.0]
+        media-libs/libcanberra[>=0.4][gtk]
         gnome-desktop/evolution-data-server:1.2
         x11-libs/libnotify[>=0.4.4]
-        gnome-platform/GConf:2[>=1.2.0]
         applet? ( gnome-desktop/gnome-panel[>=2.10.0] )
+        networkmanager? ( net-apps/NetworkManager )
         python? ( dev-lang/python:=[>=2.5]
                   gnome-bindings/pygtk:2 )
         spell? ( app-spell/enchant[>=1.2.0]
@@ -43,5 +44,7 @@ DEPENDENCIES="
 
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'applet megaphone' 'applet nothere' 'doc gtk-doc' python spell webkit )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-map --disable-location )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'applet megaphone' 'applet nothere' 'doc gtk-doc'
+'networkmanager network-manager' python spell webkit )
 
