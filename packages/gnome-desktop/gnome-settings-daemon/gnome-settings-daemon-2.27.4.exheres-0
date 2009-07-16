@@ -20,11 +20,11 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.16.0]
         gnome-platform/GConf:2[>=2.6.1]
         dev-libs/dbus-glib:1[>=0.74]
-        gnome-desktop/gnome-desktop:2[>=2.25.6]
+        gnome-desktop/gnome-desktop:2[>=2.26.3]
         gnome-platform/libglade:2[>=2.0.0]
         media-libs/fontconfig
         gnome-desktop/libgnomekbd[>=2.21.4]
-        x11-libs/libxklavier[>=3.8]
+        x11-libs/libxklavier[>=4.0]
         libnotify? ( x11-libs/libnotify[>=0.4.5] )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.12] )
 "
