@@ -5,8 +5,6 @@ require gnome-2
 
 SUMMARY="Configuration Applications for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
-DOWNLOADS="${DOWNLOADS}
-           http://dev.exherbo.org/~compnerd/distfiles/${PNVR}-icons.tbz2"
 
 LICENCES="GPL-2"
 SLOT="0"
