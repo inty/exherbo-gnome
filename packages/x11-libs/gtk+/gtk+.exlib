@@ -20,7 +20,7 @@ src_install() {
 
 pkg_postinst() {
     ebegin "Generating pixbuf and immodules list"
-        gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gtk-pixbuf.loaders"
+        gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
         gtk-query-immodules-2.0 > "${ROOT}/etc/gtk-2.0/gtk.immodules"
     eend $?
 }
