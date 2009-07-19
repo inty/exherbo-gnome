@@ -21,6 +21,7 @@ DEPENDENCIES="
         app-text/rarian
         dev-libs/unique:1
         dev-libs/dbus-glib:1
+        media-libs/libexif[>=0.5.12]
         gnome-platform/GConf:2
         tracker? ( app-pim/tracker[>=0.6.4] )
     build:
