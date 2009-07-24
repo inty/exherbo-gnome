@@ -16,6 +16,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.12] )
     build+run:
+        dev-lang/python:*
         dev-libs/glib:2[>=2.16]
         dev-libs/libffi
 "
