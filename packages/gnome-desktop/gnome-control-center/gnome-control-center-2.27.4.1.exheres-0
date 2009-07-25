@@ -42,5 +42,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds aboutme' hal )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'eds aboutme' hal )
 
