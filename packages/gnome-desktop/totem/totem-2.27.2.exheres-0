@@ -18,12 +18,12 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.22]
-        media-plugins/gst-plugins-base:0.10[>=0.10.22.4]
-        gnome-platform/GConf:2
+        media-plugins/gst-plugins-base:0.10[>=0.10.23.2]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         app-text/iso-codes
         dev-libs/glib:2[>=2.15]
-        x11-libs/gtk+:2[>=2.13]
+        x11-libs/gtk+:2[>=2.16]
+        gnome-platform/GConf:2
         gnome-desktop/totem-pl-parser[>=2.27.0]
         x11-libs/cairo
         gnome-desktop/gnome-icon-theme[>=2.15.90]
@@ -38,7 +38,8 @@ DEPENDENCIES="
         tracker? ( app-pim/tracker )
 "
 
-# brasero
+# brasero-disc-recorder
+# coherence_upnp
 # galago
 # lirc
 # mythtv
@@ -47,14 +48,14 @@ DEPENDENCIES="
 # opensubtitles
 
 src_configure() {
-    local plugins=thumbnail,screensaver,ontop,gromit,media-player-keys,properties,skipto,screenshot
+    local plugins=dbus-service,gromit,media-player-keys,ontop,properties,screensaver,screenshot,skipto,thumbnail
 
     if option bluetooth ; then
         plugins+=,bemused
     fi
 
     if option python ; then
-        plugins+=,pythonconsole,youtube
+        plugins+=,iplayer,pythonconsole,youtube
     fi
 
     if option tracker ; then
@@ -62,8 +63,8 @@ src_configure() {
     fi
 
     GST_REGISTRY="${TEMP}/.gstreamer-0.10" \
-        econf --with-plugins=${plugins} \
-              --enable-easy-codec-installation --with-dbus --disable-vala \
+        econf "--with-plugins=${plugins}" \
+              '--enable-easy-codec-installation' '--with-dbus' '--disable-vala' \
               $(option_enable doc gtk-doc) $(option_enable nautilus) \
               $(option_enable nsplugin browser-plugins) $(option_enable python)
 }
