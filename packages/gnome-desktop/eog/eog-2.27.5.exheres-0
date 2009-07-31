@@ -33,5 +33,5 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-python --without-xmp )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus dbus-glib-1' 'exif libexif' 'jpeg libjpeg' 'lcms cms' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus' 'exif libexif' 'jpeg libjpeg' 'lcms cms' )
 
