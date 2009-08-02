@@ -61,8 +61,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 --disable-tcpwrap
 )
 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'X x' caps )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi 'bluetooth bluez' dbus 'gtk gtk2' hal 'policykit polkit' 'ssl openssl' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( caps )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi 'bluetooth bluez' dbus 'gtk gtk2' hal 'policykit polkit' 'ssl openssl' 'X x11' )
 
 src_install() {
     default
