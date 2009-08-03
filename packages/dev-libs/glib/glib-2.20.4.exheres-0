@@ -17,10 +17,9 @@ DEPENDENCIES="
                      app-text/docbook-xml-dtd:4.1.2 )
     build+run:
         fam? ( app-admin/gamin )
-    post,recommended:
-        gnome-desktop/gvfs
     post,suggested:
         dev-util/desktop-file-utils [[ description = [ Needed to run the testsuite, see #172 ] ]]
+        gnome-desktop/gvfs
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-static' '--with-threads=posix' )

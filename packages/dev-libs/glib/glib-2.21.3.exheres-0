@@ -19,7 +19,7 @@ DEPENDENCIES="
         dev-util/desktop-file-utils [[ description = [ Needed to run the testsuite, see #172 ] ]]
     build+run:
         fam? ( app-admin/gamin )
-    post,recommended:
+    post,suggested:
         gnome-desktop/gvfs
 "
 
