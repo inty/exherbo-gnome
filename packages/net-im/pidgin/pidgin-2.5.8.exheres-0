@@ -76,7 +76,7 @@ build+run:
         media-plugins/gst-plugins-good
     )
     ncurses? ( sys-libs/ncurses )
-    dbus? ( sys-apps/dbus )
+    dbus? ( dev-libs/dbus-glib )
     nls? ( sys-devel/gettext )
     perl? ( dev-lang/perl )
     startup-notification? ( x11-libs/startup-notification )
