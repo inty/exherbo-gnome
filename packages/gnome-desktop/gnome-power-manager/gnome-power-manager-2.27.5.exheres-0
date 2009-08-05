@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="applets policykit"
+MYOPTIONS="applets [[ description = [ build inhibit and locking applets ] ]]"
 
 DEPENDENCIES="
     build:
@@ -23,22 +23,23 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.70]
         gnome-desktop/libwnck:1[>=2.10.0]
         x11-libs/gtk+:2[>=2.11.0]
+        gnome-platform/GConf:2[>=2.10]
         gnome-desktop/gnome-keyring:1[>=0.6.0]
-        gnome-desktop/gnome-panel[>=2.0.0]
         x11-libs/cairo[>=1.0.0]
+        gnome-desktop/gnome-panel[>=2.0.0]
         x11-libs/libXrandr[>=1.2.0]
+        x11-libs/libXrender
+        x11-libs/libX11
         x11-libs/libnotify[>=0.4.3]
         dev-libs/unique:1[>=0.9.4]
         sys-apps/DeviceKit[>=001]
         sys-apps/DeviceKit-power[>=008]
-        gnome-platform/GConf:2
-        policykit? ( sys-auth/PolicyKit[>=0.8]
-                     gnome-desktop/PolicyKit-gnome[>=0.8] )
 "
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applets policykit 'policykit gconf-defaults' )
+DEFAULT_SRC_CONFIGURE_OPTION_PARAMS=( --disable-gconf-defaults )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applets )
 
 src_install() {
     default
