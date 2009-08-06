@@ -1,0 +1,52 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY=""
+DESCRIPTION="
+Rhythmbox is your one-stop multimedia application, supporting a music library,
+multiple playlists, internet radio, and more.
+"
+HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="avahi doc hal
+ipod [[ description = [ enable support for ipods ] ]]
+keyring libnotify
+mtp [[ requires = [ hal ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-libs/check
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        doc? ( dev-util/gtk-doc[>=1.4] )
+    build+run:
+        dev-libs/glib:2[>=2.16]
+        x11-libs/gtk+:2[>=2.16]
+        gnome-desktop/gnome-media[>=2.8][profiles]
+        gnome-desktop/libsoup:2.4[>=2.26]
+        gnome-desktop/totem-pl-parser[>=2.26]
+        media-libs/gstreamer:0.10[>=0.10.20]
+        media-plugins/gst-plugins-base:0.10[>=0.10.20]
+        gnome-platform/GConf:2
+        dev-libs/dbus-glib:1[>=0.35]
+        avahi? ( net-dns/avahi )
+        hal? ( sys-apps/hal[=0.5*] )
+        ipod? ( media-libs/libgpod[>=0.6] )
+        keyring? ( gnome-desktop/gnome-keyring:1 )
+        libnotify? ( x11-libs/libnotify[>=0.4.1] )
+        mtp? ( media-libs/libmtp[>=0.3.0] )
+"
+
+RESTRICT="test" # requires X
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-musicbrainz --without-libbrasero-media
+--without-libnautilus-burn --disable-lirc --disable-python --disable-vala
+--disable-browser-plugin )
+DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'avahi mdns avahi' 'avahi daap' hal ipod keyring mtp )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLES=( 'doc gtk-doc' )
+
