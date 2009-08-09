@@ -1,0 +1,46 @@
+Source: Elias Pipping <elias@pipping.org>
+Upstream: Submitted, http://bugzilla.gnome.org/show_bug.cgi?id=591020
+Reason: Add --disable-gnome-about
+
+--- gnome-desktop-2.27.5/man/Makefile.am
++++ gnome-desktop-2.27.5/man/Makefile.am
+@@ -1,4 +1,6 @@
+-man_MANS = gnome-about.1
++if GNOME_ABOUT
++man_MANS + gnome-about.1
++endif
+ 
+ EXTRA_DIST = $(man_MANS)
+ 
+--- gnome-desktop-2.27.5/Makefile.am
++++ gnome-desktop-2.27.5/Makefile.am
+@@ -3,12 +3,15 @@
+ SUBDIRS =			\
+ 	po 			\
+ 	libgnome-desktop 	\
+-	gnome-about 		\
+ 	pixmaps			\
+ 	desktop-docs		\
+ 	docs			\
+ 	man
+ 
++if GNOME_ABOUT
++SUBDIRS += gnome-about
++endif
++
+ EXTRA_DIST =			\
+ 	MAINTAINERS		\
+ 	ChangeLog.pre-git	\
+--- gnome-desktop-2.27.5/configure.in
++++ gnome-desktop-2.27.5/configure.in
+@@ -147,6 +147,10 @@
+ dnl for gnome-about
+ AM_PATH_PYTHON
+ 
++enable_gnome_about=yes
++AC_ARG_ENABLE(gnome-about, [  --disable-gnome-about   do not install gnome-about],enable_gnome_about=no,)
++AM_CONDITIONAL(GNOME_ABOUT, test "x${enable_gnome_about}" = "xyes")
++
+ dnl gnome-doc-utils stuff
+ 
+ GNOME_DOC_INIT
