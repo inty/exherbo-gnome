@@ -12,6 +12,11 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi doc libnotify"
 
 DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.1]
+        doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         x11-libs/gtk+:2[>=2.10]
         dev-libs/glib:2[>=2.16]
@@ -23,11 +28,6 @@ DEPENDENCIES="
         dev-libs/dbus-glib[>=0.35]
         avahi? ( net-dns/avahi[>=0.6] )
         libnotify? ( x11-libs/libnotify[>=0.4.4] )
-    build:
-        dev-util/intltool[>=0.35.0]
-        dev-util/pkg-config[>=0.20]
-        gnome-desktop/gnome-doc-utils[>=0.3.1]
-        doc? ( dev-doc/gtk-doc[>=1.9] )
     post,suggested:
         gnome-desktop/seahorse-plugins[>=2.25.0]
 "
