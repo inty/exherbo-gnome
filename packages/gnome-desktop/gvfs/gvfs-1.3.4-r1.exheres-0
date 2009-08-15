@@ -42,7 +42,7 @@ DEPENDENCIES="
         hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
-        udev? ( sys-fs/udev[>=143][extras] )
+        udev? ( sys-fs/udev[>=145][glib] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' )
