@@ -1,4 +1,4 @@
-# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
@@ -31,7 +31,7 @@ DEPENDENCIES="
         gnome-desktop/librsvg[>=2.0]
         x11-libs/libXau
         eds? ( gnome-desktop/evolution-data-server[>=1.2.0] )
-        policykit? ( sys-auth/PolicyKit[>=0.7]
+        policykit? ( sys-auth/PolicyKit:0[>=0.7]
                      gnome-desktop/PolicyKit-gnome[>=0.7] )
     build:
         sys-devel/gettext

@@ -1,4 +1,4 @@
-# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
@@ -37,7 +37,7 @@ DEPENDENCIES="
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.2] )
         hal? ( sys-apps/hal[>=0.5.3] )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
-        policykit? ( sys-auth/PolicyKit[>=0.7]
+        policykit? ( sys-auth/PolicyKit:0[>=0.7]
                      gnome-desktop/PolicyKit-gnome[>=0.7] )
     post,suggested:
         gnome-desktop/gnome-media[>=2.25]
