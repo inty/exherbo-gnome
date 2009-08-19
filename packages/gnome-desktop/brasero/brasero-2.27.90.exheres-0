@@ -1,0 +1,39 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="An application to burn CD/DVD for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc nautilus playlist"
+
+DEPENDENCIES="
+    build:
+        gnome-desktop/gnome-doc-utils[>=0.2.1]
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        media-libs/gstreamer:0.10[>=0.10.15]
+        media-plugins/gst-plugins-base:0.10[>=0.10]
+        dev-libs/glib:2[>=2.15.2]
+        dev-libs/libxml2[>=2.6]
+        dev-libs/unique:1
+        gnome-platform/GConf:2[>=2]
+        x11-libs/gtk+:2[>=2.16]
+        dev-libs/dbus-glib:1[>=0.7.2]
+        app-cdr/cdrkit
+        nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
+        playlist? ( gnome-desktop/totem-pl-parser[>=2.22.0] )
+"
+
+BUGS_TO=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-libburnia' '--disable-cdrtools' '--enable-cdrkit' '--disable-search' '--disable-caches' )
+DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( )
+DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLES=( 'doc gtk-doc' nautilus playlist )
+
