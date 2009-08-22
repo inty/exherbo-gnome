@@ -15,7 +15,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-util/gtk-doc[>=1.0] )
+        doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
         x11-libs/libnotify[>=0.4]
         media-libs/libcanberra[>=0.3][gtk]
@@ -44,8 +44,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gecko=libxul-embedding' '--disable-python
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'networkmanager network-manager' )
 
 src_configure() {
-    addpredict /usr/$(get_libdir)/xulrunner/components/xpti.dat.tmp
-    addpredict /usr/$(get_libdir)/xulrunner/components/compreg.dat.tmp
+    addfilter /usr/$(get_libdir)/xulrunner/components/xpti.dat.tmp
+    addfilter /usr/$(get_libdir)/xulrunner/components/compreg.dat.tmp
     default
 }
 
