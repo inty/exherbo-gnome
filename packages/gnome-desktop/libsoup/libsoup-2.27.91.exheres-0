@@ -19,6 +19,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.21.3]
         dev-libs/libxml2
         net-libs/libproxy:1
+        gnome-desktop/gnome-keyring:1
         gnome-platform/GConf:2
         dev-db/sqlite:3
         gnutls? ( dev-libs/gnutls
