@@ -32,7 +32,6 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libnotify[>=0.4.3]
         dev-libs/unique:1[>=0.9.4]
-        sys-apps/DeviceKit[>=001]
         sys-apps/DeviceKit-power[>=008]
 "
 
