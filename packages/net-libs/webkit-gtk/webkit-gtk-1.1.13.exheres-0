@@ -31,7 +31,6 @@ DEPENDENCIES="
                  media-libs/gstreamer:0.10[>=0.10]
                  media-plugins/gst-plugins-base:0.10 )
         icon-database? ( dev-db/sqlite:3[>=3.0] )
-        keyring? ( gnome-desktop/gnome-keyring:1[>=2.26.0] )
 "
 
 RESTRICT="test" # requires X
