@@ -30,6 +30,11 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35]
         dev-util/pkg-config[>=0.20]
         doc? ( app-doc/doxygen )
+    run:
+        autoipd? (
+            group/avahi-autoipd
+            user/avahi-autoipd
+        )
     post,recommended:
         net-dns/nss_mdns
 "
