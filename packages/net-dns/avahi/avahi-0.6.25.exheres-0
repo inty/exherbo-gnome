@@ -36,7 +36,7 @@ DEPENDENCIES="
             user/avahi-autoipd
         )
     post,recommended:
-        net-dns/nss_mdns
+        net-dns/nss-mdns
 "
 
 src_prepare() {

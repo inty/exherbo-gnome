@@ -4,8 +4,8 @@
 require autotools [ supported_autoconf=[ none ] supported_automake=[ 1.10 ] ]
 
 SUMMARY="Name Service Switch module for Multicast DNS"
-HOMEPAGE="http://0pointer.de/lennart/projects/nss-mdns/"
-DOWNLOADS="http://0pointer.de/lennart/projects/nss-mdns/${PNV/_/-}.tar.gz"
+HOMEPAGE="http://0pointer.de/lennart/projects/${PN}"
+DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -16,8 +16,6 @@ DEPENDENCIES="
     build+run:
         net-dns/avahi
 "
-
-WORK="${WORKBASE}/${PNV/_/-}"
 
 DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PN}-0.8-avahi-socket.patch" )
 
