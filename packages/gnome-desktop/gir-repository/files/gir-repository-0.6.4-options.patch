@@ -1,7 +1,9 @@
---- configure.ac	2009-08-23 14:52:51.000000000 -0700
-+++ configure.ac	2009-08-23 16:49:17.000000000 -0700
-@@ -21,146 +21,261 @@
- GOBJECT_INTROSPECTION_REQUIRE(0.6.3)
+diff --git a/configure.ac b/configure.ac
+index 995cd72..d0a4b60 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -21,125 +21,215 @@ AC_CONFIG_MACRO_DIR([m4])
+ GOBJECT_INTROSPECTION_REQUIRE(0.6.4)
  
  dnl dbus
 -PKG_CHECK_MODULES(DBUS, dbus-glib-1,
@@ -35,10 +37,6 @@
 -PKG_CHECK_MODULES(PANGO, pango >= 1.16.0,
 -                  have_pango=true, have_pango=false)
 -AM_CONDITIONAL(BUILD_PANGO, $have_pango)
--
--PKG_CHECK_MODULES(PANGOXFT, pangoxft >= 1.16.0,
--		  have_pangoxft=true, have_pangoxft=false)
--AM_CONDITIONAL(BUILD_PANGOXFT, $have_pangoxft)
 +AC_ARG_WITH([pango],
 +            AC_HELP_STRING([--with-pango], [build pango introspection]),,
 +            [with_pango=yes])
@@ -47,7 +45,10 @@
 +   PKG_CHECK_MODULES(PANGO, pango >= 1.16.0)
 +   PKG_CHECK_MODULES(PANGOXFT, pangoxft >= 1.16.0)
 +fi
-+
+ 
+-PKG_CHECK_MODULES(PANGOXFT, pangoxft >= 1.16.0,
+-		  have_pangoxft=true, have_pangoxft=false)
+-AM_CONDITIONAL(BUILD_PANGOXFT, $have_pangoxft)
 +AM_CONDITIONAL(BUILD_PANGO, test x"$with_pango" = x"yes")
 +AM_CONDITIONAL(BUILD_PANGOXFT, test x"$with_pango" = x"yes")
  
@@ -291,6 +292,11 @@
 +
 +AM_CONDITIONAL(BUILD_CLUTTERCAIRO, test x"$with_clutter_cairo" = x"yes")
  
+ dnl gstbufferlist.h, gsttaskpool.h were added in 0.10.24 (and in
+ dnl prereleases of that)
+@@ -160,25 +250,50 @@ fi
+ AM_CONDITIONAL(HAVE_GSTTASKPOOL_H, $have_gsttaskpool_h)
+ 
  dnl gstreamer
 -PKG_CHECK_MODULES(GSTREAMER_PLUGINS_BASE, gstreamer-plugins-base-0.10 >= 0.10.0, 
 -                  have_gstreamer_plugins_base=true, 
@@ -352,24 +358,23 @@
  
  dnl mission-control (disabled for now, it has odd structs and isn't useful yet)
  dnl PKG_CHECK_MODULES(MISSIONCONTROL, libmissioncontrol,
-@@ -169,38 +284,61 @@
+@@ -187,38 +302,61 @@ have_missioncontrol=false
  AM_CONDITIONAL(BUILD_MISSIONCONTROL, $have_missioncontrol)
  
  dnl gssdp
 -PKG_CHECK_MODULES(GSSDP, gssdp-1.0,
 -                  have_gssdp=true, have_gssdp=false)
 -AM_CONDITIONAL(BUILD_GSSDP, $have_gssdp)
--
++AC_ARG_WITH([gupnp],
++            AC_HELP_STRING([--with-gupnp], [build gupnp introspection]),,
++            [with_gupnp=yes])
+ 
 -dnl gupnp
 -if test $have_gssdp; then
 -    PKG_CHECK_MODULES(GUPNP, gupnp-1.0,
 -                      have_gupnp=true, have_gupnp=false)
 -else
 -    have_gupnp=false
-+AC_ARG_WITH([gupnp],
-+            AC_HELP_STRING([--with-gupnp], [build gupnp introspection]),,
-+            [with_gupnp=yes])
-+
 +if test x"$with_gupnp" = x"yes" ; then
 +   PKG_CHECK_MODULES(GSSDP, gssdp-1.0)
 +   PKG_CHECK_MODULES(GUPNP, gupnp-1.0)

@@ -23,9 +23,9 @@ DEPENDENCIES="
         pango? ( x11-libs/pango[>=1.16.0][X] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PN}-0.6.3-options.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-options.patch" )
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --without-dbus --without-poppler
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-poppler
 --without-gconf --without-libsoup --without-babl --without-nautilus
 --without-gnome-keyring --without-webkit-gtk --without-libnotify --without-gnio
 --without-clutter --without-clutter-gtk --without-clutter-cairo
@@ -33,5 +33,5 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( --without-dbus --without-poppler
 --without-gupnp --without-avahi --without-unique --without-gnome-menus
 --without-wnck )
 
-DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'atk' 'gtk' 'pango' )
+DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'atk' 'dbus' 'gtk' 'pango' )
 
