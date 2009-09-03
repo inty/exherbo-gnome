@@ -48,7 +48,6 @@ MYOPTIONS="
     networkmanager
     ssl
     spell
-    idn
 
     (
         gtk
@@ -70,6 +69,7 @@ build:
 build+run:
     dev-libs/glib
     dev-libs/libxml2
+    net-dns/libidn
     gtk? (
         x11-libs/gtk+
         x11-libs/libXScrnSaver
@@ -90,7 +90,6 @@ build+run:
     tk? ( dev-lang/tk )
     ssl? ( dev-libs/gnutls )
     spell? ( app-spell/gtkspell )
-    idn? ( net-dns/libidn )
     vv? (
         net-im/farsight2
     )
@@ -112,7 +111,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'tk'
     'ssl gnutls yes'
     'spell gtkspell'
-    'idn'
     'vv'
     'vv farsight'
 )
@@ -126,6 +124,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     # until we get exheres for these:
     '--disable-meanwhile'
     '--enable-nss=no'
+    '--enable-idn'
 )
 
 REMOTE_IDS="sourceforge:pidgin freshmeat:pidgin"
@@ -137,6 +136,4 @@ UPSTREAM_DOCUMENTATION="
     http://developer.pidgin.im/wiki/Using%20Pidgin
     http://developer.pidgin.im/wiki/FAQ
 "
-
-RESTRICT="test"
 
