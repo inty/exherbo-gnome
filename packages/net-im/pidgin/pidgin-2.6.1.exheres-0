@@ -40,6 +40,7 @@ MYOPTIONS="
     gstreamer [[ description = [ Needed for sound in the GTK+ client ] ]]
     avahi [[ description = [ Needed for the Bonjour protocol ] ]]
     tcl [[ description = [ Support plugins written in tcl/tk ] ]]
+    vv [[ description = [ Enable voice and video support ] ]]
     tk
     dbus
     nls
@@ -47,6 +48,7 @@ MYOPTIONS="
     networkmanager
     ssl
     spell
+    idn
 
     (
         gtk
@@ -54,6 +56,7 @@ MYOPTIONS="
     ) [[ number-selected = at-least-one ]]
 
     gstreamer [[ requires = gtk ]]
+    vv [[ requires = gstreamer ]]
     tcl [[ requires = tk ]]
     tk [[ requires = tcl ]]
 "
@@ -73,6 +76,7 @@ build+run:
     )
     gstreamer? (
         media-libs/gstreamer
+        media-plugins/gst-plugins-base
         media-plugins/gst-plugins-good
     )
     ncurses? ( sys-libs/ncurses )
@@ -86,6 +90,10 @@ build+run:
     tk? ( dev-lang/tk )
     ssl? ( dev-libs/gnutls )
     spell? ( app-spell/gtkspell )
+    idn? ( net-dns/libidn )
+    vv? (
+        net-im/farsight2
+    )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
@@ -97,12 +105,16 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'perl'
     'startup-notification'
     'gstreamer'
+    'gstreamer gstinterfaces'
     'avahi'
     'networkmanager nm'
     'tcl'
     'tk'
     'ssl gnutls yes'
     'spell gtkspell'
+    'idn'
+    'vv'
+    'vv farsight'
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
@@ -127,3 +139,4 @@ UPSTREAM_DOCUMENTATION="
 "
 
 RESTRICT="test"
+
