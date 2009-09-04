@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org multilib
 
 SUMMARY="Python bindings for GNOME platform components"
 HOMEPAGE="http://www.gnome.org"
@@ -45,6 +45,6 @@ src_prepare() {
 src_install() {
     default
 
-    rmdir "${IMAGE}"/usr/lib64/gnome-vfs-2.0/{modules,}
+    rmdir "${IMAGE}"/usr/$(get_libdir)/gnome-vfs-2.0/{modules,} || die "failed to remove empty dirs"
 }
 
