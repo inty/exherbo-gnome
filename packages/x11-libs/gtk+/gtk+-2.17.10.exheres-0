@@ -56,16 +56,16 @@ DEPENDENCIES="
         tiff? ( media-libs/tiff[>=3.5.7] )
         xinerama? ( x11-libs/libXinerama )
     run:
-          x11-themes/hicolor-icon-theme
+        x11-themes/hicolor-icon-theme
     post,suggested:
-          app-vim/gtk-syntax [[ description = [ A collection of vim syntax files for various GTK+ C extensions ] ]]
+        app-vim/gtk-syntax [[ description = [ A collection of vim syntax files for various GTK+ C extensions ] ]]
 "
 
 RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-libpng' '--with-gdktarget=x11' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg libjpeg' 'jpeg2000 libjasper' 'tiff libtiff' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups cups auto' 'doc gtk-doc' 'man-pages man' xinerama )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'doc gtk-doc' 'man-pages man' xinerama )
 
 pkg_preinst()
 {
