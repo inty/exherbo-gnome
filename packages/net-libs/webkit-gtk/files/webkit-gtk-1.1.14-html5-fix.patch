@@ -99,3 +99,40 @@
          { "setCallCloseOnWebViews", setCallCloseOnWebViewsCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
          { "setCanOpenWindows", setCanOpenWindowsCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
          { "setCacheModel", setCacheModelCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
+--- webkit-1.1.14/WebKit/gtk/webkit/webkitwebdatabase.cpp.orig	2009-09-09 21:33:34.000000000 -0700
++++ webkit-1.1.14/WebKit/gtk/webkit/webkitwebdatabase.cpp	2009-09-09 21:34:15.000000000 -0700
+@@ -23,8 +23,10 @@
+ #include "webkitprivate.h"
+ 
+ #include "CString.h"
++#if ENABLE(DOM_STORAGE)
+ #include "DatabaseDetails.h"
+ #include "DatabaseTracker.h"
++#endif
+ 
+ #include <glib/gi18n-lib.h>
+ 
+--- webkit-1.1.14/WebKit/gtk/webkit/webkitsecurityorigin.cpp.orig	2009-09-09 21:34:44.000000000 -0700
++++ webkit-1.1.14/WebKit/gtk/webkit/webkitsecurityorigin.cpp	2009-09-09 21:34:56.000000000 -0700
+@@ -24,7 +24,9 @@
+ 
+ #include "CString.h"
+ #include "PlatformString.h"
++#if ENABLE(DOM_STORAGE)
+ #include "DatabaseTracker.h"
++#endif
+ 
+ #include <glib/gi18n-lib.h>
+ 
+--- webkit-1.1.14/WebCore/bindings/js/ScriptController.cpp.orig	2009-09-09 21:43:42.000000000 -0700
++++ webkit-1.1.14/WebCore/bindings/js/ScriptController.cpp	2009-09-09 21:43:58.000000000 -0700
+@@ -33,7 +33,9 @@
+ #include "ScriptSourceCode.h"
+ #include "ScriptValue.h"
+ #include "Settings.h"
++#if ENABLE(DOM_STORAGE)
+ #include "StorageNamespace.h"
++#endif
+ #include "XSSAuditor.h"
+ #include "npruntime_impl.h"
+ #include "runtime_root.h"
