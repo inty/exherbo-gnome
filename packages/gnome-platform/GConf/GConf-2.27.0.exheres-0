@@ -1,0 +1,40 @@
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="GConf(iguration)"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="2"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="doc policykit"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.18]
+        doc? ( dev-doc/gtk-doc[>=1.0] )
+    build+run:
+        x11-libs/gtk+:2
+        dev-libs/glib:2[>2.14]
+        gnome-platform/ORBit2:2[>=2.4]
+        sys-apps/dbus[>=1.0.0]
+        dev-libs/dbus-glib:1[>=0.74]
+        dev-libs/libxml2
+        policykit? ( sys-auth/PolicyKit:0 )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' '--without-openldap' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'policykit defaults-service' )
+
+src_install() {
+    default
+
+    # This is where gconf keeps its schemas
+    keepdir /etc/gconf/gconf.xml.system
+    keepdir /etc/gconf/gconf.xml.defaults
+    keepdir /etc/gconf/gconf.xml.mandatory
+}
+
