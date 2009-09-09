@@ -13,10 +13,13 @@ HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
 LICENCES=""
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi doc hal
+MYOPTIONS="avahi
+brasero [[ description = [ ] ]]
+doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
-mtp [[ requires = [ hal ] ]]"
+mtp [[ requires = [ udev ] ]]
+udev"
 
 DEPENDENCIES="
     build:
@@ -35,18 +38,20 @@ DEPENDENCIES="
         gnome-platform/GConf:2
         dev-libs/dbus-glib:1[>=0.35]
         avahi? ( net-dns/avahi )
-        hal? ( sys-apps/hal[=0.5*] )
         ipod? ( media-libs/libgpod[>=0.6] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
         mtp? ( media-libs/libmtp[>=0.3.0] )
+        udev? ( sys-fs/udev[>=145][glib] )
 "
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-musicbrainz --without-libbrasero-media
---without-libnautilus-burn --disable-lirc --disable-python --disable-vala
---disable-browser-plugin )
-DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'avahi mdns avahi' 'avahi daap' hal ipod keyring mtp )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
+--disable-musicbrainz --disable-lirc --disable-vala --disable-browser-plugin
+--disable-fm-radio )
+
+DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'avahi mdns avahi' 'avahi daap'
+'brasero libbrasero-media' ipod keyring libnotify mtp 'udev gudev' )
 DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLES=( 'doc gtk-doc' )
 
