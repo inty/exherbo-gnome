@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="ipv6 policykit"
+MYOPTIONS="ipv6"
 
 DEPENDENCIES="
     build:
@@ -24,8 +24,7 @@ DEPENDENCIES="
         x11-libs/startup-notification[>=0.9]
         gnome-platform/GConf:2
         x11-libs/pango[X]
-        policykit? ( gnome-desktop/PolicyKit-gnome[>=0.7] )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 'policykit polkit' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
 
