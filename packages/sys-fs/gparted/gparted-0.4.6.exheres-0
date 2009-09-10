@@ -29,12 +29,7 @@ DEPENDENCIES="
     post,suggested:
         sys-fs/dosfstools
         sys-fs/mtools [[ description = [ required to read/write FAT16/32 volume labels ] ]]
-        (
-            app-editors/vim-runtime [[
-                note = [ https://bugzilla.redhat.com/show_bug.cgi?id=426769, according to gnome #574389, this dep can go for 0.4.6 ]
-            ]]
-            sys-fs/ntfsprogs
-        )
+        sys-fs/ntfsprogs
         sys-fs/reiserfsprogs
         sys-fs/xfsprogs
 "
@@ -47,3 +42,4 @@ DEPENDENCIES="
 #        kpartx ) [[ description = [ required for dmraid support ] ]]
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc scrollkeeper )
+
