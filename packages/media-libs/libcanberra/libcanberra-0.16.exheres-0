@@ -20,13 +20,13 @@ DEPENDENCIES="
         media-libs/libvorbis
         alsa? ( sys-sound/alsa-lib[>=1.0.0] )
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.15]
-                     media-plugins/gst-plugins-base[gstreamer_plugins:vorbis] )
+                     media-plugins/gst-plugins-base:0.10[gstreamer_plugins:vorbis] )
         gtk? ( x11-libs/gtk+:2[>=2.13.4]
                dev-libs/glib:2
                gnome-platform/GConf:2 )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.11] )
     post,recommended:
-          sound-themes/sound-theme-freedesktop
+        sound-themes/sound-theme-freedesktop
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
