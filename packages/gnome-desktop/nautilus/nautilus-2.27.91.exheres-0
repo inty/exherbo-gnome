@@ -31,7 +31,7 @@ DEPENDENCIES="
     run:
         gnome-desktop/gvfs[>=1.0.3]
     post,recommended:
-        sys-apps/gnome-mount[>=0.8]
+        base/gnome-disk-utility
     post,suggested:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
 "
