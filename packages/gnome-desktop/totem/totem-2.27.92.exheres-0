@@ -17,8 +17,8 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
-        media-libs/gstreamer:0.10[>=0.10.22]
-        media-plugins/gst-plugins-base:0.10[>=0.10.23.2]
+        media-libs/gstreamer:0.10[>=0.10.24]
+        media-plugins/gst-plugins-base:0.10[>=0.10.24]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         app-text/iso-codes
         dev-libs/glib:2[>=2.15]
@@ -46,6 +46,7 @@ DEPENDENCIES="
 # epc (publish)
 # jamendo
 # opensubtitles
+# youtube -- needs http://live.gnome.org/libgdata >= 0.40
 
 src_configure() {
     local plugins=dbus-service,gromit,media-player-keys,ontop,properties,screensaver,screenshot,skipto,thumbnail
@@ -55,7 +56,7 @@ src_configure() {
     fi
 
     if option python ; then
-        plugins+=,iplayer,pythonconsole,youtube
+        plugins+=,iplayer,pythonconsole
     fi
 
     if option tracker ; then
