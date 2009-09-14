@@ -32,6 +32,8 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
         doc? ( dev-doc/gtk-doc[>=1.0] )
+    run:
+        gnome-platform/gnome-mime-data
 "
 
 RESTRICT="test" # requires X and dogtail
