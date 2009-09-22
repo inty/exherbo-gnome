@@ -8,25 +8,22 @@ DOWNLOADS="http://0pointer.de/lennart/projects/pulseaudio/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="X alsa avahi bluetooth caps consolekit dbus gtk hal policykit ssl"
+MYOPTIONS="X alsa avahi bluetooth caps consolekit dbus gtk ipv6 ssl"
 
 DEPENDENCIES="
     build+run:
-        media-libs/libsndfile[>=1.0.10]
+        media-libs/libsndfile[>=1.0.20]
         media-libs/speex[>=1.2_beta]
-        dev-libs/liboil[>=0.3.0]
         dev-libs/glib:2[>=2.4]
         sys-libs/gdbm
-        sys-fs/udev
-        alsa? ( sys-sound/alsa-lib[>=1.0.17] )
+        sys-fs/udev[>=143]
+        alsa? ( sys-sound/alsa-lib[>=1.0.19] )
         avahi? ( net-dns/avahi[>=0.6.0][dbus] )
         bluetooth? ( net-wireless/bluez[>=3.0] )
         caps? ( sys-libs/libcap )
         consolekit? ( sys-auth/ConsoleKit )
         dbus? ( sys-apps/dbus[>=1.0] )
         gtk? ( x11-libs/gtk+:2[>=2.4] )
-        hal? ( sys-apps/hal[>=0.5.11] )
-        policykit? ( sys-auth/PolicyKit:0[>=0.7] )
         ssl? ( dev-libs/openssl[>=0.9] )
         group/audio
         group/pulse
@@ -41,17 +38,21 @@ DEPENDENCIES="
 RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
---disable-oss
+--disable-oss-output
+--disable-oss-wrapper
 --disable-solaris
 
 --localstatedir=/var
+--with-database=gdbm
 
 --disable-per-user-esound-socket
 
 --disable-gconf
+--disable-hal
 
 --enable-glib2
 --enable-udev
+--enable-manpages
 
 # unpackaed dependencies
 --disable-asyncns
@@ -62,7 +63,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( caps )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa avahi 'bluetooth bluez' dbus 'gtk gtk2' hal 'policykit polkit' 'ssl openssl' 'X x11' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa avahi 'bluetooth bluez' dbus 'gtk gtk2' ipv6 'ssl openssl' 'X x11' )
 
 src_install() {
     default
