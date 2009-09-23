@@ -3,7 +3,7 @@
 
 require gnome-2
 
-DESCRIPTION="Additional applets for GNOME panel"
+SUMMARY="Additional applets for GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"

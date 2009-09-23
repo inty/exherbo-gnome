@@ -3,7 +3,7 @@
 
 require gnome.org
 
-DESCRIPTION="Process Monitoring API"
+SUMMARY="Process Monitoring API"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
