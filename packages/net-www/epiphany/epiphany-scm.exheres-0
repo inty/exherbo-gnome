@@ -34,11 +34,11 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-doc/gtk-doc
         gnome-desktop/gnome-doc-utils
-        doc? ( dev-util/gtk-doc[>=1.0] )
+        doc? ( dev-doc/gtk-doc[>=1.0] )
     run:
-          gnome-desktop/gnome-icon-theme
+        gnome-desktop/gnome-icon-theme
     post,suggested:
-          net-plugins/epiphany-extensions
+        net-plugins/epiphany-extensions
 "
 
 AT_M4DIR=( "m4" )

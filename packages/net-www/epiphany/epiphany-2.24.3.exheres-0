@@ -32,7 +32,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-util/gtk-doc[>=1.0] )
+        doc? ( dev-doc/gtk-doc[>=1.0] )
     run:
           gnome-desktop/gnome-icon-theme
     post,suggested:
