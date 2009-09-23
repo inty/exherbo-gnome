@@ -25,7 +25,7 @@ DEPENDENCIES="
         dev-libs/libxml2[>=2.6.0]
         gnome-platform/libglade:2
         x11-libs/gtk+:2[>=2.11.6]
-        net-www/epiphany:2.27[>=2.27.4]
+        net-www/epiphany:2.28[>=2.27.4]
         net-libs/webkit-gtk:1
         epiphany_extensions:rss? ( sys-apps/dbus[>=0.34]
                                    dev-libs/dbus-glib:1[>=0.34] )
