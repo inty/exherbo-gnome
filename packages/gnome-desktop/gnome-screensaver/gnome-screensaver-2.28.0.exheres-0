@@ -21,7 +21,6 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.6.1]
         gnome-desktop/gnome-desktop:2[>=2.23.2]
         gnome-desktop/gnome-menus[>=2.11.1]
-        gnome-platform/libglade:2[>=2.5.0]
         dev-libs/glib:2[>=2.15.0]
         gnome-desktop/libgnomekbd[>=0.1]
         libnotify? ( x11-libs/libnotify[>=0.4.4] )
