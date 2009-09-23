@@ -25,6 +25,7 @@ gdm_src_install() {
     keepdir /var/lib/gdm        # GDM_WORKING_DIR
     keepdir /var/run/gdm        # GDM_XAUTH_DIR
     keepdir /var/log/gdm        # GDM_LOG_DIR
+    keepdir /var/cache/gdm
 
     fperms g+w /var/lib/gdm
 
