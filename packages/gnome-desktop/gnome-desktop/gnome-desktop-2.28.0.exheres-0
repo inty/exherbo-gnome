@@ -35,11 +35,11 @@ DEPENDENCIES="
 
 
 src_prepare() {
-    expatch -p1 "${FILES}"/${PNV}-about.patch
     gtkdocize --copy || die "gtkdocize failed"
     autotools_src_prepare
 }
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-about.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gnome-about' )
 
