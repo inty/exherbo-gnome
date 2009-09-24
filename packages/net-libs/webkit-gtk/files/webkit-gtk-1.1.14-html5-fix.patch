@@ -54,51 +54,6 @@
  
  namespace WebCore {
  
---- webkit-1.1.13/WebKitTools/DumpRenderTree/gtk/LayoutTestControllerGtk.cpp	2009-08-25 21:50:45.000000000 -0700
-+++ webkit-1.1.13/WebKitTools/DumpRenderTree/gtk/LayoutTestControllerGtk.cpp	2009-08-25 21:52:19.000000000 -0700
-@@ -354,10 +354,12 @@
-     // FIXME: implement
- }
- 
-+#if ENABLE(DOM_STORAGE)
- void LayoutTestController::setAppCacheMaximumSize(unsigned long long size)
- {
-     webkit_application_cache_set_maximum_size(size);
- }
-+#endif
- 
- bool LayoutTestController::pauseAnimationAtTimeOnElementWithId(JSStringRef animationName, double time, JSStringRef elementId)
- {    
---- webkit-1.1.13/WebKitTools/DumpRenderTree/LayoutTestController.cpp	2009-08-25 21:56:20.000000000 -0700
-+++ webkit-1.1.13/WebKitTools/DumpRenderTree/LayoutTestController.cpp	2009-08-25 21:57:42.000000000 -0700
-@@ -535,6 +535,7 @@
-     return JSValueMakeUndefined(context);
- }
- 
-+#if ENABLE(DOM_STORAGE)
- static JSValueRef setAppCacheMaximumSizeCallback(JSContextRef context, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception)
- {
-     // Has mac implementation
-@@ -550,6 +551,7 @@
-     return JSValueMakeUndefined(context);
- 
- }
-+#endif
- 
- static JSValueRef setAuthorAndUserStylesEnabledCallback(JSContextRef context, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception)
- {
---- webkit-1.1.13/WebKitTools/DumpRenderTree/LayoutTestController.cpp	2009-08-25 21:59:11.000000000 -0700
-+++ webkit-1.1.13/WebKitTools/DumpRenderTree/LayoutTestController.cpp	2009-08-25 21:59:55.000000000 -0700
-@@ -1013,7 +1013,9 @@
-         { "repaintSweepHorizontally", repaintSweepHorizontallyCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
-         { "setAcceptsEditing", setAcceptsEditingCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
-         { "setAuthorAndUserStylesEnabled", setAuthorAndUserStylesEnabledCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
-+#if ENABLE(DOM_STORAGE)
-         { "setAppCacheMaximumSize", setAppCacheMaximumSizeCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete }, 
-+#endif
-         { "setCallCloseOnWebViews", setCallCloseOnWebViewsCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
-         { "setCanOpenWindows", setCanOpenWindowsCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
-         { "setCacheModel", setCacheModelCallback, kJSPropertyAttributeReadOnly | kJSPropertyAttributeDontDelete },
 --- webkit-1.1.14/WebKit/gtk/webkit/webkitwebdatabase.cpp.orig	2009-09-09 21:33:34.000000000 -0700
 +++ webkit-1.1.14/WebKit/gtk/webkit/webkitwebdatabase.cpp	2009-09-09 21:34:15.000000000 -0700
 @@ -23,8 +23,10 @@
@@ -136,3 +91,15 @@
  #include "XSSAuditor.h"
  #include "npruntime_impl.h"
  #include "runtime_root.h"
+--- webkit-1.1.15.1/WebKitTools/DumpRenderTree/gtk/LayoutTestControllerGtk.cpp	2009-09-23 18:34:21.000000000 -0700
++++ webkit-1.1.15.1/WebKitTools/DumpRenderTree/gtk/LayoutTestControllerGtk.cpp	2009-09-23 18:34:38.000000000 -0700
+@@ -391,7 +391,9 @@
+ 
+ void LayoutTestController::setAppCacheMaximumSize(unsigned long long size)
+ {
++#if ENABLE(DOM_STORAGE)
+     webkit_application_cache_set_maximum_size(size);
++#endif
+ }
+ 
+ bool LayoutTestController::pauseAnimationAtTimeOnElementWithId(JSStringRef animationName, double time, JSStringRef elementId)
