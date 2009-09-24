@@ -24,7 +24,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.16]
         gnome-desktop/gnome-keyring:1
         dev-libs/libxml2[>=2.6.32]
-        dev-libs/gtk-vnc:1[>=0.3.8]
+        dev-libs/gtk-vnc:1[>=0.3.9]
         applet? ( gnome-desktop/gnome-panel[>=2.0.0] )
         avahi? ( net-dns/avahi[>=0.6.22][gtk] )
         ssh? ( dev-libs/vte[>=0.20] )
