@@ -1,6 +1,8 @@
 # Copyright 2009 Wulf C. Krueger <philantrop@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require gnome.org
+
 SUMMARY="A VNC viewer widget for GTK"
 DESCRIPTION="
 GTK-VNC is a VNC viewer widget for GTK+. It is built using coroutines, allowing
@@ -11,12 +13,9 @@ written in C and a binding for Python using PyGTK is available. The networking
 layer supports connections over both IPv4 and IPv6. Example code illustrates how
 to build a vncviewer replacement using either C or Python.
 "
-HOMEPAGE="http://gtk-vnc.sourceforge.net/"
-DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
+HOMEPAGE="http://live.gnome.org/${PN}"
 
 LICENCES="LGPL-2.1"
-
-REMOTE_IDS="freshmeat:${PN/-} sourceforge:${PN}"
 
 src_install() {
     default
