@@ -5,7 +5,6 @@ require gnome-2
 
 SUMMARY="Disk Utility for GNOME"
 HOMEPAGE="http://www.gnome.org/"
-DOWNLOADS="http://hal.freedesktop.org/releases/${PNVR}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -25,7 +24,8 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.17.2]
         dev-libs/unique:1[>=1.0]
         x11-libs/libnotify[>=0.3.0]
-        base/DeviceKit-disks[>=006]
+        base/DeviceKit-disks[>=007]
+        base/libatasmart[>=0.14]
         nautilus? ( gnome-desktop/nautilus[>=2.24] )
 "
 
