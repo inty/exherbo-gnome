@@ -49,14 +49,14 @@ DEPENDENCIES="
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
 
 src_configure() {
-    local plugins=dbus-service,gromit,media-player-keys,ontop,properties,screensaver,screenshot,skipto,thumbnail
+    local plugins=gromit,media-player-keys,ontop,properties,screensaver,screenshot,skipto,thumbnail
 
     if option bluetooth ; then
         plugins+=,bemused
     fi
 
     if option python ; then
-        plugins+=,iplayer,pythonconsole
+        plugins+=,dbus-service,iplayer,pythonconsole
     fi
 
     if option tracker ; then
