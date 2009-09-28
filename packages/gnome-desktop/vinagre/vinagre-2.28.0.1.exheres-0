@@ -33,3 +33,11 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet avahi ssh telepathy )
 
+src_install() {
+    default
+
+    if ! option applet ; then
+        rmdir "${IMAGE}/usr/libexec" || die "failed to remove empty directories"
+    fi
+}
+
