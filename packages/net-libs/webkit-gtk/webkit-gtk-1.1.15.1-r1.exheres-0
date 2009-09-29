@@ -38,7 +38,10 @@ WORK="${WORKBASE}/webkit-${PV}"
 
 AT_M4DIR=( "autotools" )
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PN}-1.1.14-html5-fix.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/${PN}-1.1.14-html5-fix.patch"
+    "${FILES}/${PNV}-hardcoded-sse2-instructions.patch"
+)
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
                                        'html5 channel-messaging'
