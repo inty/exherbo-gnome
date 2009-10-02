@@ -18,7 +18,10 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.12]
         x11-libs/gtk+:2[>=2.11]
         dbus? ( dev-libs/dbus-glib[>=0.70] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.3] )
+        gobject-introspection? (
+            gnome-desktop/gir-repository[gtk]
+            gnome-desktop/gobject-introspection:1[>=0.6.3]
+        )
 "
 
 WORK="${WORKBASE}/lib${PNV}"
