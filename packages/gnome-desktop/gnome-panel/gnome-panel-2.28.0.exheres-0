@@ -60,7 +60,9 @@ src_install() {
     default
 
     if ! option policykit ; then
-        rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} || die "failed to prune empty dirs"
+        rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} \
+              "${IMAGE}"/usr/share/dbus-1/{system-services,} \
+              "${IMAGE}"/etc/dbus-1/{system.d,} || die "failed to prune empty dirs"
     fi
 }
 
