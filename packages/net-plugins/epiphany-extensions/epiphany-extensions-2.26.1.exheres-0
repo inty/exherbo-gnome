@@ -28,8 +28,8 @@ DEPENDENCIES="
         gnome-platform/GConf:2
         epiphany_extensions:rss? ( sys-apps/dbus[>=0.34]
                                    dev-libs/dbus-glib:1[>=0.34] )
-        epiphany_extensions:adblock? ( dev-libs/pcre[unicode] )
-        epiphany_extensions:greasemonkey? ( dev-libs/pcre[unicode] )
+        epiphany_extensions:adblock? ( dev-libs/pcre )
+        epiphany_extensions:greasemonkey? ( dev-libs/pcre )
 "
 
 src_configure() {

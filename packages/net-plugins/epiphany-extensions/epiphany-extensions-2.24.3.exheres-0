@@ -23,7 +23,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.11.6]
         epiphany_extensions:rss? ( sys-apps/dbus[>=0.34]
                                    dev-libs/dbus-glib[>=0.34] )
-        epiphany_extensions:adblock? ( dev-libs/pcre[unicode] )
+        epiphany_extensions:adblock? ( dev-libs/pcre )
     build:
         sys-devel/gettext
         dev-util/intltool[>=0.35.0]
