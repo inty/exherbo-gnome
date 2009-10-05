@@ -5,7 +5,7 @@ require gnome.org
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
 SUMMARY="Temporary repository of gobject-introspection repositories"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/GObjectIntrospection"
 
 LICENCES="LGPL-2"
 SLOT="0"

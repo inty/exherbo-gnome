@@ -8,7 +8,7 @@ DESCRIPTION="
 Rhythmbox is your one-stop multimedia application, supporting a music library,
 multiple playlists, internet radio, and more.
 "
-HOMEPAGE="http://www.gnome.org/projects/rhythmbox/"
+HOMEPAGE="http://projects.gnome.org/rhythmbox"
 
 LICENCES=""
 SLOT="0"

@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="Documentation Utilities"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/GnomeDocUtils"
 
 LICENCES="( GPL-2 LGPL-2 )"
 SLOT="0"

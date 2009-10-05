@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
 
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="1"

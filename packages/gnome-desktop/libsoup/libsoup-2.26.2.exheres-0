@@ -4,7 +4,7 @@
 require gnome.org autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
 SUMMARY="HTTP library implemented in C"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/LibSoup"
 
 LICENCES="LGPL-2"
 SLOT="2.4"

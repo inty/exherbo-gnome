@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="Backend store for contact data"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://projects.gnome.org/evolution"
 
 LICENCES="LGPL-2"
 SLOT="1.2"

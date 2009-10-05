@@ -6,7 +6,7 @@ require gnome-2
 export_exlib_phases src_install
 
 SUMMARY="GTK+ based login manager"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/GDM"
 
 LICENCES="GPL-2"
 SLOT="0"

@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="GConf(iguration)"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://projects.gnome.org/gconf"
 
 LICENCES="LGPL-2"
 SLOT="2"

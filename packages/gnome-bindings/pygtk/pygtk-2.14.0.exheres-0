@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="Python bindings for GTK+"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://www.pygtk.org"
 
 LICENCES="LGPL-2.1"
 SLOT="2"

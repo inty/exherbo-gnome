@@ -4,7 +4,7 @@
 require gnome.org multilib
 
 SUMMARY="Python bindings for GNOME platform components"
-HOMEPAGE="http://www.gnome.org"
+HOMEPAGE="http://www.pygtk.org"
 
 LICENCES="GPL-2"
 SLOT="0"

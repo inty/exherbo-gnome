@@ -4,7 +4,7 @@
 require gnome-2
 
 SUMMARY="GTK+ based Web Browser"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://projects.gnome.org/epiphany"
 DOWNLOADS=""
 
 SCM_REPOSITORY="http://svn.gnome.org/svn/${PN}"

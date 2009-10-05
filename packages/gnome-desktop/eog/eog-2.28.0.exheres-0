@@ -4,7 +4,7 @@
 require gnome-2
 
 SUMMARY="Image Viewer"
-HOMEPAGE="http://www.gnome.org"
+HOMEPAGE="http://projects.gnome.org/eog"
 
 LICENCES="GPL-2"
 SLOT="2.20"

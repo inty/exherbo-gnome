@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="HTTP library implemented in C"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/LibSoup"
 
 LICENCES="LGPL-2"
 SLOT="2.4"

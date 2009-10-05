@@ -4,7 +4,7 @@
 require gnome.org
 
 SUMMARY="Tools for GIR"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://live.gnome.org/GObjectIntrospection"
 
 LICENCES="( LGPL-2 GPL-2 )"
 SLOT="1"

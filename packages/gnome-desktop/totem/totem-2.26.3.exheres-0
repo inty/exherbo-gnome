@@ -4,7 +4,7 @@
 require gnome-2
 
 SUMMARY="Media Player for the GNOME Desktop"
-HOMEPAGE="http://www.gnome.org/"
+HOMEPAGE="http://projects.gnome.org/totem"
 
 LICENCES="GPL-2"
 SLOT="0"
