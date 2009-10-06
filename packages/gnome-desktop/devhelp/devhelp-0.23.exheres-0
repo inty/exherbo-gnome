@@ -1,0 +1,30 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="API Browser for GNOME"
+HOMEPAGE="http://live.gnome.org/devhelp"
+
+LICENCES="GPL-2"
+SLOT="1"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        net-libs/webkit-gtk
+        dev-libs/glib:2[>=2.10]
+        x11-libs/gtk+:2[>=2.10]
+        gnome-platform/GConf:2[>=2.6]
+        gnome-desktop/libwnck[>=2.10]
+    build+run:
+        sys-devel/gettext
+        dev-util/intltool[>=0.40.0]
+"
+
+src_install() {
+    default
+    rmdir "${IMAGE}/usr/share/devhelp/images" || die "failed to prune empty directories"
+}
+
