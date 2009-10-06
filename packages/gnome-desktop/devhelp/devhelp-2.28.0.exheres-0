@@ -12,19 +12,17 @@ PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build:
-        net-libs/webkit-gtk
-        dev-libs/glib:2[>=2.10]
-        x11-libs/gtk+:2[>=2.10]
-        gnome-platform/GConf:2[>=2.6]
-        gnome-desktop/libwnck[>=2.10]
     build+run:
         sys-devel/gettext
         dev-util/intltool[>=0.40.0]
-"
+        dev-util/pkg-config[>=0.20]
+    build:
+        x11-libs/gtk+:2[>=2.10]
+        net-libs/webkit-gtk:1[>=1.1.13]
+        dev-libs/unique:1
+        dev-libs/glib:2[>=2.10]
+        gnome-platform/GConf:2[>=2.6]
+        gnome-desktop/libwnck:1[>=2.10]
 
-src_install() {
-    default
-    rmdir "${IMAGE}/usr/share/devhelp/images" || die "failed to prune empty directories"
-}
+"
 
