@@ -27,13 +27,14 @@ DEPENDENCIES="
         dev-util/pkg-config
         sys-devel/gettext
     build+run:
-        dev-libs/glib[>=2.18.4]
-        net-utils/gmime[>=2.2.22]
-        x11-libs/gtk+[>=2.14.7]
-        dev-libs/pcre[>=7.8]
-        spell? ( app-spell/gtkspell[>=2.0.15] )
+        dev-libs/glib:2[>=2.4.0]
+        dev-libs/pcre[>=5.0]
+        net-utils/gmime:2.0[>=2.1.9]
+        x11-libs/gtk+:2[>=2.4.0]
+        spell? ( app-spell/gtkspell:2[>=2.0.7] )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc44.patch )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "spell gtkspell" )
 DEFAULT_SRC_INSTALL_EXCLUDE=( README.mingw README.windows README.windows.in )
+
