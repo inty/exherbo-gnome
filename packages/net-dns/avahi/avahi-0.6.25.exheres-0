@@ -35,7 +35,7 @@ DEPENDENCIES="
             group/avahi-autoipd
             user/avahi-autoipd
         )
-    post,recommended:
+    recommendation:
         net-dns/nss-mdns
 "
 
