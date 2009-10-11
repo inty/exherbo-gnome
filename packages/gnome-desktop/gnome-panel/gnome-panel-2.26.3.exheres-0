@@ -37,7 +37,7 @@ DEPENDENCIES="
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
         policykit? ( gnome-desktop/PolicyKit-gnome[>=0.7] )
         x11-libs/libXau
-    post,suggested:
+    suggestion:
         gnome-desktop/gnome-applets[>=2.23.3]
 "
 

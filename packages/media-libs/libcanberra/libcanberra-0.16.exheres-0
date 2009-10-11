@@ -25,7 +25,7 @@ DEPENDENCIES="
                dev-libs/glib:2
                gnome-platform/GConf:2 )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.11] )
-    post,recommended:
+    recommendation:
         sound-themes/sound-theme-freedesktop
 "
 

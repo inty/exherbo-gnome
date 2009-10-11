@@ -25,7 +25,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.0.0]
         x11-libs/startup-notification[>=0.5]
         x11-libs/libXrandr[>=1.2]
-    post,suggested:
+    suggestion:
         gnome-bindings/pygtk [[ description = [
             Necessary if you plan on running /usr/bin/gnome-about
         ] ]]

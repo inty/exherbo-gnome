@@ -38,7 +38,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.19]
         doc? ( dev-doc/gtk-doc )
-    post,suggested:
+    suggestion:
         gnome-desktop/gnome-media[>=2.25]
 "
 

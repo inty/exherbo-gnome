@@ -30,9 +30,9 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.4] )
     run:
         gnome-desktop/gvfs[>=1.0.3]
-    post,recommended:
+    recommendation:
         sys-apps/gnome-mount[>=0.8]
-    post,suggested:
+    suggestion:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
 "
 

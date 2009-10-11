@@ -38,7 +38,7 @@ DEPENDENCIES="
         hal? ( sys-apps/hal[>=0.5.3] )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
         policykit? ( sys-auth/PolicyKit:1[>=0.92] )
-    post,suggested:
+    suggestion:
         gnome-desktop/gnome-media[>=2.25]
 "
 
