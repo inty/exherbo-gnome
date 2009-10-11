@@ -35,7 +35,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.0] )
     run:
           gnome-desktop/gnome-icon-theme
-    post,suggested:
+    suggestion:
           net-plugins/epiphany-extensions
 "
 

@@ -26,7 +26,7 @@ DEPENDENCIES="
         gnome-bindings/gtkmm
         doc? ( gnome-desktop/gnome-doc-utils )
 
-    post,suggested:
+    suggestion:
         sys-fs/dosfstools
         sys-fs/mtools [[ description = [ required to read/write FAT16/32 volume labels ] ]]
         sys-fs/ntfsprogs

@@ -57,7 +57,7 @@ DEPENDENCIES="
         xinerama? ( x11-libs/libXinerama )
     run:
         x11-themes/hicolor-icon-theme
-    post,suggested:
+    suggestion:
         app-vim/gtk-syntax [[ description = [ A collection of vim syntax files for various GTK+ C extensions ] ]]
 "
 

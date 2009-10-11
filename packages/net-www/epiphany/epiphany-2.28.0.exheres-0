@@ -34,7 +34,7 @@ DEPENDENCIES="
         networkmanager? ( net-apps/NetworkManager )
     run:
         gnome-desktop/gnome-icon-theme
-    post,suggested:
+    suggestion:
         net-plugins/epiphany-extensions[>=2.27]
 "
 
