@@ -22,7 +22,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-keyring:1
         gnome-platform/GConf:2
         dev-db/sqlite:3
-        gnutls? ( dev-libs/gnutls
+        gnutls? ( dev-libs/gnutls[>=2.1.7]
                   dev-libs/libgcrypt )
 "
 
