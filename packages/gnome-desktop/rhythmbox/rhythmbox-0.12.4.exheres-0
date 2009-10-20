@@ -3,7 +3,7 @@
 
 require gnome.org
 
-SUMMARY=""
+SUMMARY="An integrated music management application"
 DESCRIPTION="
 Rhythmbox is your one-stop multimedia application, supporting a music library,
 multiple playlists, internet radio, and more.
