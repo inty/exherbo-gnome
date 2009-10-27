@@ -11,6 +11,9 @@ SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
+# Tests segfault, bug #165
+RESTRICT="test"
+
 DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.8.0]
