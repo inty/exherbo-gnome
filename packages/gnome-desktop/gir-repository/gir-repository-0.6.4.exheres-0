@@ -33,5 +33,5 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( --without-poppler
 --without-gupnp --without-avahi --without-unique --without-gnome-menus
 --without-wnck )
 
-DEFAULT_SRC_CONFIGURE_OPTIONS_WITH=( 'atk' 'dbus' 'gtk' 'pango' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'atk' 'dbus' 'gtk' 'pango' )
 

@@ -32,5 +32,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-libburnia' '--disable-cdrtools' '--enable-cdrkit' '--disable-search' '--disable-caches' )
-DEFAULT_SRC_CONFIGURE_OPTIONS_ENABLES=( 'doc gtk-doc' nautilus playlist )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' nautilus playlist )
 
