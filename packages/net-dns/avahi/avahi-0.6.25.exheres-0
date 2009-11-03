@@ -12,7 +12,11 @@ DOWNLOADS="http://avahi.org/download/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="autoipd doc dbus gdbm gtk ipv6"
+MYOPTIONS="autoipd doc dbus gdbm gtk ipv6 qt4
+    dns_sd [[
+        requires = [ dbus ]
+        description = [ Libdns_sd compatibility layer for avahi ]
+    ]]"
 
 DEPENDENCIES="
     build+run:
@@ -23,6 +27,7 @@ DEPENDENCIES="
         gdbm? ( sys-libs/gdbm )
         gtk? ( x11-libs/gtk+:2[>=2.4]
                gnome-platform/libglade[>=2.4] )
+        qt4? ( x11-libs/qt:4 )
         group/avahi
         group/netdev
         user/avahi
@@ -52,7 +57,6 @@ src_prepare() {
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--localstatedir=/var'
     '--with-distro=gentoo'
-    '--disable-compat-libdns_sd'
     '--disable-compat-howl'
     '--disable-python-dbus'
     '--disable-xmltoman'
@@ -60,12 +64,19 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-python'
     '--disable-pygtk'
     '--disable-qt3'
-    '--disable-qt4'
     '--disable-mono'
     '--disable-monodoc'
 )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'autoipd' 'doc doxygen-doc' 'dbus' 'gtk' 'gdbm' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'autoipd'
+    'dns_sd compat-libdns_sd'
+    'doc doxygen-doc'
+    'dbus'
+    'gtk'
+    'gdbm'
+    'qt4'
+)
 
 src_compile() {
     emake
