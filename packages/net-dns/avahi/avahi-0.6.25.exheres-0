@@ -12,7 +12,8 @@ DOWNLOADS="http://avahi.org/download/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="autoipd doc dbus gdbm gtk ipv6 qt4
+MYOPTIONS="doc dbus gdbm gtk ipv6 qt4
+    autoipd [[ description = [ Build and install the IPv4LL (RFC3927) network address configuration daemon ] ]]
     dns_sd [[
         requires = [ dbus ]
         description = [ Libdns_sd compatibility layer for avahi ]

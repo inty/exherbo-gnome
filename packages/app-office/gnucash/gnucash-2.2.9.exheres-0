@@ -23,7 +23,11 @@ SLOT="0"
 LICENCES="GPL-2"
 PLATFORMS="~amd64 ~x86"
 
-MYOPTIONS="chipcard debug examples hbci ofx sql [[ description = [ Enables the PostgreSQL backend. ] ]]"
+MYOPTIONS="chipcard debug examples hbci ofx sql
+    chipcard [[ description = [ Enable support for chipcard reading and processing ] ]]
+    hbci     [[ description = [ Enable HBCI support, for connecting to some internet banks ] ]]
+    sql      [[ description = [ Enables the PostgreSQL backend. ] ]]
+"
 
 DEPENDENCIES="
     build:
