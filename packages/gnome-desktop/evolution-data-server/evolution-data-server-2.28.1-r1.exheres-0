@@ -29,6 +29,7 @@ DEPENDENCIES="
         gnome-platform/libglade:2
         dev-libs/libxml2
         gnome-desktop/libsoup:2.4[>=2.3.0]
+        sys-libs/db:=
         dev-db/sqlite:3[>=3.5]
         calendar? ( office-libs/libical[>=0.43] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.20.1] )
@@ -36,7 +37,10 @@ DEPENDENCIES="
         weather? ( gnome-desktop/libgweather[>=2.25.4] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-largefile' '--hates=docdir' )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--with-libdb=/usr'
+    '--enable-largefile'
+)
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'weather' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'calendar' 'doc gtk-doc' 'ipv6' 'keyring gnome-keyring' 'ssl nss' 'ssl smime' )
 
