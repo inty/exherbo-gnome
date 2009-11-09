@@ -81,5 +81,10 @@ src_install() {
         rmdir "${IMAGE}/etc/xdg/autostart" \
               "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
     fi
+
+    if ! option alsa ; then
+        edo rmdir "${IMAGE}"/usr/share/pulseaudio/{alsa-mixer/{paths,profile-sets,},}
+        edo rmdir "${IMAGE}"/lib/{udev/{rules.d,},}
+    fi
 }
 
