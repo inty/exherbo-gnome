@@ -49,10 +49,10 @@ DEPENDENCIES="
         x11-libs/gtk+[>=2.16.0]
         x11-libs/pango[>=1.24.0]
         hbci? (
-            dev-libs/aqbanking[>=3.8.2] [[ description = [ qt3 support must be enabled ] ]]
+            finance/aqbanking[>=3.8.2] [[ description = [ qt3 support must be enabled ] ]]
             chipcard? ( dev-libs/libchipcard[>=4.2.7] )
         )
-        ofx? ( dev-libs/libofx[>=0.7.0] )
+        ofx? ( finance/libofx[>=0.7.0] )
         sql? ( dev-db/postgresql[>=8.3.6] )
 "
 
