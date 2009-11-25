@@ -7,7 +7,7 @@ SUMMARY="A panel applet to configure networking via NetworkManager"
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager"
 DOWNLOADS="mirror://gnome/sources/${PN}/$(ever range 1-2)/${PNV/_/-}.tar.bz2"
 
-LICENCES=""
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
@@ -17,12 +17,12 @@ DEPENDENCIES="
         sys-devel/gettext
         dev-util/intltool[>=0.35.0]
     build+run:
+        gnome-platform/GConf:2
         dev-libs/glib:2[>=2.10]
         dev-libs/dbus-glib:1[>=0.74]
-        net-apps/NetworkManager[>=0.7.1.997]
+        net-apps/NetworkManager[>=0.7.1.998]
         x11-libs/gtk+:2[>=2.14]
         gnome-platform/libglade:2
-        gnome-platform/GConf:2
         gnome-desktop/gnome-keyring:1
         x11-libs/libnotify[>=0.4.3]
         sys-apps/dbus[>=1.2.6]
