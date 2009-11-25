@@ -9,7 +9,7 @@ HOMEPAGE="http://live.gnome.org/LibSoup"
 LICENCES="LGPL-2"
 SLOT="2.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc gnutls"
+MYOPTIONS="doc gconf gnutls"
 
 DEPENDENCIES="
     build:
@@ -18,14 +18,15 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.21.3]
         dev-libs/libxml2
-        net-libs/libproxy:1
-        gnome-desktop/gnome-keyring:1
-        gnome-platform/GConf:2
-        dev-db/sqlite:3
+        gconf? (
+            dev-db/sqlite:3
+            net-libs/libproxy:1
+            gnome-desktop/gnome-keyring:1
+            gnome-platform/GConf:2 )
         gnutls? ( dev-libs/gnutls[>=2.1.7]
                   dev-libs/libgcrypt )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --with-gnome )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gconf gnome' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gnutls ssl' )
 
