@@ -19,7 +19,7 @@ doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
 mtp [[ requires = [ udev ] ]]
-udev"
+udev [[ description = [ use udev for hardware detection ] ]]"
 
 DEPENDENCIES="
     build:
