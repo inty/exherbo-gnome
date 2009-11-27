@@ -26,9 +26,7 @@ DEPENDENCIES="
         x11-libs/startup-notification[>=0.5]
         x11-libs/libXrandr[>=1.2]
     suggestion:
-        gnome-bindings/pygtk [[ description = [
-            Necessary if you plan on running /usr/bin/gnome-about
-        ] ]]
+        gnome-bindings/pygtk [[ description = [ Necessary if you plan on running /usr/bin/gnome-about ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
