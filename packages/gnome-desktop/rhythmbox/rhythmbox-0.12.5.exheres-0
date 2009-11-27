@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome-2
 
 SUMMARY="An integrated music management application"
 DESCRIPTION="
@@ -14,7 +14,7 @@ LICENCES=""
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi
-brasero [[ description = [ ] ]]
+brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
 doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
