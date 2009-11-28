@@ -28,7 +28,5 @@ gdm_src_install() {
     keepdir /var/cache/gdm
 
     fperms g+w /var/lib/gdm
-
-    doinitd "${FILES}/gdm"
 }
 
