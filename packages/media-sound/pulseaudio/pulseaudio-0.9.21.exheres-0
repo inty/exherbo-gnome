@@ -8,9 +8,12 @@ DOWNLOADS="http://0pointer.de/lennart/projects/pulseaudio/${PNV}.tar.gz"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="X alsa avahi bluetooth caps consolekit dbus gtk ipv6 ssl"
+MYOPTIONS="X alsa avahi bluetooth [[ requires = [ dbus ] ]] caps consolekit dbus gtk ipv6 ssl"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
     build+run:
         media-libs/libsndfile[>=1.0.20]
         media-libs/speex[>=1.2_beta]
@@ -25,14 +28,12 @@ DEPENDENCIES="
         dbus? ( sys-apps/dbus[>=1.0] )
         gtk? ( x11-libs/gtk+:2[>=2.4] )
         ssl? ( dev-libs/openssl[>=0.9] )
+
         group/audio
         group/pulse
         group/pulse-rt
         group/pulse-access
         user/pulse
-    build:
-        dev-util/pkg-config[>=0.20]
-        dev-util/intltool[>=0.35.0]
 "
 
 RESTRICT="test"
@@ -74,12 +75,11 @@ src_install() {
     fi
 
     if ! option bluetooth ; then
-        rmdir "${IMAGE}/usr/libexec/"{pulse,} || die "failed to remove empty directories"
+        edo rmdir "${IMAGE}"/usr/libexec/{pulse,}
     fi
 
     if ! option X ; then
-        rmdir "${IMAGE}/etc/xdg/autostart" \
-              "${IMAGE}/etc/xdg/" || die "failed to remove empty directories"
+        edo rmdir "${IMAGE}"/etc/xdg/{autostart,}
     fi
 
     if ! option alsa ; then
