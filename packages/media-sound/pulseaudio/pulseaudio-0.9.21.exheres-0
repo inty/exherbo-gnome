@@ -71,18 +71,16 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa avahi 'bluetooth bluez' dbus 'gtk gt
 src_install() {
     default
 
-    if ! option consolekit ; then
-        sed -i -e '/module-console-kit/{ /^#/!{ s/^/#/ } }' "${IMAGE}/etc/pulse/default.pa" ||
-            die "failed to disable consolekit"
-    fi
+    insinto /etc/security/limits.d/
+    doins "${FILES}/pulse-rt.conf"
 
-    if ! option bluetooth ; then
-        edo rmdir "${IMAGE}"/usr/libexec/{pulse,}
-    fi
+    keepdir /usr/libexec/pulse
+    diropts -o pulse -g pulse -m0755 ; keepdir /var/run/pulse
 
-    if ! option X ; then
-        edo rmdir "${IMAGE}"/etc/xdg/{autostart,}
-    fi
+    option avahi && edo sed -i -e '/module-zeroconf-publish/{ /^#/{ s/^#// } }' "${IMAGE}/etc/pulse/default.pa"
+    option !consolekit && edo sed -i -e '/module-console-kit/{ /^#/!{ s/^/#/ } }' "${IMAGE}/etc/pulse/default.pa"
+
+    option !X && edo rmdir "${IMAGE}"/etc/xdg/{autostart,}
 
     if ! option alsa ; then
         edo rmdir "${IMAGE}"/usr/share/pulseaudio/{alsa-mixer/{paths,profile-sets,},}
