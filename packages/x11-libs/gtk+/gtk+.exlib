@@ -16,6 +16,8 @@ src_install() {
 
     # use XFT
     echo 'GDK_USE_XFT=1' > "${IMAGE}/etc/env.d/50gtk2"
+
+    edo find "${IMAGE}"/usr/share -depth -type d -empty -delete
 }
 
 pkg_postinst() {
