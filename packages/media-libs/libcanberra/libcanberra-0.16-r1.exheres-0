@@ -32,3 +32,10 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' gtk gstreamer 'pulseaudio pulse' )
 
+src_install() {
+    default
+
+    exeinto /etc/X11/xinit/xinitrc.d/
+    doexe "${FILES}/50-libcanberra"
+}
+
