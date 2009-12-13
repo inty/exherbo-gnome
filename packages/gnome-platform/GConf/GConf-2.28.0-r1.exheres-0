@@ -32,6 +32,10 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'policykit defaults-service
 src_install() {
     default
 
+    hereenvd 80.gconf-schemes << EOF
+CONFIG_PROTECT_MASK=\"/etc/gconf/schemas/\"
+EOF
+
     # This is where gconf keeps its schemas
     keepdir /etc/gconf/gconf.xml.system
     keepdir /etc/gconf/gconf.xml.defaults
