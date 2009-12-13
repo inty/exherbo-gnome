@@ -17,7 +17,7 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         net-misc/openssh
         dev-libs/libxml2
-        gnome-desktop/libsoup:2.4[>=2.23.91]
+        gnome-desktop/libsoup:2.4[>=2.23.91][gconf(-)]
         avahi? ( net-dns/avahi[>=0.6] )
         bluetooth? ( dev-libs/expat
                      dev-libs/dbus-glib

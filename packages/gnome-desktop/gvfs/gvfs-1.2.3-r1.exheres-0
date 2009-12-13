@@ -33,7 +33,7 @@ DEPENDENCIES="
         gconf? ( gnome-platform/GConf:2 )
         gphoto2? ( media-libs/libgphoto2[>=2.4] ) [[ requires = [ hal ] ]]
         hal? ( sys-apps/hal[>=0.5.10] )
-        http? ( gnome-desktop/libsoup:2.4[>=2.25.1] )
+        http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
 "
 
