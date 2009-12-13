@@ -1,7 +1,7 @@
 # Copyright 2009 Mike Kelly
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gnome-2 autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
 
 SUMMARY="A multi-protocol, multi-platform Instant Messaging client."
 DESCRIPTION="
@@ -94,6 +94,8 @@ build+run:
         net-im/farsight2
     )
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PNV}-fix-libpurple-tests.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gtk gtkui'
