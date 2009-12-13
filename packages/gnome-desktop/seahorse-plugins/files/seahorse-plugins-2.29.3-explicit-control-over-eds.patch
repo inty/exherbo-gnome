@@ -1,0 +1,17 @@
+--- seahorse-plugins-2.29.3/configure.in	2009-12-12 20:49:27.000000000 -0800
++++ seahorse-plugins-2.29.3/configure.in	2009-12-12 20:53:00.000000000 -0800
+@@ -531,7 +531,13 @@
+ dnl libebook
+ dnl ==============================================
+ 
+-PKG_CHECK_MODULES(LIBEBOOK, [libebook-1.2 >= 1.7.90], [enable_ebook=yes],[enable_ebook=no])
++AC_ARG_ENABLE([eds],
++              AC_HELP_STRING([--enable-eds], [enable eds integration]),,
++              [enable_ebook=yes])
++
++if test x"$enable_ebook" = x"yes" ; then
++   PKG_CHECK_MODULES(LIBEBOOK, [libebook-1.2 >= 1.7.90])
++fi
+ 
+ AC_SUBST([EBOOK_CFLAGS])
+ AC_SUBST([EBOOK_LIBS])

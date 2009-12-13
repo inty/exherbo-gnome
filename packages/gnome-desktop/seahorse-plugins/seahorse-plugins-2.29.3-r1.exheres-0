@@ -1,6 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 require gnome-2
 
 SUMMARY="Plugins for Seahorse"
@@ -9,7 +10,7 @@ HOMEPAGE="http://live.gnome.org/Seahorse"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="applet epiphany gedit libnotify nautilus" # eds
+MYOPTIONS="applet eds epiphany gedit libnotify nautilus"
 
 DEPENDENCIES="
     build:
@@ -24,17 +25,22 @@ DEPENDENCIES="
         gnome-desktop/gnome-keyring:1[>=2.25.5]
         dev-libs/dbus-glib:1[>=0.35]
         gnome-desktop/seahorse[>=${PV}]
-        gnome-desktop/evolution-data-server:1.2[>=1.7.90]
         applet? ( gnome-desktop/gnome-panel[>=2.9.4] )
-        gedit? ( app-editors/gedit[>=2.20] )
+        eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90] )
         epiphany? ( dev-libs/libxml2[>=2.6]
                     net-www/epiphany:2.26 )
+        gedit? ( app-editors/gedit[>=2.20] )
         libnotify? ( x11-libs/libnotify[>=0.3] )
         nautilus? ( gnome-desktop/nautilus[>=2.12.0] )
 "
 
+AT_M4DIR=( m4 )
+AM_OPTS="--foreign"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/seahorse-plugins-2.29.3-explicit-control-over-eds.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--disable-update-mime-database' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit epiphany libnotify nautilus )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit eds epiphany libnotify nautilus )
 
 src_install() {
     default
