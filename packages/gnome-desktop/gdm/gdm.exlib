@@ -28,5 +28,6 @@ gdm_src_install() {
     keepdir /var/cache/gdm
 
     fperms g+w /var/lib/gdm
+    fowners gdm:gdm /var/lib/gdm
 }
 
