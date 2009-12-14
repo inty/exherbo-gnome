@@ -8,7 +8,8 @@ HOMEPAGE="http://projects.gnome.org/epiphany"
 DOWNLOADS=""
 
 SCM_REPOSITORY="http://svn.gnome.org/svn/${PN}"
-require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.9 ] ]
+
+require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 LICENCES="GPL-2"
 SLOT="2.22"
