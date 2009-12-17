@@ -44,6 +44,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'networkma
 src_install() {
     default
 
-    rmdir "${IMAGE}/usr/share/epiphany/art" || die "failed to remove empty directory"
+    edo rmdir "${IMAGE}/usr/share/epiphany/art"
 }
 
