@@ -33,7 +33,7 @@ src_install() {
     default
 
     hereenvd 80.gconf-schemes << EOF
-CONFIG_PROTECT_MASK=\"/etc/gconf/schemas/\"
+CONFIG_PROTECT_MASK="/etc/gconf/schemas"
 EOF
 
     # This is where gconf keeps its schemas
