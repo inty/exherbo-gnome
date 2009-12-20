@@ -35,6 +35,6 @@ src_install() {
     default
 
     # remove empty directories
-    rmdir "${IMAGE}"/usr/share/gedit-2/plugins/{indent,changecase} || die "failed to remove empty directories"
+    edo rmdir "${IMAGE}"/usr/share/gedit-2/plugins/{indent,changecase}
 }
 
