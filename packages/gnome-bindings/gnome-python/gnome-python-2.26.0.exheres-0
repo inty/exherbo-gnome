@@ -45,6 +45,6 @@ src_prepare() {
 src_install() {
     default
 
-    rmdir "${IMAGE}"/usr/$(get_libdir)/gnome-vfs-2.0/{modules,} || die "failed to remove empty dirs"
+    keepdir /usr/$(get_libdir)/gnome-vfs-2.0/modules
 }
 
