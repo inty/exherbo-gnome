@@ -1,0 +1,37 @@
+# Copyright 2009 Adriaan Leijnse <adriaan@leijnse.net>
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org multilib
+
+SUMMARY="Python bindings for GNOME platform components"
+HOMEPAGE="http://www.pygtk.org"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+doc
+gtkhtml
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/python:*[>=2.2]
+        gnome-bindings/pygtk:2[>=2.10.3]
+        gnome-bindings/pygobject:2
+        gnome-bindings/gnome-python[bonobo]
+        gtkhtml? ( dev-libs/gtkhtml )
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc )
+"
+
+RESTRICT="test" # dont work with recent python
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-allbindings --enable-eggtray --enable-eggrecent )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc docs'
+    'gtkhtml gtkhtml2'
+)
+
