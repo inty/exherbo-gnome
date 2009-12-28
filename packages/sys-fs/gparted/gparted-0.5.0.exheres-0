@@ -19,11 +19,12 @@ MYOPTIONS="doc scrollkeeper"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        dev-util/intltool[>=0.35.5]
+        dev-util/pkg-config[>=0.9.0]
         sys-devel/gettext
     build+run:
-        sys-fs/parted
-        gnome-bindings/gtkmm
+        sys-fs/parted[>=1.7.1]
+        gnome-bindings/gtkmm:2.4[>=2.14.0]
         doc? ( gnome-desktop/gnome-doc-utils )
 
     suggestion:
