@@ -11,7 +11,9 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="grecord [[ requires = [ profiles ] description = [ build the gnome sound recorder ] ]]
 gstreamer [[ description = [ enable support for gstreamer properties ] ]]
-profiles [[ description = [ enable gstreamer profiles ] ]]"
+profiles [[ description = [ enable gstreamer profiles ] ]]
+pulseaudio
+"
 
 DEPENDENCIES="
     build:
@@ -25,7 +27,7 @@ DEPENDENCIES="
         media-libs/libcanberra[>=0.4][gtk]
         dev-libs/libxml2
         dev-libs/unique:1
-        media-sound/pulseaudio[>=0.9.15]
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.15] )
         grecord? ( media-libs/gstreamer:0.10[>=0.10.3]
                    media-plugins/gst-plugins-base:0.10[>=0.10.3] )
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.23]
@@ -38,6 +40,6 @@ DEPENDENCIES="
 
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-gstmix' '--enable-pulseaudio' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( grecord 'gstreamer gstprops' profiles )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-gstmix' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( grecord 'gstreamer gstprops' profiles pulseaudio )
 
