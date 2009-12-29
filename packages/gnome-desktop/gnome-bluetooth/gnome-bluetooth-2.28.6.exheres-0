@@ -8,7 +8,7 @@ HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
 
 LICENCES="( GPL-2 LGPL-2.1 )"
 SLOT="1"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
 DEPENDENCIES="
