@@ -22,9 +22,12 @@ gdm_src_install() {
 
     rmdir "${IMAGE}/var/gdm" || die "failed to remove empty directory"
 
-    keepdir /var/lib/gdm        # GDM_WORKING_DIR
-    keepdir /var/run/gdm        # GDM_XAUTH_DIR
-    keepdir /var/log/gdm        # GDM_LOG_DIR
+    keepdir /var/lib/gdm            # GDM_WORKING_DIR
+    keepdir /var/run/gdm            # GDM_XAUTH_DIR
+    if ever atleast "2.29.0" ; then
+    keepdir /var/run/gdm/greeter    # GDM_SCREENSHOT_DIR
+    fi
+    keepdir /var/log/gdm            # GDM_LOG_DIR
     keepdir /var/cache/gdm
 
     fperms g+w /var/lib/gdm
