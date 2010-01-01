@@ -12,11 +12,11 @@ PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="accessibility"
 
 DEPENDENCIES="
-    build+run:
-        x11-libs/gtk+:2[>=2.12]
     build:
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
+    build+run:
+        x11-libs/gtk+:2[>=2.12]
 "
 
 RESTRICT="test" # requires X
