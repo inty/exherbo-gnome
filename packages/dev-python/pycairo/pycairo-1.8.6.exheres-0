@@ -26,3 +26,9 @@ src_prepare() {
     rm py-compile
     ln -s "$(type -P true)" py-compile
 }
+
+src_install() {
+    default
+    python_bytecompile
+}
+

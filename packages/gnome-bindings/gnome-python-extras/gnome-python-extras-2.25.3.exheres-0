@@ -2,7 +2,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org multilib
+require python gnome.org multilib
 
 SUMMARY="Python bindings for GNOME platform components"
 HOMEPAGE="http://www.pygtk.org"
@@ -34,4 +34,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'doc docs'
     'gtkhtml gtkhtml2'
 )
+
+src_install() {
+    default
+    python_bytecompile
+}
 

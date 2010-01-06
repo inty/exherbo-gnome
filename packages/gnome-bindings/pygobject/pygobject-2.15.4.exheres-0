@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org
+require python gnome.org
 
 SUMMARY="Python Bindings for GObject"
 HOMEPAGE="http://www.pygtk.org"
@@ -34,3 +34,9 @@ src_prepare() {
     rm py-compile
     ln -s "$(type -P true)" py-compile
 }
+
+src_install() {
+    default
+    python_bytecompile
+}
+
