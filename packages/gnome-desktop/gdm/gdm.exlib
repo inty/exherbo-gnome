@@ -24,8 +24,8 @@ gdm_src_install() {
 
     keepdir /var/lib/gdm            # GDM_WORKING_DIR
     keepdir /var/run/gdm            # GDM_XAUTH_DIR
-    if ever atleast "2.29.0" ; then
-    keepdir /var/run/gdm/greeter    # GDM_SCREENSHOT_DIR
+    if ever at_least 2.29.0 ; then
+        keepdir /var/run/gdm/greeter    # GDM_SCREENSHOT_DIR
     fi
     keepdir /var/log/gdm            # GDM_LOG_DIR
     keepdir /var/cache/gdm
