@@ -11,7 +11,7 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="nautilus"
 
 DEPENDENCIES="
-    build:
+    build+run:
         gnome-platform/GConf:2
         dev-libs/glib:2[>=2.15.0]
         gnome-desktop/gnome-keyring:1[>=0.4]
@@ -23,7 +23,7 @@ DEPENDENCIES="
                     gnome-desktop/nautilus[>=2.21.2]
                     sys-apps/hal[>=0.5.8.1]
                     sys-apps/dbus[>=0.60] )
-    build+run:
+    build:
         sys-devel/gettext
         dev-util/intltool[>=0.35]
 "
