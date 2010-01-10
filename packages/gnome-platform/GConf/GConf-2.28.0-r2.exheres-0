@@ -32,7 +32,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'policykit defaults-service
 src_install() {
     default
 
-    hereenvd 80gconf-schemes << EOF
+    hereenvd 80gconf-schemas << EOF
 CONFIG_PROTECT_MASK="/etc/gconf/schemas"
 EOF
 
