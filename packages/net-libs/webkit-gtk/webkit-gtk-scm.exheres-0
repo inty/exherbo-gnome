@@ -10,7 +10,8 @@ require scm-git
 
 SLOT="1"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc html5 icon-database keyring"
+MYOPTIONS="doc html5 icon-database
+    keyring [[ description = [ Use gnome-keyring for password storage ] ]]"
 
 DEPENDENCIES="
     build+run:
