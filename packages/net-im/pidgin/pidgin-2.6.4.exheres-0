@@ -43,7 +43,6 @@ MYOPTIONS="
     vv [[ description = [ Enable voice and video support ] ]]
     tk
     dbus
-    nls
     startup-notification
     networkmanager
     ssl
@@ -65,6 +64,7 @@ build:
     dev-lang/perl
     dev-util/intltool
     dev-perl/XML-Parser
+    sys-devel/gettext
     gtk? ( x11-proto/scrnsaverproto )
 build+run:
     dev-libs/glib
@@ -81,7 +81,6 @@ build+run:
     )
     ncurses? ( sys-libs/ncurses )
     dbus? ( dev-libs/dbus-glib )
-    nls? ( sys-devel/gettext )
     perl? ( dev-lang/perl )
     startup-notification? ( x11-libs/startup-notification )
     avahi? ( net-dns/avahi )
@@ -101,7 +100,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gtk gtkui'
     'gtk screensaver'
     'ncurses consoleui'
-    'nls'
     'dbus'
     'perl'
     'startup-notification'
@@ -125,8 +123,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     # until we get exheres for these:
     '--disable-meanwhile'
-    '--enable-nss=no'
     '--enable-idn'
+    '--enable-nss=no'
+    '--enable-nls'
 )
 
 REMOTE_IDS="sourceforge:pidgin freshmeat:pidgin"
