@@ -94,8 +94,6 @@ build+run:
     )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}/${PNV}-fix-libpurple-tests.patch" )
-
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gtk gtkui'
     'gtk screensaver'
