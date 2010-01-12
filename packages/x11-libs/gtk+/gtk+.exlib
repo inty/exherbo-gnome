@@ -16,6 +16,10 @@ src_install() {
 
     # use XFT
     echo 'GDK_USE_XFT=1' > "${IMAGE}/etc/env.d/50gtk2"
+
+    if option !man-pages ; then
+        edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+    fi
 }
 
 pkg_postinst() {
