@@ -18,7 +18,9 @@ MYOPTIONS="cups doc
 jpeg2000 [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
 man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]
 xinerama
-linguas: ${LANGS}"
+linguas: ${LANGS}
+multibuild_c: 32 64
+"
 
 DEPENDENCIES="
     build:
@@ -34,26 +36,26 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.11] )
         xinerama? ( x11-proto/xineramaproto )
     build+run:
-        dev-libs/atk[>=1.29.2]
-        dev-libs/glib:2[>=2.21.3]
-        x11-libs/cairo[>=1.6][X]
-        x11-libs/pango[>=1.20][X]
-        media-libs/libpng
-        media-libs/jpeg[>=6b]
-        media-libs/tiff[>=3.5.7]
-        media-libs/fontconfig
-        x11-libs/libX11
-        x11-libs/libXext
-        x11-libs/libXrender
-        x11-libs/libXi
-        x11-libs/libXrandr[>=1.2]
-        x11-libs/libXcursor
-        x11-libs/libXfixes
-        x11-libs/libXcomposite
-        x11-libs/libXdamage
-        cups? ( net-print/cups[>=1.2] )
-        jpeg2000? ( media-libs/jasper )
-        xinerama? ( x11-libs/libXinerama )
+        dev-libs/atk[>=1.29.2][multibuild_c:*(+)?]
+        dev-libs/glib:2[>=2.21.3][multibuild_c:*(+)?]
+        x11-libs/cairo[>=1.6][X][multibuild_c:*(+)?]
+        x11-libs/pango[>=1.20][X][multibuild_c:*(+)?]
+        media-libs/libpng[multibuild_c:*(+)?]
+        media-libs/jpeg[>=6b][multibuild_c:*(+)?]
+        media-libs/tiff[>=3.5.7][multibuild_c:*(+)?]
+        media-libs/fontconfig[multibuild_c:*(+)?]
+        x11-libs/libX11[multibuild_c:*(+)?]
+        x11-libs/libXext[multibuild_c:*(+)?]
+        x11-libs/libXrender[multibuild_c:*(+)?]
+        x11-libs/libXi[multibuild_c:*(+)?]
+        x11-libs/libXrandr[>=1.2][multibuild_c:*(+)?]
+        x11-libs/libXcursor[multibuild_c:*(+)?]
+        x11-libs/libXfixes[multibuild_c:*(+)?]
+        x11-libs/libXcomposite[multibuild_c:*(+)?]
+        x11-libs/libXdamage[multibuild_c:*(+)?]
+        cups? ( net-print/cups[>=1.2][multibuild_c:*(+)?] )
+        jpeg2000? ( media-libs/jasper[multibuild_c:*(+)?] )
+        xinerama? ( x11-libs/libXinerama[multibuild_c:*(+)?] )
     run:
         x11-themes/hicolor-icon-theme
     suggestion:
