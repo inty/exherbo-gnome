@@ -1,0 +1,48 @@
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Additional applets for GNOME panel"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="hal gstreamer ipv6 networkmanager policykit"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.19]
+        gnome-desktop/gnome-doc-utils[>=0.3.1]
+        app-text/docbook-xml-dtd:4.3
+    build+run:
+        gnome-desktop/gnome-icon-theme[>=2.15.91]
+        dev-libs/glib:2[>=2.18.0]
+        x11-libs/gtk+:2[>=2.13.0]
+        gnome-desktop/gnome-panel[>=2.13.4]
+        gnome-desktop/gnome-desktop[>=2.11.1]
+        gnome-desktop/libgtop[>=2.11.92]
+        gnome-desktop/libgnomekbd[>=2.21.4.1]
+        gnome-desktop/gnome-settings-daemon
+        gnome-desktop/libwnck:1[>=2.9.3]
+        x11-libs/libnotify[>=0.3.2]
+        sys-apps/dbus[>=1.1.2]
+        dev-libs/dbus-glib:1[>=0.74]
+        dev-libs/libxml2[>=2.5.0]
+        gnome-desktop/libgweather[>=2.22.1]
+        gnome-platform/GConf:2[>=2.8]
+        app-text/rarian[>=0.8.0]
+        gstreamer? ( media-libs/gstreamer:0.10[>=0.10.2] )
+        hal? ( sys-apps/hal[>=0.5.3] )
+        networkmanager? ( net-apps/NetworkManager[>=0.7] )
+        policykit? ( sys-auth/PolicyKit:1[>=0.92] )
+    suggestion:
+        gnome-desktop/gnome-media[>=2.25]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-battstat )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( hal )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gstreamer mixer-applet' ipv6 networkmanager 'policykit polkit' )
+
