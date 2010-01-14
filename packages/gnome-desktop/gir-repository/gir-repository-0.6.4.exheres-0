@@ -10,7 +10,7 @@ HOMEPAGE="http://live.gnome.org/GObjectIntrospection"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="atk dbus gtk pango
+MYOPTIONS="atk dbus gtk libsoup pango
     gtk [[ requires = [ atk pango ] ]]
 "
 
@@ -20,18 +20,19 @@ DEPENDENCIES="
         atk? ( dev-libs/atk )
         dbus? ( dev-libs/dbus-glib:1 )
         gtk? ( x11-libs/gtk+:2[>=2.12.0] )
+        libsoup? ( gnome-desktop/libsoup:2.4 )
         pango? ( x11-libs/pango[>=1.16.0][X] )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-options.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-poppler
---without-gconf --without-libsoup --without-babl --without-nautilus
+--without-gconf --without-babl --without-nautilus
 --without-gnome-keyring --without-webkit-gtk --without-libnotify --without-gnio
 --without-clutter --without-clutter-gtk --without-clutter-cairo
 --without-gstreamer --without-gtksourceview --without-vte --without-goocanvas
 --without-gupnp --without-avahi --without-unique --without-gnome-menus
 --without-wnck )
 
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'atk' 'dbus' 'gtk' 'pango' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'atk' 'dbus' 'gtk' 'libsoup' 'pango' )
 
