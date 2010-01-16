@@ -36,7 +36,7 @@ DEPENDENCIES="
         gnome-desktop/libgweather[>=2.27.90]
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar(+)] )
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
-        policykit? ( sys-auth/PolicyKit:1[>=0.91] )
+        policykit? ( sys-auth/polkit:1[>=0.91] )
     suggestion:
         gnome-desktop/gnome-applets[>=2.23.3]
 "

@@ -37,7 +37,7 @@ DEPENDENCIES="
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.2] )
         hal? ( sys-apps/hal[>=0.5.3] )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
-        policykit? ( sys-auth/PolicyKit:1[>=0.92] )
+        policykit? ( sys-auth/polkit:1[>=0.92] )
     suggestion:
         gnome-desktop/gnome-media[>=2.25]
 "
