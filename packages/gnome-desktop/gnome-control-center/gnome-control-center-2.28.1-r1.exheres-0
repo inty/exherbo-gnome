@@ -34,7 +34,7 @@ DEPENDENCIES="
         x11-libs/pango[X]
         x11-libs/libXi[>=1.2]
         gnome-desktop/libgnomekbd[>=2.27.4]
-        x11-libs/libxklavier[>=4.0]
+        x11-libs/libxklavier[=4*]
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90] )
 "
 

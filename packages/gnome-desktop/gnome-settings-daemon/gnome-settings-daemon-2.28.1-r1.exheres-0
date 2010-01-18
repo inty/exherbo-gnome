@@ -23,7 +23,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-desktop:2[>=2.26.3]
         media-libs/fontconfig
         gnome-desktop/libgnomekbd[>=2.21.4]
-        x11-libs/libxklavier[>=4.0]
+        x11-libs/libxklavier[=4*]
         libnotify? ( x11-libs/libnotify[>=0.4.5] )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.12] )
 "

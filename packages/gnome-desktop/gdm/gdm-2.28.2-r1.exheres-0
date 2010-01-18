@@ -19,7 +19,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.6.1]
         gnome-platform/libglade:2[>=1.99.2]
         media-libs/fontconfig[>=2.5]
-        x11-libs/libxklavier[>=4.0]
+        x11-libs/libxklavier[=4*]
         gnome-desktop/gnome-panel[>=2.0.0]
         sys-apps/DeviceKit-power[>=008]
         sys-libs/pam
