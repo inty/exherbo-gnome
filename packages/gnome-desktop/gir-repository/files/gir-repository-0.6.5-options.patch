@@ -2,7 +2,7 @@ diff --git a/configure.ac b/configure.ac
 index 995cd72..d0a4b60 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -21,125 +21,215 @@ AC_CONFIG_MACRO_DIR([m4])
+@@ -21,125 +21,209 @@ AC_CONFIG_MACRO_DIR([m4])
  GOBJECT_INTROSPECTION_REQUIRE(0.6.4)
  
  dnl dbus
@@ -34,23 +34,15 @@ index 995cd72..d0a4b60 100644
 +AM_CONDITIONAL(BUILD_ATK, test x"$with_atk" = x"yes")
  
  dnl pango
++have_pango=false
 -PKG_CHECK_MODULES(PANGO, pango >= 1.16.0,
 -                  have_pango=true, have_pango=false)
--AM_CONDITIONAL(BUILD_PANGO, $have_pango)
-+AC_ARG_WITH([pango],
-+            AC_HELP_STRING([--with-pango], [build pango introspection]),,
-+            [with_pango=yes])
-+
-+if test x"$with_pango" = x"yes" ; then
-+   PKG_CHECK_MODULES(PANGO, pango >= 1.16.0)
-+   PKG_CHECK_MODULES(PANGOXFT, pangoxft >= 1.16.0)
-+fi
+ AM_CONDITIONAL(BUILD_PANGO, $have_pango)
  
++have_pangoxft=false
 -PKG_CHECK_MODULES(PANGOXFT, pangoxft >= 1.16.0,
 -		  have_pangoxft=true, have_pangoxft=false)
--AM_CONDITIONAL(BUILD_PANGOXFT, $have_pangoxft)
-+AM_CONDITIONAL(BUILD_PANGO, test x"$with_pango" = x"yes")
-+AM_CONDITIONAL(BUILD_PANGOXFT, test x"$with_pango" = x"yes")
+ AM_CONDITIONAL(BUILD_PANGOXFT, $have_pangoxft)
  
  dnl poppler
 -PKG_CHECK_MODULES(POPPLER, poppler-glib >= 0.8,
