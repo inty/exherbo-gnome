@@ -19,8 +19,8 @@ src_install() {
 GDK_USE_XFT=1
 EOF
 
-    if option !man-pages ; then
-        edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+    if [[ -d ${IMAGE}/usr/share/man/ ]] ; then
+        edo find "${IMAGE}"/usr/share/man/ -type d -empty -delete
     fi
 }
 
