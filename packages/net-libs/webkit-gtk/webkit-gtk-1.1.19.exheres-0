@@ -12,10 +12,8 @@ DEPENDENCIES="
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.10] )
-        gobject-introspection? (
-            gnome-desktop/gobject-introspection:1[>=0.6.2]
-            gnome-desktop/gir-repository[>=0.6.2][libsoup(-)]
-        )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.2]
+                                 gnome-desktop/gir-repository[>=0.6.2][libsoup(-)] )
     build+run:
         app-spell/enchant[>=0.22]
         media-libs/jpeg[>=6b]
