@@ -13,23 +13,16 @@ PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
     build+run:
-        dev-lang/perl:=[>=5.6]
-        dev-lang/python:=[>=2.3]
         dev-libs/libxslt
         dev-libs/glib:2[>=2.6]
+        dev-lang/perl:=[>=5.6]
+        dev-lang/python:=[>=2.3]
         app-text/docbook-xml-dtd:4.3
         app-text/docbook-xsl-stylesheets
-    build:
-        gnome-desktop/gnome-doc-utils[>=0.3.2]
-        dev-util/pkg-config[>=0.20]
 "
 
-src_test() {
-    if ! has_version ${CATEGORY}/${PN} ; then
-        ewarn "${PN} tests need ${PN} installed"
-        return
-    fi
-    default
-}
+RESTRICT="test" # test content is missing
 
