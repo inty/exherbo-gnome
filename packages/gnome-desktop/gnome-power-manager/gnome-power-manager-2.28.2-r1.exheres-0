@@ -35,6 +35,8 @@ DEPENDENCIES="
         dev-libs/unique:1[>=0.9.4]
         sys-apps/DeviceKit-power[>=008]
         hal? ( sys-apps/hal[>=0.5.8] )
+    run:
+        sys-power/pm-utils[>=1.3.0-rc1]
 "
 
 RESTRICT="test" # requires X
