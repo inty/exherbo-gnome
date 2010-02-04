@@ -14,11 +14,13 @@ src_install() {
     # setup default icon theme
     echo 'gtk-fallback-icon-theme = "gnome"' > "${IMAGE}/etc/gtk-2.0/gtkrc"
 
-    # use XFT
-    echo 'GDK_USE_XFT=1' > "${IMAGE}/etc/env.d/50gtk2"
+    hereenvd 50gtk2 <<-EOF
+# use XFT
+GDK_USE_XFT=1
+EOF
 
-    if ! option man-pages ; then
-        edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+    if [[ -d ${IMAGE}/usr/share/man/ ]] ; then
+        edo find "${IMAGE}"/usr/share/man/ -type d -empty -delete
     fi
 }
 

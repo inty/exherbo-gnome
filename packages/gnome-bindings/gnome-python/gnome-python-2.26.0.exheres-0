@@ -3,7 +3,7 @@
 
 require python gnome.org multilib
 
-SUMMARY="Python bindings for GNOME platform components"
+SUMMARY="[DEPRECATED] Python bindings for GNOME platform components"
 HOMEPAGE="http://www.pygtk.org"
 
 LICENCES="GPL-2"

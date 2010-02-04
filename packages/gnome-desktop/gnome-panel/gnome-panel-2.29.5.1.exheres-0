@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Panel Application for GNOME"
 HOMEPAGE="http://www.gnome.org/"
@@ -23,10 +22,9 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.15.1]
         x11-libs/pango[>=1.15.4]
         dev-libs/glib:2[>=2.18.0]
-        gnome-platform/libgnome:2[>=2.13]
-        gnome-platform/libgnomeui:2[>=2.5.4]
         gnome-platform/libbonoboui[>=2.1.1]
-        gnome-desktop/gnome-desktop:2[>=2.11.1]
+        media-libs/libcanberra[gtk]
+        gnome-desktop/gnome-desktop:2[>=2.24.0]
         gnome-platform/GConf:2[>=2.6.1]
         gnome-desktop/gnome-menus[>=2.27.92]
         dev-libs/dbus-glib:1[>=0.60]
@@ -41,28 +39,16 @@ DEPENDENCIES="
         gnome-desktop/gnome-applets[>=2.23.3]
 "
 
-AT_M4DIR=( m4 )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-in-process-applets=clock,notification-area,wncklet' '--enable-deprecations' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' 'networkmanager network-manager' 'policykit polkit' )
-
-src_prepare() {
-    expatch "${FILES}/gnome-panel-2.27.92-include-gnome-desktop-for-clock-applet.patch"
-
-    sed -i -e 's/GNOME_DEBUG_CHECK/dnl &/' \
-           -e 's/GNOME_COMPILE_WARNINGS/dnl &/' \
-    "${WORK}/configure.in"
-
-    autotools_src_prepare
-}
 
 src_install() {
     default
 
     if ! option policykit ; then
-        rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} \
-              "${IMAGE}"/usr/share/dbus-1/{system-services,} \
-              "${IMAGE}"/etc/dbus-1/{system.d,} || die "failed to prune empty dirs"
+        edo rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} \
+                  "${IMAGE}"/usr/share/dbus-1/{system-services,} \
+                  "${IMAGE}"/etc/dbus-1/{system.d,}
     fi
 }
 

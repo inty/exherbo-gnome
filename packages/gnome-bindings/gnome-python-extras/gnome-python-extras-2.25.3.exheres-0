@@ -10,21 +10,19 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="
-doc
-gtkhtml
-"
+MYOPTIONS="doc gtkhtml gtkspell"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-doc/gtk-doc )
     build+run:
         dev-lang/python:*[>=2.2]
         gnome-bindings/pygtk:2[>=2.10.3]
         gnome-bindings/pygobject:2
         gnome-bindings/gnome-python[bonobo]
         gtkhtml? ( dev-libs/gtkhtml )
-    build:
-        dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc )
+        gtkspell? ( app-spell/gtkspell:2[>=2.0.0] )
 "
 
 RESTRICT="test" # dont work with recent python
@@ -33,6 +31,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-allbindings --enable-eggtray --enable-e
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'doc docs'
     'gtkhtml gtkhtml2'
+    'gtkspell'
 )
 
 src_install() {

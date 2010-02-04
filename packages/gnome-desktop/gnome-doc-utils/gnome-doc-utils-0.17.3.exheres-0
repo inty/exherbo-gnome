@@ -18,7 +18,9 @@ DEPENDENCIES="
         app-text/docbook-xml-dtd:4.4
         app-text/rarian
     build+run:
-        dev-libs/libxml2[>=2.6.12][python]
+        dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.8]
+    test:
+        app-text/scrollkeeper-dtd
 "
 

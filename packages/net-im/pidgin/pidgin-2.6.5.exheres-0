@@ -60,38 +60,38 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-build:
-    dev-lang/perl
-    dev-util/intltool
-    dev-perl/XML-Parser
-    sys-devel/gettext
-    gtk? ( x11-proto/scrnsaverproto )
-build+run:
-    dev-libs/glib
-    dev-libs/libxml2
-    net-dns/libidn
-    gtk? (
-        x11-libs/gtk+
-        x11-libs/libXScrnSaver
-    )
-    gstreamer? (
-        media-libs/gstreamer
-        media-plugins/gst-plugins-base
-        media-plugins/gst-plugins-good
-    )
-    ncurses? ( sys-libs/ncurses )
-    dbus? ( dev-libs/dbus-glib )
-    perl? ( dev-lang/perl )
-    startup-notification? ( x11-libs/startup-notification )
-    avahi? ( net-dns/avahi )
-    networkmanager? ( net-apps/NetworkManager )
-    tcl? ( dev-lang/tcl )
-    tk? ( dev-lang/tk )
-    ssl? ( dev-libs/gnutls )
-    spell? ( app-spell/gtkspell )
-    vv? (
-        net-im/farsight2
-    )
+    build:
+        dev-lang/perl
+        dev-util/intltool
+        dev-perl/XML-Parser
+        sys-devel/gettext
+        gtk? ( x11-proto/scrnsaverproto )
+    build+run:
+        dev-libs/glib
+        dev-libs/libxml2
+        net-dns/libidn
+        gtk? (
+            x11-libs/gtk+
+            x11-libs/libXScrnSaver
+        )
+        gstreamer? (
+            media-libs/gstreamer
+            media-plugins/gst-plugins-base
+            media-plugins/gst-plugins-good
+        )
+        ncurses? ( sys-libs/ncurses )
+        dbus? ( dev-libs/dbus-glib )
+        perl? ( dev-lang/perl )
+        startup-notification? ( x11-libs/startup-notification )
+        avahi? ( net-dns/avahi )
+        networkmanager? ( net-apps/NetworkManager )
+        tcl? ( dev-lang/tcl )
+        tk? ( dev-lang/tk )
+        ssl? ( dev-libs/gnutls )
+        spell? ( app-spell/gtkspell )
+        vv? (
+            net-im/farsight2
+        )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
