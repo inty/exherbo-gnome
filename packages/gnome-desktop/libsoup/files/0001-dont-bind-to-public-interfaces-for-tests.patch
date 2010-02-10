@@ -1,0 +1,85 @@
+From 80b1da390b9c3754ed0468da198cf02625eb30e7 Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Tue, 9 Feb 2010 18:07:03 -0800
+Subject: [PATCH] dont bind to public interfaces for tests
+
+---
+ tests/misc-test.c  |   11 ++++++++++-
+ tests/ssl-test.c   |    2 +-
+ tests/test-utils.c |    8 ++++++++
+ 3 files changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/tests/misc-test.c b/tests/misc-test.c
+index fdacbb3..2a504d8 100644
+--- a/tests/misc-test.c
++++ b/tests/misc-test.c
+@@ -181,6 +181,7 @@ static void
+ do_callback_unref_test (void)
+ {
+ 	SoupServer *bad_server;
++	SoupAddress *addr;
+ 	SoupSession *session;
+ 	SoupMessage *one, *two;
+ 	GMainLoop *loop;
+@@ -189,7 +190,15 @@ do_callback_unref_test (void)
+ 	debug_printf (1, "\nCallback unref handling\n");
+ 
+ 	/* Get a guaranteed-bad URI */
+-	bad_server = soup_server_new (NULL, NULL);
++	addr = soup_address_new ("127.0.0.1", SOUP_ADDRESS_ANY_PORT);
++	if (soup_address_resolve_sync (addr, NULL) != SOUP_STATUS_OK) {
++		g_printerr ("failed to resolve address");
++		exit (1);
++	}
++
++	bad_server = soup_server_new (SOUP_SERVER_INTERFACE, addr,
++				      NULL);
++
+ 	bad_uri = g_strdup_printf ("http://127.0.0.1:%u/",
+ 				   soup_server_get_port (bad_server));
+ 	g_object_unref (bad_server);
+diff --git a/tests/ssl-test.c b/tests/ssl-test.c
+index 3df070a..5aac0c1 100644
+--- a/tests/ssl-test.c
++++ b/tests/ssl-test.c
+@@ -266,7 +266,7 @@ main (int argc, char **argv)
+ 
+ 	memset (&sin, 0, sizeof (sin));
+ 	sin.sin_family = AF_INET;
+-	sin.sin_addr.s_addr = INADDR_ANY;
++	inet_pton (AF_INET, "127.0.0.1", &sin.sin_addr.s_addr);
+ 
+ 	if (bind (listener, (struct sockaddr *) &sin, sizeof (sin))  == -1) {
+ 		SOCKET_PRINT_ERROR ("binding listening socket");
+diff --git a/tests/test-utils.c b/tests/test-utils.c
+index 0b13ca1..120625c 100644
+--- a/tests/test-utils.c
++++ b/tests/test-utils.c
+@@ -265,6 +265,7 @@ test_server_new (gboolean in_own_thread, gboolean ssl)
+ {
+ 	GMainContext *async_context;
+ 	const char *ssl_cert_file, *ssl_key_file;
++	SoupAddress *addr;
+ 
+ 	if (test_server)
+ 		test_server_shutdown ();
+@@ -277,9 +278,16 @@ test_server_new (gboolean in_own_thread, gboolean ssl)
+ 	} else
+ 		ssl_cert_file = ssl_key_file = NULL;
+ 
++	addr = soup_address_new ("127.0.0.1", SOUP_ADDRESS_ANY_PORT);
++	if (soup_address_resolve_sync (addr, NULL) != SOUP_STATUS_OK) {
++		g_printerr ("failed to resolve addr");
++		exit (1);
++	}
++
+ 	test_server = soup_server_new (SOUP_SERVER_ASYNC_CONTEXT, async_context,
+ 				       SOUP_SERVER_SSL_CERT_FILE, ssl_cert_file,
+ 				       SOUP_SERVER_SSL_KEY_FILE, ssl_key_file,
++				       SOUP_SERVER_INTERFACE, addr,
+ 				       NULL);
+ 	if (async_context)
+ 		g_main_context_unref (async_context);
+-- 
+1.6.6.1
+
