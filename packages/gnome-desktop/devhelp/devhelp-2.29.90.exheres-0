@@ -22,7 +22,5 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.10]
         net-libs/webkit-gtk:1[>=1.1.13]
         dev-libs/unique:1
-        sys-devel/gettext
-
 "
 
