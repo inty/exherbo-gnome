@@ -29,7 +29,6 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.23.2]
         sys-apps/dbus[>=1.0]
-        net-misc/openssh
         dev-libs/libxml2
         archive? ( app-arch/libarchive )
         avahi? ( net-dns/avahi[>=0.6][gtk] )
