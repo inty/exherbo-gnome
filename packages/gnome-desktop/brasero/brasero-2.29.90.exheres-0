@@ -31,7 +31,7 @@ DEPENDENCIES="
         media-libs/libcanberra[>=0.1][gtk]
         app-cdr/cdrkit
         nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
-        playlist? ( gnome-desktop/totem-pl-parser[>=2.22.0] )
+        playlist? ( gnome-desktop/totem-pl-parser[>=2.29.1] )
         tracker? ( app-pim/tracker[>=0.7.0] )
 "
 
