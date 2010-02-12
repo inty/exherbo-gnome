@@ -21,7 +21,6 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.8.0]
         gnome-platform/GConf:2
         sys-apps/dbus[>=1.0]
-        core/eggdbus:1[>=0.4]
         dev-libs/libgcrypt[>=1.2.2]
         dev-libs/libtasn1[>=0.3.4]
         pam? ( sys-libs/pam )
