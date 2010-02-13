@@ -45,7 +45,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo' '--disable-intr
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'networkmanager network-manager' 'nss' )
 
 src_install() {
-    default
+    gnome-2_src_install
     edo rmdir "${IMAGE}/usr/share/epiphany/art"
 }
 

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
-require gnome-2
+require gnome-2 freedesktop-mime
 
 SUMMARY="Plugins for Seahorse"
 HOMEPAGE="http://live.gnome.org/Seahorse"
@@ -10,7 +10,7 @@ HOMEPAGE="http://live.gnome.org/Seahorse"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="applet eds epiphany gedit libnotify nautilus"
+MYOPTIONS="applet eds gedit libnotify nautilus"
 
 DEPENDENCIES="
     build:
@@ -18,7 +18,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
     build+run:
         gnome-platform/GConf:2
-        x11-libs/gtk+:2[>=2.10]
+        x11-libs/gtk+:2[>=2.18]
         dev-libs/glib:2[>=2.16]
         app-crypt/gnupg[=2.0*]
         app-crypt/gpgme[>=1.0]
@@ -27,8 +27,6 @@ DEPENDENCIES="
         gnome-desktop/seahorse[>=${PV}]
         applet? ( gnome-desktop/gnome-panel[>=2.9.4] )
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90] )
-        epiphany? ( dev-libs/libxml2[>=2.6]
-                    net-www/epiphany:2.26 )
         gedit? ( app-editors/gedit[>=2.20] )
         libnotify? ( x11-libs/libnotify[>=0.3] )
         nautilus? ( gnome-desktop/nautilus[>=2.12.0] )
@@ -39,13 +37,23 @@ AM_OPTS="--foreign"
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/seahorse-plugins-2.29.3-explicit-control-over-eds.patch" )
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--disable-update-mime-database' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit eds epiphany libnotify nautilus )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-agent' '--disable-update-mime-database' '--disable-epiphany' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet gedit eds libnotify nautilus )
 
 src_install() {
     default
 
     exeinto /etc/X11/xinit/xinitrc.d/
     doexe "${FILES}/70-seahorse-agent"
+}
+
+pkg_postrm() {
+    freedesktop-mime_update_mime_database
+    gnome-2_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-mime_update_mime_database
+    gnome-2_pkg_postinst
 }
 

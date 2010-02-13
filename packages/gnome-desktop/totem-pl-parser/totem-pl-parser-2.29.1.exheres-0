@@ -9,27 +9,21 @@ HOMEPAGE="http://library.gnome.org/devel/totem-pl-parser"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="doc gobject-introspection"
 
 DEPENDENCIES="
-    build+run:
-          x11-libs/gtk+:2
-          dev-libs/libxml2
-          gnome-desktop/evolution-data-server:1.2
-        dev-libs/glib:2[>=2.17.3]
     build:
         sys-devel/gettext
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc[>=1.11] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+    build+run:
+        dev-libs/glib:2[>=2.21.6]
+        dev-libs/libxml2
+        net-utils/gmime:2.4
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
 
-src_configure() {
-    if ! option doc ; then
-        GTKDOC_CHECK=/bin/true default
-    else
-        default
-    fi
-}
+RESTRICT="test" # requires internet access
 

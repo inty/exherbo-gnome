@@ -17,9 +17,3 @@ HOMEPAGE="http://live.gnome.org/${PN}"
 
 LICENCES="LGPL-2.1"
 
-src_install() {
-    default
-
-    rmdir "${IMAGE}/usr/bin"
-}
-
