@@ -4,6 +4,8 @@
 require gnome-2
 
 SUMMARY="Document Viewer for the GNOME Desktop"
+DESCRIPTION="Evince is a document viewer for multiple document formats like pdf,
+postscript, dvi, djvu, multipage tiff and cbr/cbz"
 HOMEPAGE="http://projects.gnome.org/evince"
 
 LICENCES="GPL-2"
