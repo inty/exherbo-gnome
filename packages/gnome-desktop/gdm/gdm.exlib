@@ -30,7 +30,7 @@ gdm_src_install() {
     keepdir /var/log/gdm            # GDM_LOG_DIR
     keepdir /var/cache/gdm
 
-    fperms g+w /var/lib/gdm
-    fowners gdm:gdm /var/lib/gdm
+    edo chmod g+w "${IMAGE}"/var/lib/gdm
+    edo chown gdm:gdm "${IMAGE}"/var/lib/gdm
 }
 
