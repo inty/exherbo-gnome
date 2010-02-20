@@ -34,7 +34,7 @@ src_install() {
     gnome-2_src_install
 
     if ! option pam ; then
-        fperms u+s /usr/libexec/gnome-screensaver-dialog
+        edo chmod u+s "${IMAGE}"/usr/libexec/gnome-screensaver-dialog
     fi
 }
 
