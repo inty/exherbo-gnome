@@ -30,7 +30,7 @@ DEPENDENCIES="
         media-libs/freetype:=[>=2.3.5]
         html5? ( dev-db/sqlite:3[>=3.0]
                  media-libs/gstreamer:0.10[>=0.10]
-                 media-plugins/gst-plugins-base:0.10 )
+                 media-plugins/gst-plugins-base:0.10[>=0.10.25] )
         icon-database? ( dev-db/sqlite:3[>=3.0] )
 "
 
@@ -48,5 +48,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
                                        'html5 dom-storage'
                                        'html5 database'
                                        'html5 video'
+                                       'html5 ruby'
+                                       'html5 sandbox'
                                        'icon-database' )
 
