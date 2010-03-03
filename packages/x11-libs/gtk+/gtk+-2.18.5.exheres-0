@@ -37,26 +37,26 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.11] )
         xinerama? ( x11-proto/xineramaproto )
     build+run:
-        dev-libs/atk[>=1.13.0][multibuild_c:*(+)?]
-        dev-libs/glib:2[>=2.21.3][multibuild_c:*(+)?]
-        x11-libs/cairo[>=1.6][X][multibuild_c:*(+)?]
-        x11-libs/pango[>=1.20][X][multibuild_c:*(+)?]
-        media-libs/libpng[multibuild_c:*(+)?]
-        media-libs/fontconfig[multibuild_c:*(+)?]
-        x11-libs/libX11[multibuild_c:*(+)?]
-        x11-libs/libXext[multibuild_c:*(+)?]
-        x11-libs/libXrender[multibuild_c:*(+)?]
-        x11-libs/libXi[multibuild_c:*(+)?]
-        x11-libs/libXrandr[>=1.2][multibuild_c:*(+)?]
-        x11-libs/libXcursor[multibuild_c:*(+)?]
-        x11-libs/libXfixes[multibuild_c:*(+)?]
-        x11-libs/libXcomposite[multibuild_c:*(+)?]
-        x11-libs/libXdamage[multibuild_c:*(+)?]
-        cups? ( net-print/cups[>=1.2][multibuild_c:*(+)?] )
-        jpeg2000? ( media-libs/jasper[multibuild_c:*(+)?] )
-        jpeg? ( media-libs/jpeg[>=6b][multibuild_c:*(+)?] )
-        tiff? ( media-libs/tiff[>=3.5.7][multibuild_c:*(+)?] )
-        xinerama? ( x11-libs/libXinerama[multibuild_c:*(+)?] )
+        dev-libs/atk[>=1.13.0][multibuild_c:*(?)?]
+        dev-libs/glib:2[>=2.21.3][multibuild_c:*(?)?]
+        x11-libs/cairo[>=1.6][X][multibuild_c:*(?)?]
+        x11-libs/pango[>=1.20][X][multibuild_c:*(?)?]
+        media-libs/libpng[multibuild_c:*(?)?]
+        media-libs/fontconfig[multibuild_c:*(?)?]
+        x11-libs/libX11[multibuild_c:*(?)?]
+        x11-libs/libXext[multibuild_c:*(?)?]
+        x11-libs/libXrender[multibuild_c:*(?)?]
+        x11-libs/libXi[multibuild_c:*(?)?]
+        x11-libs/libXrandr[>=1.2][multibuild_c:*(?)?]
+        x11-libs/libXcursor[multibuild_c:*(?)?]
+        x11-libs/libXfixes[multibuild_c:*(?)?]
+        x11-libs/libXcomposite[multibuild_c:*(?)?]
+        x11-libs/libXdamage[multibuild_c:*(?)?]
+        cups? ( net-print/cups[>=1.2][multibuild_c:*(?)?] )
+        jpeg2000? ( media-libs/jasper[multibuild_c:*(?)?] )
+        jpeg? ( media-libs/jpeg[>=6b][multibuild_c:*(?)?] )
+        tiff? ( media-libs/tiff[>=3.5.7][multibuild_c:*(?)?] )
+        xinerama? ( x11-libs/libXinerama[multibuild_c:*(?)?] )
     run:
         x11-themes/hicolor-icon-theme
     suggestion:
