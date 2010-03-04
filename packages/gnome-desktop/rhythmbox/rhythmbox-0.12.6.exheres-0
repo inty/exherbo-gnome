@@ -30,8 +30,8 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.16]
         x11-libs/gtk+:2[>=2.16]
-        gnome-desktop/gnome-media[>=2.8][profiles]
-        gnome-desktop/libsoup:2.4[>=2.26][gconf(-)]
+        gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
+        gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
         gnome-desktop/totem-pl-parser[>=2.26]
         media-libs/gstreamer:0.10[>=0.10.20]
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
