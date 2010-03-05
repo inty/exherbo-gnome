@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 freedesktop-mime
+require gnome-2 freedesktop-mime freedesktop-desktop
 
 SUMMARY="Configuration Applications for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
@@ -15,7 +15,6 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.37.1]
         dev-util/pkg-config[>=0.20]
-        dev-util/desktop-file-utils
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         x11-libs/libX11
@@ -51,11 +50,13 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'eds aboutme' )
 
 pkg_postinst() {
     freedesktop-mime_update_mime_database
+    freedesktop-desktop_update_desktop_database
     gnome-2_pkg_postinst
 }
 
 pkg_postrm() {
     freedesktop-mime_update_mime_database
+    freedesktop-desktop_update_desktop_database
     gnome-2_pkg_postrm
 }
 
