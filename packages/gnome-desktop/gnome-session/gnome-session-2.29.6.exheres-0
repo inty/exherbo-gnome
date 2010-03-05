@@ -24,6 +24,8 @@ DEPENDENCIES="
         x11-libs/startup-notification[>=0.9]
         gnome-platform/GConf:2
         x11-libs/pango[X]
+    recommendation:
+        sys-auth/ConsoleKit
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
