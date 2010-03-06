@@ -37,7 +37,6 @@ DEPENDENCIES="
         gnome-desktop/librsvg:2
         x11-libs/pango[X]
         x11-libs/libXft
-        x11-libs/libXrandr
         x11-libs/libXcursor
         x11-libs/libXi[>=1.2]
         gnome-desktop/libgnomekbd[>=2.27.4]
