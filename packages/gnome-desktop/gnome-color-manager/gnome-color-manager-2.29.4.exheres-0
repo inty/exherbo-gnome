@@ -29,6 +29,9 @@ DEPENDENCIES="
         media-libs/lcms
         dev-libs/dbus-glib:1[>=0.73]
         x11-libs/libX11
+        media-libs/libcanberra[gtk][>=0.10]
+        media-libs/tiff
+        net-print/cups
 "
 
 RESTRICT="test" # uses X
