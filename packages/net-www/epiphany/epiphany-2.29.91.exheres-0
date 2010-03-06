@@ -9,7 +9,7 @@ HOMEPAGE="http://projects.gnome.org/epiphany"
 LICENCES="GPL-2"
 SLOT="2.29"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi doc networkmanager
+MYOPTIONS="avahi doc gobject-introspection networkmanager
 nss [[ description = [ support migrating passwords from gecko based browsers ] ]]
 "
 
@@ -19,6 +19,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
         doc? ( dev-doc/gtk-doc[>=1.0] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         x11-libs/libnotify[>=0.4]
         dev-libs/glib:2[>=2.19.7]
@@ -42,7 +43,8 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo' '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'networkmanager network-manager' 'nss' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'gobject-introspection introspection'
+                                       'networkmanager network-manager' 'nss' )
 
 src_install() {
     gnome-2_src_install
