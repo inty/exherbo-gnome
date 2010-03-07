@@ -26,6 +26,7 @@ DEPENDENCIES="
         x11-libs/pango[X]
     recommendation:
         sys-auth/ConsoleKit
+        gnome-desktop/PolicyKit-gnome
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( ipv6 )
