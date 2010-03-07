@@ -37,6 +37,6 @@ DEPENDENCIES="
         telepathy? ( net-im/telepathy-glib[>=0.7.31] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-gnome-keyring --disable-http-server --enable-unique )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gnome-keyring' '--disable-http-server' '--enable-libunique' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi gcrypt gnutls libnotify 'networkmanager network-manager' telepathy )
 
