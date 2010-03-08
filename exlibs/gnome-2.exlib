@@ -7,7 +7,7 @@
 : ${GTK_UPDATE_ICON_CACHE:=$(type -p gtk-update-icon-cache 2>/dev/null)}
 
 require gnome.org
-export_exlib_phases pkg_preinst src_install pkg_postinst
+export_exlib_phases pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
 
 gnome_exlib_save_gconf_entries() {
     pushd "${IMAGE}" &> /dev/null
@@ -63,7 +63,7 @@ gnome_exlib_unload_gconf_entries() {
 
     source=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    ebegin "Loading GConf entries"
+    ebegin "Unloading GConf entries"
 
     for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
         [[ -e "${ROOT}${entry}" ]] || continue
@@ -99,7 +99,7 @@ gnome_exlib_uninstall_gconf_schemas() {
 
     export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    einfo "Uninstalling GConf schemas ..."
+    ebegin "Uninstalling GConf schemas ..."
 
     for schema in ${GCONF_EXLIB_GCONF_SCHEMAS} ; do
         [[ -e "${ROOT}${schema}" ]] || continue

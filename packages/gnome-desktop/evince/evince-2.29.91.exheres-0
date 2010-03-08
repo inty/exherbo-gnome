@@ -19,13 +19,14 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        doc? ( dev-doc/gtk-doc[>=1.0] )
+        doc? ( dev-doc/gtk-doc[>=1.13] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
     build+run:
         x11-libs/gtk+:2[>=2.14.0]
         dev-libs/glib:2[>=2.18.6]
         dev-libs/libxml2:2.0[>=2.5.0]
         gnome-desktop/gnome-icon-theme[>=2.17.1]
+        x11-libs/libX11
         dbus? ( dev-libs/dbus-glib:1[>=0.70] )
         dvi? ( app-text/libspectre[>=0.2.0]
                app-text/texlive )

@@ -1,0 +1,48 @@
+From 5a04891271fff82d1e5d5aaa0667fc152b2b35c6 Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Thu, 4 Mar 2010 19:40:43 +0000
+Subject: [PATCH] avoid runtime dependency on libgnome
+
+The default monospace font is defined in libgnome's schemas.  If
+libgnome is not installed on the system, the schema value will not be
+present, and the GConf callback will never be executed.  As a result,
+system_font_desc will be NULL, and we will trigger an assert.
+---
+ src/terminal-app.c |   11 +++++++++++
+ 1 files changed, 11 insertions(+), 0 deletions(-)
+
+diff --git a/src/terminal-app.c b/src/terminal-app.c
+index 6b5fc0e..45b0b20 100644
+--- a/src/terminal-app.c
++++ b/src/terminal-app.c
+@@ -1378,6 +1378,8 @@ G_DEFINE_TYPE (TerminalApp, terminal_app, G_TYPE_OBJECT)
+ static void
+ terminal_app_init (TerminalApp *app)
+ {
++  GConfValue *value = NULL;
++
+   global_app = app;
+ 
+   /* Initialise defaults */
+@@ -1390,9 +1392,18 @@ terminal_app_init (TerminalApp *app)
+ 
+   app->conf = gconf_client_get_default ();
+ 
++  /* load the default font if it is not specified in GConf */
++  value = gconf_client_get (app->conf, MONOSPACE_FONT_KEY, NULL);
++  if (value)
++    gconf_value_free (value);
++  else
++    app->system_font_desc =
++      pango_font_description_from_string (DEFAULT_MONOSPACE_FONT);
++
+   gconf_client_add_dir (app->conf, CONF_GLOBAL_PREFIX,
+                         GCONF_CLIENT_PRELOAD_ONELEVEL,
+                         NULL);
++
+   gconf_client_add_dir (app->conf, MONOSPACE_FONT_DIR,
+                         GCONF_CLIENT_PRELOAD_ONELEVEL,
+                         NULL);
+-- 
+1.7.0.1
+

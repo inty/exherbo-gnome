@@ -17,12 +17,12 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
-        media-libs/gstreamer:0.10[>=0.10.24]
-        media-plugins/gst-plugins-base:0.10[>=0.10.25.1]
+        media-libs/gstreamer:0.10[>=0.10.26]
+        media-plugins/gst-plugins-base:0.10[>=0.10.26]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         app-text/iso-codes
         dev-libs/glib:2[>=2.22]
-        x11-libs/gtk+:2[>=2.19.1]
+        x11-libs/gtk+:2[>=2.19.5]
         gnome-platform/GConf:2
         gnome-desktop/totem-pl-parser[>=2.29.1]
         x11-libs/cairo

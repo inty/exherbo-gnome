@@ -1,0 +1,42 @@
+# Copyright 2010 Paul Mulders <info@mld.demon.nl>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Remote Desktop for GNOME"
+HOMEPAGE="http://projects.gnome.org/vino/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="avahi gcrypt gnutls libnotify networkmanager telepathy"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+    build+run:
+        dev-libs/glib:2[>=2.17.0]
+        x11-libs/gtk+:2[>=2.16.0]
+        gnome-platform/GConf:2
+        sys-apps/dbus[>=1.2.3]
+        dev-libs/dbus-glib:1
+        gnome-desktop/libsoup:2.4[>=2.24.0]
+        gnome-desktop/gnome-keyring:1
+        x11-libs/pango[X]
+        x11-libs/libX11
+        x11-libs/libXdamage
+        x11-libs/libXfixes
+        x11-libs/libXext
+        dev-libs/unique:1[>=1.0.0]
+        avahi? ( net-dns/avahi[>=0.6] )
+        gcrypt? ( dev-libs/libgcrypt[>=1.1.90] )
+        gnutls? ( dev-libs/gnutls[>=1.0.0] )
+        libnotify? ( x11-libs/libnotify[>=0.4.4] )
+        networkmanager? ( net-apps/NetworkManager[>=0.7] )
+        telepathy? ( net-im/telepathy-glib[>=0.7.31] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gnome-keyring' '--disable-http-server' '--enable-libunique' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi gcrypt gnutls libnotify 'networkmanager network-manager' telepathy )
+
