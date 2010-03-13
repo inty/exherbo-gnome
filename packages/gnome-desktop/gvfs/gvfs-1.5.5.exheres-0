@@ -27,7 +27,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
     build+run:
-        dev-libs/glib:2[>=2.23.2]
+        dev-libs/glib:2[>=2.23.4]
         sys-apps/dbus[>=1.0]
         dev-libs/libxml2
         archive? ( app-arch/libarchive )
@@ -38,7 +38,7 @@ DEPENDENCIES="
         cdda? ( dev-libs/libcdio[>=0.78.2] )
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
-        monitor? ( base/gnome-disk-utility[>=2.28.0] )
+        monitor? ( base/gnome-disk-utility[>=2.29.0] )
         gphoto2? ( media-libs/libgphoto2[>=2.4.7] ) [[ requires = [ udev ] ]]
         http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
