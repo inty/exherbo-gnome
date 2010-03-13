@@ -22,6 +22,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.14.0]
         gnome-platform/GConf:2[>=2.14.0]
         dev-libs/dbus-glib:1[>=0.76]
+        x11-libs/libX11
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-avoid-runtime-dependency-on-libgnome.patch" )
