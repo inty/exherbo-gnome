@@ -5,6 +5,7 @@ require gnome-2
 
 SUMMARY="Disk Utility for GNOME"
 HOMEPAGE="http://www.gnome.org/"
+DOWNLOADS="http://hal.freedesktop.org/releases/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
