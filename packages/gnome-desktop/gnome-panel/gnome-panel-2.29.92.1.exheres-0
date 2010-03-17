@@ -19,7 +19,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils
     build+run:
         gnome-platform/ORBit2:2[>=2.4.0]
-        x11-libs/gtk+:2[>=2.15.1]
+        x11-libs/gtk+:2[>=2.19.7]
         x11-libs/pango[>=1.15.4]
         dev-libs/glib:2[>=2.18.0]
         gnome-platform/libbonoboui[>=2.1.1]
@@ -45,7 +45,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' 'networkmanager netwo
 src_install() {
     default
 
-    if ! option policykit ; then
+    if option !policykit ; then
         edo rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} \
                   "${IMAGE}"/usr/share/dbus-1/{system-services,} \
                   "${IMAGE}"/etc/dbus-1/{system.d,}

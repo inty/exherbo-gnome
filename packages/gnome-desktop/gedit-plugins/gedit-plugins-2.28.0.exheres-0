@@ -1,0 +1,61 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Offical plugins for gedit."
+DESCRIPTION="
+Here follows a list of plugins currently available in gedit-plugins:
+
+    * Bracket Completion
+        Add automaically a closing bracket when you insert one
+    * Charmap
+        Select characters from a charactermap
+    * Code Comment
+        Comment or uncomment blocks of code
+    * Color picker
+        Select and insert a color from a dialog (for html, css, php)
+    * Join lines/ Split lines
+        Join or split multiple lines through Ctrl+J and Ctrl+Shift+J
+    * Session Saver
+        Allow to bookmark working sessions in order to get them back for further use
+    * Smart Spaces
+        Allow to unindent like if you were using tabs while you're using spaces
+    * Show tabbar
+        A very basic plugin which shows or hides the gedit tabbar
+    * Terminal
+        A simple terminal widget accessible from the bottom panel
+"
+HOMEPAGE="http://live.gnome.org/GeditPlugins"
+DOWNLOADS="ftp://ftp.gnome.org/pub/gnome/sources/${PN}/2.28/${PNV}.tar.bz2"
+
+BUGS_TO="jedahan@gmail.com"
+
+MYOPTIONS="
+    python [[ description = [ enable bracketcompletion,codecomment,colorpicker,joinlines,sessionsaver,smartspaces ] ]]
+    terminal [[ requires = [ python ] description = [ enable built-in terminal ] ]]
+"
+LICENCES="GPL-2"
+PLATFORMS="~amd64"
+SLOT="0"
+
+DEPENDENCIES="
+    build+run:
+        app-editors/gedit[>=2.26]
+        python? (
+            app-editors/gedit[python]
+            dev-lang/python[>=2.6.2]
+            gnome-bindings/pygobject[>=2.15.4]
+            gnome-bindings/pygtk[>=2.14.0]
+            gnome-bindings/pygtksourceview[>=2.6.0]
+        )
+        terminal? ( dev-libs/vte )
+"
+
+src_configure() {
+    local plugins=bookmarks,drawspaces,showtabbar
+
+    option terminal && plugin+=,terminal
+    option python && plugins+=,bracketcompletion,codecomment,colorpicker,joinlines,sessionsaver,smartspaces
+
+    econf "--with-plugins=${plugins}" $(option_enable python)
+}
+

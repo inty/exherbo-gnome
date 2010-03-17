@@ -1,0 +1,14 @@
+Source: written by SuperHeron <superheron@gmail.com>
+Upstream: No
+Reason: Remove atk gir files as they are now installed by dev-libs/atk
+--- gir-repository-0.6.5.orig/gir/Makefile.am	2010-03-12 21:17:46.090645248 +0100
++++ gir-repository-0.6.5/gir/Makefile.am	2010-03-12 21:23:56.060646734 +0100
+@@ -291,7 +291,7 @@
+ 
+ lib_LTLIBRARIES += libgirepo-Gtk-custom.la
+ GTK_INCLUDEDIR=`pkg-config --variable=includedir gtk+-$(GDK_TARGET)-2.0`/gtk-2.0
+-Gtk-2.0.gir: Atk-1.0.gir GdkPixbuf-2.0.gir Gdk-2.0.gir libgirepo-Gtk-custom.la $(INTROSPECTION_SCANNER)
++Gtk-2.0.gir: GdkPixbuf-2.0.gir Gdk-2.0.gir libgirepo-Gtk-custom.la $(INTROSPECTION_SCANNER)
+ 	$(INTROSPECTION_SCANNER) -v --namespace Gtk --nsversion=2.0 \
+ 	    --add-include-path=$(srcdir) --add-include-path=. \
+              --include=Gio-2.0 \

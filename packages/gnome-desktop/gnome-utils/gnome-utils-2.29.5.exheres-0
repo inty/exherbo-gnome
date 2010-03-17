@@ -9,7 +9,7 @@ HOMEPAGE="http://live.gnome.org/GnomeUtils"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="applet [[ description = [ build gdict-applet ] ]] doc ipv6"
 
 DEPENDENCIES="
