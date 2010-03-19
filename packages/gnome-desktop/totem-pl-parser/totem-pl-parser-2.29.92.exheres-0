@@ -13,7 +13,6 @@ MYOPTIONS="doc gobject-introspection"
 
 DEPENDENCIES="
     build:
-        sys-devel/gettext
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc[>=1.11] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
