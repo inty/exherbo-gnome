@@ -48,7 +48,8 @@ gnome_exlib_load_gconf_entries() {
 
     for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
         [[ -e "${ROOT}${entry}" ]] || continue
-        nonfatal edo "${GCONFTOOL}" --direct --config-source "${source}" --load "${ROOT}${entry}" ||
+        echo "${GCONFTOOL} --direct --config-source ${source} --load ${ROOT}${entry}"
+        "${GCONFTOOL}" --direct --config-source "${source}" --load "${ROOT}${entry}" > /dev/null ||
             failures+=( "${ROOT}${entry}" )
     done
 
@@ -72,7 +73,8 @@ gnome_exlib_unload_gconf_entries() {
 
     for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
         [[ -e "${ROOT}${entry}" ]] || continue
-        nonfatal edo "${GCONFTOOL}" --direct --config-source "${source}" --unload "${ROOT}${entry}" ||
+        echo "${GCONFTOOL} --direct --config-source ${source} --unload ${ROOT}${entry}"
+        "${GCONFTOOL}" --direct --config-source "${source}" --unload "${ROOT}${entry}" > /dev/null ||
             failures+=( "${ROOT}${entry}" )
     done
 
@@ -96,7 +98,9 @@ gnome_exlib_install_gconf_schemas() {
 
     for schema in ${GNOME_EXLIB_GCONF_SCHEMAS} ; do
         [[ -e "${ROOT}${schema}" ]] || continue
-        nonfatal edo "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" || failures+=( "${ROOT}${schema}" )
+        echo "${GCONFTOOL} --makefile-install-rule ${ROOT}${schema}"
+        "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" > /dev/null ||
+            failures+=( "${ROOT}${schema}" )
     done
 
     if [[ ${#failures} -gt 0 ]] ; then
@@ -119,7 +123,9 @@ gnome_exlib_uninstall_gconf_schemas() {
 
     for schema in ${GCONF_EXLIB_GCONF_SCHEMAS} ; do
         [[ -e "${ROOT}${schema}" ]] || continue
-        nonfatal edo "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" || failures+=( "${ROOT}${schema}" )
+        echo "${GCONFTOOL} --makefile-uninstall-rule ${ROOT}${schema}"
+        "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" > /dev/null ||
+            failures+=( "${ROOT}${schema}" )
     done
 
     if [[ ${#failures} -gt 0 ]] ; then
@@ -140,7 +146,9 @@ gnome_exlib_update_icon_cache() {
 
     for dir in ${GNOME_EXLIB_ICON_INDEX_DIRS} ; do
         [[ -f "${ROOT}${dir}/index.theme" ]] || continue
-        nonfatal edo "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" || failures+=( "${ROOT}${dir}" )
+        echo "${GTK_UPDATE_ICON_CACHE} -qf ${ROOT}${dir}"
+        "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" > /dev/null ||
+            failures+=( "${ROOT}${dir}" )
     done
 
     if [[ ${#failures} -gt 0 ]] ; then
