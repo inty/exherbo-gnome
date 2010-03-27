@@ -8,6 +8,8 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENCES="LGPL-2"
 
+export_exlib_phases src_install pkg_postinst
+
 src_install() {
     default
 
