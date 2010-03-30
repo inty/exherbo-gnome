@@ -16,10 +16,12 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
     build+run:
-        dev-libs/glib:2[>=2.16]
+        dev-libs/glib:2[>=2.18]
         gnome-platform/GConf:2[>=2.14]
-        x11-libs/gtk+:2[>=2.13]
+        x11-libs/gtk+:2[>=2.18]
         x11-libs/libxklavier[>=5.0]
         x11-libs/libX11
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/2451d5f703e5a799a45b603303daafc8ee1ef072.patch" )
 

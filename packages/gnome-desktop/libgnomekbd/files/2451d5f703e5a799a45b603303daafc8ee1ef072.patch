@@ -1,0 +1,22 @@
+From 2451d5f703e5a799a45b603303daafc8ee1ef072 Mon Sep 17 00:00:00 2001
+From: Sergey V. Udaltsov <svu@gnome.org>
+Date: Sun, 28 Mar 2010 22:54:59 +0000
+Subject: fixing printf specifier
+
+%lg is invalid specifier, using %g instead
+---
+diff --git a/libgnomekbd/gkbd-indicator-config.c b/libgnomekbd/gkbd-indicator-config.c
+index 0c49f7f..1b5a1a2 100644
+--- a/libgnomekbd/gkbd-indicator-config.c
++++ b/libgnomekbd/gkbd-indicator-config.c
+@@ -155,7 +155,7 @@ gkbd_indicator_config_load_colors (GkbdIndicatorConfig * ind_config)
+ 					       GTK_STYLE_PATH,
+ 					       GTK_TYPE_LABEL);
+ 		ind_config->foreground_color =
+-		    g_strdup_printf ("%lg %lg %lg",
++		    g_strdup_printf ("%g %g %g",
+ 				     ((double) style->
+ 				      fg[GTK_STATE_NORMAL].red) / 0x10000,
+ 				     ((double) style->
+--
+cgit v0.8.3.1
