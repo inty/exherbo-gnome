@@ -17,9 +17,9 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
-        dev-libs/vte[>=0.23.1]
+        dev-libs/vte[>=0.24.0]
         dev-libs/glib:2[>=2.16.0]
-        x11-libs/gtk+:2[>=2.14.0]
+        x11-libs/gtk+:2[>=2.18.0]
         gnome-platform/GConf:2[>=2.14.0]
         dev-libs/dbus-glib:1[>=0.76]
         x11-libs/libX11
