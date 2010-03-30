@@ -18,8 +18,8 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         x11-libs/gtk+:2[>=2.18]
-        dev-libs/glib:2[>=2.16]
         gnome-platform/GConf:2[>=1.1.9]
+        dev-libs/glib:2[>=2.16]
         dev-libs/libxml2
 "
 
