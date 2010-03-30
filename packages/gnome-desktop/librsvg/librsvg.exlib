@@ -13,7 +13,10 @@ export_exlib_phases src_install pkg_postinst pkg_postrm
 
 src_install() {
     default
-    edo rmdir "${IMAGE}"/usr/$(get_libdir)/mozilla/{plugins,}
+
+    if ! ever at_least 2.26.1 ; then
+        edo rmdir "${IMAGE}"/usr/$(get_libdir)/mozilla/{plugins,}
+    fi
 }
 
 pkg_postinst() {
