@@ -26,6 +26,3 @@ DEPENDENCIES="
 
 RESTRICT="test" # test content is missing
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}/${PNV}-fixxref-backwards-compat.patch"
-)
