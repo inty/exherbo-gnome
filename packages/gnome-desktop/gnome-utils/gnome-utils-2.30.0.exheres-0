@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Miscellaneous utilities for the GNOME desktop"
 HOMEPAGE="http://live.gnome.org/GnomeUtils"
@@ -33,20 +32,10 @@ AT_M4DIR=( 'm4' )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'applet gdict-applet' 'doc gtk-doc' 'ipv6' )
 
-src_prepare() {
-    expatch "${FILES}/build-allow-disabling-the-panel-applet.patch"
-
-    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'         \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'    \
-            -i "${WORK}/configure.ac"
-
-    autotools_src_prepare
-}
-
 src_install() {
     gnome-2_src_install
 
-    if ! option applet ; then
+    if option !applet ; then
         rmdir "${IMAGE}/usr/libexec"
     fi
 }
