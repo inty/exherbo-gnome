@@ -9,27 +9,26 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi hal ipv6"
+MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/intltool[>=0.40.0]
     build+run:
-        net-misc/neon
-        dev-libs/openssl
         dev-libs/glib:2[>=2.9.3]
         dev-libs/libxml2[>=2.6.0]
         gnome-platform/GConf:2[>=1.1.1]
+        dev-libs/dbus-glib:1[>=0.60]
         gnome-platform/gnome-mime-data[>=2.0]
-        avahi? ( net-dns/avahi[>=0.6] )
-        hal? ( sys-apps/hal[>=0.5.7] dev-libs/dbus-glib[>=0.32] )
-    build:
-        sys-devel/gettext
-        dev-util/intltool[>=0.35.0]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-cdda --disable-samba --enable-openssl
---disable-howl --enable-daemon --disable-fam --disable-selinux )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( avahi hal ipv6 )
+# disable everything possible; if you want nice VFS support, use gio
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-cdda --disable-samba --disable-openssl --disable-gnutls
+                               --disable-avahi --disable-howl --disable-daemon --disable-hal
+                               --disable-ipv6 --disable-fam --disable-selinux --disable-doc )
 
 src_test() {
     export HOME="${TEMP}" default
 }
+
