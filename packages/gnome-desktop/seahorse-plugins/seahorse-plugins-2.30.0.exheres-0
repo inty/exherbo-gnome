@@ -1,8 +1,8 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 require gnome-2 freedesktop-mime
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Plugins for Seahorse"
 HOMEPAGE="http://live.gnome.org/Seahorse"
