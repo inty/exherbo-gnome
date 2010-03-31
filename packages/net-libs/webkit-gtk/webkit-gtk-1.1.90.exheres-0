@@ -37,8 +37,6 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 WORK="${WORKBASE}/webkit-${PV}"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/webkit-gtk-1.1.21-no-database.patch" )
-
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
                                        'gobject-introspection introspection'
                                        'html5 channel-messaging'

@@ -12,7 +12,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
         dev-libs/glib:2[>=2.15.4]
-        x11-libs/gtk+:2[>=2.6.0]
+        x11-libs/gtk+:2[>=2.16.0]
         media-libs/fontconfig[>=1.0.1]
         dev-libs/libxml2[>=2.4.7]
         x11-libs/cairo[>=1.2.0]
@@ -20,7 +20,6 @@ DEPENDENCIES="
         svgz? ( office-libs/libgsf:1[>=1.6.0] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-mozilla-plugin )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( svgz )
 

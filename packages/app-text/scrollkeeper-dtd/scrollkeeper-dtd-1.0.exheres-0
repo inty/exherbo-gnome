@@ -30,23 +30,22 @@ pkg_postinst() {
     local original="-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN"
     local replacement="/usr/share/xml/scrollkeeper/dtds/${DTD}"
 
-    ebegin "Installing catalog"
+    echo "Installing catalog ..."
 
     # install DOCTYPE catalog entry
-    /usr/bin/xmlcatalog --noout --add "public" \
-        "${original}" "${replacement}" /etc/xml/catalog || die
+    nonfatal edo /usr/bin/xmlcatalog --noout --add "public" "${original}" "${replacement}" /etc/xml/catalog ||
+        eerror "failed to install DOCTYPE catalog entry"
 
     # install catalog entry
-    /usr/bin/xmlcatalog --noout --add "system" \
-        "${DOWNLOADS}" "${replacement}" /etc/xml/catalog || die
-
-    eend $?
+    nonfatal edo /usr/bin/xmlcatalog --noout --add "system" "${DOWNLOADS}" "${replacement}" /etc/xml/catalog ||
+        eerror "failed to install catalog entry"
 }
 
 pkg_postrm() {
     local value="/usr/share/xml/scrollkeeper/dtds/${DTD}"
 
-    ebegin "Cleaning catalog"
-    /usr/bin/xmlcatalog --noout --del "${value}" /etc/xml/catalog || die
-    eend $?
+    echo "Cleaning catalog ..."
+    nonfatal edo /usr/bin/xmlcatalog --noout --del "${value}" /etc/xml/catalog ||
+        eerror "failed to clean the catalog cache"
 }
+

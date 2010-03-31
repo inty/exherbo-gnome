@@ -28,7 +28,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
-        dev-libs/glib:2[>=2.16]
+        dev-libs/glib:2[>=2.18]
         x11-libs/gtk+:2[>=2.16]
         gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
         gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
@@ -46,8 +46,6 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-Use-new-totem_pl_parser_save-API-where-required.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
                                --disable-musicbrainz --disable-lirc --disable-vala

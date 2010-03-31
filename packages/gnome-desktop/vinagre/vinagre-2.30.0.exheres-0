@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gnome-2 # for icon cache update
+require gnome-2
 
 SUMMARY="A VNC client for the GNOME desktop"
 HOMEPAGE="http://projects.gnome.org/vinagre/"
@@ -38,8 +38,8 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet avahi ssh telepathy )
 src_install() {
     default
 
-    if ! option applet ; then
-        edo rmdir "${IMAGE}/usr/libexec"
+    if option !applet ; then
+        edo rmdir "${IMAGE}"/usr/libexec
     fi
 }
 

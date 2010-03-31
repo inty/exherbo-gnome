@@ -31,9 +31,8 @@ gnome_exlib_restart_gconfd() {
     local pids=$(pgrep -x gconfd-2)
 
     if [[ -n "${pids}" ]] ; then
-        ebegin "Reloading GConf schemas"
+        echo "Reloading GConf schemas ..."
         kill -HUP ${pids}
-        eend $?
     fi
 }
 
@@ -45,92 +44,119 @@ gnome_exlib_load_gconf_entries() {
 
     source=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    ebegin "Loading GConf entries"
+    echo "Loading GConf entries ..."
 
     for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
         [[ -e "${ROOT}${entry}" ]] || continue
-        "${GCONFTOOL}" --direct --config-source "${source}" --load "${ROOT}${entry}" > /dev/null || retval=1
+        echo "${GCONFTOOL} --direct --config-source ${source} --load ${ROOT}${entry}"
+        "${GCONFTOOL}" --direct --config-source "${source}" --load "${ROOT}${entry}" > /dev/null ||
+            failures+=( "${ROOT}${entry}" )
     done
 
-    eend ${retval}
+    if [[ ${#failures} -gt 0 ]] ; then
+        eerror "GConf entry loading failures:"
+        for failure in ${failures[*]} ; do
+            eerror "    ${failure}"
+        done
+    fi
 }
 
 gnome_exlib_unload_gconf_entries() {
-    local retval=0 source=
+    local failures=( ) source=
 
     [[ -x "${GCONFTOOL}" ]] || return
     [[ -n "${GNOME_EXLIB_GCONF_ENTRIES}" ]] || return
 
     source=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    ebegin "Unloading GConf entries"
+    echo "Unloading GConf entries ..."
 
     for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
         [[ -e "${ROOT}${entry}" ]] || continue
-        "${GCONFTOOL}" --direct --config-source "${source}" --unload "${ROOT}${entry}" > /dev/null || retval=1
+        echo "${GCONFTOOL} --direct --config-source ${source} --unload ${ROOT}${entry}"
+        "${GCONFTOOL}" --direct --config-source "${source}" --unload "${ROOT}${entry}" > /dev/null ||
+            failures+=( "${ROOT}${entry}" )
     done
 
-    eend ${retval}
+    if [[ ${#failures} -gt 0 ]] ; then
+        eerror "GConf entry unloading failures:"
+        for failure in ${failures[*]} ; do
+            eerror "    ${failure}"
+        done
+    fi
 }
 
 gnome_exlib_install_gconf_schemas() {
-    local retval=0
+    local failures=( )
 
     [[ -x "${GCONFTOOL}" ]] || return
     [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
 
     export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    ebegin "Installing GConf schemas"
+    echo "Installing GConf schemas ..."
 
     for schema in ${GNOME_EXLIB_GCONF_SCHEMAS} ; do
         [[ -e "${ROOT}${schema}" ]] || continue
-        "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" > /dev/null || retval=1
+        echo "${GCONFTOOL} --makefile-install-rule ${ROOT}${schema}"
+        "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" > /dev/null ||
+            failures+=( "${ROOT}${schema}" )
     done
 
-    eend ${retval}
+    if [[ ${#failures} -gt 0 ]] ; then
+        eerror "GConf schema installation failures:"
+        for failure in ${failures[*]} ; do
+            eerror "    ${failures}"
+        done
+    fi
 }
 
 gnome_exlib_uninstall_gconf_schemas() {
-    local retval=0
+    local failures=( )
 
     [[ -x "${GCONFTOOL}" ]] || return
     [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
 
     export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
 
-    ebegin "Uninstalling GConf schemas ..."
+    echo "Uninstalling GConf schemas ..."
 
     for schema in ${GCONF_EXLIB_GCONF_SCHEMAS} ; do
         [[ -e "${ROOT}${schema}" ]] || continue
-        "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" > /dev/null || retval=1
+        echo "${GCONFTOOL} --makefile-uninstall-rule ${ROOT}${schema}"
+        "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" > /dev/null ||
+            failures+=( "${ROOT}${schema}" )
     done
 
-    eend ${retval}
+    if [[ ${#failures} -gt 0 ]] ; then
+        eerror "GConf schema uninstallation failures:"
+        for failure in ${failures[*]} ; do
+            eerror "    ${failure}"
+        done
+    fi
 }
 
 gnome_exlib_update_icon_cache() {
     local failures=( )
-    local retval=0
 
     [[ -x "${GTK_UPDATE_ICON_CACHE}" ]] || return
     [[ -n "${GNOME_EXLIB_ICON_INDEX_DIRS}" ]] || return
 
-    ebegin "Updating icons cache"
+    echo "Updating icons cache ..."
 
     for dir in ${GNOME_EXLIB_ICON_INDEX_DIRS} ; do
         [[ -f "${ROOT}${dir}/index.theme" ]] || continue
-        "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" || {
+        echo "${GTK_UPDATE_ICON_CACHE} -qf ${ROOT}${dir}"
+        "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" > /dev/null ||
             failures+=( "${ROOT}${dir}" )
-            retval=1
-        }
     done
 
-    eend ${retval}
-
-    for failure in ${failures[*]} ; do
-        eerror "Failed to update icon cache: ${failure}"
-    done
+    if [[ ${#failures} -gt 0 ]] ; then
+        eerror "Icon cache update failures:"
+        for failure in ${failures[*]} ; do
+            eerror "    ${failure}"
+        done
+    fi
 }
 
 gnome-2_pkg_preinst() {

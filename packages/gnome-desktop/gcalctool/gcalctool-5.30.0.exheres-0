@@ -3,23 +3,23 @@
 
 require gnome-2
 
-SUMMARY="Library for Keyboard Management"
-HOMEPAGE="http://www.gnome.org/"
+SUMMARY="A GTK+ desktop calculator"
+HOMEPAGE="http://calctool.sourceforge.net/"
 
-LICENCES="LGPL-2"
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="doc"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
+        x11-libs/gtk+:2[>=2.18]
+        gnome-platform/GConf:2[>=1.1.9]
         dev-libs/glib:2[>=2.16]
-        gnome-platform/GConf:2[>=2.14]
-        x11-libs/gtk+:2[>=2.13]
-        x11-libs/libxklavier[>=5.0]
-        x11-libs/libX11
+        dev-libs/libxml2
 "
 
