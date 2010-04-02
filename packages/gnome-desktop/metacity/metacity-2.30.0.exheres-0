@@ -29,6 +29,8 @@ DEPENDENCIES="
         xinerama? ( x11-libs/libXinerama )
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-metacity-assertion-on-menu-op-none.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' xinerama )
 
