@@ -25,8 +25,10 @@ DEPENDENCIES="
 
 # disable everything possible; if you want nice VFS support, use gio
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-cdda --disable-samba --disable-openssl --disable-gnutls
-                               --disable-avahi --disable-howl --disable-daemon --disable-hal
-                               --disable-ipv6 --disable-fam --disable-selinux --disable-doc )
+                               --disable-avahi --disable-howl --disable-hal --disable-ipv6
+                               --disable-fam --disable-selinux --disable-doc )
+# need to enable daemon as the non-daemon code is not implemented for !WIN32
+DEFAULT_SRC_CONFIGURE_PARAMS+=( '--disable-daemon' )
 
 src_test() {
     export HOME="${TEMP}" default
