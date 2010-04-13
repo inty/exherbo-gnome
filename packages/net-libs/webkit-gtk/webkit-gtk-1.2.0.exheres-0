@@ -15,17 +15,18 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.2]
                                  gnome-desktop/gir-repository[>=0.6.2][libsoup(-)] )
     build+run:
-        app-spell/enchant[>=0.22]
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
         dev-libs/glib:2[>=2.0]
         dev-libs/icu
         dev-libs/libxml2[>=2.6]
+        x11-libs/pango[>=1.12][X]
+        app-spell/enchant[>=0.22]
+        x11-libs/gtk+:2[>=2.20]
         x11-libs/cairo[>=1.6]
-        x11-libs/gtk+:2[>=2.10]
+        x11-libs/libXt
         dev-libs/libxslt[>=1.1.7]
         gnome-desktop/libsoup:2.4[>=2.29.90]
-        x11-libs/pango[>=1.12][X]
         media-libs/fontconfig[>=2.4]
         media-libs/freetype:=[>=2.3.5]
         html5? ( dev-db/sqlite:3[>=3.0]

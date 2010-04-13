@@ -40,7 +40,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.23.6][multibuild_c:*(?)?]
         dev-libs/atk[>=1.29.2][multibuild_c:*(?)?]
-        x11-libs/pango[>=1.20][X][multibuild_c:*(?)?]
+        x11-libs/pango[>=1.20][X][multibuild_c:*(?)?][gobject-introspection?]
         x11-libs/cairo[>=1.6][X][multibuild_c:*(?)?]
         media-libs/libpng[multibuild_c:*(?)?]
         media-libs/jpeg[>=6b][multibuild_c:*(?)?]

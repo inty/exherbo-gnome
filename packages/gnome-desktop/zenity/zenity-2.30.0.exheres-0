@@ -15,6 +15,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         x11-libs/gtk+:2[>=2.15.1]
         dev-libs/glib:2
