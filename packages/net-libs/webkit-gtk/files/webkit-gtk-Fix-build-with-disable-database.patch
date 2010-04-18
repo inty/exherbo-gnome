@@ -1,0 +1,33 @@
+Source: Written by Michael Forney
+Upstream: https://bugs.webkit.org/show_bug.cgi?id=37761
+Reason: Build fails with --disable-database (-html5)
+
+From 4ba1f3cf18d767472314eff74a74981010c7a5c1 Mon Sep 17 00:00:00 2001
+From: Michael Forney <michael@obberon.com>
+Date: Sat, 17 Apr 2010 20:24:09 -0700
+Subject: [PATCH] Fix build with --disable-database.
+
+Now, JSDatabase.h and JSDatabaseCallback.h are only included when
+database is enabled.
+---
+ WebCore/bindings/js/JSDOMWindowCustom.cpp |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/WebCore/bindings/js/JSDOMWindowCustom.cpp b/WebCore/bindings/js/JSDOMWindowCustom.cpp
+index 7f05991..488ac04 100644
+--- a/WebCore/bindings/js/JSDOMWindowCustom.cpp
++++ b/WebCore/bindings/js/JSDOMWindowCustom.cpp
+@@ -36,8 +36,10 @@
+ #include "HTMLDocument.h"
+ #include "History.h"
+ #include "JSAudioConstructor.h"
++#if ENABLE(DATABASE)
+ #include "JSDatabase.h"
+ #include "JSDatabaseCallback.h"
++#endif
+ #include "JSDOMWindowShell.h"
+ #include "JSEvent.h"
+ #include "JSEventListener.h"
+-- 
+1.7.0
+
