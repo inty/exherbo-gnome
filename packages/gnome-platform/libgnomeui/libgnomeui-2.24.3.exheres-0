@@ -24,7 +24,7 @@ DEPENDENCIES="
         gnome-platform/libbonoboui:2[>=2.13.1]
         gnome-platform/gnome-vfs[>=2.7.3]
         gnome-platform/libglade:2[>=2.0.0]
-        gnome-desktop/gnome-keyring:1[>=0.4]
+        gnome-desktop/libgnome-keyring:1[>=0.4]
         x11-libs/pango[>1.1.2]
         dev-libs/glib:2[>=2.16.0]
         x11-libs/gtk+:2[>=2.12.0]
