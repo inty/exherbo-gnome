@@ -7,7 +7,10 @@ DOWNLOADS="http://webkitgtk.org/webkit-${PV}.tar.gz"
 
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-Fix-build-with-disable-database.patch )
+
 src_compile() {
-    mkdir "${WORK}/DerivedSources" || die "failed to create DerivedSources directory"
+    edo mkdir "${WORK}/DerivedSources"
     default
 }
+
