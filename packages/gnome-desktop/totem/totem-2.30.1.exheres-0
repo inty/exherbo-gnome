@@ -17,8 +17,8 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
-        media-libs/gstreamer:0.10[>=0.10.26]
-        media-plugins/gst-plugins-base:0.10[>=0.10.26]
+        media-libs/gstreamer:0.10[>=0.10.28.1]
+        media-plugins/gst-plugins-base:0.10[>=0.10.28.1]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         app-text/iso-codes
         dev-libs/glib:2[>=2.22]
@@ -35,7 +35,7 @@ DEPENDENCIES="
                     x11-libs/startup-notification[>=0.8]
                     dev-libs/xulrunner )
         python? ( gnome-bindings/pygtk[>=2.12.0] )
-        tracker? ( app-pim/tracker[>=0.7.1] )
+        tracker? ( app-pim/tracker[>=0.8] )
         vala? ( dev-lang/vala[>=0.7.5] )
 "
 
