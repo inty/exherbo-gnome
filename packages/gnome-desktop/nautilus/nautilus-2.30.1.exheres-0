@@ -30,10 +30,10 @@ DEPENDENCIES="
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
-        base/gnome-disk-utility
+        base/gnome-disk-utility [[ note = [ without gnome-disk-utility, there is a noticable degredation in the functionality ] ]]
     suggestion:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
-        app-pim/tracker[>=0.7]
+        app-pim/tracker[>=0.8]
 "
 
 RESTRICT="test" # requires X
