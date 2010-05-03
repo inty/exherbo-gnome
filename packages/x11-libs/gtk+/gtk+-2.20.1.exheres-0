@@ -65,8 +65,6 @@ DEPENDENCIES="
 
 RESTRICT="test"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/a0f23e1706b34bca6a65183040d1f1498cce2a50.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-gdktarget=x11'
                                '--with-libpng' '--with-libjpeg' '--with-libtiff' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg2000 libjasper' )
