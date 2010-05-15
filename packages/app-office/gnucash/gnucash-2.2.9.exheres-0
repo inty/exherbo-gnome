@@ -34,7 +34,7 @@ DEPENDENCIES="
         dev-util/pkg-config
         dev-util/intltool
     build+run:
-        dev-lang/guile[>=1.8.6]
+        dev-lang/guile:1.8[>=1.8.6]
         dev-libs/glib[>=2.20.0]
         dev-libs/gtkhtml:3.14
         dev-libs/libxml2[>=2.6.32]
