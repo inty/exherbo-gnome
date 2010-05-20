@@ -9,7 +9,7 @@ HOMEPAGE="http://www.pygtk.org/"
 BUGS_TO="jedahan@gmail.com"
 
 LICENCES="LGPL-2.1"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 SLOT="2"
 MYOPTIONS="doc"
 

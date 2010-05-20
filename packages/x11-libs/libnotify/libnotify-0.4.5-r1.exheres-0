@@ -19,7 +19,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.4] )
-    run:
+    post:
         virtual/notification-daemon
 "
 
