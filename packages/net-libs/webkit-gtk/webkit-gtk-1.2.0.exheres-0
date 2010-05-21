@@ -38,7 +38,8 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 WORK="${WORKBASE}/webkit-${PV}"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-Fix-build-with-disable-database.patch )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-Fix-build-with-disable-database.patch
+                              -p2 "${FILES}"/${PNV}-icu-4.4.patch )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
                                        'gobject-introspection introspection'
