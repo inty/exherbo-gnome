@@ -1,0 +1,33 @@
+# Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose Licence v2
+
+require gnome.org gsettings
+
+SUMMARY="Help browser for the GNOME desktop"
+HOMEPAGE="http://projects.gnome.org/yelp"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.41.0]
+        app-text/docbook-xml-dtd:4.1.2
+        doc? ( dev-doc/gtk-doc[>=1.13] )
+    build+run:
+        dev-libs/glib:2[>=2.25.3]
+        x11-libs/gtk+:2[>=2.16.0]
+        dev-libs/libxml2:2.0[>=2.6.5]
+        dev-libs/libxslt[>=1.1.4]
+        x11-libs/startup-notification[>=0.8]
+        dev-libs/dbus-glib:1
+        app-text/rarian[>=0.7.0]
+        dev-libs/unique:1
+        net-libs/webkit-gtk:1[>=1.1.15]
+        gnome-desktop/yelp-xsl[>=2.31.2]
+        x11-libs/pango[X]
+        x11-libs/libX11
+"
+
