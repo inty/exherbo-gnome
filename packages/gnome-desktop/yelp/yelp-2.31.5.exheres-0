@@ -26,7 +26,7 @@ DEPENDENCIES="
         app-text/rarian[>=0.7.0]
         dev-libs/unique:1
         net-libs/webkit-gtk:1[>=1.1.15]
-        gnome-desktop/yelp-xsl[>=2.31.2]
+        gnome-desktop/yelp-xsl[>=2.31.3]
         x11-libs/pango[X]
         x11-libs/libX11
 "
