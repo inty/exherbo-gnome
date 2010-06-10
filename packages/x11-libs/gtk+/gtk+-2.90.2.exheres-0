@@ -28,9 +28,9 @@ DEPENDENCIES="
                      app-text/docbook-xml-dtd:4.1.2
                      app-text/docbook-xsl-stylesheets )
         doc? ( dev-doc/gtk-doc[>=1.11] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.14] )
     build+run:
-        dev-libs/glib:2[>=2.23.6]
+        dev-libs/glib:2[>=2.25.8]
         dev-libs/atk[>=1.29.2]
         x11-libs/pango[>=1.20][X][gobject-introspection?]
         x11-libs/cairo[>=1.6][X]
