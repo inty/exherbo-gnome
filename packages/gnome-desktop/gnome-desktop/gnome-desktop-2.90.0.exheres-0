@@ -7,7 +7,7 @@ SUMMARY="Desktop environment for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="2"
+SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 
@@ -23,7 +23,7 @@ DEPENDENCIES="
         x11-libs/startup-notification[>=0.5]
         x11-libs/libX11
         x11-libs/libXrandr[>=1.2]
-        x11-libs/gtk+:2[>=2.18.0]
+        x11-libs/gtk+:3.0[>=2.90.2]
         dev-libs/glib:2[>=2.19.1]
         gnome-platform/GConf:2[>=2.0.0]
     suggestion:
