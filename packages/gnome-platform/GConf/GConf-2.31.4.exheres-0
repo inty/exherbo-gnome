@@ -16,7 +16,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         x11-libs/gtk+:2[>=2.14]
-        dev-libs/glib:2[>=2.25]
+        dev-libs/glib:2[>=2.25.9]
         gnome-platform/ORBit2:2[>=2.4]
         sys-apps/dbus[>=1.0.0]
         dev-libs/dbus-glib:1[>=0.74]
