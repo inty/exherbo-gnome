@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A library to integrate with the gnome-keyring system"
 HOMEPAGE="http://www.gnome.org/"
@@ -19,9 +20,10 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.16]
         sys-apps/dbus[>=1.0]
-        core/eggdbus:1[>=0.4]
         dev-libs/libgcrypt[>=1.2.2]
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/d2f57865d2b80ab301aba35278e71b85a1a141cd.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
 
