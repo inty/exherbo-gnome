@@ -16,7 +16,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc[>=1.9] )
+        dev-doc/gtk-doc[>=1.9] [[ note = [ remove when autotools is removed ] ]]
     build+run:
         dev-libs/glib:2[>=2.16]
         sys-apps/dbus[>=1.0]
@@ -26,4 +26,9 @@ DEPENDENCIES="
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/d2f57865d2b80ab301aba35278e71b85a1a141cd.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
+src_prepare() {
+    edo gtkdocize --copy
+    autotools_src_prepare
+}
 
