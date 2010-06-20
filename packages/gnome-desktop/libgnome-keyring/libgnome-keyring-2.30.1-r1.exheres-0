@@ -16,7 +16,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
-        dev-doc/gtk-doc[>=1.9] [[ note = [ remove when autotools is removed ] ]]
+        dev-doc/gtk-doc[>=1.9] [[ note = [ make optional on doc with the next release (needed for gtk-doc) ] ]]
     build+run:
         dev-libs/glib:2[>=2.16]
         sys-apps/dbus[>=1.0]
