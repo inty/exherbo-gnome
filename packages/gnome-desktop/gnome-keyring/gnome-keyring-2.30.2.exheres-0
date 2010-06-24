@@ -18,7 +18,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         dev-libs/glib:2[>=2.16]
-        x11-libs/gtk+:2[>=2.8.0]
+        x11-libs/gtk+:2[>=2.20.0]
         gnome-platform/GConf:2
         sys-apps/dbus[>=1.0]
         dev-libs/libgcrypt[>=1.2.2]
