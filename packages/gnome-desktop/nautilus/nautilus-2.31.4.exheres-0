@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2 freedesktop-mime
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="File Manager for GNOME"
 HOMEPAGE="http://live.gnome.org/Nautilus"
@@ -14,18 +13,17 @@ MYOPTIONS="doc gobject-introspection"
 
 DEPENDENCIES="
     build:
+        app-text/rarian
         dev-util/pkg-config[>=0.19]
         dev-util/intltool[>=0.40.1]
-        dev-doc/gtk-doc[>=1.4] [[ note = [ make optional on doc when build infrastructure is no longer patched ] ]]
+        doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
         dev-libs/glib:2[>=2.25.9]
-        gnome-desktop/gnome-desktop:2[>=2.29.91]
+        gnome-desktop/gnome-desktop:3.0[>=2.29.91]
         x11-libs/pango[>=1.1.2][X]
-        x11-libs/gtk+:2[>=2.20.0]
+        x11-libs/gtk+:3.0[>=2.90.3]
         dev-libs/libxml2:2.0[>=2.4.71.6]
-        app-text/rarian
-        dev-libs/unique:1
         media-libs/libexif[>=0.5.12]
         gnome-platform/GConf:2
     run:
@@ -38,8 +36,6 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/eae04584d51b9e058c6dcaea488880d8a43409bf.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
