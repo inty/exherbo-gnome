@@ -10,7 +10,7 @@ DOWNLOADS="http://0pointer.de/lennart/projects/${PN}/${PNV}.tar.gz"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa doc gnome2 [[ description = [ add support for GNOME 2.x ] requires = [ gtk ] ]] gstreamer gtk pulseaudio"
+MYOPTIONS="alsa doc gstreamer gtk gtk3 pulseaudio"
 
 DEPENDENCIES="
     build:
@@ -19,10 +19,12 @@ DEPENDENCIES="
     build+run:
         media-libs/libvorbis
         alsa? ( sys-sound/alsa-lib[>=1.0.0] )
-        gtk? ( x11-libs/gtk+:3.0
-               gnome2? ( x11-libs/gtk+:2[>=2.20.0] )
+        gtk? ( x11-libs/gtk+:2[>=2.20.0]
                dev-libs/glib:2
                gnome-platform/GConf:2 )
+        gtk3? ( x11-libs/gtk+:3.0
+                dev-libs/glib:2
+                gnome-platform/GConf:2 )
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.15]
                      media-plugins/gst-plugins-base:0.10[gstreamer_plugins:vorbis] )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.11] )
@@ -31,7 +33,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' 'gnome2 gtk' 'gtk gtk3' gstreamer 'pulseaudio pulse' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' gtk gtk3 gstreamer 'pulseaudio pulse' )
 
 src_install() {
     default
