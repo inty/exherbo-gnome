@@ -1,0 +1,58 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="An integrated music management application"
+DESCRIPTION="
+Rhythmbox is your one-stop multimedia application, supporting a music library,
+multiple playlists, internet radio, and more.
+"
+HOMEPAGE="http://projects.gnome.org/rhythmbox"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
+doc
+ipod [[ description = [ enable support for ipods ] ]]
+keyring libnotify
+mtp [[ requires = [ udev ] ]]
+udev [[ description = [ use udev for hardware detection ] ]]
+webkit [[ description = [ use webkit to display HTML content ] ]]"
+
+# daap requires libdmapsharing:1.9[>=1.9.0.21]
+
+DEPENDENCIES="
+    build:
+        dev-libs/check
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        doc? ( dev-doc/gtk-doc[>=1.4] )
+    build+run:
+        dev-libs/glib:2[>=2.25.6]
+        x11-libs/gtk+:2[>=2.20.0]
+        gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
+        gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
+        gnome-desktop/totem-pl-parser[>=2.26]
+        media-libs/gstreamer:0.10[>=0.10.20]
+        media-plugins/gst-plugins-base:0.10[>=0.10.20]
+        gnome-platform/GConf:2
+        dev-libs/dbus-glib:1[>=0.35]
+        ipod? ( media-libs/libgpod[>=0.6] )
+        keyring? ( gnome-desktop/gnome-keyring:1 )
+        libnotify? ( x11-libs/libnotify[>=0.4.1] )
+        mtp? ( media-libs/libmtp[>=0.3.0] )
+        udev? ( sys-fs/udev[>=145][glib] )
+        webkit? ( net-libs/webkit-gtk[>=1.1.17] )
+"
+
+RESTRICT="test" # requires X
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
+                               --disable-musicbrainz --disable-lirc --disable-vala
+                               --disable-browser-plugin --disable-fm-radio )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'brasero libbrasero-media' ipod keyring libnotify mtp 'udev gudev' webkit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
