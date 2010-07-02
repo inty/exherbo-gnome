@@ -21,18 +21,16 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXScrnSaver
         x11-libs/libXext
-        media-libs/libcanberra[gtk]
+        media-libs/libcanberra[gtk3]
         x11-libs/libXxf86misc
-        x11-libs/gtk+:2[>=2.21.1]
+        x11-libs/gtk+:3.0[>=2.90.0]
         dev-libs/glib:2[>=2.17.4]
         gnome-platform/GConf:2
         dev-libs/libxml2:2.0
-        gnome-desktop/gnome-desktop:2[>=2.29.4]
+        gnome-desktop/gnome-desktop:3.0[>=2.29.4]
         gnome-desktop/gnome-menus[>=2.10.1]
-        dev-libs/unique:1
         sys-apps/dbus[>=1.0]
         dev-libs/dbus-glib:1[>=0.74]
-        gnome-desktop/gnome-desktop:2
         gnome-desktop/metacity[>=2.23.1]
         gnome-desktop/gnome-settings-daemon
         gnome-desktop/librsvg:2
