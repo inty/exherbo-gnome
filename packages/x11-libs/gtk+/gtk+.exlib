@@ -29,10 +29,16 @@ EOF
 pkg_postinst() {
     case "${SLOT}" in
         2)
-            echo "Generating pixbuf and immodules list ..."
+            if ! ever at_least 2.21 ; then
+                echo "Generating pixbuf and immodules list ..."
+            else
+                echo "Generating immodules list ..."
+            fi
 
-            echo "gdk-pixbuf-query-loaders > /etc/gtk-2.0/gdk-pixbuf.loaders"
-            gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
+            if ! ever at_least 2.21 ; then
+                echo "gdk-pixbuf-query-loaders > /etc/gtk-2.0/gdk-pixbuf.loaders"
+                gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders"
+            fi
 
             echo "gtk-query-immodules-2.0 > /etc/gtk-2.0/gtk.immodules"
             gtk-query-immodules-2.0 > "${ROOT}/etc/gtk-2.0/gtk.immodules"
