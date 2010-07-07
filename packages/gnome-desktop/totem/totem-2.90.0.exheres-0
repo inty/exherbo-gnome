@@ -23,7 +23,7 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.28.1]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         gnome-platform/GConf:2
-        dev-libs/glib:2[>=2.25.8]
+        dev-libs/glib:2[>=2.25.9]
         x11-libs/gtk+:3.0[>=2.90.2]
         gnome-desktop/totem-pl-parser[>=2.29.1]
         app-text/iso-codes
@@ -53,6 +53,7 @@ src_prepare() {
     edo sed -e 's/GNOME_COMPILE_WARNINGS/dnl &/' \
             -i "${WORK}/configure.in"
 
+    expatch "${FILES}/9792aa50caef3b29402de675d1c999ce1c7c3efb.patch"
     expatch "${FILES}/0707073a6970109d06453617f1462bc8beadaec9.patch"
     autotools_src_prepare
 }

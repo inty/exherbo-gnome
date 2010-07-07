@@ -1,0 +1,22 @@
+From 9792aa50caef3b29402de675d1c999ce1c7c3efb Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Mon, 21 Jun 2010 16:22:39 +0000
+Subject: Fix glib2 requires
+
+For the GDBus screensaver changes.
+---
+diff --git a/configure.in b/configure.in
+index 3f1a6f3..0eab23a 100644
+--- a/configure.in
++++ b/configure.in
+@@ -37,7 +37,7 @@ AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
+ AC_PATH_PROG([GLIB_MKENUMS],[glib-mkenums])
+ 
+ # Requirements
+-GLIB_REQS=2.25.8
++GLIB_REQS=2.25.9
+ GTK_REQS=2.90.2
+ TOTEM_PLPARSER_REQS=2.29.1
+ GNOMEICON_REQS=2.15.90
+--
+cgit v0.8.3.1
