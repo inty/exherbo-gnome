@@ -59,9 +59,6 @@ DEPENDENCIES="
 
 RESTRICT="test" # require X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-gdktarget=x11'
-                               '--with-libpng' '--with-libjpeg' '--with-libtiff'
-                               '--enable-xinerama' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'jpeg2000 libjasper' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-gdktarget=x11' '--enable-xinerama' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'doc gtk-doc' 'gobject-introspection introspection' 'man-pages man' )
 
