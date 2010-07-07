@@ -49,6 +49,8 @@ DEPENDENCIES="
 # epc (publish)
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
 
+AM_OPTS=( --foreign )
+
 src_prepare() {
     edo sed -e 's/GNOME_COMPILE_WARNINGS/dnl &/' \
             -i "${WORK}/configure.in"
