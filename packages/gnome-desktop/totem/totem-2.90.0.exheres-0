@@ -57,6 +57,8 @@ src_prepare() {
 
     expatch "${FILES}/9792aa50caef3b29402de675d1c999ce1c7c3efb.patch"
     expatch "${FILES}/0707073a6970109d06453617f1462bc8beadaec9.patch"
+    expatch "${FILES}/5347aa66d58b1a966886231de1bb000613a59470.patch"
+    expatch "${FILES}/0002-remove-usage-of-sealed-fields.patch"
     autotools_src_prepare
 }
 

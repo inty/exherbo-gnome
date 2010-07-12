@@ -1,0 +1,119 @@
+From 5347aa66d58b1a966886231de1bb000613a59470 Mon Sep 17 00:00:00 2001
+From: Philip Withnall <philip@tecnocode.co.uk>
+Date: Sun, 27 Jun 2010 16:42:42 +0000
+Subject: Don't use sealed GdkDragContext fields
+
+---
+diff --git a/src/totem-object.c b/src/totem-object.c
+index 6955244..4db6db8 100644
+--- a/src/totem-object.c
++++ b/src/totem-object.c
+@@ -2303,27 +2303,28 @@ drop_video_cb (GtkWidget     *widget,
+ {
+ 	GtkWidget *source_widget;
+ 	gboolean empty_pl;
++	GdkDragAction action = gdk_drag_context_get_selected_action (context);
+ 
+ 	source_widget = gtk_drag_get_source_widget (context);
+ 
+ 	/* Drop of video on itself */
+-	if (source_widget && widget == source_widget &&
+-	    context->action == GDK_ACTION_MOVE) {
++	if (source_widget && widget == source_widget && action == GDK_ACTION_MOVE) {
+ 		gtk_drag_finish (context, FALSE, FALSE, _time);
+ 		return;
+ 	}
+ 
+-	if (context->action == GDK_ACTION_ASK) {
+-		context->action = totem_drag_ask (totem_get_playlist_length (totem) > 0);
++	if (action == GDK_ACTION_ASK) {
++		action = totem_drag_ask (totem_get_playlist_length (totem) > 0);
++		gdk_drag_status (context, action, GDK_CURRENT_TIME);
+ 	}
+ 
+ 	/* User selected cancel */
+-	if (context->action == GDK_ACTION_DEFAULT) {
++	if (action == GDK_ACTION_DEFAULT) {
+ 		gtk_drag_finish (context, FALSE, FALSE, _time);
+ 		return;
+ 	}
+ 
+-	empty_pl = (context->action == GDK_ACTION_MOVE);
++	empty_pl = (action == GDK_ACTION_MOVE);
+ 	totem_action_drop_files (totem, data, info, empty_pl);
+ 	gtk_drag_finish (context, TRUE, FALSE, _time);
+ 	return;
+@@ -2342,7 +2343,7 @@ drag_motion_video_cb (GtkWidget      *widget,
+ 	gdk_window_get_pointer (gtk_widget_get_window (widget), NULL, NULL, &mask);
+ 	if (mask & GDK_CONTROL_MASK) {
+ 		gdk_drag_status (context, GDK_ACTION_COPY, _time);
+-	} else if (mask & GDK_MOD1_MASK || context->suggested_action == GDK_ACTION_ASK) {
++	} else if (mask & GDK_MOD1_MASK || gdk_drag_context_get_suggested_action (context) == GDK_ACTION_ASK) {
+ 		gdk_drag_status (context, GDK_ACTION_ASK, _time);
+ 	} else {
+ 		gdk_drag_status (context, GDK_ACTION_MOVE, _time);
+@@ -2360,16 +2361,19 @@ drop_playlist_cb (GtkWidget     *widget,
+ 	       Totem              *totem)
+ {
+ 	gboolean empty_pl;
++	GdkDragAction action = gdk_drag_context_get_selected_action (context);
+ 
+-	if (context->action == GDK_ACTION_ASK)
+-		context->action = totem_drag_ask (totem_get_playlist_length (totem) > 0);
++	if (action == GDK_ACTION_ASK) {
++		action = totem_drag_ask (totem_get_playlist_length (totem) > 0);
++		gdk_drag_status (context, action, GDK_CURRENT_TIME);
++	}
+ 
+-	if (context->action == GDK_ACTION_DEFAULT) {
++	if (action == GDK_ACTION_DEFAULT) {
+ 		gtk_drag_finish (context, FALSE, FALSE, _time);
+ 		return;
+ 	}
+ 
+-	empty_pl = (context->action == GDK_ACTION_MOVE);
++	empty_pl = (action == GDK_ACTION_MOVE);
+ 
+ 	totem_action_drop_files (totem, data, info, empty_pl);
+ 	gtk_drag_finish (context, TRUE, FALSE, _time);
+@@ -2387,9 +2391,8 @@ drag_motion_playlist_cb (GtkWidget      *widget,
+ 
+ 	gdk_window_get_pointer (gtk_widget_get_window (widget), NULL, NULL, &mask);
+ 
+-	if (mask & GDK_MOD1_MASK || context->suggested_action == GDK_ACTION_ASK) {
++	if (mask & GDK_MOD1_MASK || gdk_drag_context_get_suggested_action (context) == GDK_ACTION_ASK)
+ 		gdk_drag_status (context, GDK_ACTION_ASK, _time);
+-	}
+ }
+ static void
+ drag_video_cb (GtkWidget *widget,
+diff --git a/src/totem-playlist.c b/src/totem-playlist.c
+index 17c4e38..9998eed 100644
+--- a/src/totem-playlist.c
++++ b/src/totem-playlist.c
+@@ -508,16 +508,19 @@ drop_cb (GtkWidget        *widget,
+ 	char **list;
+ 	GList *p, *file_list;
+ 	guint i;
++	GdkDragAction action;
+ 
+-	if (context->suggested_action == GDK_ACTION_ASK) {
+-		context->action = totem_drag_ask (PL_LEN != 0);
+-		if (context->action == GDK_ACTION_DEFAULT) {
++	if (gdk_drag_context_get_suggested_action (context) == GDK_ACTION_ASK) {
++		action = totem_drag_ask (PL_LEN != 0);
++		gdk_drag_status (context, action, GDK_CURRENT_TIME);
++		if (action == GDK_ACTION_DEFAULT) {
+ 			gtk_drag_finish (context, FALSE, FALSE, _time);
+ 			return;
+ 		}
+ 	}
+ 
+-	if (context->action == GDK_ACTION_MOVE)
++	action = gdk_drag_context_get_selected_action (context);
++	if (action == GDK_ACTION_MOVE)
+ 		totem_playlist_clear (playlist);
+ 
+ 	list = g_uri_list_extract_uris ((char *) gtk_selection_data_get_data (data));
+--
+cgit v0.8.3.1
