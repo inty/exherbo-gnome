@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.25.9]
         gnome-desktop/gnome-desktop:3.0[>=2.29.91]
         x11-libs/pango[>=1.1.2][X]
-        x11-libs/gtk+:3.0[>=2.90.3]
+        x11-libs/gtk+:3.0[>=2.90.5]
         dev-libs/libxml2:2.0[>=2.4.71.6]
         media-libs/libexif[>=0.5.12]
         gnome-platform/GConf:2
