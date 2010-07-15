@@ -21,7 +21,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.0] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
-        x11-libs/libnotify[>=0.4]
+        x11-libs/libnotify[>=0.5.1]
         dev-libs/glib:2[>=2.19.7]
         x11-libs/gtk+:3.0[>=2.90.4]
         dev-libs/libxml2[>=2.6.12]
