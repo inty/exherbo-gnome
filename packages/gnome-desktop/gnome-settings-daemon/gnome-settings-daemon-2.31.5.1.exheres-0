@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Settings Daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -21,7 +20,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3.0[>=2.90.0]
         gnome-platform/GConf:2[>=2.6.1]
         dev-libs/dbus-glib:1[>=0.74]
-        gnome-desktop/gnome-desktop:2[>=2.26.3]
+        gnome-desktop/gnome-desktop:3.0[>=2.26.3]
         media-libs/fontconfig
         gnome-desktop/libgnomekbd[>=2.31.2]
         x11-libs/libxklavier[>=5.0]
