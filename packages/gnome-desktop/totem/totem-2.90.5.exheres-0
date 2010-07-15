@@ -2,15 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Media Player for the GNOME Desktop"
 HOMEPAGE="http://projects.gnome.org/totem"
 
 LICENCES="GPL-2"
-SLOT="0"
+SLOT="1.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="bluetooth brasero doc nautilus nsplugin tracker"
+MYOPTIONS="bluetooth brasero doc gobject-introspection nautilus nsplugin tracker"
 
 DEPENDENCIES="
     build:
@@ -18,13 +17,14 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-libs/libxml2[python]
         doc? ( dev-doc/gtk-doc[>=1.11] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.28.1]
         media-plugins/gst-plugins-base:0.10[>=0.10.28.1]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         gnome-platform/GConf:2
-        dev-libs/glib:2[>=2.25.9]
-        x11-libs/gtk+:3.0[>=2.90.2]
+        dev-libs/glib:2[>=2.25.11]
+        x11-libs/gtk+:3.0[>=2.90.3]
         gnome-desktop/totem-pl-parser[>=2.29.1]
         app-text/iso-codes
         gnome-desktop/gnome-icon-theme[>=2.15.90]
@@ -32,7 +32,7 @@ DEPENDENCIES="
         x11-apps/xrandr[>=1.1.1]
         x11-libs/libXxf86vm[>=1.0.1]
         x11-libs/libX11
-        dev-libs/libpeas:1.0[~scm] [[ note = [ drop scm dependency with the next release of libpeas ] ]]
+        dev-libs/libpeas:1.0[>=0.5.2]
         dev-libs/dbus-glib:1 [[ note = [ for media-player-keys, remove when ported to GDBus ] ]]
         bluetooth? ( net-wireless/bluez )
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
@@ -49,21 +49,9 @@ DEPENDENCIES="
 # epc (publish)
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
 
-AM_OPTS=( --foreign )
-
-src_prepare() {
-    edo sed -e 's/GNOME_COMPILE_WARNINGS/dnl &/' \
-            -i "${WORK}/configure.in"
-
-    expatch "${FILES}/9792aa50caef3b29402de675d1c999ce1c7c3efb.patch"
-    expatch "${FILES}/0707073a6970109d06453617f1462bc8beadaec9.patch"
-    expatch "${FILES}/5347aa66d58b1a966886231de1bb000613a59470.patch"
-    expatch "${FILES}/0002-remove-usage-of-sealed-fields.patch"
-    autotools_src_prepare
-}
-
 src_configure() {
-    local plugins=screensaver,gromit,media-player-keys,thumbnail,properties,skipto,pythonconsole,jamendo,opensubtitles,screenshot,coherence_upnp,dbus-service,iplayer
+    # coherence_upnp, (uses PyGTK and conflicts with the new pygobject bindings)
+    local plugins=screensaver,gromit,media-player-keys,thumbnail,properties,skipto,pythonconsole,jamendo,opensubtitles,screenshot,dbus-service,iplayer
 
     if option bluetooth ; then
         plugins+=,bemused
@@ -80,19 +68,13 @@ src_configure() {
     unset DISPLAY
     unset DBUS_SESSION_BUS_ADDRESS
 
-    GST_REGISTRY="${TEMP}/.gstreamer-0.10" \
-        econf "--with-plugins=${plugins}" \
-              '--enable-easy-codec-installation' '--with-dbus' \
-              $(option_enable doc gtk-doc) $(option_enable nautilus) \
+    GST_REGISTRY="${TEMP}/.gstreamer-0.10"                          \
+        econf "--with-plugins=${plugins}"                           \
+              '--enable-easy-codec-installation'                    \
+              '--with-dbus'                                         \
+              $(option_enable doc gtk-doc)                          \
+              $(option_enable nautilus)                             \
+              $(option_enable gobject-introspection introspection)  \
               $(option_enable nsplugin browser-plugins)
-}
-
-src_test() {
-    if ! option doc ; then
-        edo sed -e '/^GTKDOC_CHECK/cGTKDOC_CHECK = true' \
-                -i "${WORK}//docs/reference/Makefile"
-    fi
-
-    default
 }
 
