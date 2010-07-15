@@ -7,7 +7,6 @@ SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc gobject-introspection
 freetype [[ description = [ Use freetype for the font backend (necessary for CJK support) ] ]]
-svg [[ description = [ experimental SVG support ] ]]
 wml [[ description = [ add support for WML ] ]]"
 
 DEPENDENCIES="
@@ -44,7 +43,6 @@ src_configure() {
           "--with-font-backend=${font_backend}"                 \
           $(option_enable doc gtk-doc)                          \
           $(option_enable gobject-introspection introspection)  \
-          $(option_enable svg svg-filters)                      \
           $(option_enable wml)
 }
 

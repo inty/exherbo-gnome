@@ -8,7 +8,8 @@ DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
 src_compile() {
-    edo mkdir -p "${WORK}/DerivedSources/webkit"
+    edo mkdir -p "${WORK}/DerivedSources/webkit" \
+                 "${WORK}/DerivedSources/WebCore"
     default
 }
 
