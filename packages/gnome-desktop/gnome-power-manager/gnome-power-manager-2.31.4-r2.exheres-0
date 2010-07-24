@@ -57,7 +57,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-    gtk_icon_cache_pkg_postinst
+    gtk_icon_cache_pkg_postrm
     gsettings_exlib_compile_gsettings_schemas
 }
 
