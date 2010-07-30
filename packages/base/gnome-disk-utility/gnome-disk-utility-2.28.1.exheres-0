@@ -30,4 +30,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'nautilus' )
+DEFAULT_SRC_PREPARE_PATCHES=( '-p0' "${FILES}/gnome-disk-utility-2.28.1-fix-potfiles_skip.patch" )
 
