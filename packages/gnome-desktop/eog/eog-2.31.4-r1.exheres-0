@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gnome-2
+require gnome.org gnome-2 gsettings
 
 SUMMARY="Image Viewer"
 HOMEPAGE="http://projects.gnome.org/eog"
@@ -34,4 +34,14 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-python --without-xmp )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus' 'exif libexif' 'lcms cms' 'svg librsvg' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
+pkg_postinst() {
+    gsettings_exlib_compile_gsettings_schemas
+    gnome-2_pkg_postinst
+}
+
+pkg_postrm() {
+    gsettings_exlib_compile_gsettings_schemas
+    gnome-2_pkg_postrm
+}
 
