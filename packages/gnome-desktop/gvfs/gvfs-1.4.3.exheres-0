@@ -31,7 +31,7 @@ DEPENDENCIES="
         net-misc/openssh
         dev-libs/libxml2
         archive? ( app-arch/libarchive )
-        avahi? ( net-dns/avahi[>=0.6][gtk] )
+        avahi? ( net-dns/avahi[>=0.6][dbus] )
         bluetooth? ( dev-libs/expat
                      dev-libs/dbus-glib:1
                      net-wireless/bluez[>=4.0] )
