@@ -19,6 +19,8 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.16]
         dev-libs/libffi
         dev-lang/python:*[>=2.5]
+    test:
+        x11-libs/cairo
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )

@@ -6,16 +6,17 @@ require GConf
 LICENCES="LGPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="doc policykit"
+MYOPTIONS="doc gobject-introspection policykit"
 
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.18]
         doc? ( dev-doc/gtk-doc[>=1.0] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         x11-libs/gtk+:2[>=2.14]
-        dev-libs/glib:2[>2.14]
+        dev-libs/glib:2[>=2.25.9]
         gnome-platform/ORBit2:2[>=2.4]
         sys-apps/dbus[>=1.0.0]
         dev-libs/dbus-glib:1[>=0.74]
@@ -24,5 +25,5 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' '--without-openldap' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'policykit defaults-service' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' 'policykit defaults-service' )
 

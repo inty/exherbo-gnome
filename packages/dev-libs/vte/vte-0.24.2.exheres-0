@@ -26,6 +26,8 @@ DEPENDENCIES="
         python? ( gnome-bindings/pygtk:2[>=2.4] )
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/b58bc5359085d2c9233ac6d6a265645bfa217e82.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-deprecation )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' 'python' )
 

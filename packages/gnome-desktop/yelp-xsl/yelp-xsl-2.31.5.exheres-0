@@ -1,0 +1,25 @@
+# Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose Licence v2
+
+require gnome.org
+
+SUMMARY="Help browser for the GNOME desktop"
+HOMEPAGE="http://projects.gnome.org/yelp"
+
+LICENCES="( GPL-2 LGPL-2 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+    build+run:
+        dev-libs/libxml2:2.0[>=2.6.12]
+        dev-libs/libxslt[>=1.1.8]
+"
+
+RESTRICT="test"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-doc' )
+

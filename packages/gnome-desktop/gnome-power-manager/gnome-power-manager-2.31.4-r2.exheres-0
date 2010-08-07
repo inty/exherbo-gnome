@@ -1,0 +1,63 @@
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org gsettings gtk-icon-cache
+
+SUMMARY="Power Management Utility for GNOME"
+HOMEPAGE="http://projects.gnome.org/gnome-power-manager"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="applets [[ description = [ build inhibit and locking applets ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        x11-proto/xproto[>=7.0.15]
+    build+run:
+        dev-libs/glib:2[>=2.25.9]
+        media-libs/libcanberra[gtk3][>=0.10]
+        dev-libs/dbus-glib:1[>=0.70]
+        sys-apps/dbus[>=1.0]
+        x11-libs/gtk+:3.0[>=2.90.3]
+        gnome-platform/GConf:2[>=2.31.1]
+        gnome-desktop/gnome-keyring:1[>=0.6.0]
+        x11-libs/cairo[>=1.0.0]
+        x11-libs/libXrandr[>=1.3.0]
+        x11-libs/libXrender
+        x11-libs/libX11
+        x11-libs/libXext
+        sys-apps/upower[>=0.9.1]
+        x11-libs/libnotify[>=0.5.1]
+        gnome-desktop/gnome-control-center[>=2.31.4]
+        applets? ( gnome-desktop/gnome-panel:3.0[>=2.31.2] )
+    run:
+        sys-power/pm-utils[>=1.3.0-rc1]
+        sys-auth/polkit
+    recommendation:
+        gnome-desktop/PolicyKit-gnome [[ note = [ required for controlling the backlight ] ]]
+"
+
+RESTRICT="test" # requires X
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applets )
+
+src_install() {
+    default
+
+    # Remove empty directories -- needs docbook2man
+    edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+}
+
+pkg_postinst() {
+    gtk_icon_cache_pkg_postinst
+    gsettings_exlib_compile_gsettings_schemas
+}
+
+pkg_postrm() {
+    gtk_icon_cache_pkg_postrm
+    gsettings_exlib_compile_gsettings_schemas
+}
+

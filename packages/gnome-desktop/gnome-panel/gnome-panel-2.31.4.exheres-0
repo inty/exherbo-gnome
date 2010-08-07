@@ -1,0 +1,58 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Panel Application for GNOME"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc eds gobject-introspection networkmanager policykit"
+
+DEPENDENCIES="
+    build:
+        app-text/scrollkeeper-dtd
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils
+        doc? ( dev-doc/gtk-doc[>=1.0] )
+        gobject-introspection? ( gnome-desktop/gobjec-introspection[>=0.6.7] )
+    build+run:
+        dev-libs/glib:2[>=2.25.9][gobject-introspection?]
+        gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
+        x11-libs/libICE
+        x11-libs/libSM
+        x11-libs/gtk+:2[>=2.15.1][gobject-introspection?]
+        x11-libs/pango[>=1.15.4]
+        gnome-desktop/gnome-desktop:2[>=2.24.0]
+        gnome-desktop/gnome-menus[>=2.27.92]
+        media-libs/libcanberra[gtk]
+        x11-libs/cairo[>=1.0.0]
+        gnome-desktop/libwnck[>=2.19.5]
+        gnome-desktop/librsvg:2
+        gnome-desktop/libgweather[>=2.27.90]
+        x11-libs/libX11
+        x11-libs/libXau
+        x11-libs/libXrandr[>=1.2.0]
+        eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar(+)] )
+        networkmanager? ( net-apps/NetworkManager[>=0.6] )
+        policykit? ( sys-auth/polkit:1[>=0.91] )
+    suggestion:
+        gnome-desktop/gnome-applets[>=2.23.3]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-in-process-applets=clock,notification-area,wncklet' '--disable-bonobo' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' 'gobject-introspection introspection'
+                                       'networkmanager network-manager' 'policykit polkit' )
+
+src_install() {
+    default
+
+    if option !policykit ; then
+        edo rmdir "${IMAGE}"/usr/share/polkit-1/{actions,} \
+                  "${IMAGE}"/usr/share/dbus-1/system-services \
+                  "${IMAGE}"/etc/dbus-1/{system.d,}
+    fi
+}
+

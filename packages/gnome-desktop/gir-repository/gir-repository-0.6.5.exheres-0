@@ -24,7 +24,9 @@ DEPENDENCIES="
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-options.patch"
                               "${FILES}/${PNV}-pango.patch"
-                              "${FILES}/${PNV}-atk.patch" )
+                              "${FILES}/${PNV}-atk.patch"
+                              "${FILES}/${PNV}-build-DBusGLib.gir-with-dbus.patch"
+                              "${FILES}/${PNV}-fix-DBusGLib.gir.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( 
     --without-atk

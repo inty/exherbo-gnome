@@ -1,0 +1,18 @@
+# Copyright © 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+SUMMARY="Shared GSettings schemas for the desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+"
+
