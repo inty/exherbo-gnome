@@ -7,7 +7,7 @@ SUMMARY="Panel Application for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="3.0"
+SLOT="2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc eds gobject-introspection networkmanager policykit"
 
@@ -19,7 +19,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.0] )
         gobject-introspection? ( gnome-desktop/gobjec-introspection[>=0.6.7] )
     build+run:
-        dev-libs/glib:2[>=2.25.9][gobject-introspection?]
+        dev-libs/glib:2[>=2.25.12][gobject-introspection?]
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         x11-libs/libICE
         x11-libs/libSM
