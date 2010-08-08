@@ -2,13 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="GNOME Media"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="3.0"
+SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="grecord [[ requires = [ gstreamer ] description = [ build the gnome sound recorder ] ]]
 gstreamer [[ description = [ enable support for gstreamer properties and profiles ] ]]
@@ -22,12 +21,12 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         dev-libs/glib:2[>=2.18.2]
-        x11-libs/gtk+:3.0[>=2.18.0]
+        x11-libs/gtk+:2[>=2.18.0]
         gnome-platform/GConf:2[>=2.6.1]
-        media-libs/libcanberra[gtk3][>=0.13]
-        gnome-desktop/gnome-control-center
+        media-libs/libcanberra[gtk][>=0.13]
         dev-libs/libxml2
-        pulseaudio? ( media-sound/pulseaudio[>=0.9.16] )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.16]
+                      dev-libs/unique:1 )
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.23]
                      media-plugins/gst-plugins-base:0.10[>=0.10.23] )
     run:
@@ -40,21 +39,6 @@ DEPENDENCIES="
                      media-plugins/gst-ffmpeg )
 "
 
-AT_M4DIR=( m4 )
-
-RESTRICT="test"
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/faadc51fb554b90cfd07d108262383e1772f279b.patch"
-                              "${FILES}/7b5a8127cea09779dd172b0b7598d2ad03b2e47b.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-gstmix' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( grecord 'gstreamer gstprops' 'gstreamer profiles' pulseaudio )
-
-src_prepare() {
-    edo sed -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
-            -i "${WORK}/configure.ac"
-
-    autotools_src_prepare
-}
 
