@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="doc eds"
 
 DEPENDENCIES="
     build:
@@ -21,16 +21,18 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXScrnSaver
         x11-libs/libXext
-        media-libs/libcanberra[gtk3]
+        media-libs/libcanberra[gtk]
         x11-libs/libXxf86misc
-        x11-libs/gtk+:3.0[>=2.90.0]
+        x11-libs/gtk+:2[>=2.20.0]
         dev-libs/glib:2[>=2.17.4]
         gnome-platform/GConf:2
         dev-libs/libxml2:2.0
-        gnome-desktop/gnome-desktop:3.0[>=2.29.4]
-        gnome-desktop/gnome-menus
+        gnome-desktop/gnome-desktop:2[>=2.29.4]
+        gnome-desktop/gnome-menus[>=2.10.1]
+        dev-libs/unique:1
         sys-apps/dbus[>=1.0]
         dev-libs/dbus-glib:1[>=0.74]
+        gnome-desktop/metacity[>=2.23.1]
         gnome-desktop/gnome-settings-daemon
         gnome-desktop/librsvg:2
         x11-libs/pango[X]
@@ -39,10 +41,11 @@ DEPENDENCIES="
         x11-libs/libXi[>=1.2]
         gnome-desktop/libgnomekbd[>=2.31.2]
         x11-libs/libxklavier[>=4.0]
+        eds? ( gnome-desktop/evolution-data-server:1.2 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-appindicator )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds aboutme' )
 
 pkg_postinst() {
     freedesktop-mime_update_mime_database
