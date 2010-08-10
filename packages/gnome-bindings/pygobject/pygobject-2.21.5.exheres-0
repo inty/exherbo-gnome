@@ -9,23 +9,28 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="LGPL-2.1"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="doc gobject-introspection"
 
 DEPENDENCIES="
     build+run:
-        dev-lang/python:=[>=2.3.5]
-        dev-libs/glib[>=2.16.0]
+        dev-lang/python:=[>=2.5.2]
+        dev-libs/glib[>=2.22.4]
+        dev-python/pycairo[>=1.0.2]
     build:
         doc? (
                 dev-libs/libxslt
                 app-text/docbook-xml-dtd:4.1.2
              )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.1] )
 "
 
 RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-ffi )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc docs'
+    'gobject-introspection introspection'
+)
 
 src_prepare() {
     default
