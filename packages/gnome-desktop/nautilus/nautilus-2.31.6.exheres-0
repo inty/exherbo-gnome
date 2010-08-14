@@ -20,11 +20,11 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
         dev-libs/glib:2[>=2.25.9]
-        gnome-desktop/gnome-desktop:3.0[>=2.29.91]
+        gnome-desktop/gnome-desktop:2[>=2.29.91]
         x11-libs/pango[>=1.1.2][X]
-        x11-libs/gtk+:3.0[>=2.90.5]
+        x11-libs/gtk+:2[>=2.21.2]
         dev-libs/libxml2:2.0[>=2.4.71.6]
-        media-libs/libexif[>=0.5.12]
+        media-libs/libexif[>=0.5.12] [[ note = [ automagic dependency ] ]]
         gnome-platform/GConf:2
     run:
         gnome-desktop/gvfs[>=1.0.3]
