@@ -18,7 +18,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
     build+run:
         dev-libs/glib:2[>=2.16.0]
-        x11-libs/gtk+:3.0[>=2.90.0]
+        x11-libs/gtk+:2[>=2.14.0]
         dev-libs/dbus-glib:1[>=0.76]
         sys-apps/upower[>=0.9.1]
         x11-libs/libSM
@@ -33,4 +33,6 @@ DEPENDENCIES="
         sys-auth/ConsoleKit
         gnome-desktop/PolicyKit-gnome
 "
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtk=2.0' )
 
