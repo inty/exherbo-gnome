@@ -17,13 +17,14 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.9.0]
         doc? ( dev-doc/gtk-doc[>=1.0] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
     build+run:
         dev-libs/libxml2[>=2.5.0]
-        dev-libs/glib:2[>=2.25.11]
-        x11-libs/gtk+:3.0[>=2.90.0]
+        dev-libs/glib:2[>=2.25.12]
+        x11-libs/gtk+:3.0[>=2.90.6]
         gnome-desktop/gtksourceview:3.0[>=2.11.2]
-        dev-libs/libpeas:1.0
+        dev-libs/libpeas:1.0[>=0.5.4]
+        gnome-desktop/gsettings-desktop-schemas
         x11-libs/libSM[>=1.0.0]
         spell? ( app-spell/enchant[>=1.2.0]
                  app-text/iso-codes[>=0.35] )
