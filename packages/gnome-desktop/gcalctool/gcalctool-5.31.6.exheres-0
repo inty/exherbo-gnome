@@ -22,3 +22,5 @@ DEPENDENCIES="
         dev-libs/libxml2
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtk=2.0' )
+
