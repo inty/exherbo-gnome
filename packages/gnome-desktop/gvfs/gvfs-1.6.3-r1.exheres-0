@@ -41,7 +41,7 @@ DEPENDENCIES="
         cdda? ( dev-libs/libcdio[>=0.78.2] )
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
-        gphoto2? ( media-libs/libgphoto2[>=2.4.7] ) [[ requires = [ udev ] ]]
+        gphoto2? ( media-libs/libgphoto2[>=2.4.10] ) [[ requires = [ udev ] ]]
         http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         monitor? ( dev-libs/expat
