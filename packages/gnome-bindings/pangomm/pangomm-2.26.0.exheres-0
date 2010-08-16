@@ -13,7 +13,7 @@ MYOPTIONS="doc disable-deprecated"
 
 DEPENDENCIES="
     build:
-        dev-lang/perl[>=5.6.0]
+        dev-lang/perl:*[>=5.6.0]
         dev-util/pkg-config[>=0.20]
         doc? ( app-doc/doxygen )
     build+run:
