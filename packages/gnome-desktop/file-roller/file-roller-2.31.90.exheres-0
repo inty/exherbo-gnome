@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org gsettings
+require gnome-2
 
 SUMMARY="UI for extracting files"
 HOMEPAGE="http://www.gnome.org/"
@@ -19,6 +19,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/gtk+:2[>=2.21.4]
         dev-libs/glib:2[>=2.25.5]
+        gnome-platform/GConf:2[>=2.6.0]
         nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
 "
 
