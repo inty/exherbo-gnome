@@ -38,3 +38,4 @@ src_prepare() {
                -e 's:GtkNotifyDestroy:GNotifyDestroy:g' \
     || die
 }
+

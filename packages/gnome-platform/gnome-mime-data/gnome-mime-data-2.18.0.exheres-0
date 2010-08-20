@@ -17,3 +17,4 @@ DEPENDENCIES="
         dev-libs/glib[>=2.0]
         dev-util/intltool[>=0.35]
 "
+

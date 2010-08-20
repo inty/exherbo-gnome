@@ -106,3 +106,4 @@ gnucash_src_install() {
         edo rm -r "${IMAGE}"/usr/share/doc/${PNVR}/examples
     fi
 }
+
