@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require easy-multibuild gnome.org
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
 
 SUMMARY="Temporary repository of gobject-introspection repositories"
@@ -10,16 +10,16 @@ HOMEPAGE="http://live.gnome.org/GObjectIntrospection"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="dbus gtk libsoup"
+MYOPTIONS="dbus gtk libsoup multibuild_c: 32 64"
 
 DEPENDENCIES="
     build+run:
-        gnome-desktop/gobject-introspection[>=0.6.5]
-        dbus? ( dev-libs/dbus-glib:1 )
-        gtk? ( dev-libs/atk[gobject-introspection(-)]
-               x11-libs/gtk+:2[>=2.12.0]
-               x11-libs/pango[>=1.26.0][gobject-introspection] )
-        libsoup? ( gnome-desktop/libsoup:2.4 )
+        gnome-desktop/gobject-introspection[>=0.6.5][multibuild_c:*(?)?]
+        dbus? ( dev-libs/dbus-glib:1[multibuild_c:*(?)?] )
+        gtk? ( dev-libs/atk[gobject-introspection(-)][multibuild_c:*(?)?]
+               x11-libs/gtk+:2[>=2.12.0][multibuild_c:*(?)?]
+               x11-libs/pango[>=1.26.0][gobject-introspection][multibuild_c:*(?)?] )
+        libsoup? ( gnome-desktop/libsoup:2.4[multibuild_c:*(?)?] )
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-options.patch"
