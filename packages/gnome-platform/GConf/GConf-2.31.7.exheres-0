@@ -24,6 +24,6 @@ DEPENDENCIES="
         policykit? ( sys-auth/polkit:1 )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' '--without-openldap' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk' '--enable-gsettings-backend' '--without-openldap' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' 'policykit defaults-service' )
 
