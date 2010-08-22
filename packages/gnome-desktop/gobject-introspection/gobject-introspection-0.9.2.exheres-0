@@ -1,4 +1,4 @@
-# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2009 Sateem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org
@@ -23,5 +23,5 @@ DEPENDENCIES="
         x11-libs/cairo
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'build_options:recommended_tests tests' )
 
