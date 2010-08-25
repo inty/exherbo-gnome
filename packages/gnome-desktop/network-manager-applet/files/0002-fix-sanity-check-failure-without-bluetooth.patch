@@ -1,0 +1,34 @@
+From 8aca1a9c7bd6aba9d8763c557ae510a03b44d6c1 Mon Sep 17 00:00:00 2001
+From: Denis Dupeyron <calchan@gentoo.org>
+Date: Wed, 25 Aug 2010 15:56:23 -0600
+Subject: [PATCH] Fix sanity check failure in network-manager-applet
+
+When not building with bluetooth an empty
+$(libdir)/gnome-bluetooth/plugins directory is created which triggers a
+sanity check failure in paludis.
+---
+ src/gnome-bluetooth/Makefile.am |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gnome-bluetooth/Makefile.am b/src/gnome-bluetooth/Makefile.am
+index 985b31c..d208113 100644
+--- a/src/gnome-bluetooth/Makefile.am
++++ b/src/gnome-bluetooth/Makefile.am
+@@ -1,5 +1,3 @@
+-plugindir = $(libdir)/gnome-bluetooth/plugins
+-
+ INCLUDES = \
+ 	-DDATADIR=\"$(datadir)\" \
+ 	-DICONDIR=\"$(icondir)\" \
+@@ -15,6 +13,8 @@ INCLUDES = \
+ BT_WIDGET_SOURCES = bt-widget.c
+ 
+ if HAVE_GBT
++plugindir = $(libdir)/gnome-bluetooth/plugins
++
+ plugin_LTLIBRARIES = libnma.la
+ 
+ libnma_la_SOURCES = $(BT_WIDGET_SOURCES)
+-- 
+1.7.2.2
+
