@@ -3,6 +3,7 @@
 
 require gnome-2
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 ] ]
+require multilib
 
 SUMMARY="A panel applet to configure networking via NetworkManager"
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager"
@@ -35,4 +36,12 @@ DEPENDENCIES="
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling-disabling-blueto.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( bluetooth )
+
+src_install() {
+    default
+
+    if ! option bluetooth ; then
+        edo rmdir "${IMAGE}"/usr/$(get_libdir)/gnome-bluetooth{/plugins,}
+    fi
+}
 
