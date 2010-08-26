@@ -16,7 +16,7 @@ MYOPTIONS="doc"
 DEPENDENCIES="
      build:
         doc? (
-            app-text/docbook-xml-dtd:4.1
+            app-text/docbook-xml-dtd:4.1.2
             app-text/docbook-xsl-stylesheets[>=1.70.1]
             dev-doc/gtk-doc
             dev-libs/libxslt
