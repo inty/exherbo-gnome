@@ -20,7 +20,7 @@ DEPENDENCIES="
 gdm_src_install() {
     default
 
-    rmdir "${IMAGE}/var/gdm" || die "failed to remove empty directory"
+    edo rmdir "${IMAGE}/var/gdm"
 
     keepdir /var/lib/gdm            # GDM_WORKING_DIR
     keepdir /var/run/gdm            # GDM_XAUTH_DIR

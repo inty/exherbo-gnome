@@ -1,0 +1,44 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Settings Daemon"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="pulseaudio libnotify policykit smartcard"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.37.1]
+    build+run:
+        dev-libs/glib:2[>=2.17.3]
+        x11-libs/gtk+:2[>=2.21.2]
+        gnome-platform/GConf:2[>=2.6.1]
+        dev-libs/dbus-glib:1[>=0.74]
+        gnome-desktop/gnome-desktop:2[>=2.26.3]
+        media-libs/fontconfig
+        gnome-desktop/libgnomekbd[>=2.31.2]
+        x11-libs/libxklavier[>=5.0]
+        x11-libs/libXext
+        x11-libs/libX11
+        libnotify? ( x11-libs/libnotify[>=0.4.5] )
+        pulseaudio? ( media-sound/pulseaudio[>=0.9.12] )
+        policykit? ( sys-auth/polkit[>=0.91]
+                     sys-apps/dbus[>=1.1.2] )
+        smartcard? ( dev-libs/nss[>=3.11.2] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( libnotify )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'pulseaudio pulse' 'policykit polkit' 'smartcard smartcard-support' )
+
+src_install() {
+    gnome-2_src_install
+
+    keepdir "/etc/gnome-settings-daemon/xrandr"
+}
+

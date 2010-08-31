@@ -21,3 +21,4 @@ DEPENDENCIES="
         sys-devel/gettext
         dev-util/intltool[>=0.35.0]
 "
+

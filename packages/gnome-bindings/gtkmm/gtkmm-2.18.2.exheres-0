@@ -19,7 +19,7 @@ DEPENDENCIES="
         gnome-bindings/pangomm:1.4[>=2.26.0]
         x11-libs/gtk+:2[>=2.18.0]
     build:
-        dev-lang/perl[>=5.6.0]
+        dev-lang/perl:*[>=5.6.0]
         dev-util/pkg-config[>=0.20]
         doc? ( app-doc/doxygen )
 "

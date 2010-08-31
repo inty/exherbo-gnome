@@ -9,10 +9,12 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
+MYOPTIONS="
+afc [[ description = [ add support for accessing AFC (Apple File Connection) filesystems ] ]]
+archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
 avahi bash-completion bluetooth
 cdda [[ requires = [ udev ] ]]
-doc fuse gconf gphoto2 hal
+doc fuse gconf gphoto2
 http [[ description = [ enable support http, dav, ssl uris ] ]]
 keyring
 monitor [[ description = [ add support for gnome-disk-utility ] ]]
@@ -26,10 +28,11 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
     build+run:
-        dev-libs/glib:2[>=2.21.5]
+        dev-libs/glib:2[>=2.23.4]
         sys-apps/dbus[>=1.0]
         net-misc/openssh
         dev-libs/libxml2
+        afc? ( app-pda/libimobiledevice[>=0.9.7] )
         archive? ( app-arch/libarchive )
         avahi? ( net-dns/avahi[>=0.6][dbus] )
         bluetooth? ( dev-libs/expat
@@ -38,23 +41,24 @@ DEPENDENCIES="
         cdda? ( dev-libs/libcdio[>=0.78.2] )
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
-        monitor? ( base/gnome-disk-utility[>=0.3] )
-        gphoto2? ( media-libs/libgphoto2[>=2.4.7] ) [[ requires = [ udev ] ]]
-        hal? ( sys-apps/hal[>=0.5.10] )
-        http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
+        gphoto2? ( media-libs/libgphoto2[>=2.4.10] ) [[ requires = [ udev ] ]]
+        http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
+        monitor? ( dev-libs/expat
+                   base/gnome-disk-utility[>=2.29.0] )
         udev? ( sys-fs/udev[>=145][glib] )
         samba? ( net-fs/samba[>=3.0.22] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
-'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'monitor gdu' 'udev' 'udev
-gudev' 'samba' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--disable-hal' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
+                                       'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'http' 'keyring'
+                                       'monitor gdu' 'udev' 'udev gudev' 'samba' )
 
 src_install() {
     default
 
-    keepdir "/usr/share/gvfs/remote-volume-monitors"
+    keepdir /media
+    keepdir /usr/share/gvfs/remote-volume-monitors
 }
 

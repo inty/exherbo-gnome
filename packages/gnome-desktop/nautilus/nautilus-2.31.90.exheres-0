@@ -1,0 +1,52 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 freedesktop-mime
+
+SUMMARY="File Manager for GNOME"
+HOMEPAGE="http://live.gnome.org/Nautilus"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc gobject-introspection"
+
+DEPENDENCIES="
+    build:
+        app-text/rarian
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.40.1]
+        doc? ( dev-doc/gtk-doc[>=1.4] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
+    build+run:
+        dev-libs/glib:2[>=2.25.9]
+        gnome-desktop/gnome-desktop:2[>=2.29.91]
+        x11-libs/pango[>=1.1.2][X]
+        x11-libs/gtk+:2[>=2.21.2]
+        dev-libs/libxml2:2.0[>=2.4.71.6]
+        media-libs/libexif[>=0.5.12] [[ note = [ automagic dependency ] ]]
+        gnome-platform/GConf:2
+    run:
+        gnome-desktop/gvfs[>=1.0.3]
+    recommendation:
+        base/gnome-disk-utility [[ note = [ without gnome-disk-utility, there is a noticable degredation in the functionality ] ]]
+    suggestion:
+        gnome-desktop/gnome-icon-theme[>=1.1.91]
+        app-pim/tracker[>=0.8]
+"
+
+RESTRICT="test" # requires X
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
+
+pkg_postinst() {
+    freedesktop-mime_update_mime_database
+    gnome-2_pkg_postinst
+}
+
+pkg_postrm() {
+    freedesktop-mime_update_mime_database
+    gnome-2_pkg_postrm
+}
+

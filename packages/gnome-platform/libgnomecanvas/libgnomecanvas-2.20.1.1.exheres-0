@@ -25,3 +25,4 @@ DEPENDENCIES="
 
 # requires X
 RESTRICT="test"
+
