@@ -38,11 +38,3 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( bluetooth )
 
-src_install() {
-    default
-
-    if ! option bluetooth ; then
-        edo rmdir "${IMAGE}"/usr/$(get_libdir)/gnome-bluetooth{/plugins,}
-    fi
-}
-
