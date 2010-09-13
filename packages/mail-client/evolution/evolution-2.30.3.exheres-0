@@ -3,7 +3,7 @@
 
 require evolution
 
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 
 # NOTE: hal and gstreamer are automagic deps
 # pst-import plugin needs libpst
