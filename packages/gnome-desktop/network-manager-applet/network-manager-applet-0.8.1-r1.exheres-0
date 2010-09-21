@@ -33,15 +33,8 @@ DEPENDENCIES="
         bluetooth? ( gnome-desktop/gnome-bluetooth:1[>=2.27.6] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling-disabling-blueto.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling-disabling-blueto.patch"
+                              "${FILES}/0002-fix-sanity-check-failure-without-bluetooth.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( bluetooth )
-
-src_install() {
-    default
-
-    if ! option bluetooth ; then
-        edo rmdir "${IMAGE}"/usr/$(get_libdir)/gnome-bluetooth{/plugins,}
-    fi
-}
 
