@@ -26,11 +26,13 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.14]
         gnome-platform/libglade:2
         gnome-platform/GConf:2
-        gnome-desktop/gnome-keyring:1
+        gnome-desktop/libgnome-keyring:1
         x11-libs/libnotify[>=0.4.3]
         sys-apps/dbus[>=1.2.6]
         sys-auth/polkit:1[>=0.9.2]
         bluetooth? ( gnome-desktop/gnome-bluetooth:1[>=2.27.6] )
+    recommendation:
+        gnome-desktop/gnome-keyring:1
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling-disabling-blueto.patch"
