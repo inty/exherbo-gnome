@@ -31,7 +31,7 @@ DEPENDENCIES="
         dvi? ( app-text/libspectre[>=0.2.0]
                app-text/texlive )
         djvu? ( app-text/djvu[>=3.5.17] )
-        keyring? ( gnome-desktop/gnome-keyring:1[>=2.22.0] )
+        keyring? ( gnome-desktop/libgnome-keyring:1 )
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
         ps? ( app-text/libspectre[>=0.2.0] )
         pdf? ( x11-libs/cairo[>=1.0]
@@ -39,6 +39,7 @@ DEPENDENCIES="
         tiff? ( media-libs/tiff[>=3.6] )
     run:
         x11-misc/shared-mime-info
+        keyring? ( gnome-desktop/gnome-keyring:1[>=2.22.0] )
 "
 
 RESTRICT="test" # requires X and dogtail
