@@ -39,7 +39,7 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
         gnome-platform/GConf:2
         dev-libs/dbus-glib:1[>=0.35]
-        daap? ( media-libs/libdmapsharing:1.9[>=1.9.0.21] )
+        daap? ( || ( media-libs/libdmapsharing:2.0 media-libs/libdmapsharing:1.9[>=1.9.0.21] ) )
         ipod? ( media-libs/libgpod[>=0.6] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
