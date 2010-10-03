@@ -20,7 +20,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         dev-libs/glib:2[>=2.22.0]
-        x11-libs/gtk+:2[>=2.14.0]
+        x11-libs/gtk+:2[>=2.20.0]
         x11-libs/pango[>=1.22.0]
         sys-libs/ncurses
         python? ( gnome-bindings/pygtk:2[>=2.4] )
