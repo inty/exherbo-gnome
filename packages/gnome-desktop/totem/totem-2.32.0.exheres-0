@@ -9,7 +9,7 @@ HOMEPAGE="http://projects.gnome.org/totem"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="bluetooth doc nautilus nsplugin python tracker vala"
+MYOPTIONS="bluetooth chapters [[ description = [ add support for DVD chapters ] ]] doc nautilus nsplugin python tracker vala"
 
 DEPENDENCIES="
     build:
@@ -21,13 +21,15 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
         dev-libs/glib:2[>=2.25.11]
-        x11-libs/gtk+:2[>=2.19.5]
+        x11-libs/gtk+:2[>=2.22.0]
         gnome-platform/GConf:2
         gnome-desktop/totem-pl-parser[>=2.30.2]
         x11-libs/cairo
         gnome-desktop/gnome-icon-theme[>=2.15.90]
         dev-libs/dbus-glib:1[>=0.74]
+        dev-libs/unique:1
         bluetooth? ( net-wireless/bluez )
+        chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         nautilus? ( gnome-desktop/nautilus )
         nsplugin? ( x11-misc/shared-mime-info[>=0.22]
                     x11-libs/startup-notification[>=0.8]
@@ -52,6 +54,10 @@ src_configure() {
 
     if option bluetooth ; then
         plugins+=,bemused
+    fi
+
+    if option chapters ; then
+        plugins+=,chapters
     fi
 
     if option python ; then
