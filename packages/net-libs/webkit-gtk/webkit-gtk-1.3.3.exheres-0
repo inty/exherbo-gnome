@@ -43,6 +43,6 @@ src_configure() {
           "--with-font-backend=${font_backend}"                 \
           $(option_enable doc gtk-doc)                          \
           $(option_enable gobject-introspection introspection)  \
-          $(option_enable wml)_
+          $(option_enable wml)
 }
 
