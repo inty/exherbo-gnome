@@ -32,7 +32,7 @@ DEPENDENCIES="
                      app-text/docbook-xml-dtd:4.1.2
                      app-text/docbook-xsl-stylesheets )
         doc? ( dev-doc/gtk-doc[>=1.11] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
         xinerama? ( x11-proto/xineramaproto )
     build+run:
         dev-libs/glib:2[>=2.25.8]
