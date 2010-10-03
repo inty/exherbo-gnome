@@ -11,7 +11,7 @@ man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]"
 
 DEPENDENCIES="
     build:
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.0] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
         man-pages? ( dev-libs/libxslt )
     build+run:
         dev-libs/glib:2[>=2.25.9]
