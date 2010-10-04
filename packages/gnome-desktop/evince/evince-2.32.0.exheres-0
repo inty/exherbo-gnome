@@ -22,10 +22,9 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.13] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
     build+run:
-        x11-libs/gtk+:2[>=2.21.2]
+        x11-libs/gtk+:2[>=2.21.5]
         dev-libs/glib:2[>=2.25.11]
         dev-libs/libxml2:2.0[>=2.5.0]
-        gnome-desktop/gsettings-desktop-schemas
         gnome-desktop/gnome-icon-theme[>=2.17.1]
         x11-libs/libX11
         dvi? ( app-text/libspectre[>=0.2.0]
@@ -34,7 +33,7 @@ DEPENDENCIES="
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.22.0] )
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
         ps? ( app-text/libspectre[>=0.2.0] )
-        pdf? ( x11-libs/cairo[>=1.0]
+        pdf? ( x11-libs/cairo[>=1.9.10]
                app-text/poppler[>=0.14.0][cairo][glib] )
         tiff? ( media-libs/tiff[>=3.6] )
     run:
