@@ -21,5 +21,6 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.25.11]
         x11-libs/gtk+:2[>=2.10]
         net-libs/webkit-gtk:1[>=1.1.13]
+        dev-libs/unique:1
 "
 
