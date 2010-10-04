@@ -15,14 +15,13 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
 brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
+daap
 doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
 mtp [[ requires = [ udev ] ]]
 udev [[ description = [ use udev for hardware detection ] ]]
 webkit [[ description = [ use webkit to display HTML content ] ]]"
-
-# daap requires libdmapsharing:1.9[>=1.9.0.21]
 
 DEPENDENCIES="
     build:
@@ -31,15 +30,16 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
-        dev-libs/glib:2[>=2.25.6]
+        dev-libs/glib:2[>=2.25.12]
         x11-libs/gtk+:2[>=2.20.0]
         gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
         gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
-        gnome-desktop/totem-pl-parser[>=2.26]
+        gnome-desktop/totem-pl-parser[>=2.28.0]
         media-libs/gstreamer:0.10[>=0.10.20]
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
         gnome-platform/GConf:2
         dev-libs/dbus-glib:1[>=0.35]
+        daap? ( || ( media-libs/libdmapsharing:2.0 media-libs/libdmapsharing:1.9[>=1.9.0.21] ) )
         ipod? ( media-libs/libgpod[>=0.6] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
@@ -53,6 +53,6 @@ RESTRICT="test" # requires X
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
                                --disable-musicbrainz --disable-lirc --disable-vala
                                --disable-browser-plugin --disable-fm-radio )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'brasero libbrasero-media' ipod keyring libnotify mtp 'udev gudev' webkit )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'brasero libbrasero-media' ipod 'keyring gnome-keyring' mtp 'udev gudev' webkit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' daap libnotify )
 
