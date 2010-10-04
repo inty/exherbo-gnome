@@ -15,7 +15,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.10] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.21.3]
         dev-libs/libxml2
