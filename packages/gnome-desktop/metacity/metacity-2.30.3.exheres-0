@@ -18,7 +18,7 @@ DEPENDENCIES="
         app-text/docbook-xml-dtd:4.5
         doc? ( dev-doc/gtk-doc[>=0.9] )
     build+run:
-        x11-libs/gtk+:2[>=2.10.0]
+        x11-libs/gtk+:2[>=2.20.0]
         x11-libs/pango[>=1.2.0][X]
         media-libs/libcanberra[gtk]
         gnome-platform/GConf:2[>=1.2]
@@ -29,6 +29,7 @@ DEPENDENCIES="
         xinerama? ( x11-libs/libXinerama )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification'
+                               '--enable-compositor' '--with-gtk=2.0' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' xinerama )
 
