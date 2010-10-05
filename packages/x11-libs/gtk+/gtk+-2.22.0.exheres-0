@@ -35,7 +35,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
         xinerama? ( x11-proto/xineramaproto )
     build+run:
-        dev-libs/glib:2[>=2.25.8]
+        dev-libs/glib:2[>=2.25.10]
         dev-libs/atk[>=1.29.2][gobject-introspection?]
         x11-libs/pango[>=1.20][X][gobject-introspection?]
         x11-libs/cairo[>=1.6][X]
