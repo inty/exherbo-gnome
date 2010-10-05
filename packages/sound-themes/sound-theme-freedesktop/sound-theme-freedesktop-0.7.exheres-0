@@ -3,7 +3,7 @@
 
 SUMMARY="Default XDG Sound Theme"
 HOMEPAGE="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec"
-DOWNLOADS="http://0pointer.de/public/${PNV}.tar.bz2"
+DOWNLOADS="http://people.freedesktop.org/~mccann/dist/${PNV}.tar.bz2"
 
 LICENCES="CCSA-2.0 CCA-3.0 GPL-2 LGPL-2"
 SLOT="0"
