@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require librsvg
+require librsvg multilib
 
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="doc"
@@ -23,4 +23,10 @@ DEPENDENCIES="
 RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
+src_install() {
+    default
+    edo rmdir "${IMAGE}"/usr/$(get_libdir)/gtk-3.0/{engines,}   \
+              "${IMAGE}"/usr/share/themes/bubble/gtk-3.0
+}
 
