@@ -23,7 +23,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         x11-libs/libICE
         x11-libs/libSM
-        x11-libs/gtk+:2[>=2.15.1][gobject-introspection?]
+        x11-libs/gtk+:2[>=2.22.0][gobject-introspection?]
         x11-libs/pango[>=1.15.4]
         gnome-desktop/gnome-desktop:2[>=2.24.0]
         gnome-desktop/gnome-menus[>=2.27.92]
