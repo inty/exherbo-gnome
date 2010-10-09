@@ -17,6 +17,11 @@ src_install() {
     if ! ever at_least 2.26.1 ; then
         edo rmdir "${IMAGE}"/usr/$(get_libdir)/mozilla/{plugins,}
     fi
+
+    if ever at_least 2.32.0 ; then
+        edo rmdir "${IMAGE}"usr/$(get_libdir)/gtk-3.0/{engines,} \
+                  "${IMAGE}"usr/share/themes/bubble/gtk-3.0
+    fi
 }
 
 pkg_postinst() {
