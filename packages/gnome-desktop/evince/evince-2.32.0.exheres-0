@@ -11,7 +11,14 @@ HOMEPAGE="http://projects.gnome.org/evince"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="djvu doc dvi gobject-introspection nautilus keyring pdf ps tiff"
+MYOPTIONS="doc gobject-introspection pdf tiff
+    djvu [[ description = [ Enable the support of djvu viewer ] ]]
+    dvi [[ description = [ Enable the support of dvi viewer ] ]]
+    keyring [[ description = [ Enable the use of gnome-keyring ] ]]
+    nautilus [[ description = [ Build the nautilus extensions ] ]]
+    pixbuf [[ description = [ Compile with support of x11-libs/gdk-pixbuf ] ]]
+    ps [[ description = [ Enable the PostScript backend ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -32,6 +39,7 @@ DEPENDENCIES="
         djvu? ( app-text/djvu[>=3.5.17] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.22.0] )
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
+        pixbuf? ( x11-libs/gdk-pixbuf[>=2.21.5] )
         ps? ( app-text/libspectre[>=0.2.0] )
         pdf? ( x11-libs/cairo[>=1.9.10]
                app-text/poppler[>=0.14.0][cairo][glib] )
@@ -42,10 +50,9 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X and dogtail
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--without-gconf' '--disable-schemas-install' '--with-gtk=2.0' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--without-gconf' '--disable-schemas-install' '--with-gtk=2.0' '--enable-impress' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'djvu' 'doc gtk-doc' 'dvi' 'gobject-introspection introspection'
-                                       'nautilus' 'pdf' 'ps' 'tiff' )
+                                       'nautilus' 'pdf' 'pixbuf' 'ps' 'tiff' )
 
 DEFAULT_SRC_INSTALL_PARAMS=( schema_DATA="" )
-
