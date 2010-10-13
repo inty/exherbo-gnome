@@ -14,7 +14,8 @@ afc [[ description = [ add support for accessing AFC (Apple File Connection) fil
 archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
 avahi bash-completion bluetooth
 cdda [[ requires = [ udev ] ]]
-doc fuse gconf gphoto2
+gphoto2 [[ requires = [ udev ] ]]
+doc fuse gconf
 http [[ description = [ enable support http, dav, ssl uris ] ]]
 keyring
 monitor [[ description = [ add support for gnome-disk-utility ] ]]
@@ -41,7 +42,7 @@ DEPENDENCIES="
         cdda? ( dev-libs/libcdio[>=0.78.2] )
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
-        gphoto2? ( media-libs/libgphoto2[>=2.4.10] ) [[ requires = [ udev ] ]]
+        gphoto2? ( media-libs/libgphoto2[>=2.4.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         monitor? ( dev-libs/expat
