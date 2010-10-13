@@ -3,9 +3,17 @@
 
 require gnome.org gsettings
 
-SUMMARY="Document Viewer for the GNOME Desktop"
-DESCRIPTION="Evince is a document viewer for multiple document formats like pdf,
-postscript, dvi, djvu, multipage tiff and cbr/cbz"
+SUMMARY="Document viewer for the GNOME Desktop"
+DESCRIPTION="
+Evince is a document viewer for multiple document formats:
+ * Comic Book Archives (.cb7, .cbr, .cbz)
+ * DVI
+ * DjVu
+ * OpenOffice.org Impress
+ * PDF
+ * PostScript
+ * TIFF
+"
 HOMEPAGE="http://projects.gnome.org/evince"
 
 LICENCES="GPL-2"
