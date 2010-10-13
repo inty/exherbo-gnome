@@ -44,6 +44,7 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/cairo[>=1.9.10]
         app-text/poppler[>=0.14.0][cairo][glib]
+        x11-libs/gdk-pixbuf[>=2.21.5]
         dvi? ( app-text/libspectre[>=0.2.0]
                app-text/texlive )
         djvu? ( app-text/djvu[>=3.5.17] )
