@@ -11,12 +11,13 @@ HOMEPAGE="http://projects.gnome.org/evince"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="doc gobject-introspection tiff
-    djvu [[ description = [ Enable the support of djvu viewer ] ]]
-    dvi [[ description = [ Enable the support of dvi viewer ] ]]
-    keyring [[ description = [ Enable the use of gnome-keyring ] ]]
-    nautilus [[ description = [ Build the nautilus extensions ] ]]
-    ps [[ description = [ Enable the PostScript backend ] ]]
+MYOPTIONS="doc gobject-introspection
+    djvu     [[ description = [ Enable support for DjVu format ] ]]
+    dvi      [[ description = [ Enable support for DVI format ] ]]
+    keyring  [[ description = [ Use GNOME Keyring to store passwords ] ]]
+    nautilus [[ description = [ Build Nautilus extensions ] ]]
+    ps       [[ description = [ Enable support for PostScript format ] ]]
+    tiff     [[ description = [ Enable support for multi-page TIFF format ] ]]
 "
 
 DEPENDENCIES="
