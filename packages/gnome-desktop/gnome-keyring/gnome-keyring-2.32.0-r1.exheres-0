@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 multilib
+require gnome.org gsettings multilib
 
 SUMMARY="GTK+ based keyring"
 HOMEPAGE="http://www.gnome.org/"
