@@ -20,7 +20,6 @@ DEPENDENCIES="
     build:
         dev-libs/check[>=0.9.7]
         dev-util/pkg-config
-        doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
         dev-libs/glib[>=2.20.0]
 "
