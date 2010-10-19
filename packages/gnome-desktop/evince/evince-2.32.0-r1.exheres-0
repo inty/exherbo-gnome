@@ -20,12 +20,12 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="doc gobject-introspection
-    djvu     [[ description = [ Enable support for DjVu format ] ]]
-    dvi      [[ description = [ Enable support for DVI format ] ]]
-    keyring  [[ description = [ Use GNOME Keyring to store passwords ] ]]
-    nautilus [[ description = [ Build Nautilus extensions ] ]]
-    ps       [[ description = [ Enable support for PostScript format ] ]]
-    tiff     [[ description = [ Enable support for multi-page TIFF format ] ]]
+    djvu       [[ description = [ Enable support for DjVu format ] ]]
+    dvi        [[ description = [ Enable support for DVI format ] ]]
+    keyring    [[ description = [ Use GNOME Keyring to store passwords ] ]]
+    nautilus   [[ description = [ Build Nautilus extensions ] ]]
+    postscript [[ description = [ Enable support for PostScript format ] ]]
+    tiff       [[ description = [ Enable support for multi-page TIFF format ] ]]
 "
 
 DEPENDENCIES="
@@ -53,7 +53,7 @@ DEPENDENCIES="
             gnome-desktop/gnome-keyring:1[>=2.22.0]
         )
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
-        ps? ( app-text/libspectre[>=0.2.0] )
+        postscript? ( app-text/libspectre[>=0.2.0] )
         tiff? ( media-libs/tiff[>=3.6] )
     run:
         x11-misc/shared-mime-info
@@ -76,7 +76,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'dvi'
     'gobject-introspection introspection'
     'nautilus'
-    'ps'
+    'postscript ps'
     'tiff'
 )
 
