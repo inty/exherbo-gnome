@@ -24,5 +24,7 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fixxref-vim-invocation.patch" )
+
 RESTRICT="test" # test content is missing
 
