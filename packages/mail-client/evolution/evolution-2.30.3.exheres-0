@@ -55,6 +55,6 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-nls' '--enable-nntp' '--enable-plugins=yes' '--disable-pst-import' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'mono' 'networkmanager nm' 'python' 'ssl nss' 'ssl smime' 'weather' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'mono' 'networkmanager nm' 'python' 'ssl nss' 'ssl smime' 'weather' 'gstreamer audio-inline' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'help' )
 
