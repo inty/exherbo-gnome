@@ -32,7 +32,7 @@ DEPENDENCIES="
         ( dev-db/sqlite:3[>=3.0]
           media-libs/gstreamer:0.10[>=0.10]
           media-plugins/gst-plugins-base:0.10[>=0.10.25] ) [[ note = [ required for HTML5 support ] ]]
-        freetype? ( x11-libs/freetype )
+        freetype? ( media-libs/freetype )
         !freetype? ( x11-libs/pango[>=1.21.0] )
 "
 
