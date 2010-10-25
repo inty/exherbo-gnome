@@ -9,13 +9,19 @@ HOMEPAGE="http://www.gtkmm.org/"
 LICENCES="LGPL-2.1"
 SLOT="2.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc
+MYOPTIONS="disable-deprecated doc
     disable-deprecated [[ description = [ Omit deprecated API from the library ] ]]
 "
 
 UPSTREAM_DOCUMENTATION="
-    http://library.gnome.org/devel/glibmm/stable/deprecated.html
-        [[ lang = en description = [ Deprecated List ] ]]
+    http://library.gnome.org/devel/glibmm/stable/ [[
+        lang = en
+        description = [ Reference manual ]
+    ]]
+    http://library.gnome.org/devel/glibmm/stable/deprecated.html [[
+        lang = en
+        description = [ Deprecated API list ]
+    ]]
 "
 
 DEPENDENCIES="
