@@ -13,10 +13,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
+        dev-libs/glib:2
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.36.3]
     build+run:
-        dev-libs/glib:2
         x11-libs/gtk+:2[>=2.20.0]
         app-spell/enchant[>=1.1.7]
         gnome-platform/GConf:2
