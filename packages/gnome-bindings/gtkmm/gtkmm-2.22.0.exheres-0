@@ -9,14 +9,19 @@ HOMEPAGE="http://www.gtkmm.org/"
 LICENCES="LGPL-2.1"
 SLOT="2.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc
-    atk                 [[ description = [ Include atkmm API, accessibility toolkit c++ bindings ] ]]
+MYOPTIONS="disable-deprecated doc
     disable-deprecated  [[ description = [ Omit deprecated API from the library ] ]]
 "
 
 UPSTREAM_DOCUMENTATION="
-    http://library.gnome.org/devel/gtkmm/stable/deprecated.html
-        [[ lang = en description = [ Deprecated List ] ]]
+    http://library.gnome.org/devel/gtkmm/stable/ [[
+        lang = en
+        description = [ Reference manual ]
+    ]]
+    http://library.gnome.org/devel/gtkmm/stable/deprecated.html [[
+        lang = en
+        description = [ Deprecated API list ]
+    ]]
 "
 
 DEPENDENCIES="
@@ -25,11 +30,11 @@ DEPENDENCIES="
         dev-cpp/cairomm:1.0[>=1.2.2]
         gnome-bindings/pangomm:1.4[>=2.26.0]
         x11-libs/gtk+:2[>=2.22.0]
-        atk? ( gnome-bindings/atkmm:1.6[>=2.21.1] )
+        gnome-bindings/atkmm:1.6[>=2.21.1]
     build:
         dev-util/pkg-config[>=0.20]
         doc? ( dev-lang/perl:*[>=5.6.0] )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'atk api-atkmm' '!disable-deprecated deprecated-api' 'doc documentation' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( '!disable-deprecated deprecated-api' 'doc documentation' )
 
