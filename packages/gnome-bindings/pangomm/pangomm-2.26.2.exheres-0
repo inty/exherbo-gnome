@@ -9,13 +9,19 @@ HOMEPAGE="http://www.gtkmm.org/"
 LICENCES="LGPL-2.1"
 SLOT="1.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc
+MYOPTIONS="disable-deprecated doc
     disable-deprecated [[ description = [ Omit deprecated API from the library ] ]]
 "
 
 UPSTREAM_DOCUMENTATION="
-    http://library.gnome.org/devel/pangomm/stable/deprecated.html
-        [[ lang = en description = [ Deprecated API List ] ]]
+    http://library.gnome.org/devel/pangomm/stable/ [[
+        lang = en
+        description = [ Reference manual ]
+    ]]
+    http://library.gnome.org/devel/pangomm/stable/deprecated.html [[
+        lang = en
+        description = [ Deprecated API List ]
+    ]]
 "
 
 DEPENDENCIES="
@@ -25,6 +31,7 @@ DEPENDENCIES="
     build+run:
         gnome-bindings/glibmm:2.4[>=2.14.1][doc?]
         dev-cpp/cairomm:1.0[>=1.2.2]
+        dev-cpp/libsigc++:2[>=2.0.0]
         x11-libs/pango[>=1.23.0]
 "
 
