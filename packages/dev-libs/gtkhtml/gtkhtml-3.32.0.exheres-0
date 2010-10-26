@@ -1,0 +1,29 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="A lightweight HTML rendering/printing/editing engine"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="( GPL-2 LGPL-2 )"
+SLOT="3.14"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.36.3]
+    build+run:
+        dev-libs/glib:2
+        x11-libs/gtk+:2[>=2.20.0]
+        app-spell/enchant[>=1.1.7]
+        gnome-platform/GConf:2
+        app-text/iso-codes[>=0.49]
+        gnome-desktop/libsoup:2.4[>=2.26.0]
+        gnome-desktop/gnome-icon-theme[>=2.22.0]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-deprecated-warning-flags' )
+
