@@ -40,7 +40,7 @@ DEPENDENCIES="
         xinerama? ( x11-libs/libXinerama )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.31.90.patch"
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.32.0.patch"
                               "${FILES}/0001-port-to-libpanel-applet-3.0.patch" )
 
 src_configure() {
