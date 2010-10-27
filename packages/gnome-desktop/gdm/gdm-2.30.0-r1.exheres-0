@@ -20,7 +20,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.12]
         media-libs/libcanberra[>=0.4][gtk]
         gnome-platform/GConf:2[>=2.6.1]
-        sys-apps/DeviceKit-power[>=008]
+        || ( sys-apps/upower[<=0.9.5] sys-apps/DeviceKit-power[>=008] )
         media-libs/fontconfig[>=2.5]
         x11-libs/libxklavier[>=4.0]
         gnome-desktop/gnome-panel[>=2.0.0]
