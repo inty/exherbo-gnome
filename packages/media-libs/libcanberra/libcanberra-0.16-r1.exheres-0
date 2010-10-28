@@ -29,6 +29,8 @@ DEPENDENCIES="
         sound-themes/sound-theme-freedesktop
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-fix-Makefile-for-make-3.82.patch )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' gtk gstreamer 'pulseaudio pulse' )
 
