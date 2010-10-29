@@ -10,22 +10,24 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc
-bonobo [[ description = [ build python bindings for libbonobo ] ]]
-bonoboui [[
-            description = [ build python bindings for libbonoboui ]
-            requires = [ bonobo ]
-         ]]
-gconf [[ description = [ build python bindings for gconf ] ]]
-gnome [[ description = [ build python bindings for libgnome ] ]]
-gnomecanvas [[ description = [ build python bindings for libgnomecanvas ] ]]
-gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]
+    bonobo [[ description = [ build python bindings for libbonobo ] ]]
+    bonoboui [[
+        description = [ build python bindings for libbonoboui ]
+        requires = [ bonobo ]
+    ]]
+    gconf [[ description = [ build python bindings for gconf ] ]]
+    gnome [[ description = [ build python bindings for libgnome ] ]]
+    gnomeui [[ description = [ build python bindings for libgnomeui ] ]]
+    gnomecanvas [[ description = [ build python bindings for libgnomecanvas ] ]]
+    gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]
 "
 
 DEPENDENCIES="
     build+run:
         dev-lang/python:*[>=2.2]
         gnome-bindings/pygtk:2[>=2.10.3]
-        gnome-bindings/pygobject:2
+        gnome-bindings/pygobject:2[>=2.17.0]
+        gnome-bindings/pyorbit[>=2.0.1]
         dev-libs/glib:2[>=2.6]
         x11-libs/gtk+:2[>=2.10]
         bonobo? ( gnome-platform/libbonobo:2[>=2.8.0] )
@@ -33,6 +35,7 @@ DEPENDENCIES="
         gconf? ( gnome-platform/GConf:2[>=2.11.1] )
         gnome? ( gnome-platform/libgnome:2[>=2.8] )
         gnomecanvas? ( gnome-platform/libgnomecanvas[>=2.8.0] )
+        gnomeui? ( gnome-platform/libgnomeui[>=2.8] )
         gnomevfs? ( gnome-platform/gnome-vfs[>=2.14] )
     build:
         dev-util/pkg-config[>=0.20]
@@ -41,24 +44,27 @@ DEPENDENCIES="
 
 RESTRICT="test" # dont work with recent python
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-allbindings )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'doc gtk-doc'
-    'bonobo'
-    'bonobo bonobo_activation'
-    'bonoboui'
-    'gconf'
-    'gnome'
-    'gnomecanvas'
-    'gnomevfs'
-)
-
 src_prepare() {
     default
 
     # disable python byte compiling
     rm py-compile
     ln -s "$(type -P true)" py-compile
+}
+
+src_configure() {
+    econf \
+        --disable-allbindings \
+        $(option_enable doc gtk-doc) \
+        $(option_enable bonobo) \
+        $(option_enable bonobo bonobo_activation) \
+        $(option_enable bonoboui) \
+        $(option_enable gconf) \
+        $(option_enable gnome) \
+        $(option_enable gnomecanvas) \
+        $(option_enable gnomeui) \
+        $(option_enable gnomevfs) \
+        $(option bonobo && option gnomevfs && echo "--enable-gnomevfsbonobo --enable-pyvfsmodule" )
 }
 
 src_install() {
