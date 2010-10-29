@@ -10,10 +10,13 @@ LICENCES="LGPL-2"
 SLOT="1.2"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc
-calendar [[ description = [ enable calendar component ] ]]
-keyring
-smime [[ description = [ add support for SSL S/MIME ] ]]
-weather [[ description = [ enable weather calendar component ] ]]"
+    calendar [[ description = [ enable calendar component ] ]]
+    keyring  [[ description = [ Use GNOME Keyring to store passwords ] ]]
+    weather  [[
+        requires = [ calendar ]
+        description = [ enable weather calendar component ]
+    ]]
+"
 
 DEPENDENCIES="
     build:
@@ -29,13 +32,25 @@ DEPENDENCIES="
         gnome-desktop/libgdata[>=0.6.3]
         sys-libs/db:=
         dev-db/sqlite:3[>=3.5]
+        dev-libs/nss
         calendar? ( office-libs/libical[>=0.43] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.20.1] )
-        smime? ( dev-libs/nss )
         weather? ( gnome-desktop/libgweather[>=2.25.4] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-gtk3' )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-out-of-tree-link.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-gtk3'
+    '--enable-ipv6=yes'
+    '--enable-nntp'
+    '--enable-ssl'
+    '--enable-smine'
+)
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'weather' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'calendar' 'doc gtk-doc' 'keyring gnome-keyring' smime )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'calendar'
+    'doc gtk-doc'
+    'keyring gnome-keyring'
+)
 
