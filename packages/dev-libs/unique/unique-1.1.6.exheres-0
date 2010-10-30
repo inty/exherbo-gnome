@@ -26,3 +26,7 @@ WORK="${WORKBASE}/lib${PNV}"
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus 'doc gtk-doc' 'gobject-introspection introspection' )
 
+src_prepare() {
+    edo sed -e s/-Werror// -i configure{.ac,}
+}
+
