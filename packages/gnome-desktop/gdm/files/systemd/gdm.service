@@ -1,0 +1,10 @@
+[Unit]
+Description=Display Manager
+Conflicts=kdm.service slim.service xdm.service
+
+[Service]
+ExecStart=/usr/sbin/gdm-binary --no-daemon
+
+[Install]
+Alias=displaymanager.service
+WantedBy=graphical.target
