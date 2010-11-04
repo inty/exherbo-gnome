@@ -10,6 +10,7 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc
+(
     bonobo [[ description = [ build python bindings for libbonobo ] ]]
     bonoboui [[
         description = [ build python bindings for libbonoboui ]
@@ -20,6 +21,7 @@ MYOPTIONS="doc
     gnomeui [[ description = [ build python bindings for libgnomeui ] ]]
     gnomecanvas [[ description = [ build python bindings for libgnomecanvas ] ]]
     gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]
+) [[ number-selected = at-least-one ]]
 "
 
 DEPENDENCIES="
