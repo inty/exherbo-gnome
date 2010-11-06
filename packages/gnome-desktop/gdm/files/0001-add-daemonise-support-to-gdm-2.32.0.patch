@@ -1,0 +1,106 @@
+From b718d9c9032d3eac77df517140125a8462ddfc36 Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Sun, 22 Aug 2010 13:19:06 -0700
+Subject: [PATCH] add daemonise support to gdm
+
+By default, daemonise the GDM binary to the background, using the fork () trick.
+There is now a --no-daemon option to prevent this.
+
+Based on a patch from Dan Nicholson <dbn.lists@gmail.com>
+---
+ daemon/main.c |   58 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 58 insertions(+), 0 deletions(-)
+
+diff --git a/daemon/main.c b/daemon/main.c
+index 19bdf30..e922a25 100644
+--- a/daemon/main.c
++++ b/daemon/main.c
+@@ -513,6 +513,59 @@ is_debug_set (void)
+         return debug;
+ }
+ 
++static void
++daemonify (void)
++{
++        pid_t pid;
++        int fd, rc;
++
++        if (G_UNLIKELY ((pid = fork ()) < 0)) {
++                gdm_fail (_("failed to create daemon process: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        /* terminate the parent process */
++        if (pid > 0)
++                exit (EXIT_SUCCESS);
++
++        if (G_UNLIKELY (setsid () < 0)) {
++                gdm_fail (_("failed to create new session: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        VE_IGNORE_EINTR (fd = open ("/dev/null", O_RDWR));
++        if (G_UNLIKELY (fd < 0)) {
++                gdm_fail (_("failed to open /dev/null for io redirection: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        VE_IGNORE_EINTR (rc = dup2 (fd, STDIN_FILENO));
++        if (G_UNLIKELY (rc < 0)) {
++                gdm_fail (_("failed to set stdin to /dev/null: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        VE_IGNORE_EINTR (rc = dup2 (fd, STDOUT_FILENO));
++        if (G_UNLIKELY (rc < 0)) {
++                gdm_fail (_("failed to set stdout to /dev/null: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        VE_IGNORE_EINTR (rc = dup2 (fd, STDERR_FILENO));
++        if (G_UNLIKELY (rc < 0)) {
++                gdm_fail (_("failed to set stderr to /dev/null: %s"),
++                          g_strerror (errno));
++                exit (EXIT_FAILURE);
++        }
++
++        VE_IGNORE_EINTR (rc = close (fd));
++}
++
+ int
+ main (int    argc,
+       char **argv)
+@@ -525,6 +578,7 @@ main (int    argc,
+         int                 ret;
+         gboolean            res;
+         gboolean            xdmcp_enabled;
++        static gboolean     daemonise = TRUE;
+         GdmSignalHandler   *signal_handler;
+         static gboolean     do_timed_exit    = FALSE;
+         static gboolean     print_version    = FALSE;
+@@ -533,6 +587,7 @@ main (int    argc,
+                 { "fatal-warnings", 0, 0, G_OPTION_ARG_NONE, &fatal_warnings, N_("Make all warnings fatal"), NULL },
+                 { "timed-exit", 0, 0, G_OPTION_ARG_NONE, &do_timed_exit, N_("Exit after a time (for debugging)"), NULL },
+                 { "version", 0, 0, G_OPTION_ARG_NONE, &print_version, N_("Print GDM version"), NULL },
++                { "no-daemon", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &daemonise, N_("Do not fork into the background"), NULL },
+ 
+                 { NULL }
+         };
+@@ -617,6 +672,9 @@ main (int    argc,
+                 exit (-1);
+         }
+ 
++        if (daemonise)
++           daemonify ();
++
+         /* pid file */
+         delete_pid ();
+         write_pid ();
+-- 
+1.7.1
+

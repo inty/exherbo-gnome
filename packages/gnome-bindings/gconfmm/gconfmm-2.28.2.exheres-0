@@ -1,0 +1,39 @@
+# Copyright 2010 Mike Kelly
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="C++ bindings for gconf"
+HOMEPAGE="http://www.gtkmm.org"
+
+LICENCES="LGPL-2.1"
+SLOT="2.6"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="disable-deprecated doc
+    disable-deprecated  [[ description = [ Omit deprecated API from the library ] ]]
+"
+
+UPSTREAM_DOCUMENTATION="
+    http://library.gnome.org/devel/${PN}/stable/ [[
+        lang = en
+        description = [ Reference manual ]
+    ]]
+    http://library.gnome.org/devel/${PN}/stable/deprecated.html [[
+        lang = en
+        description = [ Deprecated API list ]
+    ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-cpp/libsigc++:2
+        dev-libs/glib:2
+        gnome-bindings/glibmm:2.4[>=2.14.1][doc?]
+        gnome-platform/GConf:2[>=2.4.0]
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-lang/perl:*[>=5.6.0] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc documentation' '!disable-deprecated deprecated-api' )
+

@@ -11,7 +11,7 @@ HOMEPAGE="http://projects.gnome.org/evince"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="dbus djvu doc dvi nautilus keyring pdf ps tiff"
+MYOPTIONS="dbus djvu doc dvi nautilus keyring pdf postscript tiff"
 
 DEPENDENCIES="
     build:
@@ -31,9 +31,9 @@ DEPENDENCIES="
         djvu? ( app-text/djvu[>=3.5.17] )
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.22.0] )
         nautilus?  ( gnome-desktop/nautilus[>=2.0] )
-        ps? ( app-text/libspectre[>=0.2.0] )
         pdf? ( x11-libs/cairo[>=1.0]
                app-text/poppler[>=0.11.0][cairo][glib] )
+        postscript? ( app-text/libspectre[>=0.2.0] )
         tiff? ( media-libs/tiff[>=3.6] )
     run:
         x11-misc/shared-mime-info
@@ -44,7 +44,16 @@ RESTRICT="test" # requires X and dogtail
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-thumbnailer' '--enable-pixbuf'
 '--without-gconf' '--disable-schemas-install' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'dbus' 'djvu' 'doc gtk-doc' 'dvi' 'nautilus' 'pdf' 'ps' 'tiff' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'dbus'
+    'djvu'
+    'doc gtk-doc'
+    'dvi'
+    'nautilus'
+    'pdf'
+    'postscript ps'
+    'tiff'
+)
 
 DEFAULT_SRC_INSTALL_PARAMS=( schema_DATA="" )
 

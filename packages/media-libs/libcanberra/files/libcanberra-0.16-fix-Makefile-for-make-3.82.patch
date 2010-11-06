@@ -1,0 +1,23 @@
+Source:   Sterling X. Winter <replica@exherbo.org>
+Upstream: No (version 0.16 is obsolete)
+Reason:   make-3.82 wants leading tabs, not spaces
+
+--- a/Makefile.in	2010-10-28 08:59:49.000000000 -0500
++++ b/Makefile.in	2010-10-28 09:02:44.000000000 -0500
+@@ -902,11 +902,11 @@
+ 
+ 
+ @GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@install-data-local:
+-@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@                if test -z "$(DESTDIR)" ; then \
+-@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@                        for p in $(schemas_DATA) ; do \
+-@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@                                GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
+-@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@                        done \
+-@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@                fi
++@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@		if test -z "$(DESTDIR)" ; then \
++@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@			for p in $(schemas_DATA) ; do \
++@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@				GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
++@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@			done \
++@GCONF_SCHEMAS_INSTALL_TRUE@@HAVE_GTK_TRUE@		fi
+ @GCONF_SCHEMAS_INSTALL_FALSE@@HAVE_GTK_TRUE@install-data-local:
+ @HAVE_GTK_FALSE@install-data-local:
+ 

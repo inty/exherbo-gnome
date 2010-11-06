@@ -12,7 +12,8 @@ PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
 avahi bash-completion bluetooth
 cdda [[ requires = [ udev ] ]]
-doc fuse gconf gphoto2 hal
+gphoto2 [[ requires = [ udev ] ]]
+doc fuse gconf hal
 http [[ description = [ enable support http, dav, ssl uris ] ]]
 keyring
 monitor [[ description = [ add support for gnome-disk-utility ] ]]
@@ -39,7 +40,7 @@ DEPENDENCIES="
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
         monitor? ( base/gnome-disk-utility[>=0.3] )
-        gphoto2? ( media-libs/libgphoto2[>=2.4.7] ) [[ requires = [ udev ] ]]
+        gphoto2? ( media-libs/libgphoto2[>=2.4.7] )
         hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )

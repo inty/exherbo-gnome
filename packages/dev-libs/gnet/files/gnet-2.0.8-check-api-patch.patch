@@ -1,0 +1,36 @@
+Source: Written by Tim-Philipp Müller
+Upstream: yes, bug number 632258, in Master tree
+Reason: require check >= 0.9.7 for unit tests, and fix for new API
+
+diff --git a/configure.ac b/configure.ac
+index b1937fe..7300d2f 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -586,7 +586,7 @@ GTK_DOC_CHECK(1.2)
+ 
+ dnl pkg-config check that for libcheck that works for cross-compiling
+ dnl but not normal compilation on Fedora & Ubuntu:
+- PKG_CHECK_MODULES(CHECK, check >= 0.9.4,
++ PKG_CHECK_MODULES(CHECK, check >= 0.9.7,
+    AM_CONDITIONAL(HAVE_CHECK, true),
+    AM_CONDITIONAL(HAVE_CHECK, false)
+  )
+diff --git a/tests/check/gnetcheck.h b/tests/check/gnetcheck.h
+index aeb9f68..14b6c28 100644
+--- a/tests/check/gnetcheck.h
++++ b/tests/check/gnetcheck.h
+@@ -311,11 +311,11 @@ int main (int argc, char **argv)				\
+ gboolean _gnet_check_run_test_func (const gchar * func_name);
+ 
+ static inline void
+-__gnet_tcase_add_test (TCase * tc, TFun tf, const gchar * func_name,
+-    int sig, int start, int end)
++__gnet_tcase_add_test (TCase * tc, TFun tf, const char * fname, int signal,
++    int allowed_exit_value, int start, int end)
+ {
+-  if (_gnet_check_run_test_func (func_name)) {
+-    _tcase_add_test (tc, tf, func_name, sig, start, end);
++  if (_gnet_check_run_test_func (fname)) {
++    _tcase_add_test (tc, tf, fname, signal, allowed_exit_value, start, end);
+   }
+ }

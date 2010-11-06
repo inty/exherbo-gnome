@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome-2
+require gnome-2 systemd-service
 
 export_exlib_phases src_install
 
@@ -32,5 +32,7 @@ gdm_src_install() {
 
     edo chmod g+w "${IMAGE}"/var/lib/gdm
     edo chown gdm:gdm "${IMAGE}"/var/lib/gdm
+
+    install_systemd_files
 }
 

@@ -79,7 +79,7 @@ index cfc3655..45d730d 100644
                  { "fatal-warnings", 0, 0, G_OPTION_ARG_NONE, &fatal_warnings, N_("Make all warnings fatal"), NULL },
                  { "timed-exit", 0, 0, G_OPTION_ARG_NONE, &do_timed_exit, N_("Exit after a time - for debugging"), NULL },
                  { "version", 0, 0, G_OPTION_ARG_NONE, &print_version, N_("Print GDM version"), NULL },
-+                { "no-daemon", 0, 0, G_OPTION_ARG_NONE | G_OPTION_FLAG_REVERSE, &daemonise, N_("Do not fork into the background"), NULL },
++                { "no-daemon", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &daemonise, N_("Do not fork into the background"), NULL },
  
                  { NULL }
          };

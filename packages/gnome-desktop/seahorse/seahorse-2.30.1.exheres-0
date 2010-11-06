@@ -25,11 +25,13 @@ DEPENDENCIES="
         app-crypt/gnupg[=2.0*]
         app-crypt/gpgme[>=1.0]
         gnome-desktop/libsoup:2.4
-        gnome-desktop/gnome-keyring:1[>=2.25.5]
+        gnome-desktop/libgnome-keyring:1
         dev-libs/dbus-glib:1[>=0.35]
         gnome-platform/GConf:2
         avahi? ( net-dns/avahi[>=0.6] )
         libnotify? ( x11-libs/libnotify[>=0.4.4] )
+    run:
+        gnome-desktop/gnome-keyring:1[>=2.25.5]
     suggestion:
         gnome-desktop/seahorse-plugins[>=2.25.0]
 "

@@ -3,7 +3,7 @@
 
 require gnome-2
 
-SUMMARY="GNet is a simple network library built upon GLib"
+SUMMARY="[DEPRECATED] GNet is a simple network library built upon GLib"
 DESCRIPTION="
 GNet is intended to be easy to use and port. It supports abstract Internet
 addresses, TCP, UDP, IP Multicast, IPv6, asynchronous DNS lookups, SHA, MD5,
@@ -18,10 +18,11 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc"
 DEPENDENCIES="
     build:
-        dev-libs/check[>=0.9.4]
+        dev-libs/check[>=0.9.7]
         dev-util/pkg-config
-        doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
         dev-libs/glib[>=2.20.0]
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-check-api-patch.patch" )
 

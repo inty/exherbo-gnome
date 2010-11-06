@@ -1,0 +1,84 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org gsettings
+
+SUMMARY="Document viewer for the GNOME Desktop"
+DESCRIPTION="
+Evince is a document viewer for multiple document formats:
+ * Comic Book Archives (.cb7, .cbr, .cbz)
+ * DVI
+ * DjVu
+ * OpenOffice.org Impress
+ * PDF
+ * PostScript
+ * TIFF
+"
+HOMEPAGE="http://projects.gnome.org/evince"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="doc gobject-introspection
+    djvu       [[ description = [ Enable support for DjVu format ] ]]
+    dvi        [[ description = [ Enable support for DVI format ] ]]
+    keyring    [[ description = [ Use GNOME Keyring to store passwords ] ]]
+    nautilus   [[ description = [ Build Nautilus extensions ] ]]
+    postscript [[ description = [ Enable support for PostScript format ] ]]
+    tiff       [[ description = [ Enable support for multi-page TIFF format ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        doc? ( dev-doc/gtk-doc[>=1.13] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
+    build+run:
+        x11-libs/gtk+:2[>=2.21.5]
+        dev-libs/glib:2[>=2.25.11]
+        dev-libs/libxml2:2.0[>=2.5.0]
+        gnome-desktop/gnome-icon-theme[>=2.17.1]
+        x11-libs/libX11
+        x11-libs/cairo[>=1.9.10]
+        app-text/poppler[>=0.14.0][cairo][glib]
+        x11-libs/gdk-pixbuf[>=2.21.5]
+        dvi? ( app-text/libspectre[>=0.2.0]
+               app-text/texlive )
+        djvu? ( app-text/djvu[>=3.5.17] )
+        keyring? (
+            gnome-desktop/libgnome-keyring:1
+            gnome-desktop/gnome-keyring:1[>=2.22.0]
+        )
+        nautilus?  ( gnome-desktop/nautilus[>=2.0] )
+        postscript? ( app-text/libspectre[>=0.2.0] )
+        tiff? ( media-libs/tiff[>=3.6] )
+    run:
+        x11-misc/shared-mime-info
+"
+
+RESTRICT="test" # requires X and dogtail
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-schemas-install'
+    '--enable-impress'
+    '--enable-pdf'
+    '--enable-pixbuf'
+    '--with-gtk=2.0'
+    '--without-gconf'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'djvu'
+    'doc gtk-doc'
+    'dvi'
+    'gobject-introspection introspection'
+    'nautilus'
+    'postscript ps'
+    'tiff'
+)
+
+DEFAULT_SRC_INSTALL_PARAMS=( schema_DATA="" )
+
