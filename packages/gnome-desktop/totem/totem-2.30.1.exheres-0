@@ -36,7 +36,7 @@ DEPENDENCIES="
                     dev-libs/xulrunner )
         python? ( gnome-bindings/pygtk[>=2.12.0] )
         tracker? ( app-pim/tracker[>=0.8] )
-        vala? ( dev-lang/vala[>=0.7.5] )
+        vala? ( dev-lang/vala:0.9 )
 "
 
 # brasero-disc-recorder
