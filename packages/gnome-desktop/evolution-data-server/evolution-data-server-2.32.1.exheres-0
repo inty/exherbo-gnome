@@ -38,8 +38,6 @@ DEPENDENCIES="
         weather? ( gnome-desktop/libgweather[>=2.25.4] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-out-of-tree-link.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-gtk3'
     '--enable-ipv6=yes'
