@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="hal gstreamer ipv6 networkmanager policykit"
+MYOPTIONS="gstreamer ipv6 networkmanager policykit"
 
 DEPENDENCIES="
     build:
@@ -21,7 +21,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-icon-theme[>=2.15.91]
         dev-libs/glib:2[>=2.18.0]
         x11-libs/gtk+:2[>=2.13.0]
-        gnome-desktop/gnome-panel[>=2.13.4]
+        gnome-desktop/gnome-panel:0[>=2.13.4]
         gnome-desktop/gnome-desktop[>=2.11.1]
         gnome-desktop/libgtop[>=2.11.92]
         gnome-desktop/libgnomekbd[>=2.21.4.1]
@@ -35,15 +35,18 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.8]
         app-text/rarian[>=0.8.0]
         gstreamer? ( media-libs/gstreamer:0.10[>=0.10.2] )
-        hal? ( sys-apps/hal[>=0.5.3] )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
         policykit? ( sys-auth/polkit:1[>=0.92] )
     suggestion:
         gnome-desktop/gnome-media[>=2.25]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-battstat )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( hal )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-battstat'
+    '--disable-cpufreq'
+    '--disable-frequency-selector'
+    '--without-hal'
+)
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gstreamer mixer-applet' ipv6 networkmanager 'policykit polkit' )
 
 src_install() {
@@ -57,3 +60,4 @@ src_install() {
                   "${IMAGE}/etc/dbus-1"
     fi
 }
+
