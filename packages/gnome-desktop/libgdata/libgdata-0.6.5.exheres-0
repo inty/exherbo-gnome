@@ -30,7 +30,7 @@ DEPENDENCIES="
         gnome-desktop/libsoup:2.4[>=2.26.1][gconf?]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gconf gnome' 'gobject-introspection introspection' )
 
 RESTRICT="test" # requires internet connections
 
