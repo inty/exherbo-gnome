@@ -6,7 +6,7 @@ require evolution
 PLATFORMS="~amd64 ~x86"
 
 # pst-import plugin needs libpst
-MYOPTIONS="doc gstreamer help libnotify mono networkmanager python ssl weather
+MYOPTIONS="gstreamer help libnotify mono networkmanager python ssl weather
     help    [[ description = [ Install the user documentation ] ]]
     mono    [[ description = [ Add support for mono hooks ] ]]
     python  [[ description = [ Add support for python hooks ] ]]
@@ -19,7 +19,6 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.5]
         dev-util/pkg-config
         sys-devel/gettext
-        doc? ( dev-libs/libxml2[>=2.7.3][python] )
     build+run:
         dev-libs/atk
         dev-libs/glib:2[>=2.25.12]
@@ -56,7 +55,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-sens'
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'doc gtk-doc'
     'gstreamer audio-inline'
     'mono'
     'networkmanager nm'
