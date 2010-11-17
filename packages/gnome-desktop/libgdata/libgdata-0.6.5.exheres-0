@@ -21,13 +21,12 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gobject-introspection? (
-            gnome-desktop/gir-repository[libsoup]
             gnome-desktop/gobject-introspection[>=0.9.7]
         )
     build+run:
         dev-libs/glib:2[>=2.19.0]
         dev-libs/libxml2:2.0
-        gnome-desktop/libsoup:2.4[>=2.26.1][gconf?]
+        gnome-desktop/libsoup:2.4[>=2.26.1][gconf?][gobject-introspection?]
         x11-libs/gtk+:2 [[ note = [ automagic dependency ] ]]
 "
 
