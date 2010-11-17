@@ -14,21 +14,23 @@ HOMEPAGE="http://live.gnome.org/libgdata"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="doc gconf gobject-introspection"
+MYOPTIONS="gconf gobject-introspection"
 
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc[>=1.0] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        gobject-introspection? (
+            gnome-desktop/gir-repository[libsoup]
+            gnome-desktop/gobject-introspection[>=0.9.7]
+        )
     build+run:
         dev-libs/glib:2[>=2.19.0]
         dev-libs/libxml2:2.0
         gnome-desktop/libsoup:2.4[>=2.26.1][gconf?]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
 
 RESTRICT="test" # requires internet connections
 
