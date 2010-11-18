@@ -21,6 +21,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.17.3]
     build+run:
+        app-misc/ca-certificates
         dev-libs/dbus-glib:1
         net-im/farsight2:0.10
         net-im/folks[>=0.1.15]
@@ -49,9 +50,7 @@ DEPENDENCIES="
         net-im/telepathy-salut
 "
 
-RESTRICT="test"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-gtk3 --disable-map --disable-location --disable-meego --disable-nautilus-sendto )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-map --disable-location --disable-meego --disable-nautilus-sendto )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( eds 'networkmanager connectivity nm' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( spell webkit )
 
