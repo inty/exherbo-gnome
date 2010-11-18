@@ -11,8 +11,9 @@ HOMEPAGE="http://www.gtkmm.org/"
 LICENCES="LGPL-2.1"
 SLOT="1.6"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="disable-deprecated doc
+MYOPTIONS="
     disable-deprecated  [[ description = [ Omit deprecated API from the library ] ]]
+    doc
 "
 
 DEPENDENCIES="
@@ -20,7 +21,10 @@ DEPENDENCIES="
         dev-cpp/libsigc++:2[>=2.0.0]
         dev-libs/atk[>=1.12]
         gnome-bindings/glibmm:2.4[>=2.24.0][doc?]
-        !gnome-bindings/gtkmm:2.4[<2.21.0] [[ note = [ older gtkmm includes C++ bindings for atk ] ]]
+        !gnome-bindings/gtkmm:2.4[<2.21.0] [[
+            description = [ older gtkmm includes C++ bindings for atk ]
+            resolution = uninstall-blocked-after
+        ]]
     build:
         dev-util/pkg-config[>=0.20]
         doc? ( dev-lang/perl:*[>=5.6.0] )
