@@ -9,25 +9,34 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="LGPL-2.1"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="doc gobject-introspection"
+MYOPTIONS="
+    cairo [[ requires = gobject-introspection ]]
+    doc
+    gobject-introspection
+"
 
+# Python3 support has been added and requires setting PYTHON=python3 while configuring.
+# Python3 support is also limited, so we will restrict to 2.6 for now.
 DEPENDENCIES="
-    build+run:
-        dev-lang/python:=[>=2.5.2]
-        dev-libs/glib[>=2.22.4]
-        dev-python/pycairo[>=1.0.2]
     build:
+        dev-util/pkg-config
         doc? (
                 dev-libs/libxslt
                 app-text/docbook-xml-dtd:4.1.2
              )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.1] )
+    build+run:
+        dev-lang/python:2.6[>=2.5.2]
+        dev-libs/glib:2[>=2.22.4]
+        cairo? ( dev-python/pycairo[>=1.0.2] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
 "
 
 RESTRICT="test" # requires X
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-crash-without-introspection.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-ffi )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'cairo'
     'doc docs'
     'gobject-introspection introspection'
 )
