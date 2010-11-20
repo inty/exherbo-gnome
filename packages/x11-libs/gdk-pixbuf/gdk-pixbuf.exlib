@@ -14,8 +14,8 @@ gdk_pixbuf_cache_loaders() {
         2.0)
             echo "Generating pixbuf list ..."
 
-            echo "/usr/bin/gdk-pixbuf-query-loaders > /usr/$(get_libdir)/gdk-pixbuf-2.0/2.10.0/loaders.cache"
-            gdk-pixbuf-query-loaders > "${ROOT}usr/$(get_libdir)/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+            echo "/usr/bin/gdk-pixbuf-query-loaders > /usr/${LIBDIR}/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+            gdk-pixbuf-query-loaders > "${ROOT}usr/${LIBDIR}/gdk-pixbuf-2.0/2.10.0/loaders.cache"
         ;;
     esac
 }
