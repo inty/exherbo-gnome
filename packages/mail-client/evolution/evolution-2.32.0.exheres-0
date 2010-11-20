@@ -34,7 +34,7 @@ DEPENDENCIES="
         gnome-desktop/libsoup[>=2.4.0]
         gnome-platform/GConf:2[>=2.0.0]
         media-libs/gtkimageview[>=1.6]
-        media-libs/libcanberra
+        media-libs/libcanberra[gtk]
         x11-libs/gtk+:2[>=2.20.0]
         x11-libs/pango[>=1.0.1]
         x11-misc/shared-mime-info[>=0.22]

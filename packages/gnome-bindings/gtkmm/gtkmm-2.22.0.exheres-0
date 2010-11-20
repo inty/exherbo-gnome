@@ -31,7 +31,6 @@ DEPENDENCIES="
         dev-cpp/libsigc++:2[>=2.0.0]
         gnome-bindings/pangomm:1.4[>=2.26.0]
         x11-libs/gtk+:2[>=2.22.0]
-        x11-libs/gdk-pixbuf:2[>=2.22.0]
         gnome-bindings/atkmm:1.6[>=2.21.1]
     build:
         dev-util/pkg-config[>=0.20]
