@@ -4,7 +4,7 @@
 require easy-multibuild gdk-pixbuf
 
 SLOT="2.0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gobject-introspection
 jpeg2000 [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
 man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]
