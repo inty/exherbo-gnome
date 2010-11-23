@@ -9,17 +9,20 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc eds gobject-introspection networkmanager"
+MYOPTIONS="bonobo gtk-doc eds gobject-introspection networkmanager
+    bonobo [[ description = [ Enable compatibility for GNOME bonobo applets ] ]]
+"
 
 DEPENDENCIES="
     build:
+        app-doc/gtk-doc-autotools [[ note = [ Needed for gtkdoc-rebase ] ]]
         app-text/scrollkeeper-dtd
         dev-util/intltool[>=0.40.0]
         gnome-desktop/gnome-doc-utils
-        doc? ( dev-doc/gtk-doc[>=1.0] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
-        dev-libs/glib:2[>=2.25.12][gobject-introspection?]
+        dev-libs/glib:2[>=2.25.12]
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         x11-libs/libICE
         x11-libs/libSM
@@ -36,13 +39,26 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXau
         x11-libs/libXrandr[>=1.2.0]
+        !gnome-desktop/gnome-panel:0 [[
+            description = [ Installs many of the same files and executables ]
+            resolution = uninstall-blocked-after
+        ]]
+        bonobo? (
+                    gnome-platform/libbonoboui:2[>=2.1.1]
+                    gnome-platform/ORBit2:2[>=2.4.0]
+                )
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar(+)] )
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
     suggestion:
         gnome-desktop/gnome-applets[>=2.23.3]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-in-process-applets=clock,notification-area,wncklet' '--disable-bonobo' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'eds' 'gobject-introspection introspection'
-                                       'networkmanager network-manager' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-in-process-applets=clock,notification-area,wncklet' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'bonobo'
+    'gtk-doc'
+    'eds'
+    'gobject-introspection introspection'
+    'networkmanager network-manager'
+)
 
