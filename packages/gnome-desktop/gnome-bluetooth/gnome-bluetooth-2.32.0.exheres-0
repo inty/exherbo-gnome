@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 freedesktop-desktop
+require gnome.org gtk-icon-cache freedesktop-desktop gsettings
 
 SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
 HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
@@ -40,11 +40,13 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspe
 
 pkg_postinst() {
     freedesktop-desktop_pkg_postinst
-    gnome-2_pkg_postinst
+    gsettings_pkg_postinst
+    gtk_icon_cache_pkg_postinst
 }
 
 pkg_postrm() {
     freedesktop-desktop_pkg_postrm
-    gnome-2_pkg_postrm
+    gsettings_pkg_postrm
+    gtk_icon_cache_pkg_postinst
 }
 
