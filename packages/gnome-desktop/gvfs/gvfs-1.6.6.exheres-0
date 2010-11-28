@@ -51,7 +51,6 @@ DEPENDENCIES="
         samba? ( net-fs/samba[>=3.0.22] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/gvfs-1.6.4-fix-poll-timeout.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--disable-hal' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
                                        'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'http' 'keyring'
