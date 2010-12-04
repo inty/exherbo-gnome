@@ -27,6 +27,8 @@ DEPENDENCIES="
                   dev-libs/libgcrypt )
 "
 
+RESTRICT="test" # network violations
+
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gconf gnome' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gnutls ssl' 'gobject-introspection introspection' )
 

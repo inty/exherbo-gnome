@@ -35,6 +35,10 @@ DEPENDENCIES="
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.6.0][calendar(+)] )
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
         policykit? ( sys-auth/polkit:1[>=0.91] )
+        !gnome-desktop/gnome-panel:3.0 [[
+            description = [ Installs many of the same files and executables ]
+            resolution = uninstall-blocked-after
+        ]]
     suggestion:
         gnome-desktop/gnome-applets[>=2.23.3]
 "
