@@ -20,9 +20,8 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
     build+run:
         dev-libs/glib:2[>=2.16]
-        sys-apps/dbus[>=1.2.6]
         dev-libs/dbus-glib:1[>=0.74]
-        net-apps/NetworkManager[>=0.8.1]
+        net-apps/NetworkManager[>=0.8.2]
         x11-libs/gtk+:2[>=2.14]
         gnome-platform/libglade:2
         gnome-platform/GConf:2
@@ -35,8 +34,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-keyring:1
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-support-for-explicitly-enabling-disabling-blueto.patch"
-                              "${FILES}/0002-fix-sanity-check-failure-without-bluetooth.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0002-fix-sanity-check-failure-without-bluetooth.patch" )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( bluetooth )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( bluetooth )
 
