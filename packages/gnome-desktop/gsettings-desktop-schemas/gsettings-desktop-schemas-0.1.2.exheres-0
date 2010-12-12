@@ -3,7 +3,7 @@
 
 require gnome.org gsettings
 
-SUMMARY="Shared GSettings schemas for the desktop"
+SUMMARY="Shared GSettings schemas for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="LGPL-2.1"
@@ -14,5 +14,6 @@ MYOPTIONS=""
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
+        sys-devel/gettext
 "
 
