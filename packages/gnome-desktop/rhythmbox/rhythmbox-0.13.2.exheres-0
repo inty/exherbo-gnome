@@ -21,6 +21,7 @@ gtk-doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
 mtp [[ description = [ enable support for Microsoft's Media Transfer Protocol (MTP) ] requires = [ udev ] ]]
+python
 scrobbler [[ description = [ enable support for last.fm audio scrobbler ] ]]
 tagging [[ description = [ support tagging of media using libmusicbrainz ] ]]
 udev [[ description = [ use udev for hardware detection ] ]]
@@ -49,6 +50,15 @@ DEPENDENCIES="
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
         mtp? ( media-libs/libmtp[>=0.3.0] )
+        python? (
+            dev-lang/python:=[>=2.3]
+            dev-python/dbus-python
+            dev-python/gst-python:0.10
+            gnome-bindings/gnome-python[gconf][gnome]
+            gnome-bindings/gnome-python-desktop:2.0[keyring]
+            gnome-bindings/pygobject:2
+            gnome-bindings/pygtk:2
+        )
         scrobbler? ( core/json-glib[=0.12.0] ) [[ note = [ explicit versioning as we dont slot this library properly ] ]]
         tagging? ( media-libs/libmusicbrainz:3[>=3.0.2] )
         udev? ( sys-fs/udev[>=145][glib] )
@@ -58,10 +68,17 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
-                               --disable-python --disable-vala --disable-fm-radio
-                               --disable-browser-plugin )
+                               --disable-vala --disable-fm-radio --disable-browser-plugin )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'avahi mdns avahi' 'brasero libbrasero-media' ipod
                                      'keyring gnome-keyring' mtp 'udev gudev' webkit )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc daap libnotify 'scrobbler lastfm'
-                                       'tagging musicbrainz' )
+                                       python 'tagging musicbrainz' )
+
+src_install() {
+    gnome-2_src_install
+
+    # remove python plugins which needs more python dependencies
+    option python && rm -rf \
+        "${IMAGE}"/usr/lib64/rhythmbox/plugins/{context,rbzeitgeist,upnp_coherence}
+}
 
