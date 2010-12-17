@@ -14,14 +14,14 @@ DEPENDENCIES="
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc )
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.15] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
     build+run:
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
-        dev-libs/glib:2[>=2.21.3]
+        dev-libs/glib:2[>=2.25.0]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2[>=2.6]
-        x11-libs/gtk+:3.0[>=2.90.4]
+        x11-libs/gtk+:3.0[>=2.91]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
         gnome-desktop/libsoup:2.4[>=2.29.90]
@@ -36,6 +36,9 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/8e2b0e49409fb12046852f6a7a73f68ce3f67415.patch"
+                              "${FILES}/6bfef071d74d63edcddc3e8616b93de22be9d0e9.patch" )
+
 src_configure() {
     local font_backend=$(optionq freetype && echo freetype || echo pango)
 
@@ -44,5 +47,10 @@ src_configure() {
           $(option_enable doc gtk-doc)                          \
           $(option_enable gobject-introspection introspection)  \
           $(option_enable wml)
+}
+
+src_install() {
+    default
+    edo find "${IMAGE}" -depth -type d -empty -delete
 }
 
