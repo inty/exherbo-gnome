@@ -1,0 +1,24 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="API Browser for GNOME"
+HOMEPAGE="http://live.gnome.org/devhelp"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+    build:
+        gnome-platform/GConf:2[>=2.6]
+        dev-libs/glib:2[>=2.25.11]
+        x11-libs/gtk+:3.0
+        net-libs/webkit:3.0
+"
+
