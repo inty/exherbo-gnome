@@ -1,7 +1,7 @@
 # Coyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org gsettings
 
 SUMMARY="The GIMP Toolkit"
 HOMEPAGE="http://www.gtk.org/"
@@ -46,6 +46,8 @@ pkg_postinst() {
         3.0)
             nonfatal edo gdk-pixbuf-query-loaders-3.0 --update-cache
             nonfatal edo gtk-query-immodules-3.0 --update-cache
+
+            gsettings_exlib_compile_gsettings_schemas
         ;;
     esac
 }
