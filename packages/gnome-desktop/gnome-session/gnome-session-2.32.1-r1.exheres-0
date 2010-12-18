@@ -31,7 +31,7 @@ DEPENDENCIES="
         x11-libs/libXrender
     recommendation:
         sys-auth/ConsoleKit
-        gnome-desktop/PolicyKit-gnome
+        gnome-desktop/polkit-gnome
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtk=2.0' )
