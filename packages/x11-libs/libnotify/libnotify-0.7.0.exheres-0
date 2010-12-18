@@ -1,0 +1,25 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org
+
+SUMMARY="Notification Interface Library"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+    build+run:
+        x11-libs/gdk-pixbuf:2.0
+        dev-libs/glib:2[>=2.26.0]
+    post:
+        virtual/notification-daemon
+    test:
+        x11-libs/gtk+:3.0[>=2.90]
+"
+
