@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="An integrated music management application"
 DESCRIPTION="
@@ -66,6 +67,10 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
+
+# unconditionally apply 4216979f41e423a00b9bae4ca19afab25bc93f7f.patch leaving the automagic
+# dependency as libnotify[>=0.7] is for gnome 3.0
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/4216979f41e423a00b9bae4ca19afab25bc93f7f.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
                                --disable-vala --disable-fm-radio --disable-browser-plugin )

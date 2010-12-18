@@ -1,0 +1,205 @@
+From 4216979f41e423a00b9bae4ca19afab25bc93f7f Mon Sep 17 00:00:00 2001
+From: Jonathan Matthew <jonathan@d14n.org>
+Date: Thu, 18 Nov 2010 22:26:12 +0000
+Subject: status-icon: make use of some new notification hints and capabilities
+
+"action-icons" is the official spec name for "x-gnome-action-buttons".
+
+We also use the "resident" hint to request that the server keep our
+notification around after the bubble (or banner) has expired, so we can
+just update it rather than creating a new one.
+
+When action buttons are supported, we switch between "play" and "pause"
+depending on whether we're currently playing.  When an appropriate hint
+is added to the notification spec, we'll update this when we start or
+stop playback, but for now it'd be a bit too annoying.
+---
+diff --git a/plugins/status-icon/Makefile.am b/plugins/status-icon/Makefile.am
+index f8265fc..0faf5d8 100644
+--- a/plugins/status-icon/Makefile.am
++++ b/plugins/status-icon/Makefile.am
+@@ -36,6 +36,7 @@ INCLUDES = 						\
+ 	-DSHARE_DIR=\"$(pkgdatadir)\"                   \
+ 	-DDATADIR=\""$(datadir)"\"			\
+ 	$(RHYTHMBOX_CFLAGS)				\
++	$(NOTIFY_CFLAGS)				\
+ 	-D_XOPEN_SOURCE -D_BSD_SOURCE
+ 
+ uixmldir = $(plugindir)
+diff --git a/plugins/status-icon/rb-status-icon-plugin.c b/plugins/status-icon/rb-status-icon-plugin.c
+index 0ed63ee..7af6fbe 100644
+--- a/plugins/status-icon/rb-status-icon-plugin.c
++++ b/plugins/status-icon/rb-status-icon-plugin.c
+@@ -75,6 +75,7 @@ static void toggle_window_cmd (GtkAction *action, RBStatusIconPlugin *plugin);
+ static void show_window_cmd (GtkAction *action, RBStatusIconPlugin *plugin);
+ static void show_notifications_cmd (GtkAction *action, RBStatusIconPlugin *plugin);
+ static void update_status_icon_visibility (RBStatusIconPlugin *plugin, gboolean notifying);
++static void notify_playing_entry (RBStatusIconPlugin *plugin, gboolean requested);
+ 
+ struct _RBStatusIconPluginPrivate
+ {
+@@ -121,6 +122,7 @@ struct _RBStatusIconPluginPrivate
+ 	NotifyNotification *notification;
+ 	gboolean notify_supports_actions;
+ 	gboolean notify_supports_icon_buttons;
++	gboolean notify_supports_persistence;
+ #endif
+ 
+ 	GtkWidget *config_dialog;
+@@ -327,6 +329,10 @@ visibility_changed_cb (RBShell *shell,
+ 		       RBStatusIconPlugin *plugin)
+ {
+ 	sync_actions (plugin);
++
++	if (visible == FALSE && plugin->priv->notify_supports_persistence) {
++		notify_playing_entry (plugin, FALSE);
++	}
+ }
+ 
+ /* notification popups */
+@@ -353,12 +359,12 @@ notification_next_cb (NotifyNotification *notification,
+ }
+ 
+ static void
+-notification_pause_cb (NotifyNotification *notification,
+-		       const char *action,
+-		       RBStatusIconPlugin *plugin)
++notification_playpause_cb (NotifyNotification *notification,
++			   const char *action,
++			   RBStatusIconPlugin *plugin)
+ {
+ 	rb_debug ("notification action: %s", action);
+-	rb_shell_player_pause (plugin->priv->shell_player, NULL);
++	rb_shell_player_playpause (plugin->priv->shell_player, FALSE, NULL);
+ }
+ 
+ static void
+@@ -394,13 +400,21 @@ do_notify (RBStatusIconPlugin *plugin,
+ 			rb_debug ("notification server supports actions");
+ 			plugin->priv->notify_supports_actions = TRUE;
+ 
+-			if (g_list_find_custom (caps, "x-gnome-icon-buttons", (GCompareFunc)g_strcmp0) != NULL) {
++			if ((g_list_find_custom (caps, "x-gnome-icon-buttons", (GCompareFunc)g_strcmp0) != NULL) ||
++			    (g_list_find_custom (caps, "action-icons", (GCompareFunc)g_strcmp0) != NULL)) {
+ 				rb_debug ("notifiction server supports icon buttons");
+ 				plugin->priv->notify_supports_icon_buttons = TRUE;
+ 			}
+ 		} else {
+ 			rb_debug ("notification server does not support actions");
+ 		}
++		if (g_list_find_custom (caps, "persistence", (GCompareFunc)g_strcmp0) != NULL) {
++			rb_debug ("notification server supports persistence");
++			plugin->priv->notify_supports_persistence = TRUE;
++		} else {
++			rb_debug ("notification server does not support persistence");
++		}
++
+ 		rb_list_deep_free (caps);
+ 	}
+ 
+@@ -413,7 +427,11 @@ do_notify (RBStatusIconPlugin *plugin,
+ 		secondary = "";
+ 
+ 	if (plugin->priv->notification == NULL) {
++#if LIBNOTIFY_VERSION_MINOR >= 7
++		plugin->priv->notification = notify_notification_new (primary, secondary, RB_APP_ICON);
++#else
+ 		plugin->priv->notification = notify_notification_new (primary, secondary, RB_APP_ICON, NULL);
++#endif
+ 
+ 		g_signal_connect_object (plugin->priv->notification,
+ 					 "closed",
+@@ -451,6 +469,9 @@ do_notify (RBStatusIconPlugin *plugin,
+ 	notify_notification_clear_actions (plugin->priv->notification);
+ 	if (show_action && plugin->priv->notify_supports_actions) {
+ 		if (plugin->priv->notify_supports_icon_buttons) {
++			gboolean playing = FALSE;
++			rb_shell_player_get_playing (plugin->priv->shell_player, &playing, NULL);
++
+ 			notify_notification_add_action (plugin->priv->notification,
+ 							"media-skip-backward",
+ 							_("Previous"),
+@@ -458,11 +479,20 @@ do_notify (RBStatusIconPlugin *plugin,
+ 							plugin,
+ 							NULL);
+ 			notify_notification_add_action (plugin->priv->notification,
+-							"media-playback-pause",
+-							_("Pause"),
+-							(NotifyActionCallback) notification_pause_cb,
++							playing ? "media-playback-pause" : "media-playback-start",
++							playing ? _("Pause") : _("Play"),
++							(NotifyActionCallback) notification_playpause_cb,
+ 							plugin,
+ 							NULL);
++#if (LIBNOTIFY_VERSION_MINOR >= 7)
++			notify_notification_set_hint (plugin->priv->notification,
++						      "action-icons",
++						      g_variant_new_boolean (TRUE));
++#else
++			notify_notification_set_hint_byte (plugin->priv->notification,
++							   "action-icons",
++							   1);
++#endif
+ 		}
+ 
+ 		notify_notification_add_action (plugin->priv->notification,
+@@ -473,6 +503,18 @@ do_notify (RBStatusIconPlugin *plugin,
+ 						NULL);
+ 	}
+ 
++	if (plugin->priv->notify_supports_persistence) {
++#if (LIBNOTIFY_VERSION_MINOR >= 7)
++		notify_notification_set_hint (plugin->priv->notification,
++					      "resident",
++					      g_variant_new_boolean (TRUE));
++#else
++		notify_notification_set_hint_byte (plugin->priv->notification,
++						   "resident",
++						   1);
++#endif
++	}
++
+ 	if (notify_notification_show (plugin->priv->notification, &error) == FALSE) {
+ 		g_warning ("Failed to send notification (%s): %s", primary, error->message);
+ 		g_error_free (error);
+@@ -954,6 +996,16 @@ db_stream_metadata_cb (RhythmDB *db,
+ 	update_current_playing_data (plugin, entry);
+ }
+ 
++#if 0
++static void
++playing_changed_cb (RBShellPlayer *player,
++		    gboolean playing,
++		    RBStatusIconPlugin *plugin)
++{
++	/* need a "don't display a bubble/banner if we aren't already" hint here */
++	notify_playing_entry (plugin, FALSE);
++}
++#endif
+ 
+ static void
+ elapsed_changed_cb (RBShellPlayer *player,
+@@ -1374,6 +1426,7 @@ impl_activate (RBPlugin *bplugin,
+ 	g_signal_connect_object (plugin->priv->shell, "notify-custom", G_CALLBACK (shell_notify_custom_cb), plugin, 0);
+ 
+ 	g_signal_connect_object (plugin->priv->shell_player, "playing-song-changed", G_CALLBACK (playing_entry_changed_cb), plugin, 0);
++	/*g_signal_connect_object (plugin->priv->shell_player, "playing-changed", G_CALLBACK (playing_changed_cb), plugin, 0);*/
+ 	g_signal_connect_object (plugin->priv->shell_player, "elapsed-changed", G_CALLBACK (elapsed_changed_cb), plugin, 0);
+ 
+ 	g_signal_connect_object (plugin->priv->db, "entry_extra_metadata_notify::" RHYTHMDB_PROP_COVER_ART,
+diff --git a/plugins/status-icon/rb-tray-icon-gtk.c b/plugins/status-icon/rb-tray-icon-gtk.c
+index 5ee5932..12f686c 100644
+--- a/plugins/status-icon/rb-tray-icon-gtk.c
++++ b/plugins/status-icon/rb-tray-icon-gtk.c
+@@ -326,7 +326,9 @@ rb_tray_icon_is_embedded (RBTrayIcon *tray)
+ void
+ rb_tray_icon_attach_notification (RBTrayIcon *tray, NotifyNotification *notification)
+ {
++#if LIBNOTIFY_VERSION_MINOR < 7
+ 	notify_notification_attach_to_status_icon (notification, tray->priv->icon);
++#endif
+ }
+ #endif
+ 
+--
+cgit v0.8.3.1
