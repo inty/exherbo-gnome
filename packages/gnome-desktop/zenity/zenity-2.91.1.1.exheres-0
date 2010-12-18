@@ -1,0 +1,27 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="A utility for displaying dialog boxes from the commandline"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="libnotify"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+    build+run:
+        x11-libs/gtk+:3.0[>=2.91.0]
+        dev-libs/glib:2
+        x11-libs/libX11
+        libnotify? ( x11-libs/libnotify[>=0.6.1] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( libnotify )
+
