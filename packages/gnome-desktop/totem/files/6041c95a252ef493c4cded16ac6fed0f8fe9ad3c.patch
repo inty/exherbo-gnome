@@ -1,0 +1,88 @@
+From 6041c95a252ef493c4cded16ac6fed0f8fe9ad3c Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Fri, 03 Dec 2010 00:19:21 +0000
+Subject: backend: Fix for latest GTK+ 3.x breakage
+
+---
+diff --git a/src/backend/bacon-resize.c b/src/backend/bacon-resize.c
+index d067aac..208dc66 100644
+--- a/src/backend/bacon-resize.c
++++ b/src/backend/bacon-resize.c
+@@ -187,7 +187,7 @@ set_video_widget (BaconResize *resize, GtkWidget *video_widget)
+ 		goto bail;
+ 
+ 	/* We don't use the output here, checking whether XRRGetScreenInfo works */
+-	xr_screen_conf = XRRGetScreenInfo (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XWINDOW (gdk_screen_get_root_window (screen)));
++	xr_screen_conf = XRRGetScreenInfo (GDK_DISPLAY_XDISPLAY (display), gdk_x11_window_get_xid (gdk_screen_get_root_window (screen)));
+ 	if (xr_screen_conf == NULL)
+ 		goto bail;
+  
+@@ -227,7 +227,7 @@ bacon_resize_resize (BaconResize *resize)
+ 	g_return_if_fail (GTK_IS_WIDGET (resize->priv->video_widget));
+ 	g_return_if_fail (gtk_widget_get_realized (resize->priv->video_widget));
+ 
+-	xdisplay = GDK_DRAWABLE_XDISPLAY (gtk_widget_get_window (GTK_WIDGET (resize->priv->video_widget)));
++	xdisplay = gdk_x11_display_get_xdisplay (gdk_window_get_display (gtk_widget_get_window (GTK_WIDGET (resize->priv->video_widget))));
+ 	if (xdisplay == NULL)
+ 		return;
+ 
+@@ -254,7 +254,7 @@ bacon_resize_resize (BaconResize *resize)
+ 	gdk_error_trap_push ();
+ 
+ 	/* Find the XRandR mode that corresponds to the real size */
+-	resize->priv->xr_screen_conf = XRRGetScreenInfo (xdisplay, GDK_WINDOW_XWINDOW (root));
++	resize->priv->xr_screen_conf = XRRGetScreenInfo (xdisplay, gdk_x11_window_get_xid (root));
+ 	xr_sizes = XRRConfigSizes (resize->priv->xr_screen_conf, &xr_nsize);
+ 	resize->priv->xr_original_size = XRRConfigCurrentConfiguration (resize->priv->xr_screen_conf, &(resize->priv->xr_current_rotation));
+ 	if (gdk_error_trap_pop ()) {
+@@ -275,7 +275,7 @@ bacon_resize_resize (BaconResize *resize)
+ 	gdk_error_trap_push ();
+ 	XRRSetScreenConfig (xdisplay,
+ 			resize->priv->xr_screen_conf,
+-			GDK_WINDOW_XWINDOW (root),
++			gdk_x11_window_get_xid (root),
+ 			(SizeID) i,
+ 			resize->priv->xr_current_rotation,
+ 			CurrentTime);
+@@ -308,7 +308,7 @@ bacon_resize_restore (BaconResize *resize)
+ 	if (resize->priv->xr_screen_conf == NULL)
+ 		return;
+ 
+-	xdisplay = GDK_DRAWABLE_XDISPLAY (gtk_widget_get_window (GTK_WIDGET (resize->priv->video_widget)));
++	xdisplay = gdk_x11_display_get_xdisplay (gdk_window_get_display (gtk_widget_get_window (GTK_WIDGET (resize->priv->video_widget))));
+ 	if (xdisplay == NULL)
+ 		return;
+ 
+@@ -330,7 +330,7 @@ bacon_resize_restore (BaconResize *resize)
+ 	gdk_error_trap_push ();
+ 	XRRSetScreenConfig (xdisplay,
+ 			resize->priv->xr_screen_conf,
+-			GDK_WINDOW_XWINDOW (root),
++			gdk_x11_window_get_xid (root),
+ 			resize->priv->xr_original_size,
+ 			resize->priv->xr_current_rotation,
+ 			CurrentTime);
+diff --git a/src/backend/bacon-video-widget-gst-0.10.c b/src/backend/bacon-video-widget-gst-0.10.c
+index 17c68c1..d15b3da 100644
+--- a/src/backend/bacon-video-widget-gst-0.10.c
++++ b/src/backend/bacon-video-widget-gst-0.10.c
+@@ -727,7 +727,7 @@ bacon_video_widget_draw (GtkWidget *widget, cairo_t *cr)
+ 
+   g_mutex_unlock (bvw->priv->lock);
+ 
+-  window = GDK_WINDOW_XWINDOW (bvw->priv->video_window);
++  window = gdk_x11_window_get_xid (bvw->priv->video_window);
+ 
+   if (xoverlay != NULL && GST_IS_X_OVERLAY (xoverlay))
+     gst_x_overlay_set_xwindow_id (xoverlay, window);
+@@ -6669,7 +6669,7 @@ bvw_element_msg_sync (GstBus *bus, GstMessage *msg, gpointer data)
+     g_return_if_fail (bvw->priv->xoverlay != NULL);
+     g_return_if_fail (bvw->priv->video_window != NULL);
+ 
+-    window = GDK_WINDOW_XWINDOW (bvw->priv->video_window);
++    window = gdk_x11_window_get_xid (bvw->priv->video_window);
+     gst_x_overlay_set_xwindow_id (bvw->priv->xoverlay, window);
+   }
+ }
+--
+cgit v0.8.3.1
