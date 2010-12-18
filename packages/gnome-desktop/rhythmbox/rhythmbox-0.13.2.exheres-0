@@ -14,12 +14,15 @@ LICENCES=""
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
+avahi [[ description = [ add support for mDNS/DNS-SD ] ]]
 brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
 daap
-doc
+gtk-doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
-mtp [[ requires = [ udev ] ]]
+mtp [[ description = [ enable support for Microsoft's Media Transfer Protocol (MTP) ] requires = [ udev ] ]]
+scrobbler [[ description = [ enable support for last.fm audio scrobbler ] ]]
+tagging [[ description = [ support tagging of media using libmusicbrainz ] ]]
 udev [[ description = [ use udev for hardware detection ] ]]
 webkit [[ description = [ use webkit to display HTML content ] ]]"
 
@@ -28,31 +31,37 @@ DEPENDENCIES="
         dev-libs/check
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
-        doc? ( dev-doc/gtk-doc[>=1.4] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
         dev-libs/glib:2[>=2.25.12]
         x11-libs/gtk+:2[>=2.20.0]
         gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
         gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
-        gnome-desktop/totem-pl-parser[>=2.28.0]
+        gnome-desktop/totem-pl-parser[>=2.32.1]
         media-libs/gstreamer:0.10[>=0.10.20]
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
-        gnome-platform/GConf:2
         dev-libs/dbus-glib:1[>=0.35]
-        daap? ( || ( media-libs/libdmapsharing:2.0 media-libs/libdmapsharing:1.9[>=1.9.0.21] ) )
+        gnome-platform/GConf:2
+        avahi? ( net-dns/avahi[>=0.6] )
+        brasero? ( gnome-desktop/brasero[>=0.9.1] )
+        daap? ( media-libs/libdmapsharing:2.2[>=2.1.6] )
         ipod? ( media-libs/libgpod[>=0.6] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
         mtp? ( media-libs/libmtp[>=0.3.0] )
+        scrobbler? ( core/json-glib[=0.12.0] ) [[ note = [ explicit versioning as we dont slot this library properly ] ]]
+        tagging? ( media-libs/libmusicbrainz:3[>=3.0.2] )
         udev? ( sys-fs/udev[>=145][glib] )
         webkit? ( net-libs/webkit-gtk[>=1.1.17] )
 "
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
-                               --disable-musicbrainz --disable-lirc --disable-vala
-                               --disable-browser-plugin --disable-fm-radio )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'brasero libbrasero-media' ipod 'keyring gnome-keyring' mtp 'udev gudev' webkit )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' daap libnotify )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
+                               --disable-python --disable-vala --disable-fm-radio
+                               --disable-browser-plugin )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'avahi mdns avahi' 'brasero libbrasero-media' ipod
+                                     'keyring gnome-keyring' mtp 'udev gudev' webkit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc daap libnotify 'scrobbler lastfm'
+                                       'tagging musicbrainz' )
 
