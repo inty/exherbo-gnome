@@ -1,0 +1,22 @@
+From 24863ae9ea04dec397e41892cff21ae5ce9cef38 Mon Sep 17 00:00:00 2001
+From: Benjamin Otte <otte@redhat.com>
+Date: Thu, 02 Dec 2010 21:02:16 +0000
+Subject: rr: Use gdk_x11_window_get_xid()
+
+... instead of removed gdk_x11_drawable_get_xid()
+---
+diff --git a/libgnome-desktop/gnome-rr.c b/libgnome-desktop/gnome-rr.c
+index 7e8bc22..6b8379b 100644
+--- a/libgnome-desktop/gnome-rr.c
++++ b/libgnome-desktop/gnome-rr.c
+@@ -668,7 +668,7 @@ gnome_rr_screen_new (GdkScreen *gdk_screen,
+ 	
+ 	screen->gdk_screen = gdk_screen;
+ 	screen->gdk_root = gdk_screen_get_root_window (gdk_screen);
+-	screen->xroot = gdk_x11_drawable_get_xid (screen->gdk_root);
++	screen->xroot = gdk_x11_window_get_xid (screen->gdk_root);
+ 	screen->xdisplay = dpy;
+ 	screen->xscreen = gdk_x11_screen_get_xscreen (screen->gdk_screen);
+ 	screen->connector_type_atom = XInternAtom (dpy, "ConnectorType", FALSE);
+--
+cgit v0.8.3.1
