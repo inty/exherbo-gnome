@@ -38,7 +38,7 @@ DEPENDENCIES="
         sys-power/pm-utils[>=1.3.0-rc1]
         sys-auth/polkit
     recommendation:
-        gnome-desktop/PolicyKit-gnome [[ note = [ required for controlling the backlight ] ]]
+        gnome-desktop/polkit-gnome [[ description = [ Required for controlling the backlight ] ]]
 "
 
 RESTRICT="test" # requires X
