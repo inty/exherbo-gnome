@@ -16,12 +16,12 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
     build+run:
-        x11-libs/gtk+:3.0[>=2.90.0]
+        x11-libs/gtk+:3.0[>=2.91.0]
 "
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/a484a86cef26420e9278a550d246ff1068a9e88e.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-animation' )
+# for development releases
+DEFAULT_SRC_CONFIGURE_PARAMS+=( '--disable-widget-checks' '--enable-development' )
 
