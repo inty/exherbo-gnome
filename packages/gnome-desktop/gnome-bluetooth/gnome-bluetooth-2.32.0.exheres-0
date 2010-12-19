@@ -1,9 +1,8 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gtk-icon-cache freedesktop-desktop gsettings \
-    autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
-# autotools needed for patch
+require gnome.org gtk-icon-cache freedesktop-desktop gsettings
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
 HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
@@ -32,21 +31,23 @@ DEPENDENCIES="
         x11-libs/libX11
     run:
         net-wireless/bluez[>=4.36]
-        net-wireless/obexd
+    recommendation:
+        net-wireless/obexd [[ description = [ Required for bluetooth-sendto ] ]]
 "
 
 RESTRICT="test" # docs are broken
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}"-fix-introspection-build.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-desktop-update --disable-icon-update
-                               --disable-moblin --disable-nautilus-sendto )
+                               --disable-moblin --disable-nautilus-sendto
+                               --disable-schemas-compile )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
 src_prepare() {
-    option gtk-doc && edo gtkdocize --copy
+    edo gtkdocize --copy
 
     # remove gnome-common deps
-    edo sed -ie '191,195d' ${WORK}/configure.ac
+    edo sed -ie '191,195d' "${WORK}"/configure.ac
 
     autotools_src_prepare
 }

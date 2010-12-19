@@ -1,6 +1,7 @@
 Source: written by Pacho Ramos
-Upstream: no, bug number 634131, backport of a master patch
-Reason: can't be build with newer gobject-introspection versions
+Upstream: Yes, committed in master and 2.32 branch.
+          https://bugzilla.gnome.org/show_bug.cgi?id=634131 
+Reason: Fix build with newer gobject-introspection
 
 diff --git a/Makefile.am b/Makefile.am
 index 9391392..f73baf4 100644
