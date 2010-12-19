@@ -39,7 +39,7 @@ DEPENDENCIES="
         cdda? ( dev-libs/libcdio[>=0.78.2] )
         fuse? ( sys-fs/fuse )
         gconf? ( gnome-platform/GConf:2 )
-        monitor? ( base/gnome-disk-utility[>=0.3] )
+        monitor? ( gnome-desktop/gnome-disk-utility[>=0.3] )
         gphoto2? ( media-libs/libgphoto2[>=2.4.7] )
         hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )

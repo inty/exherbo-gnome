@@ -46,7 +46,7 @@ DEPENDENCIES="
         http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         monitor? ( dev-libs/expat
-                   base/gnome-disk-utility[>=2.29.0] )
+                   gnome-desktop/gnome-disk-utility[>=2.29.0] )
         udev? ( sys-fs/udev[>=145][glib] )
         samba? ( net-fs/samba[>=3.0.22] )
 "
