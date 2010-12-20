@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="2"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="gnome-about doc"
+MYOPTIONS="gnome-about gtk-doc"
 
 DEPENDENCIES="
     build:
@@ -18,7 +18,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.18]
         app-text/docbook-xml-dtd:4.1.2
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        doc? ( dev-doc/gtk-doc[>=1.4] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
         x11-libs/startup-notification[>=0.5] [[ note = [ this is an automagic dependency ] ]]
         x11-libs/libX11
@@ -31,7 +31,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gnome-about' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gnome-about' )
 
 src_install() {
     default
