@@ -1,0 +1,39 @@
+From e6b8ff62886d4d7d7b5dcfed617d7bb53c7612a1 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Thu, 09 Dec 2010 12:18:09 +0000
+Subject: Fix build with latest gtk
+
+gdk_window_get_geometry lost its depth argument.
+---
+diff --git a/savers/gs-theme-engine.c b/savers/gs-theme-engine.c
+index 724a7c2..8e0c7e9 100644
+--- a/savers/gs-theme-engine.c
++++ b/savers/gs-theme-engine.c
+@@ -195,11 +195,7 @@ gs_theme_engine_get_window_size (GSThemeEngine *engine,
+         }
+ 
+         gdk_window_get_geometry (gtk_widget_get_window (GTK_WIDGET (engine)),
+-                                 NULL,
+-                                 NULL,
+-                                 width,
+-                                 height,
+-                                 NULL);
++                                 NULL, NULL, width, height);
+ }
+ 
+ GdkWindow *
+diff --git a/savers/gs-theme-window.c b/savers/gs-theme-window.c
+index 7adc6ed..e0e9aed 100644
+--- a/savers/gs-theme-window.c
++++ b/savers/gs-theme-window.c
+@@ -179,7 +179,7 @@ gs_theme_window_real_realize (GtkWidget *widget)
+         gdk_window_set_user_data (window, widget);
+         gtk_widget_set_realized (widget, TRUE);
+ 
+-        gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
++        gdk_window_get_geometry (window, &x, &y, &width, &height);
+ 
+         if (width < MIN_SIZE || height < MIN_SIZE) {
+                 g_critical ("This window is way too small to use");
+--
+cgit v0.8.3.1

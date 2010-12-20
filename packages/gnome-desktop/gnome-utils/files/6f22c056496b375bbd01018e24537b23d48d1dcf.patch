@@ -1,0 +1,31 @@
+From 6f22c056496b375bbd01018e24537b23d48d1dcf Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Fri, 03 Dec 2010 01:34:32 +0000
+Subject: Fix build with current GTK+
+
+Replace GDK_WINDOW_XWINDOW calls by GDK_WINDOW_XID
+---
+diff --git a/gnome-screenshot/screenshot-utils.c b/gnome-screenshot/screenshot-utils.c
+index 1195329..c06980c 100644
+--- a/gnome-screenshot/screenshot-utils.c
++++ b/gnome-screenshot/screenshot-utils.c
+@@ -678,7 +678,7 @@ screenshot_get_pixbuf (GdkWindow    *window,
+     {
+       Window xid, wm;
+ 
+-      xid = GDK_WINDOW_XWINDOW (window);
++      xid = GDK_WINDOW_XID (window);
+       wm = find_wm_window (xid);
+ 
+       if (wm != None)
+@@ -742,7 +742,7 @@ screenshot_get_pixbuf (GdkWindow    *window,
+        */
+ 
+       rectangles = XShapeGetRectangles (GDK_DISPLAY_XDISPLAY (gdk_display_get_default()),
+-                                        GDK_WINDOW_XWINDOW (window),
++                                        GDK_WINDOW_XID (window),
+                                         ShapeBounding,
+                                         &rectangle_count,
+                                         &rectangle_order);
+--
+cgit v0.8.3.1

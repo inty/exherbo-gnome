@@ -1,0 +1,22 @@
+From 6c4658b960617d8175ddb7680171a91d307d23b3 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Mon, 06 Dec 2010 17:19:40 +0000
+Subject: libgdict: Turn off GTK_DISABLE_DEPRECATED for now
+
+Until it has been adapted to GtkStyleContext
+---
+diff --git a/gnome-dictionary/libgdict/Makefile.am b/gnome-dictionary/libgdict/Makefile.am
+index 100cf46..b2d78a7 100644
+--- a/gnome-dictionary/libgdict/Makefile.am
++++ b/gnome-dictionary/libgdict/Makefile.am
+@@ -10,7 +10,7 @@ INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
+ 	-DGDICT_ENABLE_INTERNALS=1 				\
+ 	-DG_DISABLE_DEPRECATED					\
+ 	-DGDK_DISABLE_DEPRECATED				\
+-	-DGTK_DISABLE_DEPRECATED				\
++	-UGTK_DISABLE_DEPRECATED				\
+ 	-DPANGO_DISABLE_DEPRECATED				\
+ 	-DG_DISABLE_SINGLE_INCLUDES				\
+ 	-DGTK_DISABLE_SINGLE_INCLUDES				\
+--
+cgit v0.8.3.1

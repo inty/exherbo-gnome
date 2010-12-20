@@ -1,0 +1,64 @@
+From 6bfef071d74d63edcddc3e8616b93de22be9d0e9 Mon Sep 17 00:00:00 2001
+From: Gustavo Noronha Silva <kov@webkit.org>
+Date: Thu, 9 Dec 2010 11:18:48 +0000
+Subject: [PATCH] 2010-12-09  Gustavo Noronha Silva  <gustavo.noronha@collabora.co.uk>
+
+        Build fix for GTK+3. Use functions added for GTK+ 2.24 to get the
+        GDK window size.
+
+        * plugins/gtk/gtk2xtbin.c:
+        (gtk_xtbin_realize):
+
+git-svn-id: http://svn.webkit.org/repository/webkit/trunk@73603 268f45cc-cd09-0410-ab3c-d52691b4dbfc
+---
+ WebCore/ChangeLog               |    8 ++++++++
+ WebCore/plugins/gtk/gtk2xtbin.c |    7 ++++++-
+ 2 files changed, 14 insertions(+), 1 deletions(-)
+
+diff --git a/WebCore/ChangeLog b/WebCore/ChangeLog
+index 551ce33..06b48b8 100644
+--- a/WebCore/ChangeLog
++++ b/WebCore/ChangeLog
+@@ -1,3 +1,11 @@
++2010-12-09  Gustavo Noronha Silva  <gustavo.noronha@collabora.co.uk>
++
++        Build fix for GTK+3. Use functions added for GTK+ 2.24 to get the
++        GDK window size.
++
++        * plugins/gtk/gtk2xtbin.c:
++        (gtk_xtbin_realize):
++
+ 2010-12-09  Siddharth Mathur  <siddharth.mathur@nokia.com>
+ 
+         Reviewed by Laszlo Gombos.
+diff --git a/WebCore/plugins/gtk/gtk2xtbin.c b/WebCore/plugins/gtk/gtk2xtbin.c
+index f668bff..e03fad3 100644
+--- a/WebCore/plugins/gtk/gtk2xtbin.c
++++ b/WebCore/plugins/gtk/gtk2xtbin.c
+@@ -274,7 +274,6 @@ gtk_xtbin_realize (GtkWidget *widget)
+ #if GTK_CHECK_VERSION(2, 18, 0)
+   GtkAllocation widget_allocation;
+ #endif
+-  gint  x, y, w, h, d; /* geometry of window */
+ 
+ #ifdef DEBUG_XTBIN
+   printf("gtk_xtbin_realize()\n");
+@@ -285,9 +284,15 @@ gtk_xtbin_realize (GtkWidget *widget)
+   xtbin = GTK_XTBIN (widget);
+ 
+   /* caculate the allocation before realize */
++#if GTK_CHECK_VERSION(2, 24, 0)
++  allocation.width = gdk_window_get_width(xtbin->parent_window);
++  allocation.height = gdk_window_get_height(xtbin->parent_window);
++#else
++  gint  x, y, w, h, d; /* geometry of window */
+   gdk_window_get_geometry(xtbin->parent_window, &x, &y, &w, &h, &d);
+   allocation.width = w;
+   allocation.height = h;
++#endif
+   gtk_widget_size_allocate (widget, &allocation);
+ 
+ #ifdef DEBUG_XTBIN
+-- 
+1.6.1
+

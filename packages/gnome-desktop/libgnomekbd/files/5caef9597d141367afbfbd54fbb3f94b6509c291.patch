@@ -1,0 +1,23 @@
+From 5caef9597d141367afbfbd54fbb3f94b6509c291 Mon Sep 17 00:00:00 2001
+From: Emmanuele Bassi <ebassi@linux.intel.com>
+Date: Fri, 03 Dec 2010 09:25:34 +0000
+Subject: Update after the latest gtk+-3 break
+
+GdkDrawable is gone; everything should have already been migrated to
+GdkWindow.
+---
+diff --git a/libgnomekbd/gkbd-keyboard-drawing.c b/libgnomekbd/gkbd-keyboard-drawing.c
+index 01d8281..9afa7fa 100644
+--- a/libgnomekbd/gkbd-keyboard-drawing.c
++++ b/libgnomekbd/gkbd-keyboard-drawing.c
+@@ -1305,7 +1305,7 @@ create_cairo (GkbdKeyboardDrawing * drawing)
+ 	if (drawing == NULL || drawing->surface == NULL)
+ 		return FALSE;
+ 	drawing->renderContext->cr =
+-	    gdk_cairo_create (GDK_DRAWABLE (drawing->surface));
++	    gdk_cairo_create (GDK_WINDOW (drawing->surface));
+ 
+ 	state = gtk_widget_get_state (GTK_WIDGET (drawing));
+ 	drawing->renderContext->dark_color =
+--
+cgit v0.8.3.1

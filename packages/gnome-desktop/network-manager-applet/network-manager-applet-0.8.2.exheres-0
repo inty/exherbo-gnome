@@ -34,7 +34,10 @@ DEPENDENCIES="
         gnome-desktop/gnome-keyring:1
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0002-fix-sanity-check-failure-without-bluetooth.patch" )
+# unconditionally apply 68459b6b864ad45a842bfd1bdc80f126829ef596.patch leaving the automagic
+# dependency as libnotify[>=0.7] is for gnome 3.0
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0002-fix-sanity-check-failure-without-bluetooth.patch"
+                              "${FILES}/68459b6b864ad45a842bfd1bdc80f126829ef596.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( bluetooth )
 
