@@ -29,7 +29,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
     build+run:
-        dev-libs/glib:2[>=2.23.4]
+        dev-libs/glib:2[>=2.23.4&<2.27.4]
         sys-apps/dbus[>=1.0]
         net-misc/openssh
         dev-libs/libxml2
