@@ -31,7 +31,7 @@ DEPENDENCIES="
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
-        base/gnome-disk-utility [[ note = [ without gnome-disk-utility, there is a noticable degredation in the functionality ] ]]
+        gnome-desktop/gnome-disk-utility [[ note = [ required for disk management ] ]]
     suggestion:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
         app-pim/tracker[>=0.8]
