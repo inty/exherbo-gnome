@@ -18,8 +18,7 @@ MYOPTIONS="cups doc
 gobject-introspection
 man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]
 xinerama
-linguas: ${LANGS}
-multibuild_c: 32 64"
+linguas: ${LANGS}"
 
 DEPENDENCIES="
     build:

@@ -19,9 +19,7 @@ gobject-introspection
 jpeg2000 [[ description = [ Support for JPEG 2000 Part-1 images using libjasper ] ]]
 man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]
 xinerama
-linguas: ${LANGS}
-multibuild_c: 32 64
-"
+linguas: ${LANGS}"
 
 DEPENDENCIES="
     build:
