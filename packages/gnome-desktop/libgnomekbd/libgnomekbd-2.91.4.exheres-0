@@ -22,5 +22,3 @@ DEPENDENCIES="
         x11-libs/libX11
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/5caef9597d141367afbfbd54fbb3f94b6509c291.patch" )
-
