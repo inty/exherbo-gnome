@@ -32,8 +32,6 @@ DEPENDENCIES="
 "
 #        media-libs/jpeg[>=8]
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-remove-usage-of-gdk_spawn_command_line_on_screen.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-python --without-xmp )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus' 'exif libexif' 'lcms cms' 'svg librsvg' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
