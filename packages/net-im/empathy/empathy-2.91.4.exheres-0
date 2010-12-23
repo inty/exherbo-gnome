@@ -31,10 +31,10 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10
         dev-libs/libxml2:2.0
         net-im/telepathy-farsight[>=0.0.14]
-        net-im/telepathy-glib[>=0.13.7]
+        net-im/telepathy-glib[>=0.13.9]
         net-im/telepathy-logger:0.1[>=0.1.5]
         x11-libs/libX11
-        x11-libs/gtk+:3.0[>=2.91.3]
+        x11-libs/gtk+:3.0[>=2.91.6]
         media-libs/libcanberra[gtk3][>=0.25]
         x11-libs/libnotify[>=0.7.0]
         gnome-desktop/gnome-control-center[>=2.31.4]

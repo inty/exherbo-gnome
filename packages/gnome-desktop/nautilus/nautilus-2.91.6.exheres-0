@@ -21,7 +21,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/libXrender
         x11-libs/gtk+:3.0[>=2.91.6]
-        dev-libs/glib:2[>=2.27.2]
+        dev-libs/glib:2[>=2.27.5]
         gnome-desktop/gnome-desktop:3.0[>=2.91.2]
         dev-libs/libxml2:2.0[>=2.4.7]
         x11-libs/libX11
@@ -31,7 +31,7 @@ DEPENDENCIES="
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
-        base/gnome-disk-utility [[ note = [ without gnome-disk-utility, there is a noticable degredation in the functionality ] ]]
+        gnome-desktop/gnome-disk-utility [[ note = [ required for disk management ] ]]
     suggestion:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
         app-pim/tracker[>=0.8]

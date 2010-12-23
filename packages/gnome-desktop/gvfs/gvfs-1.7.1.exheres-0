@@ -33,7 +33,8 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         net-misc/openssh
         dev-libs/libxml2
-        afc? ( app-pda/libimobiledevice[>=0.9.7] )
+        afc? ( app-pda/libimobiledevice[>=1.1.0]
+               dev-libs/libplist[>=0.15] )
         archive? ( app-arch/libarchive )
         avahi? ( net-dns/avahi[>=0.6][dbus] )
         bluetooth? ( dev-libs/expat
@@ -58,9 +59,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'archive' 'avahi' 'bash-completion'
 src_install() {
     default
 
-    edo rm "${IMAGE}"/etc/profile.d/gvfs-bash-completion.sh
-    edo rmdir "${IMAGE}"/etc/{profile.d,}
-    dobashcompletion  programs/gvfs-bash-completion.sh
+    dobashcompletion programs/gvfs-bash-completion.sh
 
     keepdir /media
     keepdir /usr/share/gvfs/remote-volume-monitors

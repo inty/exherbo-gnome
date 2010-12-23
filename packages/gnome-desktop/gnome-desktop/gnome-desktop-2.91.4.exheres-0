@@ -9,13 +9,13 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="gtk-doc"
 
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.18]
-        doc? ( dev-doc/gtk-doc[>=1.4] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
         x11-libs/startup-notification[>=0.5]
         x11-libs/libX11
@@ -26,21 +26,10 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.0.0]
         gnome-desktop/gsettings-desktop-schemas
 "
-#    suggestion:
-#        gnome-bindings/pygtk [[ description = [ used by gnome-about ] ]]
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/260f6d2431088c5cd0ad1eb8d57f0ec994240f08.patch"
-                              "${FILES}/24863ae9ea04dec397e41892cff21ae5ce9cef38.patch"
-                              "${FILES}/ff299bbed74e9603ea7c780de8805110d88dec28.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
 # for parallel installation with gnome-desktop:2, remove when gnome-desktop:2 is no longer needed
-DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-gnome-about )
+DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-desktop-docs )
 #DEFAULT_SRC_CONFIGURE_PARAMS+=( '--with-pnp-ids-path=/usr/share/misc' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
-
-src_install() {
-    default
-    edo rmdir "${IMAGE}"/usr/share/man/{man1,}
-}
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' )
 

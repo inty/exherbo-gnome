@@ -1,0 +1,27 @@
+From 0b29bd5740d53d8d3f4e0f85a7563445a3bff09e Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Wed, 22 Dec 2010 18:24:49 -0800
+Subject: [PATCH] fix for newer gtk+
+
+---
+ configure.ac |    4 +---
+ 1 files changed, 1 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 8159943..ca5a81e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -110,9 +110,7 @@ PKG_CHECK_MODULES(GNOME, [
+  gnome-keyring-1 >= 0.6.0
+  cairo >= 1.0.0])
+ 
+-PKG_CHECK_MODULES(GDK, [
+- gdk-3.0 >= 2.91.3
+- gdk-x11-3.0])
++PKG_CHECK_MODULES(GDK, [gdk-3.0 >= 2.91.7])
+ 
+ PKG_CHECK_MODULES(X11, [
+  xrandr >= 1.2.0
+-- 
+1.7.3.2
+

@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2 gsettings
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Miscellaneous utilities for the GNOME desktop"
 HOMEPAGE="http://live.gnome.org/GnomeUtils"
@@ -18,7 +17,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.40.0]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        dev-doc/gtk-doc[>=1.10] [[ note = [ needed for gtkdocize ] ]]
+        doc? ( dev-doc/gtk-doc[>=1.10] )
     build+run:
         dev-libs/glib:2[>=2.20]
         x11-libs/gtk+:3.0[>=2.91.1]
@@ -30,23 +29,8 @@ DEPENDENCIES="
         media-libs/libcanberra[gtk3][>=0.26]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/6f22c056496b375bbd01018e24537b23d48d1dcf.patch"
-                              "${FILES}/6c4658b960617d8175ddb7680171a91d307d23b3.patch"
-                              "${FILES}/0001-make-gdict-compile-against-latest-gtk.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-zlib' '--enable-ipv6' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
-
-src_prepare() {
-    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
-            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
-            -i "${WORK}/configure.ac"
-
-    edo gtkdocize --copy
-    autotools_src_prepare
-    edo intltoolize --force --copy
-}
 
 src_install() {
     gnome-2_src_install

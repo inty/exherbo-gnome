@@ -22,6 +22,7 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         dev-libs/libgcrypt[>=1.2.2]
         dev-libs/libtasn1[>=0.3.4]
+        !sys-libs/libcap [[ note = [ automagic dependency, need a patch ] ]]
         pam? ( sys-libs/pam )
 "
 
