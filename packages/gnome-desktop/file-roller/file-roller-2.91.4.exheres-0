@@ -22,8 +22,6 @@ DEPENDENCIES="
         nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/libegg-smclient-update.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'nautilus nautilus-actions' )
 
