@@ -45,6 +45,7 @@ DEPENDENCIES="
 AT_M4DIR=( m4 )
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/5d7ad665ecb3bf780dfcff3c3efec73a4351810a.patch"
+                              "${FILES}/eb77b474a156412fbae5b86a9fdd3b101f68bb5b.patch"
                               "${FILES}/0001-add-explicit-option-for-cheese.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
