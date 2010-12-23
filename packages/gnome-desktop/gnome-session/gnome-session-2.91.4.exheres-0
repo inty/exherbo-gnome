@@ -25,18 +25,16 @@ DEPENDENCIES="
         x11-libs/libICE
         x11-libs/libXext
         x11-libs/libXau
+        x11-libs/libXcomposite
         gnome-platform/GConf:2
         x11-libs/pango[X]
         x11-libs/libXtst
         x11-libs/libXrender
+        x11-dri/mesa
     recommendation:
         sys-auth/ConsoleKit
         gnome-desktop/polkit-gnome
 "
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/ce7828bbd9446fd08edfaca9815b76c1314b99ed.patch"
-                              "${FILES}/c1008ee0e31b9ada5ebf4854988687394281693b.patch"
-                              "${FILES}/libegg-smclient-update.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtk=3.0' )
 
