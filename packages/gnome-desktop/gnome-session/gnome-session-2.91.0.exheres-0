@@ -34,7 +34,8 @@ DEPENDENCIES="
         gnome-desktop/polkit-gnome
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/ce7828bbd9446fd08edfaca9815b76c1314b99ed.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/ce7828bbd9446fd08edfaca9815b76c1314b99ed.patch"
+                              "${FILES}/libegg-smclient-update.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtk=3.0' )
 

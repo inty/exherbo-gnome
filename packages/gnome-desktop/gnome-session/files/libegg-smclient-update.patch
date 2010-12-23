@@ -1,0 +1,50 @@
+From 0be81fa47fb5dabba2be40888ed5d4b16f0ae6a3 Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Wed, 22 Dec 2010 15:30:40 +0000
+Subject: Fix the EggSMClient code to work with recent GTK+
+
+---
+diff --git a/libegg/smclient/eggsmclient-private.h b/libegg/smclient/eggsmclient-private.h
+index ccb10bf..0c98eee 100644
+--- a/egg/eggsmclient-private.h
++++ b/egg/eggsmclient-private.h
+@@ -20,7 +20,13 @@
+ #ifndef __EGG_SM_CLIENT_PRIVATE_H__
+ #define __EGG_SM_CLIENT_PRIVATE_H__
+ 
++#include <gtk/gtk.h>
++
++#if !GTK_CHECK_VERSION(2,91,7) && !GTK_CHECK_VERSION(3,0,0)
++/* GTK+ 3 includes this automatically */
+ #include <gdkconfig.h>
++#endif
++
+ #include "eggsmclient.h"
+ 
+ G_BEGIN_DECLS
+diff --git a/libegg/smclient/eggsmclient-xsmp.c b/libegg/smclient/eggsmclient-xsmp.c
+index 8bebfba..ec1b594 100644
+--- a/egg/eggsmclient-xsmp.c
++++ b/egg/eggsmclient-xsmp.c
+@@ -36,6 +36,7 @@
+ #include <X11/SM/SMlib.h>
+ 
+ #include <gdk/gdk.h>
++#include <gdk/gdkx.h>
+ 
+ #define EGG_TYPE_SM_CLIENT_XSMP            (egg_sm_client_xsmp_get_type ())
+ #define EGG_SM_CLIENT_XSMP(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), EGG_TYPE_SM_CLIENT_XSMP, EggSMClientXSMP))
+@@ -367,7 +368,11 @@ sm_client_xsmp_startup (EggSMClient *client,
+       free (ret_client_id);
+ 
+       gdk_threads_enter ();
++#if !GTK_CHECK_VERSION(2,91,7) && !GTK_CHECK_VERSION(3,0,0)
+       gdk_set_sm_client_id (xsmp->client_id);
++#else
++      gdk_x11_set_sm_client_id (xsmp->client_id);
++#endif
+       gdk_threads_leave ();
+ 
+       g_debug ("Got client ID \"%s\"", xsmp->client_id);
+--
+cgit v0.8.3.1
