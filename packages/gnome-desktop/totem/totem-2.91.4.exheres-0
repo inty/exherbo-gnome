@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gsettings
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Media Player for the GNOME Desktop"
 HOMEPAGE="http://projects.gnome.org/totem"
@@ -51,6 +52,17 @@ DEPENDENCIES="
 # opensubtitles
 # publish
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-fix-for-gdk-x11-removal.patch" )
+
+src_prepare() {
+    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
+            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
+            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
+            -i "${WORK}/configure.in"
+
+    autotools_src_prepare
+}
 
 src_configure() {
     local plugins=
