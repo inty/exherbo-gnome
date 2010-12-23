@@ -26,21 +26,10 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.0.0]
         gnome-desktop/gsettings-desktop-schemas
 "
-#    suggestion:
-#        gnome-bindings/pygtk [[ description = [ used by gnome-about ] ]]
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/260f6d2431088c5cd0ad1eb8d57f0ec994240f08.patch"
-                              "${FILES}/24863ae9ea04dec397e41892cff21ae5ce9cef38.patch"
-                              "${FILES}/ff299bbed74e9603ea7c780de8805110d88dec28.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
 # for parallel installation with gnome-desktop:2, remove when gnome-desktop:2 is no longer needed
-DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-gnome-about --disable-desktop-docs )
+DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-desktop-docs )
 #DEFAULT_SRC_CONFIGURE_PARAMS+=( '--with-pnp-ids-path=/usr/share/misc' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' )
-
-src_install() {
-    default
-    edo rmdir "${IMAGE}"/usr/share/man/{man1,}
-}
 
