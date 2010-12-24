@@ -1,0 +1,37 @@
+# Copyright 2010 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="GConf schemas from the libgnome package"
+DESCRIPTION="
+This installs schemas from the deprecated libgnome package. Some GNOME applications
+still need these schemas, but do not require the library.
+"
+HOMEPAGE="http://www.gnome.org/"
+DOWNLOADS="http://dev.exherbo.org/~spoonb/distfiles/${PNV}.tar.bz2"
+
+BUGS_TO="spoonb@exherbo.org"
+
+LICENCES="LGPL-2"
+SLOT="2"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+"
+
+DEPENDENCIES="
+    build+run:
+        gnome-platform/GConf:2
+        !gnome-platform/libgnome:2 [[ description = [ Installs the same schemas ]
+                                      resolution = uninstall-blocked-after
+        ]]
+"
+
+src_install() {
+    insinto /etc/gconf/schemas
+
+    for file in *.schemas ; do
+        doins "${file}"
+    done
+}
+
