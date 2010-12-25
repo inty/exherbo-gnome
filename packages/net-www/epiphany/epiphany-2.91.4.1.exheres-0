@@ -22,7 +22,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.25.13]
-        x11-libs/gtk+:3.0[>=2.91.1]
+        x11-libs/gtk+:3.0[>=2.91.7]
         dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
         x11-libs/startup-notification[>=0.5]
@@ -48,5 +48,17 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'doc gtk-doc' 'gobject-i
 src_install() {
     default
     edo rmdir "${IMAGE}/usr/share/epiphany/art"
+}
+
+pkg_postinst() {
+    default
+    gsettings_exlib_compile_gsettings_schemas
+    _update_icon_theme_cache
+}
+
+pkg_postrm() {
+    default
+    gsettings_exlib_compile_gsettings_schemas
+    _update_icon_theme_cache
 }
 
