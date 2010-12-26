@@ -31,6 +31,10 @@ gdm_src_install() {
     edo chmod g+w "${IMAGE}"/var/lib/gdm
     edo chown gdm:gdm "${IMAGE}"/var/lib/gdm
 
+    if ever at_least 2.91.0 ; then
+        edo rmdir "${IMAGE}"/var/lib/gdm/.config/{dconf,}
+    fi
+
     install_systemd_files
 }
 
