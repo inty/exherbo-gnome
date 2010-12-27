@@ -23,8 +23,7 @@ DEPENDENCIES="
         sys-apps/upower[>=0.9.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
         media-libs/fontconfig[>=2.5]
         x11-libs/libxklavier[>=4.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
-        || ( gnome-desktop/gnome-panel:3.0[bonobo]
-             gnome-desktop/gnome-panel[=2*] )
+        gnome-desktop/gnome-panel:3.0
         app-text/iso-codes
         sys-libs/pam
         ( x11-libs/libX11

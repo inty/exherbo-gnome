@@ -23,7 +23,7 @@ DEPENDENCIES="
         media-libs/libcanberra[>=0.4][gtk]
         gnome-platform/GConf:2[>=2.31.3]
         || ( gnome-desktop/gnome-panel:3.0[bonobo(-)]
-             gnome-desktop/gnome-panel[=2*] )
+             gnome-desktop/gnome-panel:0[>=2.0.0&<2.31] )
         app-text/iso-codes
         x11-libs/libX11
         x11-libs/libXau
