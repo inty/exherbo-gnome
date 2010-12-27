@@ -22,7 +22,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.18.0]
         gnome-platform/GConf:2[>=2.31.3]
     run:
-        || ( gnome-desktop/libgnome-schemas gnome-desktop/libgnome:2 ) [[
+        || ( gnome-desktop/libgnome-schemas gnome-platform/libgnome:2 ) [[
             note = [ requires gconf schemas from the libgnome package ]
         ]]
 "
