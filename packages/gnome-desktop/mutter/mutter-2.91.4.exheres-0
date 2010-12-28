@@ -7,7 +7,7 @@ SUMMARY="Clutter and metacity based compositing window manager"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="3.0"
+SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gobject-introspection sound xinerama
     sound [[ description = [ Enable the use of libcanberra for playing sounds ] ]]
@@ -20,7 +20,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.8.0]
     build+run:
-        x11-libs/gtk+:3.0[>=2.90.7]
+        x11-libs/gtk+:3.0[>=2.91.7]
         x11-libs/pango[>=1.2.0]
         x11-libs/cairo[>=1.10.0]
         gnome-platform/GConf:2[>=1.2]
@@ -43,10 +43,6 @@ DEPENDENCIES="
         xinerama? ( x11-libs/libXinerama )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/0001-replace-gdk-x11-calls.patch
-    "${FILES}"/0001-port-testgradient-example-to-gtk3.patch
-)
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-sm'
     '--enable-startup-notification'

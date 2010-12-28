@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require python gnome.org
 
 SUMMARY="Documentation Utilities"
 HOMEPAGE="http://live.gnome.org/GnomeDocUtils"
@@ -18,7 +18,7 @@ DEPENDENCIES="
         app-text/docbook-xml-dtd:4.4
         app-text/rarian
     build+run:
-        dev-libs/libxml2[>=2.6.12]
+        dev-libs/libxml2[python][>=2.6.12]
         dev-libs/libxslt[>=1.1.8]
     run:
         dev-lang/python:*[>=2.4]
