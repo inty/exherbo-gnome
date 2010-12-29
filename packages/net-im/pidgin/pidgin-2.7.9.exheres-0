@@ -81,6 +81,7 @@ DEPENDENCIES="
             x11-libs/pango[>=1.4.0]
             x11-libs/libXScrnSaver
             x11-libs/libSM
+            x11-libs/cairo
         )
         gstreamer? (
             media-libs/gstreamer
