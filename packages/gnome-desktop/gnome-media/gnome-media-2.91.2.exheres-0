@@ -23,7 +23,7 @@ DEPENDENCIES="
         media-libs/libcanberra[gtk3][>=0.13]
         dev-libs/libxml2:2.0
         media-libs/gstreamer:0.10[>=0.10.23]
-        media-libs/gst-plugins-base:0.10[>=0.10.23]
+        media-plugins/gst-plugins-base:0.10[>=0.10.23]
         grecord? ( gnome-desktop/libgnome-media-profiles:3.0 )
     run:
         grecord? ( media-plugins/gst-plugins-good[gstreamer_plugins:gconf] )
