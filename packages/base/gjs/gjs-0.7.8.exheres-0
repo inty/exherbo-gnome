@@ -18,7 +18,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.18.0]
         dev-libs/xulrunner[>=1.9.2]
-        gnome-desktop/gobject-introspection[>=0.9.5]
+        gnome-desktop/gobject-introspection[>=0.10.0]
         x11-libs/cairo
         dev-libs/dbus-glib:1
         sys-libs/readline
@@ -26,6 +26,8 @@ DEPENDENCIES="
         dev-lang/python:* [[ note = [ required for script to build tests ] ]]
         sys-apps/dbus
 "
+# FIXME: Tests leave a dbus-launch process running.
+RESTRICT="test"
 
 src_test() {
     unset DISPLAY
