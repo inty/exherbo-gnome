@@ -1,0 +1,27 @@
+Source: Jakub Steiner <jimmac@gmail.com>
+Upstream: Yes, git master 84e38b44e550eac724171534a217effc0d63ca68
+Reason: Let exlib handle gtk-update-icon-cache
+
+From 84e38b44e550eac724171534a217effc0d63ca68 Mon Sep 17 00:00:00 2001
+From: Jakub Steiner <jimmac@gmail.com>
+Date: Tue, 21 Dec 2010 00:22:28 +0000
+Subject: install-data-hook fix by Yanko Kaneti <yaneti@declera.com>
+
+---
+diff --git a/Makefile.am b/Makefile.am
+index bdbcec4..7ba0f00 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -19,7 +19,9 @@ install-data-local:
+ 	fi
+ 
+ install-data-hook:
+-	$(GTK_UPDATE_ICON_CACHE) -q $(DESTDIR)$(themedir)
++	if test -z "$(DESTDIR)" ; then \
++		$(GTK_UPDATE_ICON_CACHE) -q $(DESTDIR)$(themedir); \
++	fi
+ 
+ EXTRA_DIST = gnome
+ 
+--
+cgit v0.8.3.1
