@@ -55,10 +55,6 @@ DEPENDENCIES="
         gnome-desktop/gnome-icon-theme-symbolic[>=2.91.0] [[ description = [
             The symbolic icons are preferred for GNOME Shell
         ] ]]
-    suggestion:
-        dev-python/simplejson [[ description = [
-            Required for performance test and creating a GNOME Shell extension
-        ] ]]
 "
 
 # TODO: Additional recommendations and suggestions for full functionality
