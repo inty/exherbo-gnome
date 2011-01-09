@@ -19,7 +19,7 @@ DEPENDENCIES="
         x11-libs/libX11[>=1.0]
         x11-libs/gtk+:3.0[>=2.91.7]
         dev-libs/dbus-glib:1[>=0.71]
-        gnome-desktop/gnome-desktop:3.0[>=2.91.2]
+        gnome-desktop/gnome-desktop:3.0[>=2.91.5]
         gnome-desktop/gnome-menus[>=2.11.1]
         dev-libs/glib:2[>=2.15.0]
         x11-libs/libXext
