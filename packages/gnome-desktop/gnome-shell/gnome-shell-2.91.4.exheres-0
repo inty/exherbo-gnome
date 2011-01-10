@@ -1,0 +1,83 @@
+# Copyright 2010 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 gsettings freedesktop-desktop
+
+SUMMARY="GNOME Shell provides core interface functions for GNOME 3"
+DESCRIPTION="
+GNOME Shell is the defining technology of the GNOME 3 desktop user experience. It provides core
+interface functions like switching to windows and launching applications. GNOME Shell takes
+advantage of the capabilities of modern graphics hardware and introduces innovative user interface
+concepts to provide a delightful and easy to use experience
+"
+HOMEPAGE="http://live.gnome.org/GnomeShell"
+
+BUGS_TO="spoonb@exherbo.org"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.26]
+        dev-util/pkg-config[>=0.22]
+        sys-devel/gettext
+    build+run:
+        base/clutter[>=1.5.8][gobject-introspection]
+        base/gjs[>=0.7]
+        dev-lang/python:*[>=2.5]
+        dev-libs/dbus-glib:1
+        dev-libs/glib[>=2.25.9]
+        dev-libs/libcroco
+        gnome-platform/GConf[gobject-introspection]
+        gnome-desktop/gnome-bluetooth[>=2.90.0][gobject-introspection] [[ note = automagic ]]
+        gnome-desktop/gnome-desktop:3.0
+        gnome-desktop/gnome-menus
+        gnome-desktop/gobject-introspection[>=0.6.11] 
+        gnome-desktop/mutter[>=2.91.4][gobject-introspection]
+        media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
+        media-libs/libcanberra
+        media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
+        media-sound/pulseaudio
+        x11-libs/gdk-pixbuf:2.0[gobject-introspection]
+        x11-libs/gtk+:3.0[>=2.91.7][gobject-introspection]
+        x11-libs/startup-notification
+    run: 
+        dev-python/dbus-python
+        gnome-bindings/gnome-python[gconf]
+        gnome-bindings/pygobject
+        gnome-desktop/gnome-settings-daemon:3.0
+    recommendation:
+        gnome-desktop/gnome-icon-theme-symbolic[>=2.91.0] [[ description = [
+            The symbolic icons are preferred for GNOME Shell
+        ] ]]
+"
+
+# TODO: Additional recommendations and suggestions for full functionality
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-gdk-blocked-method.patch )
+
+src_install() {
+    gsettings_src_install
+    edo rmdir ${IMAGE}/usr/libexec
+}
+
+pkg_postinst() {
+    freedesktop-desktop_update_desktop_database
+
+    gsettings_exlib_compile_gsettings_schemas
+
+    gnome_exlib_install_gconf_schemas
+    gnome_exlib_load_gconf_entries
+    gnome_exlib_restart_gconfd
+}
+
+pkg_postrm() {
+    freedesktop-desktop_update_desktop_database
+
+    gsettings_exlib_compile_gsettings_schemas
+}
+

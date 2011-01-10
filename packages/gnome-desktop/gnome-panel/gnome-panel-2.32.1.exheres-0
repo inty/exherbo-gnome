@@ -35,7 +35,7 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.0.0]
         gnome-desktop/libwnck[>=2.19.5]
         gnome-desktop/librsvg:2
-        gnome-desktop/libgweather[>=2.27.90]
+        gnome-desktop/libgweather:0[>=2.27.90]
         x11-libs/libX11
         x11-libs/libXau
         x11-libs/libXrandr[>=1.2.0]

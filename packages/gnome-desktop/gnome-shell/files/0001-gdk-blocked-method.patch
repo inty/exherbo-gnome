@@ -1,0 +1,30 @@
+From 2763d8dcc1311640744c353adf8c35f2bb86feef Mon Sep 17 00:00:00 2001
+From: Owen W. Taylor <otaylor@fishsoup.net>
+Date: Tue, 28 Dec 2010 07:48:40 -0500
+Subject: [PATCH] Fix error from blocking removed Gdk.Display.get_device_state.
+
+Gdk.Display.get_device_state() was removed in favor of a
+non-GdkModifierType returning Gdk.Device.get_position(). But block
+Gdk.Device.get_state() which does return a GdkModifierType mask.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=638158
+---
+ js/ui/environment.js |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/js/ui/environment.js b/js/ui/environment.js
+index 0ab354c..0adf3af 100644
+--- a/js/ui/environment.js
++++ b/js/ui/environment.js
+@@ -88,7 +88,7 @@ function init() {
+ 
+     _blockMethod('Clutter.Event.get_state', 'Shell.get_event_state',
+                  'gjs\'s handling of Clutter.ModifierType is broken. See bug 597292.');
+-    _blockMethod('Gdk.Display.get_device_state', 'global.get_pointer',
++    _blockMethod('Gdk.Device.get_state', 'global.get_pointer',
+                  'gjs\'s handling of Gdk.ModifierType is broken. See bug 597292.');
+     _blockMethod('Gdk.Window.get_device_position', 'global.get_pointer',
+                  'gjs\'s handling of Gdk.ModifierType is broken. See bug 597292.');
+-- 
+1.7.3.5
+

@@ -14,8 +14,6 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-    test:
-        dev-libs/check[>=0.9.4]
     build+run:
         dev-libs/glib:2[>=2.22]
         dev-libs/dbus-glib:1[>=0.74]
@@ -39,6 +37,12 @@ DEPENDENCIES="
         tcpd? ( sys-apps/tcp-wrappers )
         xdmcp? ( x11-libs/libXdmcp )
         xinerama? ( x11-libs/libXinerama )
+    run:
+        gnome-desktop/gnome-session
+        gnome-desktop/gnome-settings-daemon
+        gnome-desktop/metacity
+    test:
+        dev-libs/check[>=0.9.4]
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.32.0.patch" )
