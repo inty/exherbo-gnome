@@ -26,17 +26,11 @@ src_install() {
 
 pkg_postinst() {
     echo "Generating pixbuf list ..."
-
-    echo "gdk-pixbuf-query-loaders > /etc/gtk-2.0/gdk-pixbuf.loaders"
-    gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders" ||
-        eerror "failed to update pixbuf loaders"
+    nonfatal edo gdk-pixbuf-query-loaders --update-cache
 }
 
 pkg_postrm() {
     echo "Generating pixbuf list ..."
-
-    echo "gdk-pixbuf-query-loaders > /etc/gtk-2.0/gdk-pixbuf.loaders"
-    gdk-pixbuf-query-loaders > "${ROOT}/etc/gtk-2.0/gdk-pixbuf.loaders" ||
-        eerror "failed to update pixbuf loaders"
+    nonfatal edo gdk-pixbuf-query-loaders --update-cache
 }
 
