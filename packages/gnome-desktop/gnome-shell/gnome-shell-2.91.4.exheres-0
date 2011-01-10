@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2 gsettings freedesktop-desktop
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="GNOME Shell provides core interface functions for GNOME 3"
 DESCRIPTION="
@@ -59,12 +58,8 @@ DEPENDENCIES="
 
 # TODO: Additional recommendations and suggestions for full functionality
 
-src_prepare() {
-    default
-    # Work around until next gtk3 ( 2.91.8 ) release
-    edo sed -ie 's/gdk-x11-3.0/gdk-3.0/' configure.ac
-    autotools_src_prepare
-}
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-gdk-blocked-method.patch )
+
 src_install() {
     gsettings_src_install
     edo rmdir ${IMAGE}/usr/libexec
