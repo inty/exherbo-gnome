@@ -3,7 +3,7 @@
 # Based in part upon 'gtk+-2.13.2.ebuild' from Gentoo which is:
 #    Copyright 1999-2008 Gentoo Foundation
 
-require gtk+
+require gtk+ gsettings
 
 SLOT="3.0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
@@ -14,8 +14,9 @@ hi hr hu hy ia id io is it ja ka kn ko ku li lt lv mai mi mk ml mn mr ms nb ne
 nl nn nso oc or pa pl ps pt pt_BR ro ru rw si sk sl sq sr sr@latin sr@ije sv ta
 te th tk tr tt uk ur uz uz@cyrillic vi wa xh yi zh_CN zh_HK zh_TW"
 
-MYOPTIONS="cups doc
+MYOPTIONS="cups
 gobject-introspection
+gtk-doc
 man-pages [[ description = [ Build and install man pages for the GTK+ API ] ]]
 linguas: ${LANGS}"
 
@@ -26,13 +27,13 @@ DEPENDENCIES="
         man-pages? ( dev-libs/libxslt
                      app-text/docbook-xml-dtd:4.1.2
                      app-text/docbook-xsl-stylesheets )
-        doc? ( dev-doc/gtk-doc[>=1.11] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.11] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.27.5]
         dev-libs/atk[>=1.29.2][gobject-introspection?]
         x11-libs/pango[>=1.20][X][gobject-introspection?]
-        x11-libs/cairo[>=1.9.10][X]
+        x11-libs/cairo[>=1.10.0][X]
         x11-libs/gdk-pixbuf:2.0[>=2.21.0][gobject-introspection?]
         ( media-libs/fontconfig
           x11-libs/libX11
@@ -55,5 +56,5 @@ DEPENDENCIES="
 RESTRICT="test" # require X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-xinput' '--with-gdktarget=x11' '--enable-xinerama' '--disable-packagekit' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'doc gtk-doc' 'gobject-introspection introspection' 'man-pages man' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'gtk-doc' 'gobject-introspection introspection' 'man-pages man' )
 
