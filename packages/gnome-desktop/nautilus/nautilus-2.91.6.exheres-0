@@ -9,18 +9,17 @@ HOMEPAGE="http://live.gnome.org/Nautilus"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc exif gobject-introspection"
+MYOPTIONS="exif gobject-introspection gtk-doc"
 
 DEPENDENCIES="
     build:
-        app-text/rarian
         dev-util/pkg-config[>=0.19]
         dev-util/intltool[>=0.40.1]
-        doc? ( dev-doc/gtk-doc[>=1.4] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
         x11-libs/libXrender
-        x11-libs/gtk+:3.0[>=2.91.6]
+        x11-libs/gtk+:3.0[>=2.91.6][gobject-introspection?]
         dev-libs/glib:2[>=2.27.5]
         gnome-desktop/gnome-desktop:3.0[>=2.91.2]
         dev-libs/libxml2:2.0[>=2.4.7]
@@ -40,7 +39,7 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit --disable-xmp )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'exif libexif'
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'exif libexif'
                                        'gobject-introspection introspection' )
 
 pkg_postinst() {
