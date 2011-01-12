@@ -9,7 +9,7 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc
+MYOPTIONS="gtk-doc
 (
     bonobo [[ description = [ build python bindings for libbonobo ] ]]
     bonoboui [[
@@ -18,7 +18,10 @@ MYOPTIONS="doc
     ]]
     gconf [[ description = [ build python bindings for gconf ] ]]
     gnome [[ description = [ build python bindings for libgnome ] ]]
-    gnomeui [[ description = [ build python bindings for libgnomeui ] ]]
+    gnomeui [[
+               description = [ build python bindings for libgnomeui ]
+               requires = gnome
+    ]]
     gnomecanvas [[ description = [ build python bindings for libgnomecanvas ] ]]
     gnomevfs [[ description = [ build python bindings for gnome-vfs ] ]]
 ) [[ number-selected = at-least-one ]]
@@ -29,19 +32,22 @@ DEPENDENCIES="
         dev-lang/python:*[>=2.2]
         gnome-bindings/pygtk:2[>=2.10.3]
         gnome-bindings/pygobject:2[>=2.17.0]
-        gnome-bindings/pyorbit[>=2.0.1]
         dev-libs/glib:2[>=2.6]
         x11-libs/gtk+:2[>=2.10]
-        bonobo? ( gnome-platform/libbonobo:2[>=2.8.0] )
-        bonoboui? ( gnome-platform/libbonoboui:2[>=2.8.0] )
+        bonobo? ( gnome-platform/libbonobo:2[>=2.8.0]
+                  gnome-bindings/pyorbit[>=2.0.1] )
+        bonoboui? ( gnome-platform/libbonoboui:2[>=2.8.0]
+                    gnome-bindings/pyorbit[>=2.0.1] )
         gconf? ( gnome-platform/GConf:2[>=2.11.1] )
         gnome? ( gnome-platform/libgnome:2[>=2.8] )
         gnomecanvas? ( gnome-platform/libgnomecanvas[>=2.8.0] )
-        gnomeui? ( gnome-platform/libgnomeui[>=2.8] )
-        gnomevfs? ( gnome-platform/gnome-vfs[>=2.14] )
+        gnomeui? ( gnome-platform/libgnomeui[>=2.8]
+                   gnome-bindings/pyorbit[>=2.0.1] )
+        gnomevfs? ( gnome-platform/gnome-vfs[>=2.14]
+                    gnome-bindings/pyorbit[>=2.0.1] )
     build:
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc )
+        gtk-doc? ( dev-doc/gtk-doc )
 "
 
 RESTRICT="test" # dont work with recent python
@@ -57,7 +63,7 @@ src_prepare() {
 src_configure() {
     econf \
         --disable-allbindings \
-        $(option_enable doc gtk-doc) \
+        $(option_enable gtk-doc) \
         $(option_enable bonobo) \
         $(option_enable bonobo bonobo_activation) \
         $(option_enable bonoboui) \
