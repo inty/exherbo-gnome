@@ -20,7 +20,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.8.0]
     build+run:
-        x11-libs/gtk+:3.0[>=2.91.7]
+        x11-libs/gtk+:3.0[>=2.91.7][gobject-introspection?]
         x11-libs/pango[>=1.2.0]
         x11-libs/cairo[>=1.10.0]
         gnome-platform/GConf:2[>=1.2]
@@ -30,7 +30,7 @@ DEPENDENCIES="
         x11-libs/libXfixes
         x11-libs/libXrender
         x11-libs/libXdamage
-        base/clutter:1[>=1.2.0]
+        base/clutter:1[>=1.2.0][gobject-introspection?]
         x11-libs/libXcursor
         x11-libs/libX11
         x11-libs/libXext
