@@ -1,0 +1,41 @@
+From d09116379ae6237c1928fd91e0da12f4378cc2eb Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Tue, 11 Jan 2011 19:56:38 -0800
+Subject: [PATCH] remove gtk_quit_add usage
+
+gtk_quit_add was removed in GTK+:3.0[=2.99].  Simply drop the pending sound
+events in the case.
+---
+ src/canberra-gtk-module.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/src/canberra-gtk-module.c b/src/canberra-gtk-module.c
+index 90c583a..8bf0638 100644
+--- a/src/canberra-gtk-module.c
++++ b/src/canberra-gtk-module.c
+@@ -932,10 +932,12 @@ static void connect_settings(void) {
+         connected = TRUE;
+ }
+ 
++#if !GTK_CHECK_VERSION(2, 99, 0)
+ static gboolean quit_handler(gpointer data) {
+         dispatch_queue();
+         return FALSE;
+ }
++#endif
+ 
+ G_MODULE_EXPORT void gtk_module_init(gint *argc, gchar ***argv[]) {
+ 
+@@ -964,7 +966,9 @@ G_MODULE_EXPORT void gtk_module_init(gint *argc, gchar ***argv[]) {
+         install_hook(GTK_TYPE_WIDGET, "drag-failed", &signal_id_widget_drag_failed);
+         install_hook(GTK_TYPE_EXPANDER, "activate", &signal_id_expander_activate);
+ 
++#if !GTK_CHECK_VERSION(2, 99, 0)
+         gtk_quit_add(1, quit_handler, NULL);
++#endif
+ }
+ 
+ G_MODULE_EXPORT gchar* g_module_check_init(GModule *module);
+-- 
+1.7.3.5
+

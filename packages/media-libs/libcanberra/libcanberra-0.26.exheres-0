@@ -32,6 +32,8 @@ DEPENDENCIES="
         sound-themes/sound-theme-freedesktop
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-remove-gtk_quit_add-usage.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-oss --disable-tdb --disable-lynx )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' gtk gtk3 gstreamer 'pulseaudio pulse' )
 

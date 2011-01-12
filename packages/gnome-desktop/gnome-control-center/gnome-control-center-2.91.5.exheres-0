@@ -36,13 +36,13 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         dev-libs/dbus-glib:1[>=0.74]
         gnome-desktop/gnome-desktop:3.0
-        gnome-desktop/gnome-settings-daemon
+        gnome-desktop/gnome-settings-daemon[>=2.91.2]
         media-sound/pulseaudio[>=0.9.16]
         sys-auth/polkit:1[>=0.97]
         media-libs/gstreamer:0.10
         x11-libs/libXft
         x11-libs/libXi[>=1.2]
-        gnome-desktop/libgnomekbd[>=2.31.2]
+        gnome-desktop/libgnomekbd[>=2.91.2]
         x11-libs/libxklavier[>=4.0]
         cheese? ( gnome-desktop/cheese[>=2.29.90] )
 "
