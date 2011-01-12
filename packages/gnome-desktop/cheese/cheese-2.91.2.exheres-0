@@ -16,7 +16,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.21]
         dev-util/intltool[>=0.40.0]
         app-text/docbook-xml-dtd:4.3
-        doc? ( app-doc/gtk-doc[>=1.14] )
+        doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
         sys-fs/udev[glib]
         x11-libs/libX11
