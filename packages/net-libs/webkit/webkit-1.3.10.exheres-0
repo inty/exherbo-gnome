@@ -46,8 +46,3 @@ src_configure() {
           $(option_enable wml)
 }
 
-src_install() {
-    default
-    edo find "${IMAGE}" -depth -type d -empty -delete
-}
-
