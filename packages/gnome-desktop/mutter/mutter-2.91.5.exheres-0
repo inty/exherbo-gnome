@@ -36,7 +36,7 @@ DEPENDENCIES="
         x11-libs/libXext
         x11-libs/libXrandr
         x11-libs/libSM
-        x11-libs/libICE 
+        x11-libs/libICE
         gnome-desktop/zenity
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
         sound? ( media-libs/libcanberra[gtk3][>=0.26] )
@@ -44,7 +44,7 @@ DEPENDENCIES="
     recommendation:
         gnome-desktop/gnome-themes-standard [[ description = [
             Provides default GNOME 3 theme ( Adwaita )
-        ] ]] 
+        ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
