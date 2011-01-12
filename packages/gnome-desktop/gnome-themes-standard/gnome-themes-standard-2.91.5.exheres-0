@@ -18,4 +18,5 @@ DEPENDENCIES="
     recommendation:
         gnome-desktop/gtk-theme-engine-clearlooks
 "
+#        fonts/cantarell
 
