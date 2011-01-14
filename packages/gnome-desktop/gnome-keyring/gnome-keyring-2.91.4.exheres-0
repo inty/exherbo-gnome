@@ -10,7 +10,14 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="1"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="caps gtk-doc pam"
+MYOPTIONS="caps gtk-doc pam
+    caps [[ description = [
+        Enable Linux capabilities to prevent the keyring's memory from being paged to swap
+    ] ]]
+    pam [[ description = [
+        Install a PAM module to unlock the keyring on login
+   ] ]]
+ "
 
 DEPENDENCIES="
     build:

@@ -25,7 +25,7 @@ index 13a9018..755a3e8 100644
 -fi
 +AC_ARG_WITH(libcap,
 +            AC_HELP_STRING([--without-libcap],
-+            [Build without libcap and disable linux capabilities]),,
++            [Build without libcap and disable Linux capabilities]),,
 +            [with_libcap=yes])
 +
 +libcap_status="no"
