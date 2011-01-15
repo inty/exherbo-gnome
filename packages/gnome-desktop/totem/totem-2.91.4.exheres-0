@@ -53,7 +53,8 @@ DEPENDENCIES="
 # publish
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-fix-for-gdk-x11-removal.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-fix-for-gdk-x11-removal.patch"
+                              "${FILES}/5356832819c294f46148ca47d2a15547899d7df8.patch" )
 
 src_prepare() {
     edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
