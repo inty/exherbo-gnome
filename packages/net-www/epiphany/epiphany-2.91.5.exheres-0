@@ -22,7 +22,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.25.13]
-        x11-libs/gtk+:3.0[>=2.91.7]
+        x11-libs/gtk+:3.0[>=2.99.0]
         dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
         x11-libs/startup-notification[>=0.5]

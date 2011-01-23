@@ -36,3 +36,10 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-desktop-docs )
 #DEFAULT_SRC_CONFIGURE_PARAMS+=( '--with-pnp-ids-path=/usr/share/misc' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' 'gtk-doc' )
 
+src_prepare() {
+    default
+
+    # autogen.sh failed so the 2.91.6 tarballs contain an empty file causing tests to fail.
+    edo cp -f "${FILES}"/pnp.ids "${WORK}"/libgnome-desktop/pnp.ids
+}
+

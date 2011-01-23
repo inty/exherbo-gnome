@@ -18,11 +18,11 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.13] )
     build+run:
         dev-libs/glib:2[>=2.25.11]
-        x11-libs/gtk+:3.0[>=2.90.5]
+        x11-libs/gtk+:3.0[>=2.91.8]
         dev-libs/libxml2:2.0[>=2.6.5]
         dev-libs/libxslt[>=1.1.4]
         net-libs/webkit[>=1.3.2]
-        gnome-desktop/yelp-xsl[>=2.31.3]
+        gnome-desktop/yelp-xsl[>=2.91.9]
         app-arch/xz[>=4.9]
         x11-libs/pango[X]
 "

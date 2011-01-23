@@ -20,7 +20,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.37.1]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        app-doc/gtk-doc-autotools [[ note = [ required for gtk-docize ] ]]
+        app-doc/gtk-doc-autotools [[ note = [ required for gtkdocize ] ]]
         gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         x11-libs/libX11
@@ -37,14 +37,15 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.74]
         gnome-desktop/gnome-desktop:3.0
         gnome-desktop/gnome-settings-daemon[>=2.91.2]
+        sys-apps/upower[>=0.9.1]
         media-sound/pulseaudio[>=0.9.16]
         sys-auth/polkit:1[>=0.97]
-        media-libs/gstreamer:0.10
         x11-libs/libXft
         x11-libs/libXi[>=1.2]
         gnome-desktop/libgnomekbd[>=2.91.2]
         x11-libs/libxklavier[>=4.0]
-        cheese? ( gnome-desktop/cheese[>=2.29.90] )
+        cheese? ( gnome-desktop/cheese[>=2.29.90]
+                  media-libs/gstreamer:0.10 )
 "
 
 AT_M4DIR=( m4 )
