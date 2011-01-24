@@ -44,12 +44,8 @@ src_install() {
     doexe "${FILES}/50-libcanberra"
 
     option !gtk && option !gtk3 && rmdir \
-        "${IMAGE}/usr/bin" \
-        "${IMAGE}/usr/share/gdm/autostart/LoginWindow" \
-        "${IMAGE}/usr/share/gdm/autostart" \
-        "${IMAGE}/usr/share/gdm" \
-        "${IMAGE}/usr/share/gnome/autostart" \
-        "${IMAGE}/usr/share/gnome/shutdown" \
-        "${IMAGE}/usr/share/gnome"
+        "${IMAGE}"/usr/bin \
+        "${IMAGE}"/usr/share/gdm/{autostart/LoginWindow,autostart,} \
+        "${IMAGE}"/usr/share/gnome/{autostart,shutdown,}
 }
 
