@@ -26,7 +26,7 @@ DEPENDENCIES="
         sys-apps/udisks[>=1.0.0&<1.1.0]
         x11-libs/libX11
         base/libatasmart[>=0.14]
-        net-dns/avahi[dbus][gtk][>=0.6.25]
+        net-dns/avahi[>=0.6.25][dbus][gtk]
         keyring? ( gnome-desktop/gnome-keyring:1[>=2.22] )
         nautilus? ( gnome-desktop/nautilus[>=2.24] )
 "
