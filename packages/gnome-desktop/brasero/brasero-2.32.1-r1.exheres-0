@@ -43,13 +43,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection intr
 
 pkg_postinst() {
     gtk-icon-cache_pkg_postinst
-    default
     gsettings_exlib_compile_gsettings_schemas
 }
 
 pkg_postrm() {
     gtk-icon-cache_pkg_postrm
-    default
     gsettings_exlib_compile_gsettings_schemas
 }
 
