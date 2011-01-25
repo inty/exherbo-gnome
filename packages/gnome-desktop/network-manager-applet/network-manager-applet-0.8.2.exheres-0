@@ -28,7 +28,7 @@ DEPENDENCIES="
         gnome-desktop/libgnome-keyring:1
         x11-libs/libnotify[>=0.4.3]
         sys-apps/dbus[>=1.2.6]
-        sys-auth/polkit:1[>=0.9.2]
+        sys-auth/polkit:1[>=0.92]
         bluetooth? ( gnome-desktop/gnome-bluetooth:1[>=2.27.6] )
     recommendation:
         gnome-desktop/gnome-keyring:1
