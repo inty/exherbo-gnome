@@ -14,8 +14,7 @@ DEPENDENCIES="
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.10] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.15]
-                                 gnome-desktop/libsoup[gobject-introspection] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.15] )
     build+run:
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
@@ -23,11 +22,11 @@ DEPENDENCIES="
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2[>=2.6]
         app-spell/enchant[>=0.22]
-        x11-libs/gtk+:2[>=2.20]
+        x11-libs/gtk+:2[>=2.20][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         ( x11-libs/libXt ) [[ note = [ required for the X backend ] ]]
         dev-libs/libxslt[>=1.1.7]
-        gnome-desktop/libsoup:2.4[>=2.29.90]
+        gnome-desktop/libsoup:2.4[>=2.29.90][gobject-introspection?]
         media-libs/fontconfig[>=2.4]
         ( dev-db/sqlite:3[>=3.0]
           media-libs/gstreamer:0.10[>=0.10]
