@@ -21,7 +21,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.26]
         sys-auth/polkit:1[>=0.97]
-        x11-libs/gtk+:2[>=2.17.1]
+        x11-libs/gtk+:2[>=2.17.1][gobject-introspection?]
         !gnome-desktop/PolicyKit-gnome [[ description = [ Same package under old name ]
                                           resolution = uninstall-blocked-after ]]
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.2] )
