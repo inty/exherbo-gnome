@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.17.0]
         x11-libs/gtk+:2[>=2.13.1]
         gnome-platform/GConf:2[>=2.16]
-        gnome-desktop/gnome-keyring:1
+        gnome-desktop/libgnome-keyring:1
         dev-libs/libxml2[>=2.6.32]
         dev-libs/dbus-glib:1
         x11-libs/libX11
