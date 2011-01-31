@@ -50,7 +50,7 @@ DEPENDENCIES="
         djvu? ( app-text/djvu[>=3.5.17] )
         keyring? ( gnome-desktop/libgnome-keyring:1
                    gnome-desktop/gnome-keyring:1[>=2.22.0] )
-        nautilus?  ( gnome-desktop/nautilus[>=2.0] )
+        nautilus?  ( gnome-desktop/nautilus[>=2.91.4] )
         postscript? ( app-text/libspectre[>=0.2.0] )
         tiff? ( media-libs/tiff[>=3.6] )
     run:
