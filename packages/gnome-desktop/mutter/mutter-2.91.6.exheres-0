@@ -45,6 +45,9 @@ DEPENDENCIES="
         gnome-desktop/gnome-themes-standard [[ description = [
             Provides default GNOME 3 theme ( Adwaita )
         ] ]]
+        gnome-desktop/metacity [[ description = [
+            Mutter currently shares GConf schemas with Metacity
+        ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
