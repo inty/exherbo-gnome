@@ -20,14 +20,16 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.2.3] [[ note = [ required for gnome-doc-prepare ] ]]
+        gnome-desktop/gnome-power-manager [[ note = [ required to generate dconf db ] ]]
     build+run:
         dev-libs/glib:2[>=2.27.4]
         dev-libs/dbus-glib:1[>=0.74]
-        x11-libs/gtk+:3.0[>=2.29.1]
+        x11-libs/gtk+:3.0[>=2.91.1]
         media-libs/libcanberra[>=0.4][gtk3]
         gnome-platform/GConf:2[>=2.31.3]
         sys-apps/upower[>=0.9.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
         media-libs/fontconfig[>=2.5]
+        sys-apps/accountsservice[>=0.6.3]
         x11-libs/libxklavier[>=4.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
         app-text/iso-codes
         sys-libs/pam
@@ -70,6 +72,7 @@ src_configure() {
           $(option_with consolekit console-kit)     \
           "--with-default-path=/bin:/usr/bin"       \
           "--with-lang-file=/etc/env.d/02locale"    \
+          "--with-dmconfdir=/etc/X11/dm"            \
           "--enable-ipv6"                           \
           "--without-selinux"                       \
           "--without-libaudit"
