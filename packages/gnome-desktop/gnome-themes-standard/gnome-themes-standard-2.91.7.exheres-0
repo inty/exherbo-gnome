@@ -18,8 +18,6 @@ DEPENDENCIES="
     run:
         dev-libs/glib:2
         x11-libs/gtk+:3.0[>=2.91.6]
-    recommendation:
-        gnome-desktop/gtk-theme-engine-clearlooks
 "
 #        fonts/cantarell
 

@@ -45,11 +45,15 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspe
 AT_M4DIR=( 'm4' )
 
 src_prepare() {
+    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
+            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
+            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
+            -e 's/GNOME_COMMON_INIT/dnl &/'             \
+            -e 's/GNOME_CXX_WARNINGS/dnl &/'            \
+            -i "${WORK}/configure.ac"
+
     edo gtkdocize --copy
-
-    # remove gnome-common deps
-    edo sed -ie '191,195d' "${WORK}"/configure.ac
-
+    edo gnome-doc-prepare --automake --copy
     autotools_src_prepare
 }
 

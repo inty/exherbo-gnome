@@ -21,10 +21,10 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.21.3]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2[>=2.6]
-        x11-libs/gtk+:2[>=2.20]
+        x11-libs/gtk+:2[>=2.20][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
-        gnome-desktop/libsoup:2.4[>=2.29.90]
+        gnome-desktop/libsoup:2.4[>=2.29.90][gobject-introspection?]
         dev-libs/libxslt[>=1.1.7]
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]

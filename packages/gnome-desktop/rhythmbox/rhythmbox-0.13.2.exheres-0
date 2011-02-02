@@ -60,7 +60,7 @@ DEPENDENCIES="
             gnome-bindings/pygobject:2
             gnome-bindings/pygtk:2
         )
-        scrobbler? ( core/json-glib[=0.12.0] ) [[ note = [ explicit versioning as we dont slot this library properly ] ]]
+        scrobbler? ( core/json-glib[>=0.12&<0.13] ) [[ note = [ we don't slot this library properly ] ]]
         tagging? ( media-libs/libmusicbrainz:3[>=3.0.2] )
         udev? ( sys-fs/udev[>=145][glib] )
         webkit? ( net-libs/webkit-gtk[>=1.1.17] )

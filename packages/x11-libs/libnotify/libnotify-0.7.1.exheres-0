@@ -14,9 +14,7 @@ MYOPTIONS="gobject-introspection gtk-doc"
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
-        x11-libs/gtk+:3.0[>=2.90] [[ note = [
-            Required to build tests. Needs a patch to disable building them.
-        ] ]]
+        x11-libs/gtk+:3.0[>=2.90] [[ note = [ Required to build tests. Needs a patch to disable building them.  ] ]]
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.12] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:

@@ -23,7 +23,9 @@ DEPENDENCIES="
         net-utils/gmime:2.4
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-quvi' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc'
+                                       'gobject-introspection introspection' )
 
 RESTRICT="test" # requires internet access
 

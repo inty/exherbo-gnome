@@ -46,6 +46,8 @@ DEPENDENCIES="
         x11-libs/libxklavier[>=4.0]
         cheese? ( gnome-desktop/cheese[>=2.29.90]
                   media-libs/gstreamer:0.10 )
+    suggestion:
+        sys-apps/accountsservice [[ description = [ Required for User Accounts panel ] ]]
 "
 
 AT_M4DIR=( m4 )

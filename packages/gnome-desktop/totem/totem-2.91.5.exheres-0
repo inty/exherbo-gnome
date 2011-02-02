@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gsettings
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Media Player for the GNOME Desktop"
 HOMEPAGE="http://projects.gnome.org/totem"
@@ -15,7 +14,7 @@ brasero [[ description = [ build brasero plugin ] ]]
 chapters [[ description = [ build chapters plugin ] ]]
 doc gobject-introspection
 media-player-keys [[ description = [ build media-player-keys plugin ] ]]
-nautilus" # tracker"
+nautilus tracker"
 
 DEPENDENCIES="
     build:
@@ -28,23 +27,23 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
-        x11-libs/gtk+:3.0[>=2.91.7]
-        dev-libs/glib:2[>=2.25.11]
-        gnome-desktop/totem-pl-parser[>=2.29.1]
+        x11-libs/gtk+:3.0[>=2.99.2]
+        dev-libs/glib:2[>=2.27.92]
+        gnome-desktop/totem-pl-parser[>=2.32.2]
         x11-libs/cairo
         gnome-desktop/gnome-icon-theme[>=2.15.90]
         x11-libs/libX11
         x11-libs/libXtst
         x11-apps/xrandr[>=1.1.1]
         x11-libs/libXxf86vm[>=1.0.1]
-        dev-libs/libpeas:1.0[>=0.7.0]
+        dev-libs/libpeas:1.0[>=0.7.1]
         bluetooth? ( net-wireless/bluez )
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         media-player-keys? ( dev-libs/dbus-glib:1[>=0.82] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
+        tracker? ( app-pim/tracker:0.10[>=0.9.34] )
 "
-#        tracker? ( app-pim/tracker[>=0.9] )
 
 # coherence_upnp
 # galago
@@ -52,18 +51,6 @@ DEPENDENCIES="
 # opensubtitles
 # publish
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-fix-for-gdk-x11-removal.patch"
-                              "${FILES}/5356832819c294f46148ca47d2a15547899d7df8.patch" )
-
-src_prepare() {
-    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
-            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
-            -i "${WORK}/configure.in"
-
-    autotools_src_prepare
-}
 
 src_configure() {
     local plugins=
@@ -86,7 +73,7 @@ src_configure() {
     option brasero              && plugins+=,brasero-disc-recorder
     option media-player-keys    && plugins+=,media-player-keys
     option nautilus             && plugins+=,save-file
-    #option tracker              && plugins+=,tracker
+    option tracker              && plugins+=,tracker
 
     unset DISPLAY
     unset DBUS_SESSION_BUS_ADDRESS
@@ -97,6 +84,7 @@ src_configure() {
               "--with-plugins=${plugins}"                           \
               '--disable-browser-plugins'                           \
               '--with-dbus'                                         \
+              '--disable-vala'                                      \
               $(option_enable doc gtk-doc)                          \
               $(option_enable gobject-introspection introspection)  \
               $(option_enable nautilus)

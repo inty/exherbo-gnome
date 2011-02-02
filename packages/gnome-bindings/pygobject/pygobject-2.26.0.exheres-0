@@ -25,7 +25,7 @@ DEPENDENCIES="
                 app-text/docbook-xml-dtd:4.1.2
              )
     build+run:
-        dev-lang/python:2.6[>=2.5.2]
+        dev-lang/python:=[>=2.5.2&<3.0]
         dev-libs/glib:2[>=2.22.4]
         cairo? ( dev-python/pycairo[>=1.0.2] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )

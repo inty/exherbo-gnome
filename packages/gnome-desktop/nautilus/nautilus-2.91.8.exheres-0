@@ -24,7 +24,6 @@ DEPENDENCIES="
         gnome-desktop/gnome-desktop:3.0[>=2.91.2]
         dev-libs/libxml2:2.0[>=2.4.7]
         x11-libs/libX11
-        gnome-platform/GConf:2
         gnome-desktop/gsettings-desktop-schemas
         exif? ( media-libs/libexif[>=0.5.12] )
     run:
