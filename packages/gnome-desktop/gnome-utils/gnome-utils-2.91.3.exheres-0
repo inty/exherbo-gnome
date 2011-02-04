@@ -19,7 +19,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.3.2]
         doc? ( dev-doc/gtk-doc[>=1.10] )
     build+run:
-        dev-libs/glib:2[>=2.20]
+        dev-libs/glib:2[>=2.26]
         x11-libs/gtk+:3.0[>=2.91.1]
         gnome-platform/GConf:2
         gnome-desktop/gsettings-desktop-schemas
