@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gtk-icon-cache
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="GNOME Symbolic Icons"
 DESCRIPTION="
@@ -28,6 +27,4 @@ DEPENDENCIES="
     run:
         gnome-desktop/gnome-icon-theme[>=0.10]
 "
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}"-fix-update-icon-cache.patch )
 
