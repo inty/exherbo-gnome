@@ -6,7 +6,7 @@ require gnome.org gtk-icon-cache
 SUMMARY="Default Icon Theme for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
-LICENCES="GPL-2"
+LICENCES="|| ( LGPL-3 CCPL-Attribution-ShareAlike-3.0 )"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS=""
