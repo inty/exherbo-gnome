@@ -37,7 +37,6 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.4.0]
         gnome-bindings/pygtk:2[>=2.10.3]
         gnome-bindings/pygobject:2
-        gnome-bindings/pyorbit
         applet? (
             gnome-bindings/gnome-python[>=2.10.0][bonobo][gconf]
             gnome-desktop/gnome-applets[>=2.13.4]
