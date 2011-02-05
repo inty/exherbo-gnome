@@ -18,6 +18,7 @@ DEPENDENCIES="
     run:
         dev-libs/glib:2
         x11-libs/gtk+:3.0[>=2.91.6]
+    recommendation:
+        fonts/cantarell-fonts [[ description [ The default Adwaita theme font ] ]]
 "
-#        fonts/cantarell
 
