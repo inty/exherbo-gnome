@@ -13,6 +13,7 @@ MYOPTIONS="doc keyring nautilus"
 
 DEPENDENCIES="
     build:
+        app-text/scrollkeeper-dtd
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
