@@ -11,13 +11,14 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
+    cups   [[ description = [ add support for managing printers ] ]]
     cheese [[ description = [ add support for adding user account images using cheese ] ]]
-    gtk-doc    
+    gtk-doc
 "
 
 DEPENDENCIES="
     build:
-        dev-util/intltool[>=0.37.1]
+        dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
         app-doc/gtk-doc-autotools [[ note = [ required for gtkdocize ] ]]
@@ -36,9 +37,11 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         dev-libs/dbus-glib:1[>=0.74]
         gnome-desktop/gnome-desktop:3.0
-        gnome-desktop/gnome-settings-daemon[>=2.91.2]
+        gnome-desktop/gnome-settings-daemon[>=2.91.9]
         sys-apps/upower[>=0.9.1]
         media-sound/pulseaudio[>=0.9.16]
+        gnome-desktop/libgtop:2
+        app-text/iso-codes
         sys-auth/polkit:1[>=0.97]
         x11-libs/libXft
         x11-libs/libXi[>=1.2]
@@ -46,17 +49,22 @@ DEPENDENCIES="
         x11-libs/libxklavier[>=4.0]
         cheese? ( gnome-desktop/cheese[>=2.29.90]
                   media-libs/gstreamer:0.10 )
+        cups? ( net-print/cups )
     suggestion:
-        sys-apps/accountsservice [[ description = [ Required for User Accounts panel ] ]]
+        sys-apps/accountsservice [[ description = [ Required for the User Accounts panel ] ]]
 "
 
 AT_M4DIR=( m4 )
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-explicit-option-for-cheese.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/0001-add-explicit-option-for-cheese.patch"
+    "${FILES}/0001-add-explicit-option-for-cups.patch"
+    "${FILES}/0001-datetime-Fix-crash-when-TZ-is-an-alias.patch"
+)
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' 'cups' )
 
 src_prepare() {
     edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \

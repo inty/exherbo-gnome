@@ -1,4 +1,4 @@
-From da3d7a8faeb17d39aa8d9db28a079d2e030a24ae Mon Sep 17 00:00:00 2001
+From 4920c0991b023021d85186853d13baf46ea8e3cd Mon Sep 17 00:00:00 2001
 From: Saleem Abdulrasool <compnerd@compnerd.org>
 Date: Sun, 19 Dec 2010 19:06:15 -0800
 Subject: [PATCH] add explicit option for cheese
@@ -8,11 +8,11 @@ Subject: [PATCH] add explicit option for cheese
  1 files changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 7393bad..e995968 100644
+index 382ac72..39b0b9b 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -116,10 +116,16 @@ AC_SUBST(GTK_ENGINE_DIR)
- PKG_CHECK_MODULES(GLIB, glib-2.0)
+@@ -127,10 +127,16 @@ PKG_CHECK_MODULES(GLIB, glib-2.0)
+ PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0)
  
  PKG_CHECK_MODULES(POLKIT, polkit-gobject-1 >= 0.97)
 -PKG_CHECK_MODULES(CHEESE, gstreamer-0.10 cheese-gtk >= 2.29.90, have_cheese=yes, have_cheese=no)
@@ -30,7 +30,7 @@ index 7393bad..e995968 100644
 +   fi
  fi
  
- AC_DEFINE_UNQUOTED([ISO_CODES_PREFIX],["`$PKG_CONFIG --variable=prefix iso-codes`"],[ISO codes prefix])
+ # This is a hard-dependency for the region and user-accounts panels
 -- 
-1.7.3.2
+1.7.4
 
