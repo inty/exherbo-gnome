@@ -13,24 +13,25 @@ DEPENDENCIES="
     build:
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
-        doc? ( dev-doc/gtk-doc )
+        doc? ( dev-doc/gtk-doc[>=1.10] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
     build+run:
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
-        dev-libs/glib:2[>=2.25.0]
+        dev-libs/glib:2[>=2.27.4]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2:2.0[>=2.6]
         x11-libs/gtk+:3.0[>=2.91.7][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
-        gnome-desktop/libsoup:2.4[>=2.29.90][gobject-introspection?]
+        gnome-desktop/libsoup:2.4[>=2.33.1][gobject-introspection?]
         dev-libs/libxslt[>=1.1.7]
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]
         media-plugins/gst-plugins-base:0.10[>=0.10.25]
         app-spell/enchant[>=0.22]
-        freetype? ( media-libs/freetype )
+        freetype? ( media-libs/freetype:2
+                    media-libs/fontconfig )
         !freetype? ( x11-libs/pango[>=1.21.0] )
 "
 
