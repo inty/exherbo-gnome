@@ -7,6 +7,7 @@ SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc gobject-introspection
 freetype [[ description = [ Use freetype for the font backend (necessary for CJK support) ] ]]
+webgl [[ description = [ add support for WebGL ] ]]
 wml [[ description = [ add support for WML ] ]]"
 
 DEPENDENCIES="
@@ -24,7 +25,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3.0[>=2.91.7][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
-        gnome-desktop/libsoup:2.4[>=2.33.1][gobject-introspection?]
+        gnome-desktop/libsoup:2.4[>=2.33.4][gobject-introspection?]
         dev-libs/libxslt[>=1.1.7]
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]
@@ -44,6 +45,7 @@ src_configure() {
           "--with-font-backend=${font_backend}"                 \
           $(option_enable doc gtk-doc)                          \
           $(option_enable gobject-introspection introspection)  \
+          $(option_enable webgl)                                \
           $(option_enable wml)
 }
 
