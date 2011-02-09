@@ -59,6 +59,9 @@ DEPENDENCIES="
         fonts/cantarell-fonts [[ description = [
             The default font for GNOME shell
         ] ]]
+        media-plugins/gst-plugins-bad[gstreamer_plugins:vp8] [[ description = [
+            Required for screencast support
+        ] ]]
 "
 
 # TODO: Additional recommendations and suggestions for full functionality
