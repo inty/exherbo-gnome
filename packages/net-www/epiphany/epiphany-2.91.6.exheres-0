@@ -22,7 +22,7 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
         dev-libs/glib:2[>=2.25.13]
-        x11-libs/gtk+:3.0[>=2.99.0][cups]
+        x11-libs/gtk+:3.0[>=2.99.0]
         x11-libs/libICE
         x11-libs/libX11
         x11-libs/libSM
