@@ -25,6 +25,7 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0[>=2.4.7]
         x11-libs/libX11
         gnome-desktop/gsettings-desktop-schemas
+        x11-libs/libnotify
         exif? ( media-libs/libexif[>=0.5.12] )
     run:
         gnome-desktop/gvfs[>=1.0.3]
