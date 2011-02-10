@@ -27,7 +27,7 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
         media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
-        x11-libs/gtk+:3.0[>=2.99.2]
+        x11-libs/gtk+:3.0[>=2.99.3]
         dev-libs/glib:2[>=2.27.92]
         gnome-desktop/totem-pl-parser[>=2.32.2]
         x11-libs/cairo
