@@ -1,197 +1,42 @@
-# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Purpose License v2
-# Based in part on 'gnome2-utils.eclass' from Gentoo which is
-#    Copyright 1999-2006 Gentoo Foundation
 
-: ${GCONFTOOL:=${ROOT}usr/bin/gconftool-2}
-: ${GTK_UPDATE_ICON_CACHE:=$(type -p gtk-update-icon-cache 2>/dev/null)}
-
-require gnome.org
+require gnome.org gconf gtk-icon-cache
 export_exlib_phases pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
 
-gnome_exlib_save_gconf_entries() {
-    pushd "${IMAGE}" &> /dev/null
-    export GNOME_EXLIB_GCONF_ENTRIES=$(find 'etc/gconf/schemas' -name '*.entries' 2>/dev/null)
-    popd &> /dev/null
-}
-
-gnome_exlib_save_gconf_schemas() {
-    pushd "${IMAGE}" &> /dev/null
-    export GNOME_EXLIB_GCONF_SCHEMAS=$(find 'etc/gconf/schemas' -name '*.schemas' 2>/dev/null)
-    popd &> /dev/null
-}
-
-gnome_exlib_save_icon_index_dirs() {
-    pushd "${IMAGE}" &> /dev/null
-    export GNOME_EXLIB_ICON_INDEX_DIRS=$(find 'usr/share/icons' -maxdepth 1 -mindepth 1 -type d 2>/dev/null)
-    popd &> /dev/null
-}
-
-gnome_exlib_restart_gconfd() {
-    local pids=$(pgrep -x gconfd-2)
-
-    if [[ -n "${pids}" ]] ; then
-        echo "Reloading GConf schemas ..."
-        kill -HUP ${pids}
-    fi
-}
-
-gnome_exlib_load_gconf_entries() {
-    local retval=0 source=
-
-    [[ -x "${GCONFTOOL}" ]] || return
-    [[ -n "${GNOME_EXLIB_GCONF_ENTRIES}" ]] || return
-
-    source=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
-
-    echo "Loading GConf entries ..."
-
-    for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
-        [[ -e "${ROOT}${entry}" ]] || continue
-        echo "${GCONFTOOL} --direct --config-source ${source} --load ${ROOT}${entry}"
-        "${GCONFTOOL}" --direct --config-source "${source}" --load "${ROOT}${entry}" > /dev/null ||
-            failures+=( "${ROOT}${entry}" )
-    done
-
-    if [[ ${#failures} -gt 0 ]] ; then
-        eerror "GConf entry loading failures:"
-        for failure in ${failures[*]} ; do
-            eerror "    ${failure}"
-        done
-    fi
-}
-
-gnome_exlib_unload_gconf_entries() {
-    local failures=( ) source=
-
-    [[ -x "${GCONFTOOL}" ]] || return
-    [[ -n "${GNOME_EXLIB_GCONF_ENTRIES}" ]] || return
-
-    source=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
-
-    echo "Unloading GConf entries ..."
-
-    for entry in ${GNOME_EXLIB_GCONF_ENTRIES} ; do
-        [[ -e "${ROOT}${entry}" ]] || continue
-        echo "${GCONFTOOL} --direct --config-source ${source} --unload ${ROOT}${entry}"
-        "${GCONFTOOL}" --direct --config-source "${source}" --unload "${ROOT}${entry}" > /dev/null ||
-            failures+=( "${ROOT}${entry}" )
-    done
-
-    if [[ ${#failures} -gt 0 ]] ; then
-        eerror "GConf entry unloading failures:"
-        for failure in ${failures[*]} ; do
-            eerror "    ${failure}"
-        done
-    fi
-}
-
-gnome_exlib_install_gconf_schemas() {
-    local failures=( )
-
-    [[ -x "${GCONFTOOL}" ]] || return
-    [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
-
-    export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
-
-    echo "Installing GConf schemas ..."
-
-    for schema in ${GNOME_EXLIB_GCONF_SCHEMAS} ; do
-        [[ -e "${ROOT}${schema}" ]] || continue
-        echo "${GCONFTOOL} --makefile-install-rule ${ROOT}${schema}"
-        "${GCONFTOOL}" --makefile-install-rule "${ROOT}${schema}" > /dev/null ||
-            failures+=( "${ROOT}${schema}" )
-    done
-
-    if [[ ${#failures} -gt 0 ]] ; then
-        eerror "GConf schema installation failures:"
-        for failure in ${failures[*]} ; do
-            eerror "    ${failures}"
-        done
-    fi
-}
-
-gnome_exlib_uninstall_gconf_schemas() {
-    local failures=( )
-
-    [[ -x "${GCONFTOOL}" ]] || return
-    [[ -n "${GNOME_EXLIB_GCONF_SCHEMAS}" ]] || return
-
-    export GCONF_CONFIG_SOURCE=$("${GCONFTOOL}" --get-default-source | sed "s;:/;:${ROOT};")
-
-    echo "Uninstalling GConf schemas ..."
-
-    for schema in ${GCONF_EXLIB_GCONF_SCHEMAS} ; do
-        [[ -e "${ROOT}${schema}" ]] || continue
-        echo "${GCONFTOOL} --makefile-uninstall-rule ${ROOT}${schema}"
-        "${GCONFTOOL}" --makefile-uninstall-rule "${ROOT}${schema}" > /dev/null ||
-            failures+=( "${ROOT}${schema}" )
-    done
-
-    if [[ ${#failures} -gt 0 ]] ; then
-        eerror "GConf schema uninstallation failures:"
-        for failure in ${failures[*]} ; do
-            eerror "    ${failure}"
-        done
-    fi
-}
-
-gnome_exlib_update_icon_cache() {
-    local failures=( )
-
-    [[ -x "${GTK_UPDATE_ICON_CACHE}" ]] || return
-    [[ -n "${GNOME_EXLIB_ICON_INDEX_DIRS}" ]] || return
-
-    echo "Updating icons cache ..."
-
-    for dir in ${GNOME_EXLIB_ICON_INDEX_DIRS} ; do
-        [[ -f "${ROOT}${dir}/index.theme" ]] || continue
-        echo "${GTK_UPDATE_ICON_CACHE} -qf ${ROOT}${dir}"
-        "${GTK_UPDATE_ICON_CACHE}" -qf "${ROOT}${dir}" > /dev/null ||
-            failures+=( "${ROOT}${dir}" )
-    done
-
-    if [[ ${#failures} -gt 0 ]] ; then
-        eerror "Icon cache update failures:"
-        for failure in ${failures[*]} ; do
-            eerror "    ${failure}"
-        done
-    fi
-}
-
 gnome-2_pkg_preinst() {
-    gnome_exlib_save_gconf_schemas
-    gnome_exlib_save_gconf_entries
-    gnome_exlib_save_icon_index_dirs
+    gconf_exlib_save_gconf_schemas
+    gconf_exlib_save_gconf_entries
+
+    gtk_icon_cache_exlib_save_theme_directories
+
     default
 }
 
 gnome-2_src_install() {
-    export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-    default
-    unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
+    gconf_src_install
 }
 
 gnome-2_pkg_postinst() {
-    gnome_exlib_install_gconf_schemas
-    gnome_exlib_load_gconf_entries
+    gconf_exlib_install_gconf_schemas
+    gconf_exlib_load_gconf_entries
 
-    gnome_exlib_restart_gconfd
+    gconf_exlib_restart_gconfd
 
-    gnome_exlib_update_icon_cache
+    gtk_icon_cache_exlib_update_theme_cache
 
     default
 }
 
 gnome-2_pkg_prerm() {
-    gnome_exlib_uninstall_gconf_schemas
-    gnome_exlib_unload_gconf_entries
+    gconf_exlib_uninstall_gconf_schemas
+    gconf_exlib_unload_gconf_entries
 
     default
 }
 
 gnome-2_pkg_postrm() {
-    gnome_exlib_update_icon_cache
+    gtk_icon_cache_exlib_update_theme_cache
 
     default
 }
