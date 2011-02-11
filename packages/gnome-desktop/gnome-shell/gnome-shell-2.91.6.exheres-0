@@ -1,7 +1,7 @@
 # Copyright 2010 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 gsettings freedesktop-desktop
+require gnome.org gconf gsettings freedesktop-desktop
 
 SUMMARY="GNOME Shell provides core interface functions for GNOME 3"
 DESCRIPTION="
@@ -67,23 +67,24 @@ DEPENDENCIES="
 # TODO: Additional recommendations and suggestions for full functionality
 
 src_install() {
-    gsettings_src_install
+    export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+    export GSETTINGS_DISABLE_SCHEMAS_COMPILE=1
+    default
+    unset GSETTINGS_DISABLE_SCHEMAS_COMPILE
+    unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
+
     edo rmdir ${IMAGE}/usr/libexec
 }
 
 pkg_postinst() {
     freedesktop-desktop_update_desktop_database
-
     gsettings_exlib_compile_gsettings_schemas
 
-    gnome_exlib_install_gconf_schemas
-    gnome_exlib_load_gconf_entries
-    gnome_exlib_restart_gconfd
+    gconf_pkg_postinst
 }
 
 pkg_postrm() {
     freedesktop-desktop_update_desktop_database
-
     gsettings_exlib_compile_gsettings_schemas
 }
 
