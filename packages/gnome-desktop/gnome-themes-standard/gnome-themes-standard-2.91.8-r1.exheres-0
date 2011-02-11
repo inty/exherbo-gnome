@@ -22,3 +22,5 @@ DEPENDENCIES="
         fonts/cantarell-fonts [[ description = [ The default Adwaita theme font ] ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fe2de3b565c685e5ec87e8d1def67da22c0504bb.patch" )
+
