@@ -1,0 +1,29 @@
+From cda7d96e13edd9ca8539b303d77d79ddffca5a1f Mon Sep 17 00:00:00 2001
+From: Dan Winship <danw@gnome.org>
+Date: Mon, 07 Feb 2011 15:09:15 +0000
+Subject: na: copy a fix from gnome-shell
+
+gdk_window_set_background_pattern()'s behavior has changed; use cairo
+drawing functions instead.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=614711
+---
+diff --git a/applets/notification_area/na-tray-child.c b/applets/notification_area/na-tray-child.c
+index 84316a6..1042940 100644
+--- a/applets/notification_area/na-tray-child.c
++++ b/applets/notification_area/na-tray-child.c
+@@ -53,9 +53,10 @@ na_tray_child_realize (GtkWidget *widget)
+        * extension. */
+ 
+       /* Set a transparent background */
+-      GdkColor transparent = { 0, 0, 0, 0 }; /* only pixel=0 matters */
+-      gdk_window_set_background (window, &transparent);
++      cairo_pattern_t *transparent = cairo_pattern_create_rgba (0, 0, 0, 0);
++      gdk_window_set_background_pattern (window, transparent);
+       gdk_window_set_composited (window, TRUE);
++      cairo_pattern_destroy (transparent);
+ 
+       child->parent_relative_bg = FALSE;
+     }
+--
+cgit v0.8.3.1
