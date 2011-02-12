@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gnome-2 freedesktop-desktop
 
 SUMMARY="API Browser for GNOME"
 HOMEPAGE="http://live.gnome.org/devhelp"
@@ -21,4 +21,14 @@ DEPENDENCIES="
         x11-libs/gtk+:3.0
         net-libs/webkit:3.0
 "
+
+pkg_postrm() {
+    gnome-2_pkg_postinst
+    freedesktop-desktop_update_desktop_database
+}
+
+pkg_postinst() {
+    gnome-2_pkg_postinst
+    freedesktop-desktop_update_desktop_database
+}
 
