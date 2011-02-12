@@ -21,11 +21,10 @@ daap
 gtk-doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
-mtp [[ description = [ enable support for Microsoft's Media Transfer Protocol (MTP) ] requires = [ udev ] ]]
+mtp [[ description = [ enable support for Microsoft's Media Transfer Protocol (MTP) ] ]]
 python
 scrobbler [[ description = [ enable support for last.fm audio scrobbler ] ]]
 tagging [[ description = [ support tagging of media using libmusicbrainz ] ]]
-udev [[ description = [ use udev for hardware detection ] ]]
 webkit [[ description = [ use webkit to display HTML content ] ]]"
 
 DEPENDENCIES="
@@ -44,6 +43,7 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
         dev-libs/dbus-glib:1[>=0.35]
         gnome-platform/GConf:2
+        sys-fs/udev[>=145][glib]
         avahi? ( net-dns/avahi[>=0.6] )
         brasero? ( gnome-desktop/brasero[>=0.9.1] )
         daap? ( media-libs/libdmapsharing:2.2[>=2.1.6] )
@@ -62,7 +62,6 @@ DEPENDENCIES="
         )
         scrobbler? ( core/json-glib[>=0.12&<0.13] ) [[ note = [ we don't slot this library properly ] ]]
         tagging? ( media-libs/libmusicbrainz:3[>=3.0.2] )
-        udev? ( sys-fs/udev[>=145][glib] )
         webkit? ( net-libs/webkit-gtk[>=1.1.17] )
 "
 
@@ -73,9 +72,10 @@ RESTRICT="test" # requires X
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/4216979f41e423a00b9bae4ca19afab25bc93f7f.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
-                               --disable-vala --disable-fm-radio --disable-browser-plugin )
+                               --disable-vala --disable-fm-radio --disable-browser-plugin
+                               --with-gudev )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'avahi mdns avahi' 'brasero libbrasero-media' ipod
-                                     'keyring gnome-keyring' mtp 'udev gudev' webkit )
+                                     'keyring gnome-keyring' mtp webkit )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc daap libnotify 'scrobbler lastfm'
                                        python 'tagging musicbrainz' )
 

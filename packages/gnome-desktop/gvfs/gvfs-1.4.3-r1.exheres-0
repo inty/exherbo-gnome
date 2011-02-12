@@ -11,13 +11,12 @@ SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
 avahi bash-completion bluetooth
-cdda [[ requires = [ udev ] ]]
-gphoto2 [[ requires = [ udev ] ]]
+cdda
+gphoto2
 doc fuse gconf hal
 http [[ description = [ enable support http, dav, ssl uris ] ]]
 keyring
 monitor [[ description = [ add support for gnome-disk-utility ] ]]
-udev [[ description = [ use gudev ] ]]
 samba
 "
 
@@ -29,6 +28,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.21.5]
         sys-apps/dbus[>=1.0]
+        sys-fs/udev[>=145][glib]
         net-misc/openssh
         dev-libs/libxml2
         archive? ( app-arch/libarchive )
@@ -44,14 +44,12 @@ DEPENDENCIES="
         hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
-        udev? ( sys-fs/udev[>=145][glib] )
         samba? ( net-fs/samba[>=3.0.22] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--enable-udev' '--enable-gudev' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
-'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'monitor gdu' 'udev' 'udev
-gudev' 'samba' )
+'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'monitor gdu' 'samba' )
 
 src_install() {
     default

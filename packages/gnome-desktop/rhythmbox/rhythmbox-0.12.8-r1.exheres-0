@@ -18,8 +18,8 @@ brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
 doc
 ipod [[ description = [ enable support for ipods ] ]]
 keyring libnotify
-mtp [[ requires = [ udev ] ]]
-udev [[ description = [ use udev for hardware detection ] ]]"
+mtp
+"
 
 DEPENDENCIES="
     build:
@@ -37,12 +37,12 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.20]
         gnome-platform/GConf:2
         dev-libs/dbus-glib:1[>=0.35]
+        sys-fs/udev[>=145][glib]
         avahi? ( net-dns/avahi )
         ipod? ( media-libs/libgpod[>=0.6] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
         mtp? ( media-libs/libmtp[>=0.3.0] )
-        udev? ( sys-fs/udev[>=145][glib] )
 "
 
 RESTRICT="test" # requires X
@@ -51,8 +51,8 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-rename-pause-button.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-libnautilus-burn --without-hal --disable-python
                                --disable-musicbrainz --disable-lirc --disable-vala
-                               --disable-browser-plugin --disable-fm-radio )
+                               --disable-browser-plugin --disable-fm-radio --with-gudev )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'avahi mdns avahi' 'avahi daap' 'brasero libbrasero-media'
-                                     ipod keyring libnotify mtp 'udev gudev' )
+                                     ipod keyring libnotify mtp )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
 
