@@ -13,7 +13,7 @@ MYOPTIONS="archive [[ description = [ add support for reading compressed archive
 avahi bash-completion bluetooth
 cdda
 gphoto2
-doc fuse gconf hal
+doc fuse gconf
 http [[ description = [ enable support http, dav, ssl uris ] ]]
 keyring
 monitor [[ description = [ add support for gnome-disk-utility ] ]]
@@ -41,15 +41,14 @@ DEPENDENCIES="
         gconf? ( gnome-platform/GConf:2 )
         monitor? ( gnome-desktop/gnome-disk-utility[>=0.3] )
         gphoto2? ( media-libs/libgphoto2[>=2.4.7] )
-        hal? ( sys-apps/hal[>=0.5.10] )
         http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         samba? ( net-fs/samba[>=3.0.22] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--enable-udev' '--enable-gudev' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--enable-udev' '--enable-gudev' '--disable-hal' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
-'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'hal' 'http' 'keyring' 'monitor gdu' 'samba' )
+'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'http' 'keyring' 'monitor gdu' 'samba' )
 
 src_install() {
     default
