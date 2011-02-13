@@ -5,9 +5,8 @@ require evolution
 
 PLATFORMS="~amd64 ~x86"
 
-# NOTE: hal and gstreamer are automagic deps
 # pst-import plugin needs libpst
-MYOPTIONS="dbus gstreamer hal help libnotify mono networkmanager python ssl weather
+MYOPTIONS="dbus gstreamer help libnotify mono networkmanager python ssl weather
     help    [[ description = [ Install the user documentation ] ]]
     mono    [[ description = [ Add support for mono hooks ] ]]
     python  [[ description = [ Add support for python hooks ] ]]
@@ -44,7 +43,6 @@ DEPENDENCIES="
         x11-misc/shared-mime-info[>=0.22]
         dbus? ( dev-libs/dbus-glib:1[>=0.74] )
         gstreamer? ( media-libs/gstreamer:0.10 )
-        hal? ( sys-apps/hal[>=0.5.4] )
         libnotify? ( x11-libs/libnotify[>=0.3.0] )
         mono? ( dev-lang/mono )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
