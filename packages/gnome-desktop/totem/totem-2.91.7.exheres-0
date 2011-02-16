@@ -9,12 +9,16 @@ HOMEPAGE="http://projects.gnome.org/totem"
 LICENCES="GPL-2"
 SLOT="1.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="bluetooth [[ description = [ build bemused plugin ] ]]
-brasero [[ description = [ build brasero plugin ] ]]
-chapters [[ description = [ build chapters plugin ] ]]
-doc gobject-introspection
-media-player-keys [[ description = [ build media-player-keys plugin ] ]]
-nautilus tracker"
+MYOPTIONS="
+    bluetooth brasero chapters doc gobject-introspection media-player-keys
+    nautilus python tracker
+
+    bluetooth [[ description = [ Build bemused plugin ] ]]
+    brasero [[ description = [ Build brasero plugin ] ]]
+    chapters [[ description = [ Build chapters plugin ] ]]
+    media-player-keys [[ description = [ Build media-player-keys plugin ] ]]
+    python [[ description = [ Add support for plugins written in Python ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -36,12 +40,16 @@ DEPENDENCIES="
         x11-libs/libXtst
         x11-apps/xrandr[>=1.1.1]
         x11-libs/libXxf86vm[>=1.0.1]
-        dev-libs/libpeas:1.0[>=0.7.2]
+        dev-libs/libpeas:1.0[>=0.7.2][python?]
         bluetooth? ( net-wireless/bluez )
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         media-player-keys? ( dev-libs/dbus-glib:1[>=0.82] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
+        python? (
+            dev-lang/python:*[>=2.3]
+            gnome-bindings/pygobject:2[>=2.27.0]
+        )
         tracker? ( app-pim/tracker:0.10[>=0.9.34] )
 "
 
@@ -81,13 +89,13 @@ src_configure() {
 
     GST_REGISTRY="${TEMP}/.gstreamer-0.10"                          \
         econf '--enable-easy-codec-installation'                    \
-              '--disable-python'                                    \
               "--with-plugins=${plugins}"                           \
               '--disable-browser-plugins'                           \
               '--with-dbus'                                         \
               '--disable-vala'                                      \
               $(option_enable doc gtk-doc)                          \
               $(option_enable gobject-introspection introspection)  \
-              $(option_enable nautilus)
+              $(option_enable nautilus)                             \
+              $(option_enable python)
 }
 
