@@ -9,7 +9,7 @@ HOMEPAGE="http://git.gnome.org/browse/libpeas"
 LICENCES="LGPL-2.1"
 SLOT="1.0"
 PLATFORMS="~amd64"
-MYOPTIONS="gtk-doc"
+MYOPTIONS="gtk-doc python"
 
 DEPENDENCIES="
     build:
@@ -20,11 +20,15 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.23.6]
         gnome-desktop/gobject-introspection:1[>=0.10.1]
         x11-libs/gtk+:3[gobject-introspection]
+        python? (
+            dev-lang/python:*[>=2.5.2]
+            gnome-bindings/pygobject:2[>=2.20.0][gobject-introspection(+)]
+        )
 "
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-seed' '--disable-python' '--enable-gtk'
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-seed' '--enable-gtk'
                                '--disable-glade-catalog' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'python' )
 
