@@ -19,7 +19,7 @@ HOMEPAGE="http://projects.gnome.org/evince"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="gobject-introspection gtk-doc
+MYOPTIONS="gtk-doc
     djvu       [[ description = [ Enable support for DjVu format ] ]]
     dvi        [[ description = [ Enable support for DVI format ] ]]
     keyring    [[ description = [ Use GNOME Keyring to store passwords ] ]]
@@ -35,7 +35,6 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.13] )
     build+run:
         x11-libs/gtk+:2[>=2.21.5]
@@ -60,10 +59,13 @@ DEPENDENCIES="
     run:
         x11-misc/shared-mime-info
 "
+#       gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
 
 RESTRICT="test" # requires X and dogtail
 
+# Upstream says introspection isn't ready yet (revisit after 3.0)
 DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-introspection'
     '--disable-schemas-install'
     '--enable-impress'
     '--enable-pdf'
@@ -75,7 +77,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'djvu'
     'dvi'
-    'gobject-introspection introspection'
     'gtk-doc'
     'nautilus'
     'postscript ps'
