@@ -1,0 +1,21 @@
+From cc095a66991be940dffa59cfeb09d27b820ff636 Mon Sep 17 00:00:00 2001
+From: Christian Persch <chpe@gnome.org>
+Date: Wed, 02 Feb 2011 17:06:24 +0000
+Subject: Remove unused variables
+
+---
+diff --git a/src/vte.c b/src/vte.c
+index b4ac24d..2a8d4ec 100644
+--- a/src/vte.c
++++ b/src/vte.c
+@@ -6349,8 +6349,6 @@ vte_terminal_copy(VteTerminal *terminal, GdkAtom board)
+ 				"Assuming ownership of selection.\n");
+ 		if (!targets) {
+ 			GtkTargetList *list;
+-			GList *l;
+-			int i;
+ 
+ 			list = gtk_target_list_new (NULL, 0);
+ 			gtk_target_list_add_text_targets (list, 0);
+--
+cgit v0.8.3.1

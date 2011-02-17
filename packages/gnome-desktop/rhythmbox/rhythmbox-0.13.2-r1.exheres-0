@@ -1,0 +1,89 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="An integrated music management application"
+DESCRIPTION="
+Rhythmbox is your one-stop multimedia application, supporting a music library,
+multiple playlists, internet radio, and more.
+"
+HOMEPAGE="http://projects.gnome.org/rhythmbox"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+avahi [[ description = [ add support for mDNS/DNS-SD ] ]]
+brasero [[ description = [ add support for audio CD mastering via brasero ] ]]
+daap
+gtk-doc
+ipod [[ description = [ enable support for ipods ] ]]
+keyring libnotify
+mtp [[ description = [ enable support for Microsoft's Media Transfer Protocol (MTP) ] ]]
+python
+scrobbler [[ description = [ enable support for last.fm audio scrobbler ] ]]
+tagging [[ description = [ support tagging of media using libmusicbrainz ] ]]
+webkit [[ description = [ use webkit to display HTML content ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-libs/check
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
+    build+run:
+        dev-libs/glib:2[>=2.25.12]
+        x11-libs/gtk+:2[>=2.20.0]
+        gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
+        gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
+        gnome-desktop/totem-pl-parser[>=2.32.1]
+        media-libs/gstreamer:0.10[>=0.10.20]
+        media-plugins/gst-plugins-base:0.10[>=0.10.20]
+        dev-libs/dbus-glib:1[>=0.35]
+        gnome-platform/GConf:2
+        sys-fs/udev[>=145][glib]
+        avahi? ( net-dns/avahi[>=0.6] )
+        brasero? ( gnome-desktop/brasero[>=0.9.1] )
+        daap? ( media-libs/libdmapsharing:2.2[>=2.1.6] )
+        ipod? ( media-libs/libgpod[>=0.6] )
+        keyring? ( gnome-desktop/gnome-keyring:1 )
+        libnotify? ( x11-libs/libnotify[>=0.4.1] )
+        mtp? ( media-libs/libmtp[>=0.3.0] )
+        python? (
+            dev-lang/python:=[>=2.3]
+            dev-python/dbus-python
+            dev-python/gst-python:0.10
+            gnome-bindings/gnome-python[gconf][gnome]
+            gnome-bindings/gnome-python-desktop:2.0[keyring]
+            gnome-bindings/pygobject:2
+            gnome-bindings/pygtk:2
+        )
+        scrobbler? ( core/json-glib[>=0.12&<0.13] ) [[ note = [ we don't slot this library properly ] ]]
+        tagging? ( media-libs/libmusicbrainz:3[>=3.0.2] )
+        webkit? ( net-libs/webkit-gtk[>=1.1.17] )
+"
+
+RESTRICT="test" # requires X
+
+# unconditionally apply 4216979f41e423a00b9bae4ca19afab25bc93f7f.patch leaving the automagic
+# dependency as libnotify[>=0.7] is for gnome 3.0
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/4216979f41e423a00b9bae4ca19afab25bc93f7f.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
+                               --disable-vala --disable-fm-radio --disable-browser-plugin
+                               --with-gudev )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'avahi mdns avahi' 'brasero libbrasero-media' ipod
+                                     'keyring gnome-keyring' mtp webkit )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc daap libnotify 'scrobbler lastfm'
+                                       python 'tagging musicbrainz' )
+
+src_install() {
+    gnome-2_src_install
+
+    # remove python plugins which needs more python dependencies
+    option python && rm -rf \
+        "${IMAGE}"/usr/lib64/rhythmbox/plugins/{context,rbzeitgeist,upnp_coherence}
+}
+

@@ -1,0 +1,49 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 gsettings
+
+SUMMARY="Miscellaneous utilities for the GNOME desktop"
+HOMEPAGE="http://live.gnome.org/GnomeUtils"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        app-text/rarian
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        doc? ( dev-doc/gtk-doc[>=1.10] )
+    build+run:
+        dev-libs/glib:2[>=2.26]
+        x11-libs/gtk+:3.0[>=2.91.1]
+        gnome-platform/GConf:2
+        gnome-desktop/gsettings-desktop-schemas
+        x11-libs/libXext
+        x11-libs/libX11
+        gnome-desktop/libgtop[>=2.12.0]
+        media-libs/libcanberra[gtk3][>=0.26]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-zlib' '--enable-ipv6' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
+
+src_install() {
+    gnome-2_src_install
+    edo rmdir "${IMAGE}/usr/libexec"
+}
+
+pkg_postinst() {
+    gsettings_exlib_compile_gsettings_schemas
+    gnome-2_pkg_postinst
+}
+
+pkg_postrm() {
+    gsettings_exlib_compile_gsettings_schemas
+    gnome-2_pkg_postrm
+}
+

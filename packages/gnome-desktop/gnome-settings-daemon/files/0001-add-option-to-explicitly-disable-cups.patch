@@ -1,0 +1,44 @@
+From 28fee12cbec95e16486b1fd48e9ee639140e7c03 Mon Sep 17 00:00:00 2001
+From: Brett Witherspoon <spoonb@exherbo.org>
+Date: Sat, 5 Feb 2011 22:05:41 -0600
+Subject: [PATCH] add option to explicitly disable cups
+
+---
+ configure.ac |   21 ++++++++++++++-------
+ 1 files changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index b3a4f92..9a29219 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -353,13 +353,20 @@ AC_SUBST(POLKIT_LIBS)
+ # ---------------------------------------------------------------------------
+ # CUPS
+ # ---------------------------------------------------------------------------
+-
+-AC_CHECK_HEADERS([cups/cups.h cups/http.h cups/ipp.h], have_cups=yes, have_cups=no)
+-if test x$have_cups = xyes ; then
+-  CUPS_LIBS=-lcups
+-  AC_SUBST(CUPS_LIBS)
+-else
+-  AC_MSG_WARN(*** Print-notifications plugin will not be built (CUPS header files not found) ***)
++have_cups=no
++AC_ARG_ENABLE(cups,
++              AS_HELP_STRING([--disable-cups],
++                             [Enable CUPS support (auto)]),,
++              enable_cups=yes)
++
++if test "x$enable_cups" != "xno" ; then
++    AC_CHECK_HEADERS([cups/cups.h cups/http.h cups/ipp.h], have_cups=yes, have_cups=no)
++    if test x$have_cups = xyes ; then
++        CUPS_LIBS=-lcups
++        AC_SUBST(CUPS_LIBS)
++    else
++        AC_MSG_WARN(*** Print-notifications plugin will not be built (CUPS header files not found) ***)
++    fi
+ fi
+ AM_CONDITIONAL(BUILD_PRINT_NOTIFICATIONS, [test x$have_cups = xyes])
+ 
+-- 
+1.7.4
+

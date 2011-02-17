@@ -38,12 +38,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
 
 RESTRICT="test"
 
-src_prepare() {
+src_compile() {
+    python_disable_pyc
     default
-
-    # disable python byte compiling
-    rm py-compile
-    ln -s "$(type -P true)" py-compile
 }
 
 src_install() {

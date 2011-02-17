@@ -1,0 +1,32 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Weather data parsing library"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gobject-introspection gtk-doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.40.3]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        x11-libs/gtk+:3.0[>=2.90.0][gobject-introspection?]
+        dev-libs/libxml2:2.0[>=2.6]
+        gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)]
+        gnome-platform/GConf:2[>=2.8.0]
+        dev-libs/glib:2[>=2.13]
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'gobject-introspection introspection'
+    'gtk-doc'
+)
+

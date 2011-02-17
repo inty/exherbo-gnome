@@ -52,14 +52,6 @@ DEPENDENCIES="
 
 RESTRICT="test" # dont work with recent python
 
-src_prepare() {
-    default
-
-    # disable python byte compiling
-    rm py-compile
-    ln -s "$(type -P true)" py-compile
-}
-
 src_configure() {
     econf \
         --disable-allbindings \
@@ -73,6 +65,11 @@ src_configure() {
         $(option_enable gnomeui) \
         $(option_enable gnomevfs) \
         $(option bonobo && option gnomevfs && echo "--enable-gnomevfsbonobo --enable-pyvfsmodule" )
+}
+
+src_compile() {
+    python_disable_pyc
+    default
 }
 
 src_install() {

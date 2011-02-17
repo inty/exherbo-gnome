@@ -1,0 +1,66 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require bash-completion gnome.org gsettings
+
+SUMMARY="VFS interfaces for GTK+"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="
+afc [[ description = [ add support for accessing AFC (Apple File Connection) filesystems ] ]]
+archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
+avahi bash-completion bluetooth
+cdda
+gphoto2
+doc fuse
+http [[ description = [ enable support http, dav, ssl uris ] ]]
+keyring
+monitor [[ description = [ add support for gnome-disk-utility ] ]]
+samba
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        doc? ( dev-doc/gtk-doc )
+    build+run:
+        dev-libs/glib:2[>=2.27.4]
+        sys-apps/dbus[>=1.0]
+        sys-fs/udev[>=145][glib]
+        net-misc/openssh
+        dev-libs/libxml2
+        afc? ( app-pda/libimobiledevice[>=1.1.0]
+               dev-libs/libplist[>=0.15] )
+        archive? ( app-arch/libarchive )
+        avahi? ( net-dns/avahi[>=0.6][dbus] )
+        bluetooth? ( dev-libs/expat
+                     dev-libs/dbus-glib:1
+                     net-wireless/bluez[>=4.0] )
+        cdda? ( dev-libs/libcdio[>=0.78.2] )
+        fuse? ( sys-fs/fuse )
+        gphoto2? ( media-libs/libgphoto2[>=2.4.10] )
+        http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
+        keyring? ( gnome-desktop/gnome-keyring:1 )
+        monitor? ( dev-libs/expat
+                   gnome-desktop/gnome-disk-utility[>=2.29.0] )
+        samba? ( net-fs/samba[>=3.0.22] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-hal' '--enable-udev' '--enable-gudev' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
+                                       'cdda' 'doc gtk-doc' 'fuse' 'gphoto2' 'http' 'keyring'
+                                       'monitor gdu' 'samba' )
+
+src_install() {
+    default
+
+    dobashcompletion programs/gvfs-bash-completion.sh
+
+    keepdir /media
+    keepdir /usr/share/gvfs/remote-volume-monitors
+}
+

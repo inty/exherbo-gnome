@@ -1,6 +1,8 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require gsettings
+
 SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
@@ -14,7 +16,7 @@ src_compile() {
 }
 
 src_install() {
-    default
+    gsettings_src_install
     edo find "${IMAGE}" -depth -type d -empty -delete
 }
 

@@ -1,0 +1,58 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org
+
+SUMMARY="VFS interfaces for GTK+"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
+avahi bash-completion bluetooth
+cdda
+gphoto2
+doc fuse gconf
+http [[ description = [ enable support http, dav, ssl uris ] ]]
+keyring
+monitor [[ description = [ add support for gnome-disk-utility ] ]]
+samba
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        doc? ( dev-doc/gtk-doc )
+    build+run:
+        dev-libs/glib:2[>=2.21.5]
+        sys-apps/dbus[>=1.0]
+        sys-fs/udev[>=145][glib]
+        net-misc/openssh
+        dev-libs/libxml2
+        archive? ( app-arch/libarchive )
+        avahi? ( net-dns/avahi[>=0.6][dbus] )
+        bluetooth? ( dev-libs/expat
+                     dev-libs/dbus-glib:1
+                     net-wireless/bluez[>=4.0] )
+        cdda? ( dev-libs/libcdio[>=0.78.2] )
+        fuse? ( sys-fs/fuse )
+        gconf? ( gnome-platform/GConf:2 )
+        monitor? ( gnome-desktop/gnome-disk-utility[>=0.3] )
+        gphoto2? ( media-libs/libgphoto2[>=2.4.7] )
+        http? ( gnome-desktop/libsoup:2.4[>=2.25.1][gconf(-)] )
+        keyring? ( gnome-desktop/gnome-keyring:1 )
+        samba? ( net-fs/samba[>=3.0.22] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-samba' '--enable-udev' '--enable-gudev' '--disable-hal' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
+'cdda' 'doc gtk-doc' 'fuse' 'gconf' 'gphoto2' 'http' 'keyring' 'monitor gdu' 'samba' )
+
+src_install() {
+    default
+
+    keepdir "/usr/share/gvfs/remote-volume-monitors"
+}
+
