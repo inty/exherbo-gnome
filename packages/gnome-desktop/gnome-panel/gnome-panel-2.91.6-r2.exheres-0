@@ -7,7 +7,7 @@ SUMMARY="Panel Application for GNOME"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
-SLOT="3.0"
+SLOT="4.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gtk-doc eds gobject-introspection networkmanager"
 
