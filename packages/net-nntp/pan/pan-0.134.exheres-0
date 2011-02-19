@@ -1,4 +1,4 @@
-# Copyright 2009 Wulf C. Krueger <philantrop@exherbo.org>
+# Copyright 2009-2011 Wulf C. Krueger <philantrop@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="A newsreader for Gnome and real desktop environments"
@@ -27,14 +27,21 @@ DEPENDENCIES="
         dev-util/pkg-config
         sys-devel/gettext
     build+run:
-        dev-libs/glib:2[>=2.4.0]
+        dev-libs/glib:2[>=2.14.0]
         dev-libs/pcre[>=5.0]
-        net-utils/gmime:2.0[>=2.1.9]
-        x11-libs/gtk+:2[>=2.4.0]
+        net-utils/gmime:2.4[>=2.4.0]
+        x11-libs/gtk+:2[>=2.16.0]
         spell? ( app-spell/gtkspell:2[>=2.0.7] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-gcc44.patch )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "spell gtkspell" )
 DEFAULT_SRC_INSTALL_EXCLUDE=( README.mingw README.windows README.windows.in )
+
+src_prepare() {
+    default
+
+    # Deactivate a misbehaving test.
+    # https://bugzilla.gnome.org/show_bug.cgi?id=642746
+    edo sed -i -e "293d" pan/usenet-utils/text-massager-test.cc
+}
 
