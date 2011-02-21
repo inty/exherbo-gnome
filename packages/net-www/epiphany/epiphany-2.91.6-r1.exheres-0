@@ -1,13 +1,13 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org gsettings
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require gnome-3
 
 SUMMARY="GTK+ based Web Browser"
+HOMEPAGE="http://projects.gnome.org/epiphany"
 
 LICENCES="GPL-2"
-SLOT="2.31"
+SLOT="2.30"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi gobject-introspection gtk-doc networkmanager
 nss [[ description = [ support migrating passwords from gecko based browsers ] ]]
@@ -15,7 +15,6 @@ nss [[ description = [ support migrating passwords from gecko based browsers ] ]
 
 DEPENDENCIES="
     build:
-        dev-doc/gtk-doc
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
@@ -27,11 +26,11 @@ DEPENDENCIES="
         x11-libs/libICE
         x11-libs/libX11
         x11-libs/libSM
-        dev-libs/libxml2:2.0[>=2.6.12]
+        dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
         x11-libs/startup-notification[>=0.5]
         net-libs/webkit:3.0[>=1.3.11]
-        gnome-desktop/libsoup:2.4[>=2.33.1][gconf]
+        gnome-desktop/libsoup:2.4[gconf][>=2.33.1]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
         dev-libs/dbus-glib:1[>=0.35]
@@ -42,29 +41,15 @@ DEPENDENCIES="
     run:
         gnome-desktop/gnome-icon-theme
     suggestion:
-        net-plugins/epiphany-extensions
+        net-plugins/epiphany-extensions[>=2.27]
 "
 
-AT_M4DIR=( "m4" )
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo'
-                               '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gobject-introspection introspection'
-                                       'gtk-doc' 'networkmanager network-manager' 'nss' )
-
-src_prepare() {
-    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'         \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'    \
-            -i "${WORK}/configure.ac"
-
-    edo gnome-doc-prepare --automake --copy
-    autotools_src_prepare
-    edo intltoolize --force --copy
-    edo gtkdocize --copy
-}
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo' '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gtk-doc' 'gobject-introspection introspection'
+                                       'networkmanager network-manager' 'nss' )
 
 src_install() {
-    gsettings_src_install
+    gnome-3_src_install
     edo rmdir "${IMAGE}/usr/share/epiphany/art"
 }
 

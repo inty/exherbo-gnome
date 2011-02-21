@@ -1,0 +1,52 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Panel Application for GNOME"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="4.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gtk-doc eds gobject-introspection networkmanager"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils
+        gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
+    build+run:
+        x11-libs/libICE
+        x11-libs/libSM
+        x11-libs/gtk+:3[>=2.99.3][gobject-introspection?]
+        x11-libs/gdk-pixbuf:2.0[>=2.7.1]
+        x11-libs/pango[>=1.15.4]
+        x11-libs/cairo[>=1.0.0]
+        dev-libs/glib:2[>=2.25.12]
+        gnome-desktop/gnome-desktop:3.0[>=2.91.0]
+        gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
+        gnome-desktop/gnome-menus[>=2.27.92]
+        media-libs/libcanberra[gtk3]
+        dev-libs/dbus-glib:1[>=0.80]
+        gnome-desktop/libwnck:3.0[>=2.91.0]
+        gnome-desktop/librsvg:2
+        gnome-desktop/libgweather:3.0[>=2.91.0]
+        x11-libs/libX11
+        x11-libs/libXau
+        x11-libs/libXrandr[>=1.2.0]
+        eds? ( gnome-desktop/evolution-data-server:1.2[>=2.91.2][calendar(+)] )
+        networkmanager? ( net-apps/NetworkManager[>=0.6] )
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/cda7d96e13edd9ca8539b303d77d79ddffca5a1f.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-in-process-applets=clock,notification-area,wncklet' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'gtk-doc'
+    'eds'
+    'gobject-introspection introspection'
+    'networkmanager network-manager'
+)
+
