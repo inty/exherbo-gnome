@@ -19,8 +19,9 @@ DEPENDENCIES="
     build+run:
         dev-libs/vte:3.0[>=0.27.3]
         dev-libs/glib:2[>=2.25.12]
-        x11-libs/gtk+:3[>=2.91.6]
+        x11-libs/gtk+:3[>=3.0.0]
         gnome-platform/GConf:2[>=2.31.3]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.0]
     run:
         || ( gnome-desktop/libgnome-schemas gnome-platform/libgnome:2 ) [[
             note = [ requires gconf schemas from the libgnome package ]
