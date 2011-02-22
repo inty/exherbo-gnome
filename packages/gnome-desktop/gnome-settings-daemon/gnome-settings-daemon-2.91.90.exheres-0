@@ -45,7 +45,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'pulseaudio pulse' 'policykit polk
                                        'smartcard smartcard-support' )
 
 src_install() {
-    default
+    gsettings_src_install
 
     keepdir "/etc/gnome-settings-daemon/xrandr"
     option !policykit && edo rmdir \
