@@ -33,9 +33,7 @@ DEPENDENCIES="
         x11-libs/libXtst
         x11-libs/libXrender
         x11-dri/mesa
-        gnome-desktop/gsettings-desktop-schemas[>=0.1.5]
-    run:
-        gnome-desktop/gnome-screensaver[>=2.91.2] [[ note = [ See GNOME bug #641686 ] ]]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.7] [[ note = [ See GNOME bug #641686 ] ]]
     recommendation:
         sys-auth/ConsoleKit
         gnome-desktop/polkit-gnome
