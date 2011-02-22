@@ -21,6 +21,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.71]
         gnome-desktop/gnome-desktop:3.0[>=2.91.5]
         gnome-desktop/gnome-menus[>=2.11.1]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         dev-libs/glib:2[>=2.15.0]
         x11-libs/libXext
         x11-libs/libXxf86misc
