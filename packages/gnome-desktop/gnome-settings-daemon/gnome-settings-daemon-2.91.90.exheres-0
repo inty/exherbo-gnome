@@ -29,6 +29,7 @@ DEPENDENCIES="
         x11-libs/libXxf86misc
         gnome-desktop/libgnomekbd[>=2.91.1]
         x11-libs/libxklavier[>=5.0]
+        sys-fs/udev[glib]
         cups? ( net-print/cups )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.16]
                       media-libs/libcanberra[gtk3] )
@@ -38,12 +39,10 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-add-option-to-explicitly-disable-cups.patch )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'cups'
-    'pulseaudio pulse'
-    'policykit polkit'
-    'smartcard smartcard-support'
-)
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-gudev' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'pulseaudio pulse' 'policykit polkit'
+                                       'smartcard smartcard-support' )
 
 src_install() {
     default
