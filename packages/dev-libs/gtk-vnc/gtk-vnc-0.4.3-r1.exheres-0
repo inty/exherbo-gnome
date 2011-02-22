@@ -20,6 +20,10 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.2.0]
         dev-libs/gnutls[>=1.4.0]
         x11-libs/gtk+:3[>=3.0.0]
+        !dev-libs/gtk-vnc:1 [[
+            description = [ Libraries and binaries collide with these slots ]
+            resolution = uninstall-blocked-after
+        ]]
         sasl? ( net-libs/cyrus-sasl )
 "
 
