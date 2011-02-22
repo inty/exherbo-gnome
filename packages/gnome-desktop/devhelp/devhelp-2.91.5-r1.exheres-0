@@ -23,7 +23,7 @@ DEPENDENCIES="
 "
 
 pkg_postrm() {
-    gnome-2_pkg_postinst
+    gnome-2_pkg_postrm
     freedesktop-desktop_update_desktop_database
 }
 
