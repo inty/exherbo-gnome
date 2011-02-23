@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome-3
+require gnome.org gsettings freedesktop-desktop gtk-icon-cache
 
 SUMMARY="GTK+ based Web Browser"
 HOMEPAGE="http://projects.gnome.org/epiphany"
@@ -49,7 +49,19 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gtk-doc' 'gobject-intro
                                        'networkmanager network-manager' 'nss' )
 
 src_install() {
-    gnome-3_src_install
+    gsettings_src_install
     edo rmdir "${IMAGE}/usr/share/epiphany/art"
+}
+
+pkg_postinst() {
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
+
+pkg_postrm() {
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
 }
 
