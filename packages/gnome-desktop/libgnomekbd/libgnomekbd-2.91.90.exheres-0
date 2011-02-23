@@ -19,7 +19,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.18]
         x11-libs/gtk+:3[>=2.91.7]
-        x11-libs/libxklavier[>=5.0]
+        x11-libs/libxklavier[>=5.1]
         x11-libs/libX11
 "
 
