@@ -26,7 +26,8 @@ DEPENDENCIES="
         cairo? ( dev-python/pycairo[>=1.2.0] )
 "
 
-RESTRICT="test" # requires X
+#FIXME: Tests seg fault and leave a running dbus-daemon process
+RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-introspection'
@@ -39,6 +40,15 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
 src_compile() {
     python_disable_pyc
     default
+}
+
+src_test() {
+    unset DBUS_SESSION_BUS_ADDRESS
+    unset DISPLAY
+
+    esandbox allow_net "unix-abstract:/tmp/dbus-*"
+    default
+    esandbox disallow_net "unix-abstract:/tmp/dbus-*"
 }
 
 src_install() {
