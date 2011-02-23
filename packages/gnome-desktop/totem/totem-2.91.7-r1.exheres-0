@@ -63,25 +63,28 @@ DEPENDENCIES="
 
 src_configure() {
     local plugins=
+    local pythonplugins=
 
-    plugins+=dbus-service
-    plugins+=,gromit
-    plugins+=,iplayer
-    plugins+=,jamendo
+    plugins+=gromit
     plugins+=,ontop
-    plugins+=,opensubtitles
     plugins+=,properties
-    plugins+=,pythonconsole
     plugins+=,screensaver
     plugins+=,screenshot
     plugins+=,skipto
     plugins+=,thumbnail
+
+    pythonplugins+=dbus-service
+    pythonplugins+=,iplayer
+    pythonplugins+=,jamendo
+    pythonplugins+=,opensubtitles
+    pythonplugins+=,pythonconsole
 
     option bluetooth            && plugins+=,bemused
     option chapters             && plugins+=,chapters
     option brasero              && plugins+=,brasero-disc-recorder
     option media-player-keys    && plugins+=,media-player-keys
     option nautilus             && plugins+=,save-file
+    option python               && plugins+=,${pythonplugins}
     option tracker              && plugins+=,tracker
 
     unset DISPLAY
