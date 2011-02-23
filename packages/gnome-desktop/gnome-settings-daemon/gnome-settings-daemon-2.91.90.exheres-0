@@ -27,7 +27,7 @@ DEPENDENCIES="
         x11-libs/libXi
         media-libs/fontconfig
         x11-libs/libXxf86misc
-        gnome-desktop/libgnomekbd[>=2.91.1]
+        gnome-desktop/libgnomekbd[>=2.91.90]
         x11-libs/libxklavier[>=5.0]
         sys-fs/udev[glib]
         cups? ( net-print/cups )
