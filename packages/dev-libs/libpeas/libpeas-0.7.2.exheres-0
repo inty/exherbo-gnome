@@ -15,10 +15,10 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.40.0]
-        gnome-desktop/gobject-introspection:1[>=0.10.1]
         gtk-doc? ( dev-doc/gtk-doc[>=1.11] )
     build+run:
         dev-libs/glib:2[>=2.23.6]
+        gnome-desktop/gobject-introspection:1[>=0.10.1]
         x11-libs/gtk+:3[gobject-introspection]
 "
 
