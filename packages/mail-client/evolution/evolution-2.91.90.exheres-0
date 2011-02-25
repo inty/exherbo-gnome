@@ -42,7 +42,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=3.0.0]
         x11-misc/shared-mime-info[>=0.22]
         gstreamer? ( media-libs/gstreamer:0.10 )
-        libnotify? ( x11-libs/libnotify[>=0.5.1] )
+        libnotify? ( x11-libs/libnotify[>=0.7] )
         mono? ( dev-lang/mono )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
         python? ( dev-lang/python[>=2.0] )
