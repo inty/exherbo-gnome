@@ -7,6 +7,7 @@ SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc gobject-introspection
 freetype [[ description = [ Use freetype for the font backend (necessary for CJK support) ] ]]
+spell
 webgl [[ description = [ add support for WebGL ] ]]
 wml [[ description = [ add support for WML ] ]]"
 
@@ -22,15 +23,15 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.27.4]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2:2.0[>=2.6]
-        x11-libs/gtk+:3[>=2.91.7][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.0.0][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
-        gnome-desktop/libsoup:2.4[>=2.33.4][gobject-introspection?]
+        gnome-desktop/libsoup:2.4[>=2.33.6][gobject-introspection?]
         dev-libs/libxslt[>=1.1.7]
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]
         media-plugins/gst-plugins-base:0.10[>=0.10.25]
-        app-spell/enchant[>=0.22]
+        spell? ( app-spell/enchant[>=0.22] )
         freetype? ( media-libs/freetype:2
                     media-libs/fontconfig )
         !freetype? ( x11-libs/pango[>=1.21.0] )
