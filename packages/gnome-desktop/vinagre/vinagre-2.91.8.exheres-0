@@ -1,10 +1,9 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gnome.org gsettings
 
 SUMMARY="A VNC client for the GNOME desktop"
-HOMEPAGE="http://projects.gnome.org/vinagre/"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -25,26 +24,23 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.25.11]
         x11-libs/gtk+:3[>=2.99.3]
-        gnome-platform/GConf:2[>=2.16.0]
         gnome-desktop/libgnome-keyring:1
         dev-libs/libxml2:2.0[>=2.6.32]
-        dev-libs/dbus-glib:1
         dev-libs/libpeas:1.0[>=0.7.2]
         dev-libs/gtk-vnc:2.0[>=0.4.3]
         applet? ( gnome-desktop/gnome-panel[>=2.0.0] )
         avahi? ( net-dns/avahi[>=0.6.26][gtk3] )
         ssh? ( dev-libs/vte[>=0.20] )
-        telepathy? ( net-im/telepathy-glib[>=0.11.6] )
+        telepathy? ( dev-libs/dbus-glib:1
+                     net-im/telepathy-glib[>=0.11.6] )
 "
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-spice' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( applet avahi 'gobject-introspection introspection'
                                        rdp ssh telepathy )
 
 src_install() {
-    default
-
-    if option !applet ; then
-        edo rmdir "${IMAGE}"/usr/libexec
-    fi
+    gsettings_src_install
+    option !applet && edo rmdir "${IMAGE}"/usr/libexec
 }
 
