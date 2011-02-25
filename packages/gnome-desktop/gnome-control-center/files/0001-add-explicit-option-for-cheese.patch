@@ -1,36 +1,33 @@
-From 4920c0991b023021d85186853d13baf46ea8e3cd Mon Sep 17 00:00:00 2001
+From 5e668aa72e035ff09f7cca7447876e75847b6a7a Mon Sep 17 00:00:00 2001
 From: Saleem Abdulrasool <compnerd@compnerd.org>
 Date: Sun, 19 Dec 2010 19:06:15 -0800
 Subject: [PATCH] add explicit option for cheese
 
 ---
- configure.ac |   12 +++++++++---
- 1 files changed, 9 insertions(+), 3 deletions(-)
+ configure.ac |    9 ++++++---
+ 1 files changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 382ac72..39b0b9b 100644
+index 9da35b4..7a244df 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -127,10 +127,16 @@ PKG_CHECK_MODULES(GLIB, glib-2.0)
- PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0)
+@@ -159,10 +159,13 @@ fi
+ AM_CONDITIONAL(BUILD_PRINTERS, [test x$have_cups = xyes])
  
- PKG_CHECK_MODULES(POLKIT, polkit-gobject-1 >= 0.97)
+ # Optional dependency for the user accounts panel
 -PKG_CHECK_MODULES(CHEESE, gstreamer-0.10 cheese-gtk >= 2.29.90, have_cheese=yes, have_cheese=no)
- 
--if test x$have_cheese = xyes ; then
--        AC_DEFINE(HAVE_CHEESE, 1, [Define to 1 to enable cheese webcam support])
 +AC_ARG_WITH([cheese],
 +            AS_HELP_STRING([--with-cheese], [enable cheese webcam support]),,
 +            with_cheese=yes)
-+
+ 
+-if test x$have_cheese = xyes ; then
+-        AC_DEFINE(HAVE_CHEESE, 1, [Define to 1 to enable cheese webcam support])
 +if test x"$with_cheese" != x"no" ; then
-+   PKG_CHECK_MODULES(CHEESE, gstreamer-0.10 cheese-gtk >= 2.29.90, have_cheese=yes, have_cheese=no)
-+   if test x$have_cheese = xyes ; then
-+      AC_DEFINE(HAVE_CHEESE, 1, [Define to 1 to enable cheese webcam support])
-+   fi
++   PKG_CHECK_MODULES(CHEESE, gstreamer-0.10 cheese-gtk >= 2.29.90)
++   AC_DEFINE(HAVE_CHEESE, 1, [Define to 1 to enable cheese webcam support])
  fi
  
  # This is a hard-dependency for the region and user-accounts panels
 -- 
-1.7.4
+1.7.4.1
 
