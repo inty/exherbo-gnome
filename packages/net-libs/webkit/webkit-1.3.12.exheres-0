@@ -40,7 +40,7 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 src_configure() {
-    local font_backend=$(optionq freetype && echo freetype || echo pango)
+    local font_backend=$(optionv freetype || echo pango)
 
     econf '--with-gtk=3.0'                                      \
           "--with-font-backend=${font_backend}"                 \
