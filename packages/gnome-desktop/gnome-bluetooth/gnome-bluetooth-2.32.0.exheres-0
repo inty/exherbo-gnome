@@ -24,6 +24,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/dbus-glib:1[>=0.74]
         dev-libs/glib:2[>=2.25.7]
+        gnome-platform/GConf:2
         x11-libs/gtk+:2[>=2.19.1]
         dev-libs/unique:1
         x11-libs/libnotify[>=0.4.3]
