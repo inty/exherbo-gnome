@@ -23,14 +23,16 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1
         sys-libs/readline
     test:
-        dev-lang/python:* [[ note = [ required for script to build tests ] ]]
+        dev-lang/python:* [[ note = [ required to build tests ] ]]
         sys-apps/dbus
 "
-# FIXME: Tests leave a dbus-launch process running.
-RESTRICT="test"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch )
 
 src_test() {
+    unset DBUS_SESSION_BUS_ADDRESS
     unset DISPLAY
-    sydboxcmd "net/whitelist/bind/unix-abstract:///tmp/dbus-root-*"
+    esandbox allow_net 'unix-abstract:/tmp/dbus-root-*'
     default
+    esandbox disallow_net 'unix-abstract:/tmp/dbus-root-*'
 }
