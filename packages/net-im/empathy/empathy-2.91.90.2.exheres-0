@@ -36,8 +36,8 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10
         dev-libs/libxml2:2.0
         net-im/telepathy-farsight[>=0.0.14]
-        net-im/telepathy-glib[>=0.13.12]
-        net-im/telepathy-logger:0.1[>=0.1.5]
+        net-im/telepathy-glib[>=0.13.14]
+        net-im/telepathy-logger:0.2[>=0.2.0]
         x11-libs/libX11
         x11-libs/gtk+:3[>=2.99.0]
         media-libs/libcanberra[>=0.25][gtk3]
@@ -69,7 +69,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-    gsettings_exlib_pkg_postrm
+    gsettings_pkg_postrm
     freedesktop-desktop_pkg_postrm
     gtk-icon-cache_pkg_postrm
 }
