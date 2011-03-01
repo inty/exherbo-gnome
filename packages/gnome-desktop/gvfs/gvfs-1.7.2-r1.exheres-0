@@ -60,6 +60,8 @@ src_install() {
 
     dobashcompletion programs/gvfs-bash-completion.sh
 
+    option !avahi && option !samba && edo rmdir "${IMAGE}"/usr/share/GConf/{gsettings,}
+
     keepdir /media
     keepdir /usr/share/gvfs/remote-volume-monitors
 }
