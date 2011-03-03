@@ -2,7 +2,9 @@ From ae92c935e51b9d2a530558e349c068c207d74051 Mon Sep 17 00:00:00 2001
 From: Brett Witherspoon <spoonb@exherbo.org>
 Date: Tue, 1 Feb 2011 19:56:24 -0600
 Subject: [PATCH] configure: don't install systemd unit with --without-systemdsystemunitdir
+
 Upstream: Submitted, https://bugs.freedesktop.org/show_bug.cgi?id=33828
+
 ---
  configure.ac |   11 ++++++++---
  1 files changed, 8 insertions(+), 3 deletions(-)
