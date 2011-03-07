@@ -20,7 +20,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/libICE
         x11-libs/libSM
-        x11-libs/gtk+:3[>=2.99.3][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         x11-libs/gdk-pixbuf:2.0[>=2.7.1]
         x11-libs/pango[>=1.15.4]
         x11-libs/cairo[>=1.0.0]
@@ -28,7 +28,6 @@ DEPENDENCIES="
         gnome-desktop/gnome-desktop:3.0[>=2.91.0]
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         gnome-desktop/gnome-menus[>=2.27.92]
-        media-libs/libcanberra[gtk3]
         dev-libs/dbus-glib:1[>=0.80]
         gnome-desktop/libwnck:3.0[>=2.91.0]
         gnome-desktop/librsvg:2
