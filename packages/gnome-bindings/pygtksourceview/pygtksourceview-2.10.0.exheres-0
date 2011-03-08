@@ -22,8 +22,8 @@ DEPENDENCIES="
             dev-libs/libxslt
         )
    build+run:
-        gnome-bindings/pygobject[>=2.15.2]
+        gnome-bindings/pygobject:2[>=2.15.2]
         gnome-bindings/pygtk[>=2.8.0]
-        gnome-desktop/gtksourceview[>=2.9.7]
+        gnome-desktop/gtksourceview:2[>=2.9.7]
 "
 
