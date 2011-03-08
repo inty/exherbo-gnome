@@ -30,5 +30,5 @@ DEPENDENCIES="
         x11-libs/libxklavier
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gl' '--with-kbd-layout-indicator' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-kbd-layout-indicator' )
 
