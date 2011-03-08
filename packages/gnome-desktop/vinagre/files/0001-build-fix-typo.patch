@@ -1,0 +1,25 @@
+From a8aa664c67560d299338b4b97ba348e0633b6dd5 Mon Sep 17 00:00:00 2001
+From: Brett Witherspoon <spoonb@exherbo.org>
+Date: Mon, 7 Mar 2011 21:06:49 -0600
+Subject: [PATCH] build: fix typo
+
+---
+ configure.ac |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 4fc0f5a..55991e5 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -97,7 +97,7 @@ AS_IF([test "x$have_rdp" = "xyes"],
+ AM_CONDITIONAL([VINAGRE_ENABLE_RDP], [test "x$enable_rdp" = "xyes"])
+ 
+ # Check for spice.
+-SPICE_DEPS="spice-slient-gtk-3.0 >= 0.5"
++SPICE_DEPS="spice-client-gtk-3.0 >= 0.5"
+ 
+ AC_ARG_ENABLE([spice],
+   [AS_HELP_STRING([--disable-spice],
+-- 
+1.7.4.1
+
