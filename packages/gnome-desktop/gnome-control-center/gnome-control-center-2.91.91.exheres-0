@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2 freedesktop-mime freedesktop-desktop gsettings
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Configuration Applications for the GNOME Desktop"
 HOMEPAGE="http://www.gnome.org/"
@@ -45,9 +44,9 @@ DEPENDENCIES="
         app-text/iso-codes
         sys-auth/polkit:1[>=0.97]
         x11-libs/libXi[>=1.2]
-        gnome-desktop/libgnomekbd[>=2.91.2]
+        gnome-desktop/libgnomekbd[>=2.91.91]
         x11-libs/libxklavier[>=5.1]
-        cheese? ( gnome-desktop/cheese[>=2.29.90]
+        cheese? ( gnome-desktop/cheese[>=2.91.5]
                   media-libs/gstreamer:0.10 )
         cups? ( net-print/cups[>=1.4] )
         networkmanager? ( net-apps/NetworkManager[>=0.8.992] )
@@ -55,29 +54,9 @@ DEPENDENCIES="
         sys-apps/accountsservice [[ description = [ Required for the User Accounts panel ] ]]
 "
 
-AT_M4DIR=( m4 )
-AM_OPTS=( --foreign )
-
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}/0001-add-explicit-option-for-cheese.patch"
-    "${FILES}/0002-add-explicit-option-for-cups.patch"
-)
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'cups' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' 'networkmanager network-manager' )
-
-src_prepare() {
-    edo sed -e 's/GNOME_DEBUG_CHECK/dnl &/'             \
-            -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
-            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
-            -i "${WORK}/configure.ac"
-
-    edo gtkdocize --copy
-    edo gnome-doc-prepare --automake --copy
-    autotools_src_prepare
-    edo intltoolize --force --copy
-}
 
 pkg_postinst() {
     freedesktop-mime_update_mime_database
