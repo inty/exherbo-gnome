@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gsettings gtk-icon-cache
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Settings Daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -38,8 +37,6 @@ DEPENDENCIES="
         smartcard? ( dev-libs/nss[>=3.11.2] )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-add-option-to-explicitly-disable-cups.patch )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-gudev' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'pulseaudio pulse' 'policykit polkit'
                                        'smartcard smartcard-support' )
@@ -63,3 +60,4 @@ pkg_postrm() {
     gsettings_exlib_compile_gsettings_schemas
     gtk-icon-cache_pkg_postrm
 }
+
