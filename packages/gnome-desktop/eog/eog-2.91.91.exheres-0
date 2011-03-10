@@ -19,7 +19,7 @@ DEPENDENCIES="
         doc? ( dev-doc/gtk-doc[>=1.9] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
     build+run:
-        x11-libs/gtk+:3[>=2.91.7]
+        x11-libs/gtk+:3[>=3.0.2]
         dev-libs/glib:2[>=2.25.15]
         gnome-desktop/gnome-desktop:3.0[>=2.91.2]
         gnome-desktop/gnome-icon-theme[>=2.19.1]
