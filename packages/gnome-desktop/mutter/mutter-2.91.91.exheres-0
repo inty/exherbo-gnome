@@ -1,17 +1,19 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gnome.org gconf
 
 SUMMARY="Clutter and metacity based compositing window manager"
-HOMEPAGE="http://www.gnome.org/"
 
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="gobject-introspection sound xinerama
-    sound [[ description = [ Enable the use of libcanberra for playing sounds ] ]]
+MYOPTIONS="gobject-introspection xinerama
+    sound [[ description = [ Enable the use of libcanberra for event sounds ] ]]
 "
+
+BUGS_TO="spoonb@exherbo.org"
 
 DEPENDENCIES="
     build:
@@ -42,12 +44,12 @@ DEPENDENCIES="
         sound? ( media-libs/libcanberra[gtk3][>=0.26] )
         xinerama? ( x11-libs/libXinerama )
     recommendation:
-        gnome-desktop/gnome-themes-standard [[ description = [
-            Provides default GNOME 3 theme ( Adwaita )
-        ] ]]
-        gnome-desktop/metacity [[ description = [
-            Mutter currently shares GConf schemas with Metacity
-        ] ]]
+        gnome-desktop/gnome-themes-standard [[
+            description = [ Provides default GNOME 3 theme (Adwaita) ]
+        ]]
+        gnome-desktop/metacity [[
+            description = [ Mutter shares GConf schemas with Metacity ]
+        ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
@@ -57,10 +59,15 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-shape'
     '--enable-gconf' # Not configurable without GConf
     '--enable-compile-warnings=minimum' # Disables -Werror
+    '--disable-debug'
+    '--disable-scrollkeeper'
+    '--disable-static'
 )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'xinerama' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gobject-introspection introspection'
+    'xinerama'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
     'sound libcanberra'
 )
 
