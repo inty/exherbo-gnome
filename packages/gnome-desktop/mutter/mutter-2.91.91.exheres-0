@@ -1,0 +1,73 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gconf
+
+SUMMARY="Clutter and metacity based compositing window manager"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gobject-introspection xinerama
+    sound [[ description = [ Enable the use of libcanberra for event sounds ] ]]
+"
+
+BUGS_TO="spoonb@exherbo.org"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.8.0]
+    build+run:
+        x11-libs/gtk+:3[>=2.91.7][gobject-introspection?]
+        x11-libs/pango[>=1.2.0]
+        x11-libs/cairo[>=1.10.0]
+        gnome-platform/GConf:2[>=1.2]
+        dev-libs/glib:2[>=2.14.0]
+        x11-libs/startup-notification[>=0.7]
+        x11-libs/libXcomposite[>=0.2]
+        x11-libs/libXfixes
+        x11-libs/libXrender
+        x11-libs/libXdamage
+        base/clutter:1[>=1.2.0][gobject-introspection?]
+        x11-libs/libXcursor
+        x11-libs/libX11
+        x11-libs/libXext
+        x11-libs/libXrandr
+        x11-libs/libSM
+        x11-libs/libICE
+        gnome-desktop/zenity
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
+        sound? ( media-libs/libcanberra[gtk3][>=0.26] )
+        xinerama? ( x11-libs/libXinerama )
+    recommendation:
+        gnome-desktop/gnome-themes-standard [[
+            description = [ Provides default GNOME 3 theme (Adwaita) ]
+        ]]
+        gnome-desktop/metacity [[
+            description = [ Mutter shares GConf schemas with Metacity ]
+        ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-sm'
+    '--enable-startup-notification'
+    '--enable-xsync'
+    '--enable-shape'
+    '--enable-gconf' # Not configurable without GConf
+    '--enable-compile-warnings=minimum' # Disables -Werror
+    '--disable-debug'
+    '--disable-scrollkeeper'
+    '--disable-static'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'gobject-introspection introspection'
+    'xinerama'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'sound libcanberra'
+)
+

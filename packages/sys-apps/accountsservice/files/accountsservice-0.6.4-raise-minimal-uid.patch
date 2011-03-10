@@ -1,0 +1,17 @@
+Source: Written by Benedikt Morbach <benedikt.morbach@googlemail.com>
+Upstream: https://bugzilla.freedesktop.org/show_bug.cgi?id=34893
+Reason: Without this, system daemons might show up in gdm, as their uid is only
+        required to be less than 1000, not 500
+
+diff -ur a/src/daemon.c b/src/daemon.c
+--- a/src/daemon.c	2011-02-01 17:13:47.000000000 +0100
++++ b/src/daemon.c	2011-03-01 14:29:08.715513727 +0100
+@@ -46,7 +46,7 @@
+ 
+ #define PATH_PASSWD "/etc/passwd"
+ #define PATH_SHADOW "/etc/shadow"
+-#define MINIMAL_UID 500
++#define MINIMAL_UID 1000
+ 
+ #define USERDIR LOCALSTATEDIR "/lib/AccountsService/users"
+ 

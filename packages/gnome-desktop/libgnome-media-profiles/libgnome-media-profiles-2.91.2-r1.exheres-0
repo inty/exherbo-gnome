@@ -1,0 +1,31 @@
+# Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2
+
+SUMMARY="Media Profiles library"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.19]
+        gnome-desktop/gnome-doc-utils[>=0.3.1]
+    build+run:
+        gnome-platform/GConf:2
+        x11-libs/gtk+:3[>=2.91.0]
+        media-libs/gstreamer:0.10
+        media-plugins/gst-plugins-base:0.10[>=0.10.23]
+        dev-libs/glib:2
+    recommendation:
+        media-plugins/gst-ffmpeg
+        media-plugins/gst-plugins-base[gstreamer_plugins:ogg][gstreamer_plugins:vorbis]
+        media-plugins/gst-plugins-good[gstreamer_plugins:flac][gstreamer_plugins:taglib][gstreamer_plugins:speex]
+        media-plugins/gst-plugins-bad[gstreamer_plugins:faac]
+        media-plugins/gst-plugins-ugly[gstreamer_plugins:mp2][gstreamer_plugins:lame]
+"
+

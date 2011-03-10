@@ -29,9 +29,6 @@ DEPENDENCIES="
 
 src_install() {
     insinto /etc/gconf/schemas
-
-    for file in *.schemas ; do
-        doins "${file}"
-    done
+    doins *.schemas
 }
 

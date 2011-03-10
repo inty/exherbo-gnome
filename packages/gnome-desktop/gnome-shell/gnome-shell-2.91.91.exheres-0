@@ -1,0 +1,96 @@
+# Copyright 2010-2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gconf gsettings freedesktop-desktop
+
+SUMMARY="GNOME Shell provides core interface functions for GNOME 3"
+DESCRIPTION="
+GNOME Shell is the defining technology of the GNOME 3 desktop user experience. It provides core
+interface functions like switching to windows and launching applications. GNOME Shell takes
+advantage of the capabilities of modern graphics hardware and introduces innovative user interface
+concepts to provide a delightful and easy to use experience
+"
+HOMEPAGE="http://live.gnome.org/GnomeShell"
+
+BUGS_TO="spoonb@exherbo.org"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.26]
+        dev-util/pkg-config[>=0.22]
+        sys-devel/gettext
+    build+run:
+        base/clutter:1[>=1.5.15][gobject-introspection]
+        base/gjs:1[>=0.7.11]
+        dev-lang/python:*[>=2.5] [[ note = [ for gnome-shell-extension-tool ] ]]
+        dev-libs/dbus-glib:1
+        dev-libs/glib[>=2.25.9]
+        dev-libs/libcroco[>=0.6]
+        dev-libs/libxml2
+        gnome-platform/GConf[gobject-introspection]
+        gnome-desktop/evolution-data-server[>=2.91.6][calendar]
+        gnome-desktop/gnome-bluetooth:1[>=2.90.0][gobject-introspection] [[
+            note = [ automagic and crashes without introspection ]
+        ]]
+        gnome-desktop/gnome-desktop:3.0[>=2.90.0]
+        gnome-desktop/gnome-menus
+        gnome-desktop/gobject-introspection[>=0.10.1]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
+        gnome-desktop/mutter[>=2.91.91][gobject-introspection]
+        media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
+        media-libs/libcanberra
+        media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
+        media-sound/pulseaudio
+        net-im/telepathy-glib[>=0.13.12][gobject-introspection]
+        sys-auth/polkit:1[>=0.100][gobject-introspection]
+        x11-libs/gdk-pixbuf:2.0[gobject-introspection]
+        x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
+        x11-libs/libX11
+        x11-libs/libXfixes
+        x11-libs/startup-notification
+    run:
+        sys-apps/upower[gobject-introspection]
+        gnome-desktop/gnome-settings-daemon:3.0
+    recommendation:
+        fonts/cantarell-fonts [[
+            description = [ The default font for GNOME3 ]
+        ]]
+        gnome-desktop/gnome-icon-theme-symbolic[>=2.91.0] [[
+            description = [ Symbolic icons are preferred for GNOME Shell ]
+        ]]
+        media-plugins/gst-plugins-bad[gstreamer_plugins:vp8] [[
+            description = [ Required for the screen recorder feature ]
+        ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-introspection
+    --disable-dynamic-mozjs-hack
+    --disable-jhbuild-wrapper-script
+    --disable-static
+)
+
+src_install() {
+    export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+    export GSETTINGS_DISABLE_SCHEMAS_COMPILE=1
+    default
+    unset GSETTINGS_DISABLE_SCHEMAS_COMPILE
+    unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
+}
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    gsettings_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    gsettings_pkg_postinst
+    gconf_pkg_postinst
+}
+

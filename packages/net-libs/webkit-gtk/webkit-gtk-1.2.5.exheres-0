@@ -42,7 +42,7 @@ AT_M4DIR=( 'autotools' )
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-gobject-introspection-0.9.patch" )
 
 src_configure() {
-    local font_backend=$(optionq freetype && echo freetype || echo pango)
+    local font_backend=$(optionv freetype || echo pango)
 
     econf "--with-font-backend=${font_backend}"                 \
           $(option_enable doc gtk-doc)                          \

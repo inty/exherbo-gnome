@@ -50,7 +50,7 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.32.0
 src_configure() {
     econf "--localstatedir=/var"                                                    \
           $(option_enable pam console-helper)                                       \
-          "--enable-authentication-scheme=$(option pam && echo pam || echo shadow)" \
+          "--enable-authentication-scheme=$(optionv pam || echo shadow)" \
           $(option_with xinerama)                                                   \
           $(option_with xdmcp)                                                      \
           $(option_with tcpd tcp-wrappers)                                          \

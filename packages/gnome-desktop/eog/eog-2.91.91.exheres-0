@@ -1,0 +1,40 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+SUMMARY="Image Viewer"
+HOMEPAGE="http://projects.gnome.org/eog"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="dbus doc exif gobject-introspection lcms svg"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        doc? ( dev-doc/gtk-doc[>=1.9] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
+    build+run:
+        x11-libs/gtk+:3[>=3.0.2]
+        dev-libs/glib:2[>=2.25.15]
+        gnome-desktop/gnome-desktop:3.0[>=2.91.2]
+        gnome-desktop/gnome-icon-theme[>=2.19.1]
+        x11-misc/shared-mime-info[>=0.20]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.0]
+        dev-libs/libpeas:1.0[>=0.7.2]
+        dev-libs/libxml2:2.0[>=2.0]
+        dbus? ( dev-libs/dbus-glib:1[>=0.71] )
+        exif? ( media-libs/libexif[>=0.6.14] )
+        lcms? ( media-libs/lcms )
+        svg? ( gnome-desktop/librsvg[>=2.26.0] )
+"
+#        media-libs/jpeg[>=8]
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --without-xmp )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus' 'exif libexif' 'lcms cms' 'svg librsvg' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
+

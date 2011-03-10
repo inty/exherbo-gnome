@@ -3,7 +3,7 @@ From: Denis Dupeyron <calchan@gentoo.org>
 Date: Wed, 25 Aug 2010 15:56:23 -0600
 Subject: [PATCH] bluetooth: don't create empty plugin dirs when disabled
 
-Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=641300
+Upstream: Yes, https://bugzilla.gnome.org/show_bug.cgi?id=641300
 
 ---
  src/gnome-bluetooth/Makefile.am |    4 ++--

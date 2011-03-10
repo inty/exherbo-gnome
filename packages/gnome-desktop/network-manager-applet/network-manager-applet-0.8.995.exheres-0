@@ -2,14 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
 
 SUMMARY="A panel applet to configure networking via NetworkManager"
 HOMEPAGE="http://www.gnome.org/projects/NetworkManager"
-DOWNLOADS=""
-SCM_REPOSITORY="git://git.gnome.org/network-manager-applet"
-
-require scm-git
 
 LICENCES="GPL-2"
 SLOT="0"

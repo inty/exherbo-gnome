@@ -1,0 +1,47 @@
+# Copyright 2009-2011 Wulf C. Krueger <philantrop@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="A newsreader for Gnome and real desktop environments"
+DESCRIPTION="
+Pan is a newsreader which attempts to be pleasing to both new and experienced users.
+In addition to the standard newsreader features, Pan also supports yEnc, offline
+newsreading, article filtering, multiple connections, and more features for power
+users and alt.binaries fans.
+"
+HOMEPAGE="http://pan.rebelbase.com"
+DOWNLOADS="${HOMEPAGE}/download/releases/${PV}/source/${PNV}.tar.bz2"
+
+BUGS_TO="philantrop@exherbo.org"
+REMOTE_IDS="freshmeat:${PN}"
+
+UPSTREAM_RELEASE_NOTES="${HOMEPAGE}/download/releases/${PV}/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="spell"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.5]
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib:2[>=2.14.0]
+        dev-libs/pcre[>=5.0]
+        net-utils/gmime:2.4[>=2.4.0]
+        x11-libs/gtk+:2[>=2.16.0]
+        spell? ( app-spell/gtkspell:2[>=2.0.7] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "spell gtkspell" )
+DEFAULT_SRC_INSTALL_EXCLUDE=( README.mingw README.windows README.windows.in )
+
+src_prepare() {
+    default
+
+    # Deactivate a misbehaving test.
+    # https://bugzilla.gnome.org/show_bug.cgi?id=642746
+    edo sed -i -e "293d" pan/usenet-utils/text-massager-test.cc
+}
+
