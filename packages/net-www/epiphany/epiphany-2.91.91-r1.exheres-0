@@ -44,6 +44,8 @@ DEPENDENCIES="
         net-plugins/epiphany-extensions[>=2.27]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0002-shell-fix-toolbar-style-enum.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo' '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gtk-doc' 'gobject-introspection introspection'
                                        'networkmanager network-manager' 'nss' )
