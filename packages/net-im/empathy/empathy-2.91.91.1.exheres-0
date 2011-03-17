@@ -27,7 +27,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1
         dev-libs/glib:2[>=2.27.2]
         net-im/farsight2:0.10
-        net-im/folks[>=0.3.6]
+        net-im/folks[>=0.4.0]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gnome-keyring:1[>=2.91.4]
         dev-libs/gnutls[>=2.8.5]
