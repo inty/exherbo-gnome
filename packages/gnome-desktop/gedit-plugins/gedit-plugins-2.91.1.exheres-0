@@ -1,0 +1,82 @@
+# Copyright 2009 Jonathan Dahan <jedahan@gmail.com>
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+SUMMARY="Additional plugins for gedit."
+DESCRIPTION="
+Here follows a list of plugins currently available in gedit-plugins:
+
+    * Bookmarks
+        Easy document navigation with bookmark
+    * Bracket Completion
+        Add automaically a closing bracket when you insert one
+    * Charmap
+        Select characters from a charactermap
+    * Code Comment
+        Comment or uncomment blocks of code
+    * Color picker
+        Select and insert a color from a dialog (for html, css, php)
+    * Draw Spaces
+        Draw Spaces and Tabs
+    * Join lines/ Split lines
+        Join or split multiple lines through Ctrl+J and Ctrl+Shift+J
+    * Multiedit
+        Edit document in multiple places at once
+    * Session Saver
+        Allow to bookmark working sessions in order to get them back for further use
+    * Smart Spaces
+        Allow to unindent like if you were using tabs while you're using spaces
+    * Synctex
+        Synchronize between LaTex and PDF with gedit and evince
+    * Tag List
+        Provides a method to easily insert commonly used tags/strings
+    * Terminal
+        A simple terminal widget accessible from the bottom panel
+    * Text Size
+        Easily increase and decrease the text size
+    * Word Completion
+        Word completion using the completion framework
+"
+HOMEPAGE="http://live.gnome.org/GeditPlugins"
+
+BUGS_TO="jedahan@gmail.com spoonb@exherbo.org"
+
+MYOPTIONS="
+    charmap   [[ description = [ Enable the charmap plugin ] ]]
+    synctex   [[ description = [ Enable the SyncTeX plugin ] ]]
+    terminal  [[ description = [ Enable the terminal widget plugin ] ]]
+"
+LICENCES="GPL-2"
+PLATFORMS="~amd64 ~x86"
+SLOT="0"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config
+    build+run:
+        app-editors/gedit[>=2.91.6][gobject-introspection(+)]
+        dev-libs/glib:2[>=2.26.0]
+        dev-libs/libpeas:1.0[>=0.7.1][python]
+        gnome-desktop/gtksourceview:3.0[>=2.91.2][gobject-introspection]
+        x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
+    run:
+        charmap? ( gnome-extra/gucharmap[gobject-introspection] )
+        synctex? ( dev-python/dbus-python[>=0.82]
+                   gnome-bindings/pygobject )
+        terminal? ( dev-libs/vte:*[gobject-introspection] )
+"
+
+src_configure() {
+    # TODO commander plugin has not yet been ported to new libpeas API
+    local plugins=bookmarks,bracketcompletion,codecomment,colorpicker,drawspaces,joinlines,multiedit,sessionsaver,smartspaces,taglist,textsize,wordcompletion
+
+    option charmap   && plugins+=,charmap
+    option terminal  && plugins+=,terminal
+    option synctex   && plugins+=,synctex
+
+    econf "--with-plugins=${plugins}"
+}
+
