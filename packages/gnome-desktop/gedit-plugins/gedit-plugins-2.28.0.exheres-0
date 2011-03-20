@@ -39,7 +39,7 @@ SLOT="0"
 
 DEPENDENCIES="
     build+run:
-        app-editors/gedit[>=2.26]
+        app-editors/gedit[>=2.26&<2.90]
         python? (
             app-editors/gedit[python]
             dev-lang/python[>=2.6.2]
