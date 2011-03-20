@@ -1,0 +1,74 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+if ever is_scm ; then
+    require scm-git
+    require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 1.10 ] ]
+fi
+
+SUMMARY="Extensions to modify and extend GNOME Shell functionality and behavior"
+DESCRIPTION="
+Extensions provided:
+1. AlternateTab - A replacement for Alt-Tab, allows to cycle between windows and does not group by
+   application,
+2. Alternative Status Menu - Replaces GNOME Shell Status Menu with one showing Suspend/Hibernate
+   and Power Off as separate items,
+3. Auto Move Windows - Move applications to specific workspaces when they create windows,
+4. Dock - A dock for the GNOME Shell -- displays favorite and running applications,
+5. User Themes - Load shell themes from a user's directory,
+6. Window Navigator - Allow keyboard selection of windows and workspaces in overlay mode
+"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="as-is" # FIXME
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.16]
+        dev-util/pkg-config[>=0.22]
+    build+run:
+        dev-libs/glib:2[>=2.26] [[ note = [ For GSettings ] ]]
+    run:
+        gnome-desktop/gnome-shell[>=2.91.91]
+"
+
+BUGS_TO="spoonb@exherbo.org"
+
+# xrandr-indicator: requires some features in gjs and gobject-introspection
+# that are not merged yet (b.g.o 634253 and 643620).
+# gnome-desktop/gnome-desktop:3.0[>=2.91.6][gobject-introspection]
+GSHELL_EXTENSIONS="alternative-status-menu alternate-tab auto-move-windows dock user-theme windowsNavigator"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-extensions="${GSHELL_EXTENSIONS}" )
+
+src_prepare() {
+    if ever is_scm ; then
+        autotools_src_prepare
+        edo intltoolize --force --copy
+    else
+        default
+    fi
+}
+
+pkg_postinst(){
+    local ext_as
+
+    for e in ${GSHELL_EXTENSIONS} ; do
+        ext_as+="${ext_as:+,} '${e}@gnome-shell-extensions.gnome.org'"
+    done
+
+    ewarn "Installed plugins are automatically enabled. It is recommended that you only"
+    ewarn "enable the plugins you wish to use."
+    ewarn
+    ewarn "The following command will disable all plugins installed by this package:"
+    ewarn
+    ewarn "    gsettings set org.gnome.shell disabled-extensions \"[${ext_as}]\""
+    ewarn
+    ewarn "Exclude the plugins you want to enable."
+}
+
