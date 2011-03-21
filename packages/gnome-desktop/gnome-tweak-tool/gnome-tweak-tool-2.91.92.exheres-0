@@ -21,6 +21,9 @@ DEPENDENCIES="
         gnome-platform/GConf[gobject-introspection]
     run:
         x11-libs/gtk+:3[gobject-introspection]
+    suggestion:
+        gnome-desktop/gnome-shell-extensions [[
+            description = [ The user-theme extension is required for setting gnome-shell themes ] ]]
 "
 
 BUGS_TO="spoonb@exherbo.org"
