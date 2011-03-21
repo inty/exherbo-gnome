@@ -33,7 +33,7 @@ DEPENDENCIES="
         avahi? ( net-dns/avahi[>=0.6] )
         gcrypt? ( dev-libs/libgcrypt[>=1.1.90] )
         gnutls? ( dev-libs/gnutls[>=1.0.0] )
-        libnotify? ( x11-libs/libnotify[>=0.4.4] )
+        libnotify? ( x11-libs/libnotify[>=0.4.4&<0.7.0] )
         networkmanager? ( net-apps/NetworkManager[>=0.7] )
         telepathy? ( net-im/telepathy-glib[>=0.7.31] )
 "
