@@ -28,7 +28,7 @@ DEPENDENCIES="
         media-libs/libcanberra[gtk3][>=0.13]
         x11-libs/gdk-pixbuf[>=2.23.0]
         x11-libs/libXxf86misc
-        x11-libs/gtk+:3[>=2.91.6]
+        x11-libs/gtk+:3[>=3.0.2]
         dev-libs/glib:2[>=2.25.11]
         gnome-platform/GConf:2
         dev-libs/libxml2:2.0
@@ -46,7 +46,7 @@ DEPENDENCIES="
         x11-libs/libXi[>=1.2]
         gnome-desktop/libgnomekbd[>=2.91.91]
         x11-libs/libxklavier[>=5.1]
-        cheese? ( gnome-desktop/cheese[>=2.91.5]
+        cheese? ( gnome-desktop/cheese[>=2.91.91.1]
                   media-libs/gstreamer:0.10 )
         cups? ( net-print/cups[>=1.4] )
         networkmanager? ( net-apps/NetworkManager[>=0.8.992] )
