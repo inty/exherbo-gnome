@@ -1,7 +1,7 @@
 # Copyright 2010-2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gconf gsettings freedesktop-desktop
+require gnome.org gconf gsettings
 
 SUMMARY="GNOME Shell provides core interface functions for GNOME 3"
 DESCRIPTION="
@@ -41,12 +41,13 @@ DEPENDENCIES="
         gnome-desktop/gnome-menus
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
-        gnome-desktop/mutter[>=2.91.91][gobject-introspection]
+        gnome-desktop/mutter[>=2.91.92][gobject-introspection]
         media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
         media-libs/libcanberra
         media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
         media-sound/pulseaudio
         net-im/telepathy-glib[>=0.13.12][gobject-introspection]
+        net-im/telepathy-logger:0.2[>=0.2.4][gobject-introspection]
         sys-auth/polkit:1[>=0.100][gobject-introspection]
         x11-libs/gdk-pixbuf:2.0[gobject-introspection]
         x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
@@ -58,19 +59,22 @@ DEPENDENCIES="
         gnome-desktop/gnome-settings-daemon:3.0
     recommendation:
         fonts/cantarell-fonts [[
-            description = [ The default font for GNOME3 ]
-        ]]
+            description = [ The default font for GNOME3 ] ]]
         gnome-desktop/gnome-icon-theme-symbolic[>=2.91.0] [[
-            description = [ Symbolic icons are preferred for GNOME Shell ]
-        ]]
+            description = [ Symbolic icons are preferred for GNOME Shell ] ]]
         media-plugins/gst-plugins-bad[gstreamer_plugins:vp8] [[
-            description = [ Required for the screen recorder feature ]
-        ]]
+            description = [ Required for the screen recorder feature ] ]]
+    suggestion:
+        gnome-desktop/gnome-tweak-tool [[
+            description = [ Provides a tool for changing themes ] ]]
+        gnome-desktop/network-manager-applet [[
+            description = [ Required for the network applet ] ]]
+        net-apps/NetworkManager[>=0.8.996][gobject-introspection] [[
+            description = [ Required for the network applet ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-introspection
-    --disable-dynamic-mozjs-hack
     --disable-jhbuild-wrapper-script
     --disable-static
 )
@@ -83,13 +87,7 @@ src_install() {
     unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 }
 
-pkg_postrm() {
-    freedesktop-desktop_pkg_postrm
-    gsettings_pkg_postrm
-}
-
 pkg_postinst() {
-    freedesktop-desktop_pkg_postinst
     gsettings_pkg_postinst
     gconf_pkg_postinst
 }
