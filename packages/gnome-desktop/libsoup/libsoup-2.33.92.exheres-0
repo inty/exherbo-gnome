@@ -9,7 +9,7 @@ HOMEPAGE="http://live.gnome.org/LibSoup"
 LICENCES="LGPL-2"
 SLOT="2.4"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc gconf gobject-introspection"
+MYOPTIONS="gconf gobject-introspection gtk-doc"
 
 DEPENDENCIES="
     build:
@@ -18,15 +18,14 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.27.5]
-        dev-libs/libxml2
+        dev-libs/glib-networking
+        dev-libs/libxml2:2.0
         gconf? ( dev-db/sqlite:3
-                 net-libs/libproxy:1[>=0.3]
-                 gnome-desktop/libgnome-keyring:1
-                 gnome-platform/GConf:2 )
+                 gnome-desktop/libgnome-keyring:1 )
 "
 
 RESTRICT="test" # network violations
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gconf gnome' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' 'gobject-introspection introspection' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
