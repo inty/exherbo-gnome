@@ -23,7 +23,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.27.4]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2:2.0[>=2.6]
-        x11-libs/gtk+:3[>=3.0.0][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         x11-libs/cairo[>=1.6]
         x11-libs/libXt
         gnome-desktop/libsoup:2.4[>=2.33.6][gobject-introspection?]
@@ -38,6 +38,8 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
+
+DEFAULT_SRC_PREPARE_PATCHES=( -R "${FILES}/80589.patch" )
 
 src_configure() {
     local font_backend=$(optionv freetype || echo pango)

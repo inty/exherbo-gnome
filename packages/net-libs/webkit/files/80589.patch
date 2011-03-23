@@ -1,0 +1,11 @@
+Index: trunk/Source/WebCore/platform/graphics/SimpleFontData.cpp
+===================================================================
+--- trunk/Source/WebCore/platform/graphics/SimpleFontData.cpp	(revision 80582)
++++ trunk/Source/WebCore/platform/graphics/SimpleFontData.cpp	(revision 80589)
+@@ -211,5 +211,5 @@
+     if (!m_derivedFontData->verticalRightOrientation) {
+         FontPlatformData verticalRightPlatformData(m_platformData);
+-        verticalRightPlatformData.m_orientation = Horizontal;
++        verticalRightPlatformData.setOrientation(Horizontal);
+         m_derivedFontData->verticalRightOrientation = new SimpleFontData(verticalRightPlatformData, isCustomFont(), false, true);
+     }
