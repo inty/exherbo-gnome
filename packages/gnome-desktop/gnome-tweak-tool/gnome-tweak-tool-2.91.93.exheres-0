@@ -1,13 +1,12 @@
 # Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org freedesktop-desktop python [ python_dep=2.6 ]
+require gnome.org python [ python_dep=2.6 ]
 
 SUMMARY="A tool to customize GNOME 3 options."
 HOMEPAGE="http://live.gnome.org/GnomeTweakTool"
 
-# FIXME Nowhere on the homepage or in the source is the licence mentioned
-LICENCES="as-is"
+LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
