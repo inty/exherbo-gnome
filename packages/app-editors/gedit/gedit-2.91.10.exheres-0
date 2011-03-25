@@ -21,7 +21,7 @@ DEPENDENCIES="
         dev-libs/libxml2[>=2.5.0]
         dev-libs/glib:2[>=2.27.92]
         x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
-        gnome-desktop/gtksourceview:3.0[>=2.91.1][gobject-introspection]
+        gnome-desktop/gtksourceview:3.0[>=2.91.8][gobject-introspection]
         dev-libs/libpeas:1.0[>=0.7.2][python]
         gnome-desktop/gsettings-desktop-schemas
         x11-libs/libSM[>=1.0.0]

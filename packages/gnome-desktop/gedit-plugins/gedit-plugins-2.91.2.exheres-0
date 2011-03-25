@@ -44,7 +44,7 @@ DEPENDENCIES="
         app-editors/gedit[>=2.91.6][gobject-introspection(+)]
         dev-libs/glib:2[>=2.26.0]
         dev-libs/libpeas:1.0[>=0.7.1][python]
-        gnome-desktop/gtksourceview:3.0[>=2.91.2][gobject-introspection]
+        gnome-desktop/gtksourceview:3.0[>=2.91.9][gobject-introspection]
         x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
     run:
         charmap? ( gnome-extra/gucharmap[gobject-introspection] )
