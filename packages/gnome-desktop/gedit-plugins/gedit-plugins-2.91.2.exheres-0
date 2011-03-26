@@ -41,7 +41,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config
     build+run:
-        app-editors/gedit[>=2.91.6][gobject-introspection(+)]
+        app-editors/gedit[>=2.91.6][gobject-introspection(+)][python]
         dev-libs/glib:2[>=2.26.0]
         dev-libs/libpeas:1.0[>=0.7.1][python]
         gnome-desktop/gtksourceview:3.0[>=2.91.9][gobject-introspection]
@@ -54,16 +54,17 @@ DEPENDENCIES="
 "
 
 # TODO commander plugin has not yet been ported to new libpeas API
+#      bookmarks plugins fails to build
 src_configure() {
     # Default plugins
-    local plugins=bookmarks,drawspaces,wordcompletion,taglist
+    local plugins=drawspaces,wordcompletion,taglist
     # Python plugins
     plugins+=,bracketcompletion,codecomment,colorpicker,joinlines,multiedit,sessionsaver,smartspaces,textsize
 
-    option charmap   && plugins+=,charmap
-    option terminal  && plugins+=,terminal
-    option synctex   && plugins+=,synctex
+    option charmap  && plugins+=,charmap
+    option terminal && plugins+=,terminal
+    option synctex  && plugins+=,synctex
 
-    econf --with-plugins="${plugins}"
+    econf --with-plugins=${plugins}
 }
 
