@@ -23,6 +23,6 @@ DEPENDENCIES="
         gnome-desktop/libsoup:2.4[>=2.26.0]
         gnome-platform/GConf:2
         x11-libs/cairo[>=1.10.0]
-        x11-libs/gtk+:3[>=3.0.0]
+        x11-libs/gtk+:3[>=3.0.2]
 "
 
