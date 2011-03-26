@@ -7,7 +7,7 @@ SUMMARY="GTK+ based Web Browser"
 HOMEPAGE="http://projects.gnome.org/epiphany"
 
 LICENCES="GPL-2"
-SLOT="2.30"
+SLOT="2.31"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi gobject-introspection gtk-doc networkmanager
 nss [[ description = [ support migrating passwords from gecko based browsers ] ]]
