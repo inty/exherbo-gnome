@@ -39,7 +39,7 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_PREPARE_PATCHES=( -R "${FILES}/80589.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-remove-setOrientation-method.patch" )
 
 src_configure() {
     local font_backend=$(optionv freetype || echo pango)
