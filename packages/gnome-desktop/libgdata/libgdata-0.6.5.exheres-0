@@ -20,9 +20,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        gobject-introspection? (
-            gnome-desktop/gobject-introspection[>=0.9.7]
-        )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
     build+run:
         dev-libs/glib:2[>=2.19.0]
         dev-libs/libxml2:2.0
