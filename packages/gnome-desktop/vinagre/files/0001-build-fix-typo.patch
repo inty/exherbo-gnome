@@ -3,6 +3,8 @@ From: Brett Witherspoon <spoonb@exherbo.org>
 Date: Mon, 7 Mar 2011 21:06:49 -0600
 Subject: [PATCH] build: fix typo
 
+Upstream: Yes, in git master
+
 ---
  configure.ac |    2 +-
  1 files changed, 1 insertions(+), 1 deletions(-)

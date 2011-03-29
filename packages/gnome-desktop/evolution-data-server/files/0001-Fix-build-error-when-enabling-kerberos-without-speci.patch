@@ -1,0 +1,108 @@
+From 063aef487bcd5c44f8758fa57ea4f6cf7038f03d Mon Sep 17 00:00:00 2001
+From: Niki Guldbrand <niki.guldbrand@gmail.com>
+Date: Sat, 19 Mar 2011 15:57:52 +0100
+Subject: [PATCH] Fix build error when enabling kerberos without specifying a path.
+Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=645239
+
+When running configure with --with-krb5, configure sets $with_krb5 to
+yes, which results in wrong paths in KRB5_CFLAGS and KRB5_LIBS
+(yes/include and yes/lib), fixed the macro to use /usr as default in
+that case, based on how it's done in evo_ldap_check.m4.
+
+Signed-off-by: Niki Guldbrand <niki.guldbrand@gmail.com>
+---
+ configure.ac           |    2 +-
+ m4/evo_krb5_support.m4 |   46 +++++++++++++++++++++++++++++++++++++++-------
+ 2 files changed, 40 insertions(+), 8 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 78f71ce..cc66d5f 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1098,7 +1098,7 @@ AC_SUBST(DEFAULT_EDS_DBUS_TIMEOUT)
+ dnl ***********
+ dnl Kerberos 5
+ dnl ***********
+-EVO_KRB5_SUPPORT
++EVO_KRB5_SUPPORT(no)
+ 
+ dnl ******************************
+ dnl Purify support
+diff --git a/m4/evo_krb5_support.m4 b/m4/evo_krb5_support.m4
+index 109eeb1..ba37e81 100644
+--- a/m4/evo_krb5_support.m4
++++ b/m4/evo_krb5_support.m4
+@@ -1,31 +1,63 @@
+-#serial 0.1
++dnl EVO_KRB5_SUPPORT(default)
++dnl Add --with-krb5, --with-krb5-libs and --with-krb5-include options.
++dnl --with-krb5 defaults to the given value if not specified.
++#serial 0.2
+ AC_DEFUN([EVO_KRB5_SUPPORT],[
+ 	dnl ******************************
+ 	dnl Kerberos
+ 	dnl ******************************
++	default="$1"
+ 	AC_ARG_WITH([krb5],
+ 		AS_HELP_STRING([--with-krb5=PATH],
+-		[Location of Kerberos 5 install dir]),
+-		[with_krb5="$withval"], [with_krb5="no"])
++		[Location of Kerberos 5 install dir]))
+ 
+ 	AC_ARG_WITH([krb5-libs],
+ 		AS_HELP_STRING([--with-krb5-libs=PATH],
+-		[Location of Kerberos 5 libraries]),
+-		[with_krb5_libs="$withval"], [with_krb5_libs="$with_krb5/lib"])
++		[Location of Kerberos 5 libraries]))
+ 
+ 	AC_ARG_WITH([krb5-includes],
+ 		AS_HELP_STRING([--with-krb5-includes=PATH],
+-		[Location of Kerberos 5 headers]),
+-		[with_krb5_includes="$withval"], [with_krb5_includes="$with_krb5/include"])
++		[Location of Kerberos 5 headers]))
+ 
+ 	dnl ******************************
+ 	dnl Kerberos 5
+ 	dnl ******************************
+ 	msg_krb5="no"
+ 	AC_MSG_CHECKING([for Kerberos 5])
++	with_krb5="${with_krb5:=$default}"
++	case $with_krb5 in
++		no|"")
++			with_krb5=no
++			;;
++		yes)
++			with_krb5=/usr
++			;;
++		*)
++			with_krb5=$with_krb5
++			;;
++	esac
++
+ 	if test "x${with_krb5}" != "xno"; then
+ 		LIBS_save="$LIBS"
+ 
++		case $with_krb5_libs in
++			yes|no|"")
++				with_krb5_libs=$with_krb5/lib
++				;;
++			*)
++				with_krb5_libs=$with_krb5_libs
++				;;
++		esac
++
++		case $with_krb5_includes in
++			yes|no|"")
++				with_krb5_includes=$with_krb5/include
++				;;
++			*)
++				with_krb5_includes=$with_krb5_includes
++				;;
++		esac
++
+ 		mitlibs="-lkrb5 -lk5crypto -lcom_err -lgssapi_krb5"
+ 		heimlibs="-lkrb5 -lcrypto -lasn1 -lcom_err -lroken -lgssapi"
+ 		sunlibs="-lkrb5 -lgss"
+-- 
+1.7.4.1
+

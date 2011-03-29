@@ -1,0 +1,39 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org python [ python_dep=2.6 ]
+
+SUMMARY="A tool to customize GNOME 3 options."
+HOMEPAGE="http://live.gnome.org/GnomeTweakTool"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.16]
+    build+run:
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
+        gnome-bindings/pygobject:2[>=2.27.91]
+        gnome-platform/GConf[gobject-introspection]
+    run:
+        x11-libs/gtk+:3[gobject-introspection]
+    suggestion:
+        gnome-desktop/gnome-shell-extensions [[
+            description = [ The user-theme extension is required for setting gnome-shell themes ] ]]
+"
+
+BUGS_TO="spoonb@exherbo.org"
+
+src_compile() {
+    python_disable_pyc
+    default
+}
+
+src_install() {
+    default
+    python_bytecompile
+}
+

@@ -1,0 +1,104 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+SUMMARY="Media Player for the GNOME Desktop"
+HOMEPAGE="http://projects.gnome.org/totem"
+
+LICENCES="GPL-2"
+SLOT="1.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    bluetooth brasero chapters doc gobject-introspection media-player-keys
+    nautilus python tracker
+
+    bluetooth [[ description = [ Build bemused plugin ] ]]
+    brasero [[ description = [ Build brasero plugin ] ]]
+    chapters [[ description = [ Build chapters plugin ] ]]
+    media-player-keys [[ description = [ Build media-player-keys plugin ] ]]
+    python [[ description = [ Add support for plugins written in Python ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.40.0]
+        gnome-desktop/gnome-doc-utils[>=0.20.3]
+        doc? ( dev-doc/gtk-doc[>=1.14] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+    build+run:
+        media-libs/gstreamer:0.10[>=0.10.30]
+        media-plugins/gst-plugins-base:0.10[>=0.10.30]
+        media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
+        x11-libs/gtk+:3[>=2.99.3]
+        dev-libs/glib:2[>=2.27.92]
+        gnome-desktop/totem-pl-parser[>=2.32.4]
+        x11-libs/cairo
+        gnome-desktop/gnome-icon-theme[>=2.15.90]
+        x11-libs/libX11
+        x11-libs/libXtst
+        x11-apps/xrandr[>=1.1.1]
+        x11-libs/libXxf86vm[>=1.0.1]
+        dev-libs/libpeas:1.0[>=0.7.2][python?]
+        bluetooth? ( net-wireless/bluez )
+        brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
+        chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
+        media-player-keys? ( dev-libs/dbus-glib:1[>=0.82] )
+        nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
+        python? (
+            dev-lang/python:*[>=2.3]
+            gnome-bindings/pygobject:2[>=2.27.0]
+        )
+        tracker? ( app-pim/tracker:0.10[>=0.9.34] )
+"
+
+# coherence_upnp
+# lirc
+# opensubtitles
+# publish
+# youtube -- needs http://live.gnome.org/libgdata >= 0.40
+# zeitgeist-dp
+
+src_configure() {
+    local plugins=
+    local pythonplugins=
+
+    plugins+=gromit
+    plugins+=,im-status
+    plugins+=,ontop
+    plugins+=,properties
+    plugins+=,screensaver
+    plugins+=,screenshot
+    plugins+=,skipto
+    plugins+=,thumbnail
+
+    pythonplugins+=dbus-service
+    pythonplugins+=,iplayer
+    pythonplugins+=,jamendo
+    pythonplugins+=,opensubtitles
+    pythonplugins+=,pythonconsole
+
+    option bluetooth            && plugins+=,bemused
+    option chapters             && plugins+=,chapters
+    option brasero              && plugins+=,brasero-disc-recorder
+    option media-player-keys    && plugins+=,media-player-keys
+    option nautilus             && plugins+=,save-file
+    option python               && plugins+=,${pythonplugins}
+    option tracker              && plugins+=,tracker
+
+    unset DISPLAY
+    unset DBUS_SESSION_BUS_ADDRESS
+
+    GST_REGISTRY="${TEMP}/.gstreamer-0.10"                          \
+        econf '--enable-easy-codec-installation'                    \
+              "--with-plugins=${plugins}"                           \
+              '--disable-browser-plugins'                           \
+              '--with-dbus'                                         \
+              '--disable-vala'                                      \
+              $(option_enable doc gtk-doc)                          \
+              $(option_enable gobject-introspection introspection)  \
+              $(option_enable nautilus)                             \
+              $(option_enable python)
+}
+
