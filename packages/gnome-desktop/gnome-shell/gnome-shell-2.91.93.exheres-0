@@ -41,7 +41,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-menus
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
-        gnome-desktop/mutter[>=2.91.92][gobject-introspection]
+        gnome-desktop/mutter[>=2.91.93][gobject-introspection]
         media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
         media-libs/libcanberra
         media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
@@ -67,8 +67,6 @@ DEPENDENCIES="
     suggestion:
         gnome-desktop/gnome-tweak-tool [[
             description = [ Provides a tool for changing themes ] ]]
-        gnome-desktop/network-manager-applet [[
-            description = [ Required for the network applet ] ]]
         net-apps/NetworkManager[>=0.8.996][gobject-introspection] [[
             description = [ Required for the network applet ] ]]
 "
