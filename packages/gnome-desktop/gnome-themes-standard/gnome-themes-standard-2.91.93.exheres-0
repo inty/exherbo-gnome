@@ -20,7 +20,8 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=3.0.2]
     recommendation:
         fonts/cantarell-fonts [[ description = [ The default Adwaita theme font ] ]]
-        gnome-desktop/gtk-engines [[
-            description = [ The Clearlooks engine is required for the Adwaita GTK+-2 theme ] ]]
+        gnome-desktop/gtk-engines:2 [[
+            description = [ The Clearlooks engine is required for the Adwaita GTK+-2 theme ]
+        ]]
 "
 
