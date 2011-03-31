@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2
+require gnome-2 gsettings
 
 SUMMARY="Panel Application for GNOME"
 HOMEPAGE="http://www.gnome.org/"
@@ -29,6 +29,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         gnome-desktop/gnome-menus[>=2.27.92]
         dev-libs/dbus-glib:1[>=0.80]
+        gnome-desktop/dconf
         gnome-desktop/libwnck:3.0[>=2.91.0]
         gnome-desktop/librsvg:2
         gnome-desktop/libgweather:3.0[>=2.91.0]
