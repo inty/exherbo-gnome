@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome-2
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="An integrated music management application"
 DESCRIPTION="
@@ -36,7 +35,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.25.12]
         x11-libs/gtk+:2[>=2.20.0]
-        gnome-desktop/gnome-media[gstreamer][profiles(+)][>=2.8]
+        gnome-desktop/gnome-media:0[>=2.8][gstreamer][profiles(+)]
         gnome-desktop/libsoup:2.4[gconf(-)][>=2.26]
         gnome-desktop/totem-pl-parser[>=2.32.1]
         media-libs/gstreamer:0.10[>=0.10.20]
@@ -47,8 +46,8 @@ DEPENDENCIES="
         avahi? ( net-dns/avahi[>=0.6] )
         brasero? ( gnome-desktop/brasero[>=0.9.1] )
         daap? ( media-libs/libdmapsharing:2.2[>=2.1.6] )
-        ipod? ( media-libs/libgpod[>=0.6] )
-        keyring? ( gnome-desktop/gnome-keyring:1 )
+        ipod? ( media-libs/libgpod[>=0.7.96] )
+        keyring? ( gnome-desktop/libgnome-keyring:1 )
         libnotify? ( x11-libs/libnotify[>=0.4.1] )
         mtp? ( media-libs/libmtp[>=0.3.0] )
         python? (
@@ -66,10 +65,6 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
-
-# unconditionally apply 4216979f41e423a00b9bae4ca19afab25bc93f7f.patch leaving the automagic
-# dependency as libnotify[>=0.7] is for gnome 3.0
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/4216979f41e423a00b9bae4ca19afab25bc93f7f.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-hal --without-libnautilus-burn --disable-lirc
                                --disable-vala --disable-fm-radio --disable-browser-plugin
