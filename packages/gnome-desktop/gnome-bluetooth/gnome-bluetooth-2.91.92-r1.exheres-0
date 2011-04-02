@@ -27,6 +27,7 @@ DEPENDENCIES="
           x11-libs/libX11 ) [[ note = [ for the input helper ] ]]
         x11-libs/libnotify[>=0.7.0]
     run:
+        group/plugdev [[ note = [ for rfkill udev rules ] ]]
         net-wireless/bluez[>=4.36]
     recommendation:
         net-wireless/obexd [[ description = [ Required for bluetooth-sendto ] ]]
@@ -42,15 +43,25 @@ src_prepare() {
     echo 'wizard/bluetooth-wizard.desktop.in' >> "${WORK}/po/POTFILES.skip"
 }
 
+src_install() {
+    default
+
+    insinto /etc/udev/rules.d/
+    doins "${FILES}/90-gnome-bluetooth-rfkill.rules"
+}
 pkg_postinst() {
     gtk-icon-cache_pkg_postinst
     freedesktop-desktop_pkg_postinst
     gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
 }
 
 pkg_postrm() {
     gtk-icon-cache_pkg_postrm
     freedesktop-desktop_pkg_postrm
     gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
 }
 
