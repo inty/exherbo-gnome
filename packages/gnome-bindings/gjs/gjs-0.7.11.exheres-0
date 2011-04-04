@@ -17,7 +17,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
     build+run:
         dev-libs/glib:2[>=2.18.0]
-        dev-libs/xulrunner[>=1.9.2]
+        dev-libs/xulrunner[>=2.0] [[ note = [ require 2.0 instead of 1.9.2 to prevent breakage ] ]]
         gnome-desktop/gobject-introspection[>=0.10.0]
         x11-libs/cairo
         dev-libs/dbus-glib:1
