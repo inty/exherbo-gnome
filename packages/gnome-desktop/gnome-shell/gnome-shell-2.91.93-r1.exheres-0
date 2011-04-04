@@ -26,7 +26,7 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         base/clutter:1[>=1.5.15][gobject-introspection]
-        base/gjs:1[>=0.7.11]
+        gnome-bindings/gjs:1[>=0.7.11]
         dev-lang/python:*[>=2.5] [[ note = [ for gnome-shell-extension-tool ] ]]
         dev-libs/dbus-glib:1
         dev-libs/glib[>=2.25.9]
