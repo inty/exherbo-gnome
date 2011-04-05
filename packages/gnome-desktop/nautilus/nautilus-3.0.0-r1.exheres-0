@@ -1,6 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 require gnome.org gsettings freedesktop-mime
 
 SUMMARY="File Manager for GNOME"
@@ -15,6 +16,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.19]
         dev-util/intltool[>=0.40.1]
+        app-doc/gtk-doc-autotools[>=1.4] [[ note = [ Needed for gtkdocize ] ]]
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
@@ -37,9 +39,19 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-configure-Fix-libexif-check.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit --disable-xmp )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'exif libexif'
                                        'gobject-introspection introspection' )
+
+src_prepare() {
+    default
+
+    edo libtoolize --copy --force --automake
+    edo gtkdocize --copy
+    edo intltoolize --force --copy
+    eautoreconf
+}
 
 pkg_postinst() {
     default
