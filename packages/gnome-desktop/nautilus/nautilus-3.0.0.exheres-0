@@ -18,14 +18,14 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
-        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.0.8][gobject-introspection?]
         dev-libs/glib:2[>=2.28.0]
-        gnome-desktop/gnome-desktop:3.0[>=2.91.2]
-        dev-libs/libxml2:2.0[>=2.4.7]
+        gnome-desktop/gnome-desktop:3.0[>=3.0.0]
+        dev-libs/libxml2:2.0[>=2.7.8]
         x11-libs/libX11
         gnome-desktop/gsettings-desktop-schemas
         x11-libs/libnotify
-        exif? ( media-libs/libexif[>=0.5.12] )
+        exif? ( media-libs/libexif[>=0.6.20] )
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
