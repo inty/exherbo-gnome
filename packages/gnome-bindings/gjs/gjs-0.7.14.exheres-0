@@ -18,13 +18,13 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.18.0]
         dev-libs/xulrunner[>=2.0] [[ note = [ require 2.0 instead of 1.9.2 to prevent breakage ] ]]
-        gnome-desktop/gobject-introspection[>=0.10.0]
+        gnome-desktop/gobject-introspection[>=0.10.1]
         x11-libs/cairo
         dev-libs/dbus-glib:1
+        sys-apps/dbus
         sys-libs/readline
     test:
         dev-lang/python:* [[ note = [ required to build tests ] ]]
-        sys-apps/dbus
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch )
