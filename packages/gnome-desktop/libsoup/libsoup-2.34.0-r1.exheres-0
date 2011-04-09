@@ -18,7 +18,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.27.5]
-        dev-libs/glib-networking
+        dev-libs/glib-networking[gnutls]
         dev-libs/libxml2:2.0
         gconf? ( dev-db/sqlite:3
                  gnome-desktop/libgnome-keyring:1 )
