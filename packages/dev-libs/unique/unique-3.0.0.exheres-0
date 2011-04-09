@@ -8,7 +8,7 @@ SUMMARY="Library for writing single instance applications"
 LICENCES="LGPL-2.1"
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="dbus gtk-doc gobject-introspection"
+MYOPTIONS="gtk-doc gobject-introspection"
 
 DEPENDENCIES="
     build:
@@ -18,10 +18,11 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.25.7]
         x11-libs/gtk+:3[>=2.90][gobject-introspection?]
-        dbus? ( dev-libs/dbus-glib[>=0.70] )
 "
 
 WORK="${WORKBASE}/lib${PNV}"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( dbus gtk-doc 'gobject-introspection introspection' )
+# Hard disable the deprecated dbus-glib backend. GDBus is used by default.
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-dbus )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc 'gobject-introspection introspection' )
 
