@@ -28,7 +28,7 @@ DEPENDENCIES="
         applet? ( gnome-desktop/gnome-panel[>=2.9.4] )
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90] )
         gedit? ( app-editors/gedit[>=2.20] )
-        libnotify? ( x11-libs/libnotify[>=0.3] )
+        libnotify? ( x11-libs/libnotify[>=0.3&<0.7] )
         nautilus? ( gnome-desktop/nautilus[>=2.12.0] )
 "
 
