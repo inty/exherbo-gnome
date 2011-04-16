@@ -14,7 +14,7 @@ MYOPTIONS="
     rdp       [[ description = [ build RDP plugin for vinagre ] ]]
     spice     [[ description = [ build SPICE plugin for vinagre ] ]]
     ssh       [[ description = [ build SSH plugin for vinagre ] ]]
-    telepathy [[ desciption [ build im-status plugin ] ]]
+    telepathy [[ description = [ build im-status plugin ] ]]
 "
 
 DEPENDENCIES="
