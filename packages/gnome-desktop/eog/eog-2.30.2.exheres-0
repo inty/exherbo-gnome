@@ -1,10 +1,13 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require eog gnome-2
+require gnome-2
+
+SUMMARY="Image Viewer"
+HOMEPAGE="http://projects.gnome.org/eog"
 
 LICENCES="GPL-2"
-SLOT="0"
+SLOT="2.20"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="dbus doc exif lcms"
 
