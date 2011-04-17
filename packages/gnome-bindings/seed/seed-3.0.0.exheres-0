@@ -17,7 +17,6 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
     dbus   [[ description = [ Enable the DBus module ] ]]
-    debug
     gtk-doc
     sqlite [[ description = [ Enable the sqlite module ] ]]
 "
@@ -47,5 +46,5 @@ RESTRICT="test" # Requires itself
 BUGS_TO="spoonb@exherbo.org"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-example-module' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( debug gtk-doc 'sqlite sqlite-module' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc 'sqlite sqlite-module' )
 
