@@ -36,10 +36,9 @@ DEPENDENCIES="
         rdp? ( net-remote/rdesktop )
         spice? ( virtualization-ui/spice-gtk:3.0[>=0.5] )
         ssh? ( dev-libs/vte[>=0.20] )
-        telepathy? ( net-im/telepathy-glib[>=0.11.6] )
-
+        telepathy? ( net-im/telepathy-glib[>=0.11.6][gobject-introspection] )
         !gnome-desktop/vinagre:0 [[
-            description = [ These slots collide ]
+            description = [ slot moved ]
             resolution = uninstall-blocked-after
         ]]
 "
@@ -56,12 +55,14 @@ src_prepare() {
             -i "${WORK}/configure.ac"
     edo sed -e 's/MAINTAINER_MODE/FALSE/' -i "${WORK}/Makefile.am"
 
+    edo gnome-doc-prepare --automake --copy
+
     autotools_src_prepare
 }
 
 src_install() {
     gsettings_src_install
-    !option applet && edo rmdir "${IMAGE}"/usr/libexec
+    option !applet && edo rmdir "${IMAGE}"/usr/libexec
 }
 
 pkg_postrm() {
