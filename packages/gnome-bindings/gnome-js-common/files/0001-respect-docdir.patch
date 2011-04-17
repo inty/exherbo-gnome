@@ -1,0 +1,24 @@
+From 8d91323975b16486b493e0c5048cdeb0961a8e7f Mon Sep 17 00:00:00 2001
+From: Brett Witherspoon <spoonb@exherbo.org>
+Date: Sat, 16 Apr 2011 22:46:09 -0500
+Subject: [PATCH] respect docdir
+
+---
+ Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index bb25f7e..1c01ce9 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,6 +1,6 @@
+ SUBDIRS = po modules tests
+ 
+-gnome_js_commondocdir = ${prefix}/share/doc/gnome_js_common
++gnome_js_commondocdir = $(docdir)
+ gnome_js_commondoc_DATA = \
+ 	README \
+ 	COPYING \
+-- 
+1.7.4.3
+
