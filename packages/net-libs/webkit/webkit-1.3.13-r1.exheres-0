@@ -6,10 +6,10 @@ require webkit
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc gobject-introspection
-freetype [[ description = [ Use freetype for the font backend (necessary for CJK support) ] ]]
+pango [[ description = [ use pango for the font backend (experimental) ] ]]
 spell
-webgl [[ description = [ add support for WebGL ] ]]
-wml [[ description = [ add support for WML ] ]]"
+webgl [[ description = [ add support for WebGL (experimental) ] ]]
+wml [[ description = [ add support for WML (experimental) ] ]]"
 
 DEPENDENCIES="
     build:
@@ -32,9 +32,9 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10]
         media-plugins/gst-plugins-base:0.10[>=0.10.25]
         spell? ( app-spell/enchant[>=0.22] )
-        freetype? ( media-libs/freetype:2
+        pango? ( x11-libs/pango[>=1.21.0] )
+        !pango? ( media-libs/freetype:2
                     media-libs/fontconfig )
-        !freetype? ( x11-libs/pango[>=1.21.0] )
 "
 
 RESTRICT="test" # requires X
@@ -42,7 +42,7 @@ RESTRICT="test" # requires X
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-remove-setOrientation-method.patch" )
 
 src_configure() {
-    local font_backend=$(optionv freetype || echo pango)
+    local font_backend=$(optionv pango || echo freetype)
 
     econf '--with-gtk=3.0'                                      \
           "--with-font-backend=${font_backend}"                 \
