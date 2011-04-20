@@ -29,7 +29,7 @@ DEPENDENCIES="
         dev-libs/gtk-vnc:1[>=0.3.10]
         applet? ( gnome-desktop/gnome-panel[>=2.0.0] )
         avahi? ( net-dns/avahi[>=0.6.22][gtk] )
-        ssh? ( dev-libs/vte[>=0.20] )
+        ssh? ( dev-libs/vte:0[>=0.20] )
         telepathy? ( net-im/telepathy-glib[>=0.9.0] )
 "
 
