@@ -17,7 +17,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
-        x11-libs/gtk+:3[>=2.91.0]
+        x11-libs/gtk+:3[>=3.0.0]
         dev-libs/glib:2
         x11-libs/libX11
         libnotify? ( x11-libs/libnotify[>=0.6.1] )

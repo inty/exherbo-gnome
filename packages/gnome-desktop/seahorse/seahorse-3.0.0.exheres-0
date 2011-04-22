@@ -9,7 +9,10 @@ HOMEPAGE="http://live.gnome.org/Seahorse"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="avahi doc gobject-introspection libnotify"
+MYOPTIONS="avahi gobject-introspection gtk-doc
+    ldap [[ description = [ Publish and retrieve keys via LDAP ] ]]
+    libnotify
+"
 
 DEPENDENCIES="
     build:
@@ -17,29 +20,38 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.1]
-        doc? ( dev-doc/gtk-doc[>=1.9] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
-        x11-libs/gtk+:3[>=2.90.0]
-        dev-libs/glib:2[>=2.16]
-        gnome-platform/GConf:2
         app-crypt/gnupg[=2.0*]
         app-crypt/gpgme[>=1.0]
-        gnome-desktop/libsoup:2.4
-        gnome-desktop/gnome-keyring:1[>=2.25.5]
         dev-libs/dbus-glib:1[>=0.35]
+        dev-libs/glib:2[>=2.16]
+        gnome-desktop/libgnome-keyring:1[>=2.25.5]
+        gnome-desktop/libsoup:2.4
+        gnome-platform/GConf:2
+        x11-libs/gtk+:3[>=2.90.0]
         avahi? ( net-dns/avahi[>=0.6] )
+        ldap? ( net-directory/openldap[>=2.4.21] )
         libnotify? ( x11-libs/libnotify[>=0.4.4] )
     suggestion:
         gnome-desktop/seahorse-plugins[>=2.25.0]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-update-mime-database' '--disable-ldap'
-                               '--enable-pgp' '--enable-hkp' '--enable-pkcs11'
-                               '--with-gtk=3.0' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi sharing' 'doc gtk-doc'
-                                       'gobject-introspection introspection'
-                                       'libnotify' )
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-update-mime-database'
+    '--enable-pgp'
+    '--enable-hkp'
+    '--enable-pkcs11'
+    '--with-gtk=3.0'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'avahi sharing'
+    'gobject-introspection introspection'
+    'gtk-doc'
+    'ldap'
+    'libnotify'
+)
 
 pkg_postrm() {
     freedesktop-mime_update_mime_database

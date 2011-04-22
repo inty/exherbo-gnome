@@ -30,7 +30,7 @@ DEPENDENCIES="
     suggestion:
         sys-fs/dosfstools
         sys-fs/mtools [[ description = [ required to read/write FAT16/32 volume labels ] ]]
-        sys-fs/ntfsprogs
+        sys-fs/ntfs-3g_ntfsprogs
         sys-fs/reiserfsprogs
         sys-fs/xfsprogs
 "

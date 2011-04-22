@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require vim-plugin [ src_suffix='tar.gz' script_id=1000 src_id=11573 ]
+require vim-plugin [ src_suffix='tar.gz' script_id=1000 src_id=15217 ]
 
 SUMMARY="Syntax highlighting for glib, GTK+, xlib, gimp, and gnome"
 
@@ -24,7 +24,7 @@ src_install() {
     mv c.vim.example "${IMAGE}/usr/share/vim/vimfiles/after/syntax/c.vim.d/gtk-syntax.vim"
 
     dodir /usr/share/vim/vimfiles/syntax
-    edo mv * "${IMAGE}/usr/share/vim/vimfiles/syntax"
+    edo mv *.vim "${IMAGE}/usr/share/vim/vimfiles/syntax"
 
     edo chmod -R -x+X "${IMAGE}/usr/share/vim/vimfiles"
 }

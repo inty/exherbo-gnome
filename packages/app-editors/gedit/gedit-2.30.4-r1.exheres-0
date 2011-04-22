@@ -7,7 +7,7 @@ SUMMARY="Editor for the GNOME environment"
 HOMEPAGE="http://projects.gnome.org/gedit"
 
 LICENCES="GPL-2"
-SLOT="2.20"
+SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc python spell"
 
@@ -30,6 +30,11 @@ DEPENDENCIES="
                   gnome-bindings/pygtksourceview[>=2.6.0] )
         spell? ( app-spell/enchant[>=1.2.0]
                  app-text/iso-codes[>=0.35] )
+        !app-editors/gedit:2.20[<=2.30.4] [[
+            description = [ slot has been moved ]
+            resolution = uninstall-blocked-after
+        ]]
+
     suggestion:
         gnome-desktop/gedit-plugins
 "

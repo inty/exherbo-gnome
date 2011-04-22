@@ -16,7 +16,7 @@ BUGS_TO="spoonb@exherbo.org"
 
 LICENCES="GPL-2"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
@@ -57,6 +57,7 @@ DEPENDENCIES="
     run:
         sys-apps/upower[gobject-introspection]
         gnome-desktop/gnome-settings-daemon:3.0
+        gnome-desktop/libgnomekbd[gobject-introspection] [[ note = [ for keyboard status applet ] ]]
     recommendation:
         fonts/cantarell-fonts [[
             description = [ The default font for GNOME3 ]

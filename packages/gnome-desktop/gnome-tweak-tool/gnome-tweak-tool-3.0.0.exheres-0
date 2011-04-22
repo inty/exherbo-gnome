@@ -8,7 +8,7 @@ HOMEPAGE="http://live.gnome.org/GnomeTweakTool"
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
