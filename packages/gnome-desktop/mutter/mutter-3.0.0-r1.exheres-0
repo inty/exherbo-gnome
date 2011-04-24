@@ -32,7 +32,7 @@ DEPENDENCIES="
         x11-libs/libXfixes
         x11-libs/libXrender
         x11-libs/libXdamage
-        base/clutter:1[>=1.2.0][gobject-introspection?]
+        x11-libs/clutter:1[>=1.2.0][gobject-introspection?]
         x11-libs/libXcursor
         x11-libs/libX11
         x11-libs/libXext
