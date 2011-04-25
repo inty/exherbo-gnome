@@ -49,6 +49,9 @@ DEPENDENCIES="
         networkmanager? ( net-apps/NetworkManager[>=0.8.992] )
     suggestion:
         sys-apps/accountsservice [[ description = [ Required for the User Accounts panel ] ]]
+        gnome-desktop/gnome-icon-theme-symbolic [[
+            description = [ the control center explicitly uses symbolic icons ]
+        ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
