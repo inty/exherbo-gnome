@@ -3,6 +3,7 @@ From: Niki Guldbrand <niki.guldbrand@gmail.com>
 Date: Sat, 26 Mar 2011 08:51:14 +0100
 Subject: [PATCH] Fix build error when enabling kerberos without specifying a path.
 Upstream: https://bugzilla.gnome.org/show_bug.cgi?id=645721
+Upstream: Applied as 5437ef0 in evo master (3.1.1+)
 
 When running configure with --with-krb5, configure sets $with_krb5 to
 yes, which results in wrong paths in KRB5_CFLAGS and KRB5_LIBS
