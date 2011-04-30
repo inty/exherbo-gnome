@@ -36,3 +36,4 @@ src_install() {
     default
     option python && python_bytecompile
 }
+
