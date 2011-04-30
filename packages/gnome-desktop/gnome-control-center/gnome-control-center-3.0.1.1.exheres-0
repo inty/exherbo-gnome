@@ -27,7 +27,6 @@ DEPENDENCIES="
         x11-libs/libXxf86misc
         x11-libs/gtk+:3[>=3.0.2]
         dev-libs/glib:2[>=2.25.11]
-        gnome-platform/GConf:2
         dev-libs/libxml2:2.0
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/gnome-menus[>=2.10.1]
