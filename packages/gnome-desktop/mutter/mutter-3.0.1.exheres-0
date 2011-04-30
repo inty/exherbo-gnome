@@ -52,12 +52,16 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/c3a04bf3948dae31cbd64e637c290ddee7bcc73b.patch"
+                              "${FILES}/c30c29b8c31fcd0a8de8f9fc1d05bbfb35858c11.patch"
+                              "${FILES}/67c3c93b8fd1e11716e72142ca43deb978e15c98.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-sm'
     '--enable-startup-notification'
     '--enable-xsync'
     '--enable-shape'
-    '--enable-gconf' # Not configurable without GConf
+    '--enable-gconf'                    # Not configurable without GConf
     '--enable-compile-warnings=minimum' # Disables -Werror
     '--disable-debug'
     '--disable-scrollkeeper'
