@@ -34,8 +34,8 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-gnome-keyring-optionalize-libcap.patch )
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' '--enable-gpg-agent' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' '--enable-gpg-agent'
+                               '--disable-tests' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam gtk-doc )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'caps libcap' "pam pam-dir /${LIBDIR}/security" )
 
