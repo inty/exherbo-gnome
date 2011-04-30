@@ -57,8 +57,6 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-map --disable-location --disable-meego
                                --disable-nautilus-sendto
                                '--enable-control-center-embedding' )
-# Remove these with the stable release
-DEFAULT_SRC_CONFIGURE_PARAMS+=( --disable-coding-style-checks --disable-Werror )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( eds 'networkmanager connectivity nm' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( spell webkit )
 
