@@ -19,7 +19,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.24.0]
         dev-libs/libffi[>=3.0]
-        cario? ( dev-python/pycairo[>=1.2.0] )
+        cairo? ( dev-python/pycairo[>=1.2.0] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.10.2] )
 "
 
