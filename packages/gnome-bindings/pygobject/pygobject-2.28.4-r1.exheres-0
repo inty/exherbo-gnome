@@ -9,7 +9,8 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="LGPL-2.1"
 SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="doc cairo gobject-introspection"
+MYOPTIONS="doc cairo
+gobject-introspection [[ requires = [ cairo ] ]]"
 
 DEPENDENCIES="
     build:
