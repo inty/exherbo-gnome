@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gsettings gtk-icon-cache
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A VNC client for the GNOME desktop"
 
@@ -30,6 +29,7 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0[>=2.6.31]
         dev-libs/libpeas:1.0[>=0.7.2]
         dev-libs/gtk-vnc:2.0[>=0.4.3]
+        gnome-desktop/gnome-icon-theme[>=2.30]
         gnome-desktop/gobject-introspection[>=0.9.3] [[ note = [ this should be made optional ] ]]
         applet? ( gnome-desktop/gnome-panel:4.0 )
         avahi? ( net-dns/avahi[>=0.6.26][gtk3] )
@@ -43,22 +43,9 @@ DEPENDENCIES="
         ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/vinagre-3.0.0-fix-ssh-plugin-build.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-introspection' ) # FIXME: vinagre does not start otherwise
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'applet panelapplet' avahi telepathy )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( rdp spice ssh )
-
-src_prepare() {
-    edo sed -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
-            -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
-            -i "${WORK}/configure.ac"
-    edo sed -e 's/MAINTAINER_MODE/FALSE/' -i "${WORK}/Makefile.am"
-
-    edo gnome-doc-prepare --automake --copy
-
-    autotools_src_prepare
-}
 
 src_install() {
     gsettings_src_install
