@@ -1,0 +1,41 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="GTK+ based keyring"
+
+LICENCES="GPL-2"
+SLOT="1"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="caps gtk-doc pam
+    caps [[
+        description = [ Enable Linux capabilities to prevent the keyring's memory from being paged to swap ]
+    ]]
+    pam [[ description = [ Install a PAM module to unlock the keyring on login ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.18]
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        dev-libs/glib:2[>=2.25.0]
+        x11-libs/gtk+:3[>=2.90.0]
+        sys-apps/dbus[>=1.0]
+        dev-libs/libgcrypt[>=1.2.2]
+        dev-libs/libtasn1[>=0.3.4]
+        caps? ( sys-libs/libcap-ng )
+        pam? ( sys-libs/pam )
+"
+
+RESTRICT="test" # requires X
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-optionalise-libcap-ng-check.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' '--enable-gpg-agent'
+                               '--disable-tests' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam gtk-doc )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'caps libcap-ng' "pam pam-dir /${LIBDIR}/security" )
+
