@@ -78,6 +78,9 @@ DEPENDENCIES="
         gnome-desktop/network-manager-applet [[
             description = [ The native network applet requires nm-applet's secrets service ]
         ]]
+        gnome-desktop/gnome-shell-extensions [[
+            description = [ Extensions to modify and extend GNOME Shell functionality and behavior ]
+        ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
