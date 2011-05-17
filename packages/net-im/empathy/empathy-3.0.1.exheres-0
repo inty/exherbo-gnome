@@ -10,10 +10,13 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
-    eds    [[ description = [ use evolution-data-server for salut ] ]]
+    eds             [[ description = [ use evolution-data-server for salut ] ]]
+    geolocation     [[ description = [ Displays your buddies on a map and transmit your position, for
+                                       now just the display part ] ]]
+    nautilus-sendto [[ description = [ Build plugin for nautilus-sendto ] ]]
     networkmanager
     spell
-    webkit [[ description = [ add support for adium themes ] ]]
+    webkit          [[ description = [ add support for adium themes ] ]]
 "
 
 DEPENDENCIES="
@@ -44,6 +47,9 @@ DEPENDENCIES="
         x11-libs/libnotify[>=0.7.0]
         gnome-desktop/gnome-control-center[>=2.90.1]
         eds? ( gnome-desktop/evolution-data-server:1.2 )
+        geolocation? ( base/clutter-gtk:1.0
+                       x11-libs/libchamplain:0.10 )
+        nautilus-sendto? ( gnome-desktop/nautilus-sendto[>=2.90] )
         networkmanager? ( net-apps/NetworkManager[>=0.7.0] )
         spell? ( app-spell/enchant[>=1.2.0]
                  app-text/iso-codes[>=0.35] )
@@ -54,10 +60,14 @@ DEPENDENCIES="
         net-im/telepathy-salut
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-map --disable-location --disable-meego
-                               --disable-nautilus-sendto
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-location --disable-meego
                                '--enable-control-center-embedding' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( eds 'networkmanager connectivity nm' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'eds'
+    'geolocation map'
+    'nautilus-sendto'
+    'networkmanager connectivity nm'
+)
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( spell webkit )
 
 pkg_postinst() {
