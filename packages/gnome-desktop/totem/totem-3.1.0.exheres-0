@@ -49,6 +49,10 @@ DEPENDENCIES="
         python? ( dev-lang/python:*[>=2.3]
                   gnome-bindings/pygobject:2[>=2.27.0] )
         tracker? ( app-pim/tracker:0.10[>=0.9.34] )
+    recommendation:
+        gnome-desktop/gnome-icon-theme-symbolic [[
+            description = [ Icons for the Buttons ]
+        ]]
 "
 
 # coherence_upnp
