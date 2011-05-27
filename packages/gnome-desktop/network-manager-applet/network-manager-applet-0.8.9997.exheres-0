@@ -32,8 +32,3 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( bluetooth )
 
-src_prepare() {
-    autotools_src_prepare
-    edo intltoolize --force
-}
-
