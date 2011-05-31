@@ -13,12 +13,16 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
+        dev-util/intltool
         dev-util/pkg-config[>=0.16]
+        sys-devel/gettext
     build+run:
-        gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
-        gnome-bindings/pygobject:2[>=2.27.91]
+        gnome-desktop/gsettings-desktop-schemas[>=2.91.92]
+        gnome-bindings/pygobject:2[>=2.28.0]
         gnome-platform/GConf[gobject-introspection]
     run:
+        gnome-desktop/gnome-shell
+        gnome-desktop/gobject-introspection[>=0.10.8]
         x11-libs/gtk+:3[gobject-introspection]
     suggestion:
         gnome-desktop/gnome-shell-extensions [[
