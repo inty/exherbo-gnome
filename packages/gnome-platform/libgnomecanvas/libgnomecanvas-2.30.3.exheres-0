@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org multilib
+require gnome.org
 
 SUMMARY="[DEPRECATED] gnome canvas"
 HOMEPAGE="http://www.gnome.org/"
@@ -33,7 +33,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'glade' )
 src_install() {
     default
     if ! option glade ; then
-        edo rmdir "${IMAGE}/usr/$(get_libdir)/libglade/2.0"
-        edo rmdir "${IMAGE}/usr/$(get_libdir)/libglade"
+        edo rmdir "${IMAGE}/usr/${LIBDIR}/libglade/2.0"
+        edo rmdir "${IMAGE}/usr/${LIBDIR}/libglade"
     fi
 }
