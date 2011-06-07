@@ -8,8 +8,7 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="doc gobject-introspection
 pango [[ description = [ use pango for the font backend (experimental) ] ]]
 spell
-webgl [[ description = [ add support for WebGL (experimental) ] ]]
-wml [[ description = [ add support for WML (experimental) ] ]]"
+webgl [[ description = [ add support for WebGL (experimental) ] ]]"
 
 DEPENDENCIES="
     build:
@@ -42,13 +41,10 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 src_configure() {
-    local font_backend=$(optionv pango || echo freetype)
-
-    econf '--with-gtk=3.0'                                      \
-          "--with-font-backend=${font_backend}"                 \
-          $(option_enable doc gtk-doc)                          \
-          $(option_enable gobject-introspection introspection)  \
-          $(option_enable webgl)                                \
-          $(option_enable wml)
+    econf '--with-gtk=3.0'                                        \
+          "--with-font-backend=$(optionv pango || echo freetype)" \
+          $(option_enable doc gtk-doc)                            \
+          $(option_enable gobject-introspection introspection)    \
+          $(option_enable webgl)
 }
 
