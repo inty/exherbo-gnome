@@ -19,7 +19,6 @@ Supported chat networks:
   * IRC
   * MSN
   * MySpaceIM
-  * QQ
   * SILC
   * SIMPLE
   * Sametime
@@ -73,7 +72,7 @@ DEPENDENCIES="
         sys-devel/gettext
         gtk? ( x11-proto/scrnsaverproto )
     build+run:
-        dev-libs/glib:2[>=2.12.0]
+        dev-libs/glib:2[>=2.16.0]
         dev-libs/libxml2
         net-dns/libidn
         gtk? (
