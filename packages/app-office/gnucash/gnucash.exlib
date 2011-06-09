@@ -25,8 +25,8 @@ SLOT="0"
 LICENCES="GPL-2"
 
 MYOPTIONS="debug examples ofx
-    chipcard [[ description = [ Enable support for chipcard reading and processing ] ]]
-    hbci     [[ description = [ Enable HBCI/AqBanking support, for connecting to some internet banks ] ]]
+    chipcard  [[ description = [ Enable support for chipcard reading and processing ] ]]
+    aqbanking [[ description = [ Enable HBCI/AqBanking support, for connecting to some internet banks ] ]]
 "
 
 DEPENDENCIES="
@@ -48,7 +48,7 @@ DEPENDENCIES="
         office-libs/libgsf[>=1.14.11]
         x11-libs/gtk+[>=2.16.0]
         x11-libs/pango[>=1.24.0]
-        hbci? (
+        aqbanking? (
             dev-libs/aqbanking[>=3.8.2] [[ description = [ qt3 support must be enabled ] ]]
             chipcard? ( dev-libs/libchipcard[>=4.2.7] )
         )
@@ -76,7 +76,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debug
-    hbci
+    aqbanking
     ofx
 )
 
