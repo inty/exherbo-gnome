@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 multilib
+require gnome-2
 
 SUMMARY="GTK+ based keyring"
 HOMEPAGE="http://www.gnome.org/"
@@ -30,5 +30,5 @@ RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "pam pam-dir /$(get_libdir)/security" )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "pam pam-dir /${LIBDIR}/security" )
 
