@@ -1,6 +1,7 @@
 [Unit]
 Description=Display Manager
 Conflicts=kdm.service lxdm.service slim.service xdm.service
+After=getty.target
 
 [Service]
 ExecStart=/usr/sbin/gdm-binary --no-daemon
