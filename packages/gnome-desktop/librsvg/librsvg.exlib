@@ -32,7 +32,7 @@ DEPENDENCIES="
 "
 
 if ever at_least 2.34.0 ; then
-    DEPENDENCIES="
+    DEPENDENCIES+="
         build+run:
             x11-libs/gtk+:3[>=2.90.0] [[
                 note = [ we do really depend on both gtk+:2 and gtk+:3 ]
@@ -42,9 +42,8 @@ fi
 
 REMOTE_IDS="sourceforge:${PN}"
 
-DEFAULTS_SRC_PREPARE_PARAMS=( --disable-tools --with-croco )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-tools --with-croco )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc )
-
 
 src_install() {
     default
