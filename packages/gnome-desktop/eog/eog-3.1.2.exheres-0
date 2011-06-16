@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gsettings gtk-icon-cache freedesktop-desktop
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-desktop
 
 SUMMARY="Image Viewer"
 HOMEPAGE="http://projects.gnome.org/eog"
@@ -9,7 +9,7 @@ HOMEPAGE="http://projects.gnome.org/eog"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="dbus exif gobject-introspection gtk-doc svg" # lcms
+MYOPTIONS="exif gobject-introspection gtk-doc svg" # lcms
 
 DEPENDENCIES="
     build:
@@ -20,14 +20,13 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         x11-libs/gtk+:3[>=3.0.2]
-        dev-libs/glib:2[>=2.25.15]
+        dev-libs/glib:2[>=2.29.4]
         gnome-desktop/gnome-desktop:3.0[>=2.91.2]
         gnome-desktop/gnome-icon-theme[>=2.19.1]
         x11-misc/shared-mime-info[>=0.20]
         gnome-desktop/gsettings-desktop-schemas[>=2.91.92]
         dev-libs/libpeas:1.0[>=0.7.4]
         dev-libs/libxml2:2.0[>=2.0]
-        dbus? ( dev-libs/dbus-glib:1[>=0.71] )
         exif? ( media-libs/libexif[>=0.6.14] )
         svg? ( gnome-desktop/librsvg[>=2.26.0] )
         !gnome-desktop/eog:3.0[<=3.0.0] [[
@@ -39,7 +38,7 @@ DEPENDENCIES="
 #        media-libs/jpeg[>=8]
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --without-xmp )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'dbus' 'exif libexif' 'svg librsvg' ) # 'lcms cms'
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'exif libexif' 'svg librsvg' ) # 'lcms cms'
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
 pkg_postrm() {
