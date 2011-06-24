@@ -41,7 +41,7 @@ src_install() {
     default
 
     # Remove empty directories -- needs docbook2man
-    edo rmdir "${IMAGE}"/usr/share/man/{man1,}
+    has_version app-text/docbook-utils || edo rmdir "${IMAGE}"/usr/share/man/{man1,}
 }
 
 pkg_postrm() {
