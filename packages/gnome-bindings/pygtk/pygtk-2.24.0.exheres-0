@@ -1,0 +1,51 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require python gnome.org
+
+SUMMARY="Python bindings for GTK+"
+HOMEPAGE="http://www.pygtk.org"
+
+LICENCES="LGPL-2.1"
+SLOT="2"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="doc glade"
+
+REMOTE_IDS="freshmeat:pygtk pypi:pygtk"
+UPSTREAM_CHANGELOG="http://svn.gnome.org/svn/pygtk/trunk/ChangeLog [[ lang = en ]]"
+UPSTREAM_DOCUMENTATION="
+    ${HOMEPAGE}/tutorial.html [[ lang = en description = [ Tutorial ] ]]
+    http://live.gnome.org/PyGTK/QuickStart [[ lang = en description = [ Quickstart Guide ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/python:=[>=2.3.5]
+        dev-libs/glib:2[>=2.8]
+        gnome-bindings/pygobject:2[>=2.21]
+        dev-libs/atk[>=1.12.0]
+        x11-libs/pango[>=1.16]
+        dev-python/pycairo[>=1.1.7] [[ note = [ Automagic. Needs patch to optionalize ] ]]
+        x11-libs/gtk+:2[>=2.24]
+        glade? ( gnome-platform/libglade[>=2.5] )
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( dev-libs/libxslt )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-numpy )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( glade )
+
+RESTRICT="test"
+
+src_compile() {
+    python_disable_pyc
+    default
+}
+
+src_install() {
+    default
+    python_bytecompile
+}
+
