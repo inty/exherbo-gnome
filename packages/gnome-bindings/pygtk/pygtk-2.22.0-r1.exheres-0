@@ -26,7 +26,7 @@ DEPENDENCIES="
         dev-libs/atk[>=1.12.0]
         x11-libs/pango[>=1.16]
         dev-python/pycairo[>=1.1.7] [[ note = [ Automagic. Needs patch to optionalize ] ]]
-        x11-libs/gtk+:2[>=2.14]
+        x11-libs/gtk+:2[>=2.22]
         gnome-platform/libglade[>=2.5] [[ note = [ Automagic. Needs patch to optionalize ] ]]
     build:
         dev-util/pkg-config[>=0.20]
