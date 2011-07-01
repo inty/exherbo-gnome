@@ -72,7 +72,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-tweak-tool [[
             description = [ Provides a tool for changing themes ]
         ]]
-        net-apps/NetworkManager[>=0.8.996][gobject-introspection] [[
+        net-apps/NetworkManager[>=0.8.999][gobject-introspection] [[
             description = [ Required for the network applet ]
         ]]
         gnome-desktop/network-manager-applet [[
