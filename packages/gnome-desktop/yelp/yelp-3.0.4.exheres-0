@@ -1,7 +1,7 @@
 # Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose Licence v2
 
-require gnome.org gsettings
+require gnome.org [ suffix=.tar.xz ] gsettings
 
 SUMMARY="Help browser for the GNOME desktop"
 HOMEPAGE="http://projects.gnome.org/yelp"
