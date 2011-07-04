@@ -13,7 +13,7 @@ MYOPTIONS="gobject-introspection gtk-doc"
 
 DEPENDENCIES="
     build:
-        dev-util/intltool[>=0.40.0]
+        dev-util/intltool[>=0.40.6]
         dev-util/pkg-config[>=0.18]
         gnome-desktop/gnome-doc-utils[>=0.1.3]
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
