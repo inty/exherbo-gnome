@@ -46,9 +46,11 @@ src_install() {
     exeinto /etc/X11/xinit/xinitrc.d/
     doexe "${FILES}/50-libcanberra"
 
-    option !gtk && option !gtk3 && rmdir \
-        "${IMAGE}"/usr/bin \
+    option !gtk && option !gtk3 && edo rmdir \
         "${IMAGE}"/usr/share/gdm/{autostart/LoginWindow,autostart,} \
-        "${IMAGE}"/usr/share/gnome/{autostart,shutdown,}
+        "${IMAGE}"/usr/share/gnome/{autostart,shutdown,} \
+        "${IMAGE}"/usr/${LIBDIR}/gnome-settings-daemon-3.0/{gtk-modules,}
+    option !gtk && option !gtk3 && option !systemd && edo rmdir \
+        "${IMAGE}"/usr/bin
 }
 
