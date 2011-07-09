@@ -10,7 +10,10 @@ DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
 LICENCES="LGPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="alsa doc gstreamer gtk gtk3 pulseaudio systemd"
+MYOPTIONS="
+    alsa doc gstreamer gtk gtk3 pulseaudio systemd
+    systemd [[ description = [ Adds systemd services to play sounds on bootup, shutdown or reboot ] requires = alsa ]]
+"
 
 DEPENDENCIES="
     build:
