@@ -1,0 +1,60 @@
+From 1886d3d0573388aa5c13af99f714687ba6a66ec6 Mon Sep 17 00:00:00 2001
+From: Milan Crha <mcrha@redhat.com>
+Date: Wed, 01 Jun 2011 05:22:14 +0000
+Subject: Replace deprecated g_atomic_int_exchange_and_add()
+
+---
+diff --git a/addressbook/libedata-book/e-data-book-factory.c b/addressbook/libedata-book/e-data-book-factory.c
+index a70e5bf..bcb88c3 100644
+--- a/addressbook/libedata-book/e-data-book-factory.c
++++ b/addressbook/libedata-book/e-data-book-factory.c
+@@ -235,7 +235,7 @@ construct_book_factory_path (void)
+ 
+ 	return g_strdup_printf (
+ 		"/org/gnome/evolution/dataserver/AddressBook/%d/%u",
+-		getpid (), g_atomic_int_exchange_and_add (&counter, 1));
++		getpid (), g_atomic_int_add (&counter, 1));
+ }
+ 
+ static gboolean
+diff --git a/addressbook/libedata-book/e-data-book.c b/addressbook/libedata-book/e-data-book.c
+index 9e17703..1a29e4b 100644
+--- a/addressbook/libedata-book/e-data-book.c
++++ b/addressbook/libedata-book/e-data-book.c
+@@ -117,7 +117,7 @@ construct_bookview_path (void)
+ 
+ 	return g_strdup_printf ("/org/gnome/evolution/dataserver/AddressBookView/%d/%d",
+ 				getpid (),
+-				g_atomic_int_exchange_and_add ((int*)&counter, 1));
++				g_atomic_int_add ((int*)&counter, 1));
+ }
+ 
+ static void
+diff --git a/calendar/libedata-cal/e-data-cal-factory.c b/calendar/libedata-cal/e-data-cal-factory.c
+index 4dc83f0..49597fc 100644
+--- a/calendar/libedata-cal/e-data-cal-factory.c
++++ b/calendar/libedata-cal/e-data-cal-factory.c
+@@ -250,7 +250,7 @@ construct_cal_factory_path (void)
+ 
+ 	return g_strdup_printf (
+ 		"/org/gnome/evolution/dataserver/Calendar/%d/%u",
+-		getpid (), g_atomic_int_exchange_and_add (&counter, 1));
++		getpid (), g_atomic_int_add (&counter, 1));
+ }
+ 
+ static gboolean
+diff --git a/camel/camel-operation.c b/camel/camel-operation.c
+index b89bc5a..039faa5 100644
+--- a/camel/camel-operation.c
++++ b/camel/camel-operation.c
+@@ -98,7 +98,7 @@ status_node_unref (StatusNode *node)
+ 	g_return_if_fail (node != NULL);
+ 	g_return_if_fail (node->ref_count > 0);
+ 
+-	if (g_atomic_int_exchange_and_add (&node->ref_count, -1) > 1)
++	if (g_atomic_int_add (&node->ref_count, -1) > 1)
+ 		return;
+ 
+ 	if (node->operation != NULL)
+--
+cgit v0.9
