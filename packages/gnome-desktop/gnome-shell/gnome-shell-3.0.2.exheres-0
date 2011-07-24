@@ -83,10 +83,10 @@ DEPENDENCIES="
         ]]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --enable-introspection
-    --disable-jhbuild-wrapper-script
-)
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/22ef63cc44dca76c625e529951b5a10e397a1950.patch"
+                              "${FILES}/af51e8df7b9ce8a00e533e6b3c61d92580ff6e3e.patch" )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-introspection' '--disable-jhbuild-wrapper-script' )
 
 src_install() {
     export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
