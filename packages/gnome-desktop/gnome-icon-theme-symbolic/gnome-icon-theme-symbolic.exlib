@@ -1,0 +1,16 @@
+# Copyright 2011 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gtk-icon-cache
+
+SUMMARY="GNOME Symbolic Icons"
+DESCRIPTION="
+Purpose of this icon theme is to extend the base icon theme that follows the
+Tango style guidelines for specific purposes. This would include OSD messages,
+panel system/notification area, and possibly menu icons.
+
+Icons follow the naming specification, but have a -symbolic suffix, so only
+applications specifically looking up these symbolic icons will render them. If
+a -symbolic icon is missing, the app will fall back to the regular name.
+"
+
