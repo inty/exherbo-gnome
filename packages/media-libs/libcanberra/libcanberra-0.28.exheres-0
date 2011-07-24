@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome-2
+require gconf
 
 SUMMARY="XDG Sound Theme and Name Specification Implementation"
 HOMEPAGE="http://0pointer.de/lennart/projects/${PN}"
@@ -41,7 +41,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa 'doc gtk-doc' 'doc gtk-doc-html' gtk
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( "systemd systemdsystemunitdir /${LIBDIR}/systemd/system" )
 
 src_install() {
-    default
+    gconf_src_install
 
     exeinto /etc/X11/xinit/xinitrc.d/
     doexe "${FILES}/50-libcanberra"
