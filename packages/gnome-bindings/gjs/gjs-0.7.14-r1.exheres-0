@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="JavaScript bindings for GNOME"
 HOMEPAGE="http://www.gnome.org"
@@ -27,7 +27,8 @@ DEPENDENCIES="
         dev-lang/python:* [[ note = [ required to build tests ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch
+                              "${FILES}/${PNV}-xulrunner-5.patch" )
 
 src_test() {
     unset DBUS_SESSION_BUS_ADDRESS
