@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require bash-completion gnome.org gsettings
+require bash-completion gnome.org [ suffix=.tar.xz ] gsettings
 
 SUMMARY="VFS interfaces for GTK+"
 HOMEPAGE="http://www.gnome.org/"
@@ -46,7 +46,7 @@ DEPENDENCIES="
         http? ( gnome-desktop/libsoup:2.4[>=2.26][gconf(-)] )
         keyring? ( gnome-desktop/gnome-keyring:1 )
         monitor? ( dev-libs/expat
-                   gnome-desktop/gnome-disk-utility[>=2.29.0] )
+                   gnome-desktop/gnome-disk-utility[>=3.0.2] )
         samba? ( net-fs/samba[>=3.0.22] )
 "
 
