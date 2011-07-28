@@ -19,17 +19,18 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
     build+run:
-        x11-libs/startup-notification[>=0.5]
         x11-libs/libX11
         x11-libs/libXrandr[>=1.2]
         x11-libs/gdk-pixbuf:2.0[>=2.21.3]
         x11-libs/gtk+:3[>=3.0]
         dev-libs/glib:2[>=2.19.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.4]
+        x11-libs/libXext[>=1.2]
+    run:
+        sys-apps/pnp-data
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo' )
-
-#DEFAULT_SRC_CONFIGURE_PARAMS+=( '--with-pnp-ids-path=/usr/share/misc' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gnome-distributor=exherbo'
+                               '--with-pnp-ids-path=/usr/share/misc' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' 'gtk-doc' )
 
