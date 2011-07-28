@@ -14,10 +14,8 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
-        x11-proto/xproto[>=7.0.15]
     build+run:
         dev-libs/glib:2[>=2.25.9]
-        media-libs/libcanberra[gtk3][>=0.10]
         x11-libs/gtk+:3[>=2.91.7]
         gnome-desktop/gnome-keyring:1[>=0.6.0]
         x11-libs/cairo[>=1.0.0]
