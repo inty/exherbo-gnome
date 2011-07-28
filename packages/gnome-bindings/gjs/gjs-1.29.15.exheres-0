@@ -1,0 +1,38 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+
+SUMMARY="JavaScript bindings for GNOME"
+HOMEPAGE="http://www.gnome.org"
+
+LICENCES="MIT || ( MPL-1.1 LGPL-2 GPL-2 )"
+SLOT="1"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.20]
+    build+run:
+        dev-libs/glib:2[>=2.18.0]
+        dev-libs/xulrunner[>=2.0] [[ note = [ require 2.0 instead of 1.9.2 to prevent breakage ] ]]
+        gnome-desktop/gobject-introspection[>=1.29.15]
+        x11-libs/cairo
+        dev-libs/dbus-glib:1
+        sys-apps/dbus
+        sys-libs/readline
+    test:
+        dev-lang/python:* [[ note = [ required to build tests ] ]]
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch )
+
+src_test() {
+    unset DBUS_SESSION_BUS_ADDRESS
+    unset DISPLAY
+    esandbox allow_net 'unix-abstract:/tmp/dbus-root-*'
+    default
+    esandbox disallow_net 'unix-abstract:/tmp/dbus-root-*'
+}
