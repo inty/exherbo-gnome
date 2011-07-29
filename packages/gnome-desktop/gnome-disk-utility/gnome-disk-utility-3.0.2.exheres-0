@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gtk-icon-cache
 
 SUMMARY="Disk Utility for GNOME"
 HOMEPAGE="http://www.gnome.org/"
