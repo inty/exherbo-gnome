@@ -60,7 +60,7 @@ DEPENDENCIES="
 #            x11-libs/mx:1.0
 #        )
 
-AT_M4DIR=m4
+AT_M4DIR=( m4 )
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0001-Fix-build-error-when-enabling-kerberos-without-speci.patch )
 
