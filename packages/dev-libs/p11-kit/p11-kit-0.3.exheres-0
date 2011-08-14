@@ -1,0 +1,20 @@
+# Copyright 2011 saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="PKCS#11 crypto framework for multiple consumers"
+HOMEPAGE="http://p11-glue.freedesktop.org/p11-kit.html"
+DOWNLOADS="http://p11-glue.freedesktop.org/releases/${PNVR}.tar.gz"
+
+LICENCES="BSD-3"
+SLOT="1"
+PLATFORMS="~x86"
+MYOPTIONS="gtk-doc"
+
+DEPENDENCIES="
+    build:
+        gtk-doc? ( dev-doc/gtk-doc[>=1.15] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' )
+
+
