@@ -10,14 +10,13 @@ LICENCES="GPL-2"
 SLOT="1.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
-    bluetooth brasero chapters doc gobject-introspection media-player-keys
-    nautilus python tracker
-
-    bluetooth [[ description = [ Build bemused plugin ] ]]
-    brasero [[ description = [ Build brasero plugin ] ]]
-    chapters [[ description = [ Build chapters plugin ] ]]
-    media-player-keys [[ description = [ Build media-player-keys plugin ] ]]
-    python [[ description = [ Add support for plugins written in Python ] ]]
+    bluetooth [[ description = [ build bluetooth control plugin ] ]]
+    brasero [[ description = [ build CD authoring plugin ] ]]
+    chapters [[ description = [ build DVD chapter plugin ] ]]
+    doc gobject-introspection
+    media-player-keys [[ description = [ build media keys control plugin ] ]]
+    nautilus
+    python [[ description = [ add support for plugins written in python ] ]]
 "
 
 DEPENDENCIES="
@@ -30,10 +29,10 @@ DEPENDENCIES="
     build+run:
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
-        media-plugins/gst-plugins-good:0.10[gstreamer_plugins:gconf]
+        media-plugins/gst-plugins-good:0.10
         x11-libs/clutter:1[>=1.6.8]
         base/clutter-gst:1.0[>=1.3.9]
-        base/clutter-gtk:1.0
+        base/clutter-gtk:1.0[>=1.0.2]
         x11-libs/gtk+:3[>=2.99.3]
         dev-libs/glib:2[>=2.27.92]
         gnome-desktop/totem-pl-parser[>=2.32.4]
@@ -41,25 +40,24 @@ DEPENDENCIES="
         gnome-desktop/gnome-icon-theme[>=2.15.90]
         x11-libs/libX11
         x11-libs/libXtst
-        dev-libs/libpeas:1.0[>=0.7.2][python?]
+        ( x11-libs/libSM
+          x11-libs/libICE ) [[ note = [ for x11 (xsmp) smclient backend ] ]]
+        dev-libs/libpeas:1.0[>=1.1.0][python?]
         bluetooth? ( net-wireless/bluez )
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
                   gnome-bindings/pygobject:2[>=2.27.0] )
-        tracker? ( app-pim/tracker:0.10[>=0.9.34] )
     recommendation:
-        gnome-desktop/gnome-icon-theme-symbolic [[
-            description = [ Icons for the Buttons ]
-        ]]
+        gnome-desktop/gnome-icon-theme-symbolic [[ description = [ icons for the buttons ] ]]
 "
 
-# coherence_upnp
+# grilo -- grilo:0.1[>=0.1.16]
 # lirc
 # opensubtitles
 # publish
-# youtube -- needs http://live.gnome.org/libgdata >= 0.40
+# youtube -- gnome-desktop/libgdata[>= 0.9.1]
 # zeitgeist-dp
 
 src_configure() {
@@ -76,7 +74,6 @@ src_configure() {
 
     pythonplugins+=dbusservice
     pythonplugins+=,iplayer
-    pythonplugins+=,jamendo
     pythonplugins+=,opensubtitles
     pythonplugins+=,pythonconsole
 
@@ -86,7 +83,6 @@ src_configure() {
     option media-player-keys    && plugins+=,media-player-keys
     option nautilus             && plugins+=,save-file
     option python               && plugins+=,${pythonplugins}
-    option tracker              && plugins+=,tracker
 
     unset DISPLAY
     unset DBUS_SESSION_BUS_ADDRESS
