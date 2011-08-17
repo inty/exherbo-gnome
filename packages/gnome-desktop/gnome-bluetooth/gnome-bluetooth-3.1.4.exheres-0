@@ -22,13 +22,13 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.74]
         dev-libs/glib:2[>=2.25.7]
         x11-libs/gtk+:3[>=2.91.3]
-        gnome-desktop/gnome-control-center[>=2.90.1]
         ( x11-libs/libXi
           x11-libs/libX11 ) [[ note = [ for the input helper ] ]]
         x11-libs/libnotify[>=0.7.0]
     run:
         group/plugdev [[ note = [ for rfkill udev rules ] ]]
         net-wireless/bluez[>=4.36]
+        gnome-desktop/gnome-control-center[>=2.90.1] [[ note = [ dependency resolved at run time ] ]]
     recommendation:
         net-wireless/obexd [[ description = [ Required for bluetooth-sendto ] ]]
 "
