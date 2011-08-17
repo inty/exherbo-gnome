@@ -26,6 +26,7 @@ DEPENDENCIES="
 
 RESTRICT="test" # network violations
 
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--without-ntlm-auth' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gconf gnome' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
