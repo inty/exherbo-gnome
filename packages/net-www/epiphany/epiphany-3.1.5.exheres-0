@@ -21,7 +21,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
-        dev-libs/glib:2[>=2.29.9]
+        dev-libs/glib:2[>=2.29.10]
         x11-libs/gtk+:3[>=3.0.2]
         x11-libs/libICE
         x11-libs/libX11
@@ -37,8 +37,9 @@ DEPENDENCIES="
         nss? ( dev-libs/nss )
     run:
         gnome-desktop/gnome-icon-theme
+        gnome-desktop/gnome-icon-theme-symbolic
     suggestion:
-        net-apps/NetworkManager
+        net-apps/NetworkManager[>=0.8.9997]
         net-plugins/epiphany-extensions[>=2.27]
 "
 
