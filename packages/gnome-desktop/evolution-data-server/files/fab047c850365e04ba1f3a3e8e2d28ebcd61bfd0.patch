@@ -1,0 +1,105 @@
+From fab047c850365e04ba1f3a3e8e2d28ebcd61bfd0 Mon Sep 17 00:00:00 2001
+From: Matthew Barnes <mbarnes@redhat.com>
+Date: Wed, 01 Jun 2011 10:12:43 +0000
+Subject: Fix build breaks.
+
+Upstream: yes
+---
+diff --git a/addressbook/libedata-book/e-data-book-factory.c b/addressbook/libedata-book/e-data-book-factory.c
+index 812a26f..e041e81 100644
+--- a/addressbook/libedata-book/e-data-book-factory.c
++++ b/addressbook/libedata-book/e-data-book-factory.c
+@@ -233,9 +233,11 @@ construct_book_factory_path (void)
+ {
+ 	static volatile gint counter = 1;
+ 
++	g_atomic_int_inc (&counter);
++
+ 	return g_strdup_printf (
+ 		"/org/gnome/evolution/dataserver/AddressBook/%d/%u",
+-		getpid (), g_atomic_int_add (&counter, 1));
++		getpid (), counter);
+ }
+ 
+ static gboolean
+diff --git a/addressbook/libedata-book/e-data-book.c b/addressbook/libedata-book/e-data-book.c
+index 604af94..eae7a08 100644
+--- a/addressbook/libedata-book/e-data-book.c
++++ b/addressbook/libedata-book/e-data-book.c
+@@ -113,11 +113,13 @@ typedef struct {
+ static gchar *
+ construct_bookview_path (void)
+ {
+-	static volatile guint counter = 1;
++	static volatile gint counter = 1;
+ 
+-	return g_strdup_printf ("/org/gnome/evolution/dataserver/AddressBookView/%d/%d",
+-				getpid (),
+-				g_atomic_int_add ((int*)&counter, 1));
++	g_atomic_int_inc (&counter);
++
++	return g_strdup_printf (
++		"/org/gnome/evolution/dataserver/AddressBookView/%d/%d",
++		getpid (), counter);
+ }
+ 
+ static void
+diff --git a/calendar/libedata-cal/e-data-cal-factory.c b/calendar/libedata-cal/e-data-cal-factory.c
+index aae1683..b2ad2fc 100644
+--- a/calendar/libedata-cal/e-data-cal-factory.c
++++ b/calendar/libedata-cal/e-data-cal-factory.c
+@@ -248,9 +248,11 @@ construct_cal_factory_path (void)
+ {
+ 	static volatile gint counter = 1;
+ 
++	g_atomic_int_inc (&counter);
++
+ 	return g_strdup_printf (
+ 		"/org/gnome/evolution/dataserver/Calendar/%d/%u",
+-		getpid (), g_atomic_int_add (&counter, 1));
++		getpid (), counter);
+ }
+ 
+ static gboolean
+diff --git a/camel/camel-operation.c b/camel/camel-operation.c
+index 039faa5..35dfd52 100644
+--- a/camel/camel-operation.c
++++ b/camel/camel-operation.c
+@@ -87,7 +87,7 @@ status_node_ref (StatusNode *node)
+ 	g_return_val_if_fail (node != NULL, NULL);
+ 	g_return_val_if_fail (node->ref_count > 0, node);
+ 
+-	g_atomic_int_add (&node->ref_count, 1);
++	g_atomic_int_inc (&node->ref_count);
+ 
+ 	return node;
+ }
+@@ -98,18 +98,18 @@ status_node_unref (StatusNode *node)
+ 	g_return_if_fail (node != NULL);
+ 	g_return_if_fail (node->ref_count > 0);
+ 
+-	if (g_atomic_int_add (&node->ref_count, -1) > 1)
+-		return;
++	if (g_atomic_int_dec_and_test (&node->ref_count)) {
+ 
+-	if (node->operation != NULL)
+-		g_object_unref (node->operation);
++		if (node->operation != NULL)
++			g_object_unref (node->operation);
+ 
+-	if (node->source_id > 0)
+-		g_source_remove (node->source_id);
++		if (node->source_id > 0)
++			g_source_remove (node->source_id);
+ 
+-	g_free (node->message);
++		g_free (node->message);
+ 
+-	g_slice_free (StatusNode, node);
++		g_slice_free (StatusNode, node);
++	}
+ }
+ 
+ static gboolean
+--
+cgit v0.9.0.2

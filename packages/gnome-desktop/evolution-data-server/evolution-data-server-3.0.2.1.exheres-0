@@ -50,7 +50,8 @@ DEPENDENCIES="
 AT_M4DIR=( m4 )
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-Fix-build-error-when-enabling-kerberos-without-speci.patch"
-                              "${FILES}/1886d3d0573388aa5c13af99f714687ba6a66ec6.patch" )
+                              "${FILES}/1886d3d0573388aa5c13af99f714687ba6a66ec6.patch"
+                              "${FILES}/fab047c850365e04ba1f3a3e8e2d28ebcd61bfd0.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ipv6=yes' '--enable-largefile' '--enable-nntp'
                                '--enable-ssl' '--enable-smime' '--without-sunldap' )
