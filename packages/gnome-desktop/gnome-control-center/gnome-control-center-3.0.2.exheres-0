@@ -53,6 +53,8 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}"-fix-cups.patch )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' 'networkmanager network-manager' )
