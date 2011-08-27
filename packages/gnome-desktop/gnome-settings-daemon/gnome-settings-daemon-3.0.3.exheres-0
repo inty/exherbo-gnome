@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gsettings gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
 
 SUMMARY="Settings Daemon"
 HOMEPAGE="http://www.gnome.org/"
