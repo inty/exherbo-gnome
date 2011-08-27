@@ -1,6 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require gnome.org [ suffix=.tar.xz ]
 require gnome-2
 
 SUMMARY="A panel applet to configure networking via NetworkManager"
