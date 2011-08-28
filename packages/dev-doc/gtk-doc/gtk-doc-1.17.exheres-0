@@ -17,7 +17,13 @@ UPSTEAM_DOCUMENTATION="
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="source-highlight vim
+
+    source-highlight [[ description = [ Support source highlighting using source-highlight ] ]]
+    vim [[ description = [ Support source highlighting using vim ] ]]
+
+    ( source-highlight vim ) [[ number-selected = at-most-one ]]
+"
 
 DEPENDENCIES="
     build:
@@ -30,14 +36,25 @@ DEPENDENCIES="
         dev-lang/perl:=[>=5.6]
         dev-lang/python:=[>=2.3]
         gnome-desktop/gnome-doc-utils
+        source-highlight? ( app-text/source-highlight )
+        vim? ( app-editors/vim )
     run:
         app-doc/gtk-doc-autotools[~${PV}]
     test:
         dev-libs/glib:2[>=2.6]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fixxref-vim-invocation.patch" )
 DEFAULT_SRC_TEST_PARAMS=( -j1 )
+
+src_configure() {
+    local highlighter="no"
+
+    option source-highlight && highlighter="source-highlight"
+    option vim && highlighter="vim"
+
+    econf \
+        "--with-highlight=${highlighter}"
+}
 
 src_install() {
     default
@@ -45,7 +62,7 @@ src_install() {
     # These are now provided by the gtk-doc-autotools package
     edo rm "${IMAGE}"usr/bin/{gtkdoc-rebase,gtkdocize} \
            "${IMAGE}"usr/share/aclocal/gtk-doc.m4      \
-           "${IMAGE}"usr/share/gtk-doc/data/{gtk-doc.make,gtk-doc.notmpl.make}
+           "${IMAGE}"usr/share/gtk-doc/data/gtk-doc{,.flat,.notmpl,.notmpl-flat}.make
     edo rmdir "${IMAGE}"usr/share/aclocal
 }
 
