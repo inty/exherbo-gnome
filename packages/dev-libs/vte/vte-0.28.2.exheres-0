@@ -2,7 +2,7 @@
 # Copyright (C) 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org [ suffix=.tar.xz ]
 
 SUMMARY="A terminal emulator widget"
 HOMEPAGE="http://developer.gnome.org/arch/gnome/widgets/vte.html"
