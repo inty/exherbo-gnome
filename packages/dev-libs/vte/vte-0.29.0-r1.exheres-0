@@ -3,6 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org [ suffix=.tar.xz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="A terminal emulator widget"
 HOMEPAGE="http://developer.gnome.org/arch/gnome/widgets/vte.html"
@@ -28,6 +29,8 @@ DEPENDENCIES="
             resolution = uninstall-blocked-after
         ]]
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-build-fix-library-api-versioning-information.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-deprecation' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
