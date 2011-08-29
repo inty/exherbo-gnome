@@ -38,7 +38,7 @@ DEPENDENCIES="
             note = [ automagic and crashes without introspection ]
         ]]
         gnome-desktop/gnome-desktop:3.0[>=2.90.0]
-        gnome-desktop/gnome-menus
+        gnome-desktop/gnome-menus:3.0[gobject-introspection]
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/libsoup:2.4
@@ -47,14 +47,18 @@ DEPENDENCIES="
         media-libs/libcanberra
         media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
         media-sound/pulseaudio
-        net-im/telepathy-glib[>=0.15.3][gobject-introspection]
+        net-im/telepathy-glib[>=0.15.5][gobject-introspection]
         net-im/telepathy-logger:0.2[>=0.2.4][gobject-introspection]
         sys-auth/polkit:1[>=0.100][gobject-introspection]
         x11-libs/gdk-pixbuf:2.0[gobject-introspection]
         x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
+        net-im/folks[>=0.5.2]
         x11-libs/libX11
         x11-libs/libXfixes
+        net-apps/NetworkManager[>=0.8.999][gobject-introspection]
+        gnome-desktop/gnome-keyring:1
         x11-libs/startup-notification[>=0.11]
+        base/libgee:1.0[gobject-introspection]
     run:
         sys-apps/upower[gobject-introspection]
         gnome-desktop/gnome-settings-daemon:3.0
@@ -72,9 +76,6 @@ DEPENDENCIES="
     suggestion:
         gnome-desktop/gnome-tweak-tool [[
             description = [ Provides a tool for changing themes ]
-        ]]
-        net-apps/NetworkManager[>=0.8.999][gobject-introspection] [[
-            description = [ Required for the network applet ]
         ]]
         gnome-desktop/network-manager-applet [[
             description = [ The native network applet requires nm-applet's secrets service ]
