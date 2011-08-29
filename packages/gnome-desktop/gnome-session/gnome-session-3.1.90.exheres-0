@@ -22,12 +22,12 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=2.90.7]
         dev-libs/dbus-glib:1[>=0.76]
         sys-apps/upower[>=0.9.1]
+        core/json-glib[>=0.10]
         x11-libs/libSM
         x11-libs/libICE
         x11-libs/libXext
         x11-libs/libXau
         x11-libs/libXcomposite
-        gnome-platform/GConf:2
         x11-libs/pango[X]
         x11-libs/libXtst
         x11-libs/libXrender
@@ -37,10 +37,10 @@ DEPENDENCIES="
         sys-auth/ConsoleKit
         gnome-desktop/polkit-gnome
         (
-          gnome-desktop/gnome-panel
-          gnome-desktop/metacity
-          x11-apps/notification-daemon [[ note = [ the virtual will not suffice ] ]]
-        ) [[ *description = [ Minimum requirements for the default session ] ]]
+            gnome-desktop/gnome-panel
+            gnome-desktop/metacity
+            x11-apps/notification-daemon [[ note = [ the virtual will not suffice ] ]]
+        ) [[ *description = [ minimum requirements for the default session ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docbook-docs' )
