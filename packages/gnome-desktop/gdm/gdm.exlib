@@ -1,6 +1,10 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
+if ever at_least 3.1.90 ; then
+    require gnome.org [ suffix=.tar.xz ]
+fi
+
 require gnome-2 systemd-service
 
 export_exlib_phases src_install
@@ -35,6 +39,12 @@ gdm_src_install() {
 
     if ever at_least 2.91.0 ; then
         edo rmdir "${IMAGE}"/var/lib/gdm/.config/{dconf,}
+    fi
+
+    if ever at_least 3.1.90 ; then
+        edo rmdir "${IMAGE}/var/lib/gdm/.local/share/applications"   \
+                  "${IMAGE}/var/lib/gdm/.local/share"               \
+                  "${IMAGE}/var/lib/gdm/.local"
     fi
 
     install_systemd_files
