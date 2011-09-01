@@ -1,7 +1,11 @@
 # Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License
 
-require gnome.org
+if ever at_least 3.1.90 ; then
+    require gnome.org [ suffix=.tar.xz ]
+else
+    require gnome.org
+fi
 
 export_exlib_phases src_install
 
