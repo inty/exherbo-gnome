@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gtk-icon-cache
 
 SUMMARY="Default Icon Theme for GNOME"
 HOMEPAGE="http://www.gnome.org/"
