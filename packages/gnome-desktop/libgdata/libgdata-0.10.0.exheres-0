@@ -1,0 +1,37 @@
+# Copyright © 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+
+SUMMARY="GLib-based library for accessing online service APIs using the GData protocol"
+DESCRIPTION="
+libgdata is a GLib-based library for accessing online service APIs using the
+GData protocol --- most notably, Google's services. It provides APIs to access
+the common Google services, and has full asynchronous support.
+"
+HOMEPAGE="http://live.gnome.org/libgdata"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gconf gobject-introspection gtk-doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
+    build+run:
+        dev-libs/glib:2[>=2.19.0]
+        dev-libs/libxml2:2.0
+        dev-libs/liboauth[>=0.9.4]
+        gnome-desktop/libsoup:2.4[>=2.26.1][gconf?][gobject-introspection?]
+        x11-libs/gdk-pixbuf:2.0[>=2.14] [[ note = [ automagic dependency ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gconf gnome' 'gobject-introspection introspection'
+                                       'gtk-doc' )
+
+RESTRICT="test" # requires internet connections
+
