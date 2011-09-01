@@ -23,5 +23,8 @@ DEPENDENCIES="
         x11-libs/cairo
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'build_options:recommended_tests tests' )
+src_configure() {
+    econf $(option_enable gtk-doc) \
+          $(expecting_tests --recommended && echo '--enable-tests' || echo '--disable-tests')
+}
 
