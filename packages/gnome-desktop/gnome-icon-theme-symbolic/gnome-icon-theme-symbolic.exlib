@@ -1,7 +1,13 @@
 # Copyright 2011 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gtk-icon-cache
+if ever at_least 3.1.90 ; then
+    require gnome.org [ suffix=.tar.xz ]
+else
+    require gnome.org
+fi
+
+require gtk-icon-cache
 
 SUMMARY="GNOME Symbolic Icons"
 DESCRIPTION="
