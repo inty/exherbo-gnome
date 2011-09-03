@@ -16,12 +16,16 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.37.1]
     build+run:
-        dev-libs/glib:2[>=2.26.0]
+        dev-libs/glib:2[>=2.29.14]
         x11-libs/gtk+:3[>=2.99.3]
         gnome-platform/GConf:2 [[ note = [ bug #639347 ] ]]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.2]
-        gnome-desktop/gnome-desktop:3.0[>=2.91.5]
+        gnome-desktop/gnome-desktop:3.0[>=3.1.5]
+        sys-apps/colord[>=0.1.8]
+        media-libs/libcanberra[gtk3] [[ note = [ automagic dependency ] ]]
         x11-libs/libnotify[>=0.7.3]
+        media-libs/lcms2[>=2.2]
+        x11-libs/libXfixes
         x11-libs/libXext
         x11-libs/libX11
         x11-libs/libXi
@@ -30,6 +34,8 @@ DEPENDENCIES="
         gnome-desktop/libgnomekbd[>=2.91.90]
         x11-libs/libxklavier[>=5.0]
         sys-fs/udev[glib]
+        sys-apps/upower[>=0.9.1]
+        sys-apps/pnp-data
         cups? ( net-print/cups )
         pulseaudio? ( media-sound/pulseaudio[>=0.9.16]
                       media-libs/libcanberra[gtk3] )
@@ -41,9 +47,11 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-gudev'
-                               '--enable-gconf-bridge' )
+                               '--enable-gconf-bridge' '--with-pnpids=/usr/share/misc/pnp.ids' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'pulseaudio pulse' 'policykit polkit'
                                        'smartcard smartcard-support' )
+
+RESTRICT="test" # requires X
 
 src_install() {
     gsettings_src_install
