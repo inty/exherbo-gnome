@@ -1,0 +1,98 @@
+From 71cc6a68e6d4a86ff9e88d1411a7f75b90274ead Mon Sep 17 00:00:00 2001
+From: Saleem Abdulrasool <compnerd@compnerd.org>
+Date: Sun, 4 Sep 2011 09:44:50 -0700
+Subject: [PATCH] check for cairo
+
+cairo is currently a hard dependency for libregress.  Check for the package
+always so that we can build the tests.
+---
+ configure.ac      |   30 +++++++++++++++++-------------
+ tests/Makefile.am |   10 ++++++----
+ 2 files changed, 23 insertions(+), 17 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index f017a03..4152dad 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -204,11 +204,6 @@ AC_SUBST(LIBFFI_PC)
+ dnl gio
+ PKG_CHECK_MODULES(GIO, gio-2.0 >= gio_required_version)
+ 
+-AC_ARG_ENABLE(cairo,
+-    AC_HELP_STRING([--enable-cairo], [Enable Cairo bindings using introspection information]),
+-    enable_cairo=$enableval,
+-    enable_cairo=yes)
+-
+ PKG_CHECK_MODULES(GI,
+     glib-2.0 >= glib_required_version
+     gobject-introspection-1.0 >= introspection_required_version
+@@ -217,19 +212,28 @@ PKG_CHECK_MODULES(GI,
+ GI_DATADIR=$($PKG_CONFIG --variable=gidatadir gobject-introspection-1.0)
+ AC_SUBST(GI_DATADIR)
+ 
+-if test "$enable_cairo" != no; then
+-    if test $build_py3k = true; then  
+-        PKG_CHECK_MODULES(PYCAIRO,
+-            py3cairo >= py3cairo_required_version
+-        )
++dnl ############################################################################
++dnl # cairo
++dnl ############################################################################
++
++AC_ARG_ENABLE(cairo,
++              AC_HELP_STRING([--enable-cairo],
++                             [Enable Cairo bindings using introspection information]))
++
++if test x"$enable_cairo" = x"yes" ; then
++    if test $build_py3k = true; then
++        PKG_CHECK_MODULES(PYCAIRO, py3cairo >= py3cairo_required_version)
+     else
+-        PKG_CHECK_MODULES(PYCAIRO,
+-            pycairo >= py2cairo_required_version
+-        )
++        PKG_CHECK_MODULES(PYCAIRO, pycairo >= py2cairo_required_version)
+     fi
+ fi
++
++dnl cairo is required for libgress for the tests
++PKG_CHECK_MODULES(CAIRO, cairo)
++
+ AM_CONDITIONAL(ENABLE_CAIRO, test "$enable_cairo" = "yes")
+ 
++
+ INTROSPECTION_SCANNER=`$PKG_CONFIG --variable=g_ir_scanner gobject-introspection-1.0`
+ INTROSPECTION_COMPILER=`$PKG_CONFIG --variable=g_ir_compiler gobject-introspection-1.0`
+ 
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 4ec6477..d9bc7bc 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -1,19 +1,21 @@
+ CLEANFILES =
++
+ noinst_LTLIBRARIES = libregress.la libgimarshallingtests.la
+ 
+ nodist_libregress_la_SOURCES = $(GI_DATADIR)/tests/regress.c $(GI_DATADIR)/tests/regress.h
+-libregress_la_CFLAGS = $(GIO_CFLAGS) $(PYCAIRO_CFLAGS)
+-libregress_la_LDFLAGS = -module -avoid-version $(GIO_LIBS) $(PYCAIRO_LIBS)
++libregress_la_CFLAGS = $(GIO_CFLAGS) $(CAIRO_CFLAGS)
++libregress_la_LDFLAGS = -module -avoid-version $(GIO_LIBS) $(CAIRO_LIBS)
++
+ nodist_libgimarshallingtests_la_SOURCES = $(GI_DATADIR)/tests/gimarshallingtests.c $(GI_DATADIR)/tests/gimarshallingtests.h
+ libgimarshallingtests_la_CFLAGS = $(GLIB_CFLAGS)
+ libgimarshallingtests_la_LDFLAGS = -module -avoid-version $(GLIB_LIBS)
+ 
+ # This is a hack to make sure a shared library is built
+ libregress.la: $(libregress_la_OBJECTS) $(libregress_la_DEPENDENCIES)
+-	$(LINK) -rpath $(pkgpyexecdir) $(libregress_la_LDFLAGS) $(libregress_la_OBJECTS) $(libregress_la_LIBADD) $(LIBS)
++	$(LINK) -rpath $(pkgpyexecdir) $(libregress_la_LDFLAGS) $(libregress_la_OBJECTS) $(libregress_la_LIBADD)
+ 
+ libgimarshallingtests.la: $(libgimarshallingtests_la_OBJECTS) $(libgimarshallingtests_la_DEPENDENCIES)
+-	$(LINK) -rpath $(pkgpyexecdir) $(libgimarshallingtests_la_LDFLAGS) $(libgimarshallingtests_la_OBJECTS) $(libgimarhallingtests_la_LIBADD) $(LIBS)
++	$(LINK) -rpath $(pkgpyexecdir) $(libgimarshallingtests_la_LDFLAGS) $(libgimarshallingtests_la_OBJECTS) $(libgimarhallingtests_la_LIBADD)
+ 
+ # g-i doesn't ship these as shared libraries anymore; we build them here
+ Regress-1.0.gir: libregress.la Makefile
+-- 
+1.7.6.1
+
