@@ -63,6 +63,7 @@ DEPENDENCIES="
         sys-apps/upower[gobject-introspection]
         gnome-desktop/gnome-settings-daemon:3.0
         gnome-desktop/libgnomekbd[gobject-introspection] [[ note = [ for keyboard status applet ] ]]
+        gnome-desktop/caribou
     recommendation:
         fonts/cantarell-fonts [[
             description = [ The default font for GNOME3 ]
