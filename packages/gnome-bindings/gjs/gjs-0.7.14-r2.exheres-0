@@ -28,7 +28,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch
-                              "${FILES}/${PNV}-xulrunner-5.patch" )
+                              "${FILES}"/${PNV}-xulrunner-{5,6}.patch )
 
 src_test() {
     unset DBUS_SESSION_BUS_ADDRESS
