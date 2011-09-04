@@ -33,7 +33,7 @@ DEPENDENCIES="
         gnome-platform/GConf:2[>=2.0.0]
         dev-libs/libxml2:2.0[>=2.0.0]
         gnome-desktop/libsoup:2.4[>=2.31.2]
-        gnome-desktop/libgdata[>=0.7.0]
+        gnome-desktop/libgdata[>=0.7.0&<0.9]
         gnome-desktop/libgnome-keyring:1[>=2.20.1]
         sys-libs/db:=
         dev-libs/nspr
