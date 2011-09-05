@@ -65,7 +65,7 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-geocode --disable-location --disable-meego
                                --disable-call --disable-call-logs
-                               '--enable-control-center-embedding' )
+                               '--disable-control-center-embedding' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'eds' 'geolocation map' 'nautilus-sendto'
                                      'networkmanager connectivity nm' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( spell 'udev gudev' )
