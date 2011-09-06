@@ -29,7 +29,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.22.0][gobject-introspection?]
         x11-libs/pango[>=1.15.4]
         gnome-desktop/gnome-desktop:2[>=2.24.0]
-        gnome-desktop/gnome-menus[>=2.27.92]
+        gnome-desktop/gnome-menus:0[>=2.27.92]
         media-libs/libcanberra[gtk]
         dev-libs/dbus-glib:1[>=0.80]
         x11-libs/cairo[>=1.0.0]

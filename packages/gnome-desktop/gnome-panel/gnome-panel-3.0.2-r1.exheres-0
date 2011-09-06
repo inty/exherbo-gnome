@@ -28,7 +28,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.25.12]
         gnome-desktop/gnome-desktop:3.0[>=2.91.0]
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
-        gnome-desktop/gnome-menus[>=2.27.92]
+        gnome-desktop/gnome-menus:0[>=2.27.92]
         gnome-desktop/dconf
         gnome-desktop/libwnck:3.0[>=2.91.0]
         gnome-desktop/librsvg:2

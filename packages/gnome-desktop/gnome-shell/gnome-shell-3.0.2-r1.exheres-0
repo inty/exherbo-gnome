@@ -38,7 +38,7 @@ DEPENDENCIES="
             note = [ automagic and crashes without introspection ]
         ]]
         gnome-desktop/gnome-desktop:3.0[>=2.90.0]
-        gnome-desktop/gnome-menus
+        gnome-desktop/gnome-menus:0
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/mutter[>=3.0.0][gobject-introspection]
