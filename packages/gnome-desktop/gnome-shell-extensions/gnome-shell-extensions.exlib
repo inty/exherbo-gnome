@@ -1,0 +1,76 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+if ever is_scm ; then
+    require scm-git
+    require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
+fi
+
+export_exlib_phases src_prepare src_configure pkg_postinst
+
+# NOTE: EXTENSIONS and EXTENSIONS_DESC must have the same number of elements!
+# EXTENSIONS_DESC[0] describes EXTENSIONS[0], ...
+EXTENSIONS=(
+    alternate-tab
+    alternative-status-menu
+    auto-move-windows
+    dock
+    gajim
+    user-theme
+    windowsNavigator
+)
+EXTENSIONS_DESC=(
+'A replacement for Alt-Tab, allows to cycle between windows and does not group by application'
+'Replaces Shell Status Menu with one showing Suspend/Hibernate and Power Off as separate items'
+'Move applications to specific workspaces when they create windows'
+'A dock for the GNOME Shell -- displays favorite and running applications'
+'Display Gajim incoming chats as notifications in the Shell message tray.'
+'Load shell themes from user directory'
+'Allow keyboard selection of windows and workspaces in overlay mode'
+)
+
+SUMMARY="Extensions to modify and extend GNOME Shell functionality and behavior"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+
+for ((i=0; i<${#EXTENSIONS[*]}; i++)); do
+    MYOPTIONS+="${EXTENSIONS[$i]} [[ description = [ ${EXTENSIONS_DESC[$i]} ] ]] "
+done
+MYOPTIONS="( ${MYOPTIONS} ) [[ number-selected = at-least-one ]]"
+
+gnome-shell-extensions_src_prepare() {
+    if ever is_scm ; then
+        autotools_src_prepare
+        edo intltoolize --force --copy
+    else
+        default
+    fi
+}
+
+# xrandr-indicator: bug 634253, fixed, need gjs 1.29.0
+# gnome-desktop/gnome-desktop:3.0[>=2.91.6][gobject-introspection]
+gnome-shell-extensions_src_configure() {
+    local ext extensions
+
+    for ext in ${EXTENSIONS[@]}; do
+        option "${ext}" &&  extensions+="${ext} "
+    done
+
+    econf --enable-extensions="${extensions}"
+}
+
+gnome-shell-extensions_pkg_postinst(){
+    gsettings_pkg_postinst
+
+    ewarn "Installed plugins are automatically enabled."
+    ewarn "The following command can be used to disable extensions:"
+    ewarn
+    ewarn "# gsettings set org.gnome.shell disabled-extensions \\"
+    ewarn "#    \"['extension_name@gnome-shell-extensions.gnome.org', ... ]\""
+    ewarn
+    ewarn "Where 'extension_name' is the same as the option name."
+}
+
