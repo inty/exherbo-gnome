@@ -1,6 +1,7 @@
 # Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 require gnome.org
 
 SUMMARY="A GObject plugins library"
@@ -21,11 +22,17 @@ DEPENDENCIES="
         gnome-desktop/gobject-introspection:1[>=0.10.1]
         x11-libs/gtk+:3[>=2.90][gobject-introspection]
         python? ( dev-lang/python:*[>=2.5.2]
-                  gnome-bindings/pygobject:2[>=2.28.0][gobject-introspection(+)] )
+                  gnome-bindings/pygobject:3[>=2.90.2] )
         seed? ( gnome-bindings/seed[>=2.91.91] )
 "
 
+AT_M4DIR=( 'm4' )
+
 RESTRICT="test" # requires X
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Link-against-pygobject-3.patch
+)
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-glade-catalog' '--disable-vala'
                                '--enable-gtk' )
