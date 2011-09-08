@@ -1,7 +1,7 @@
 # Copyright © 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gsettings
+require gnome.org [ suffix=.tar.xz ] gsettings
 
 SUMMARY="Shared GSettings schemas for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/"
