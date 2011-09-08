@@ -22,19 +22,19 @@ Window Navigator - Allow keyboard selection of windows and workspaces in overlay
 "
 HOMEPAGE="http://www.gnome.org/"
 
-LICENCES="as-is" # FIXME
+LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        dev-util/intltool[>=0.16]
+        dev-util/intltool[>=0.26]
         dev-util/pkg-config[>=0.22]
     build+run:
         dev-libs/glib:2[>=2.26] [[ note = [ For GSettings ] ]]
     run:
-        gnome-desktop/gnome-shell[>=2.91.91]
+        gnome-desktop/gnome-shell[>=3.1.91]
 "
 
 BUGS_TO="spoonb@exherbo.org"
