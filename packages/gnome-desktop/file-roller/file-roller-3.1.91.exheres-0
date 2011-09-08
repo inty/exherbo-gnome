@@ -18,7 +18,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.3.2]
     build+run:
         x11-libs/gtk+:3[>=3.0.2]
-        dev-libs/glib:2[>=2.25.5]
+        dev-libs/glib:2[>=2.29.14]
         nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
 "
 
