@@ -1,0 +1,19 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-shell-extensions
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.26]
+        dev-util/pkg-config[>=0.22]
+    build+run:
+        dev-libs/glib:2[>=2.26] [[ note = [ For GSettings ] ]]
+    run:
+        gnome-desktop/gnome-shell[>=3.0]
+"
+
