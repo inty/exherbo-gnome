@@ -61,6 +61,8 @@ src_configure() {
           "--with-dmconfdir=/etc/X11/dm"                        \
           "--enable-ipv6"                                       \
           "--without-selinux"                                   \
-          "--without-libaudit"
+          "--without-libaudit"                                  \
+          "--with-screenshot-dir=/var/tmp/"                     \
+          "--with-xauth-dir=/run/gdm/"
 }
 
