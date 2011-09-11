@@ -5,3 +5,7 @@ require libxml++
 
 PLATFORMS="~amd64 ~x86"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/556478216b4344e8d78cc562338ec6616bd8a366.patch
+)
+

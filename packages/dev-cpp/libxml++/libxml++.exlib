@@ -2,7 +2,7 @@
 # Copyright 2010 Pierre Lejeune <superheron@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org [ suffix='.tar.xz' ]
 
 SUMMARY="C++ wrapper for the libxml2 XML parser library"
 HOMEPAGE="http://libxmlplusplus.sourceforge.net/"

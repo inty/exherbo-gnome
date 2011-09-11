@@ -1,0 +1,82 @@
+From 556478216b4344e8d78cc562338ec6616bd8a366 Mon Sep 17 00:00:00 2001
+From: Murray Cumming <murrayc@murrayc.com>
+Date: Fri, 09 Sep 2011 09:02:45 +0000
+Subject: Document: write_to_*(): Make sure that we write UTF-8 out.
+Upstream: Yes, backported from master
+
+	* libxml++/document.cc: Because the xmlDocDump*() functions use some other
+	encoding if you specify NULL, causing errors such as:
+	xmlEscapeEntities : char out of range
+---
+diff --git a/ChangeLog b/ChangeLog
+index 698d023..a40418d 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,3 +1,11 @@
++2011-09-09  Murray Cumming  <murrayc@murrayc.com>
++
++	Document: write_to_*(): Make sure that we write UTF-8 out.
++
++	* libxml++/document.cc: Because the xmlDocDump*() functions use some other 
++	encoding if you specify NULL, causing errors such as:
++	xmlEscapeEntities : char out of range
++
+ 2.34.2:
+ 
+ 2011-09-06  Mathias Lorente  <mathias.lorente@free.fr>
+diff --git a/libxml++/document.cc b/libxml++/document.cc
+index 6eec443..0be6a67 100644
+--- a/libxml++/document.cc
++++ b/libxml++/document.cc
+@@ -22,6 +22,19 @@
+ namespace xmlpp
+ {
+ 
++static const char* get_encoding_or_utf8(const Glib::ustring& encoding)
++{
++  if(encoding.empty())
++  {
++    //If we don't specify this to the xmlDocDump* functions (using 0 instead),
++    //then some other encoding is used, causing them to fail on non-ASCII characters.
++    return "UTF-8";
++  }
++  else
++    return encoding.c_str();
++}
++
++
+ Document::Init::Init()
+ {
+   xmlInitParser(); //Not always necessary, but necessary for thread safety.
+@@ -199,7 +212,8 @@ void Document::do_write_to_file(
+ {
+   KeepBlanks k(KeepBlanks::Default);
+   xmlIndentTreeOutput = format?1:0;
+-  const int result = xmlSaveFormatFileEnc(filename.c_str(), impl_, encoding.empty() ? 0 : encoding.c_str(), format?1:0);
++  const int result = xmlSaveFormatFileEnc(filename.c_str(), impl_,
++    get_encoding_or_utf8(encoding), format?1:0);
+ 
+   if(result == -1)
+   {
+@@ -220,7 +234,8 @@ Glib::ustring Document::do_write_to_string(
+   xmlChar* buffer = 0;
+   int length = 0;
+ 
+-  xmlDocDumpFormatMemoryEnc(impl_, &buffer, &length, encoding.empty() ? 0 : encoding.c_str(), format?1:0);
++  xmlDocDumpFormatMemoryEnc(impl_, &buffer, &length,
++    get_encoding_or_utf8(encoding), format?1:0);
+ 
+   if(!buffer)
+   {
+@@ -248,7 +263,8 @@ void Document::do_write_to_stream(std::ostream& output, const Glib::ustring& enc
+ {
+   // TODO assert document encoding is UTF-8 if encoding is different than UTF-8
+   OStreamOutputBuffer buffer(output, encoding);
+-  const int result = xmlSaveFormatFileTo(buffer.cobj(), impl_, encoding.c_str(), format ? 1 : 0);
++  const int result = xmlSaveFormatFileTo(buffer.cobj(), impl_,
++    get_encoding_or_utf8(encoding), format ? 1 : 0);
+   
+   if(result == -1)
+   {
+--
+cgit v0.9.0.2
