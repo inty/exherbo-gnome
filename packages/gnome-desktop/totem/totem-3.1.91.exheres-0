@@ -49,7 +49,7 @@ DEPENDENCIES="
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
-                  gnome-bindings/pygobject:2[>=2.27.0] )
+                  gnome-bindings/pygobject:3[>=2.90.3] )
     recommendation:
         gnome-desktop/gnome-icon-theme-symbolic [[ description = [ icons for the buttons ] ]]
 "
