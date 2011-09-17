@@ -62,7 +62,18 @@ src_install() {
 
     option !avahi && option !samba && edo rmdir "${IMAGE}"/usr/share/GConf/{gsettings,}
 
-    keepdir /media
     keepdir /usr/share/gvfs/remote-volume-monitors
+}
+
+pkg_preinst() {
+    # We formerly had a keepdir on /media, and systemd mounts it as a tmpfs, so we cannot let gvfs
+    # remove it and recreate it in postinst or the "rmdir /media" in the merge phase would fail.
+    # Create a temporary file so that /media doesn't get unmerged, and remove it in postinst
+    edo touch "${ROOT}"/media/.keep-the-media-directory-please
+}
+
+pkg_postinst() {
+    gsettings_pkg_postinst
+    nonfatal edo rm "${ROOT}"/media/.keep-the-media-directory-please
 }
 
