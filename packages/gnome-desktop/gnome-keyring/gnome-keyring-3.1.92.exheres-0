@@ -27,7 +27,7 @@ DEPENDENCIES="
         sys-apps/dbus[>=1.0]
         dev-libs/libgcrypt[>=1.2.2]
         dev-libs/libtasn1[>=0.3.4]
-        dev-libs/p11-kit:1[>=0.3]
+        dev-libs/p11-kit:1[>=0.6]
         caps? ( sys-libs/libcap-ng )
         pam? ( sys-libs/pam )
 "
