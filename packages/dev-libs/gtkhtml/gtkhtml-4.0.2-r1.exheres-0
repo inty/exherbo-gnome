@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=".tar.xz" ]
+require gnome.org
 
 SUMMARY="A lightweight HTML rendering/printing/editing engine"
 HOMEPAGE="http://www.gnome.org/"
@@ -20,11 +20,17 @@ DEPENDENCIES="
         app-text/iso-codes[>=0.49]
         dev-libs/glib:2
         gnome-desktop/gnome-icon-theme[>=2.22.0]
-        gnome-desktop/gsettings-desktop-schemas
+        gnome-platform/GConf:2
         x11-libs/cairo[>=1.10.0]
         x11-libs/gtk+:3[>=3.0.2]
         x11-proto/xproto
     test:
         gnome-desktop/libsoup:2.4[>=2.26.0]
 "
+
+src_install() {
+    default
+
+    edo mv "${IMAGE}"/usr/bin/gtkhtml-editor-test{,-${SLOT}}
+}
 
