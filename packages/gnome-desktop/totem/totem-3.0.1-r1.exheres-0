@@ -1,6 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 require gnome.org gsettings
 
 SUMMARY="Media Player for the GNOME Desktop"
@@ -22,6 +23,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
+        app-doc/gtk-doc-autotools[>=1.14] [[ note = [ For gtkdocize ] ]]
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.40.0]
         gnome-desktop/gnome-doc-utils[>=0.20.3]
@@ -63,6 +65,22 @@ DEPENDENCIES="
 # publish
 # youtube -- needs http://live.gnome.org/libgdata >= 0.40
 # zeitgeist-dp
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Port-totem-bugreport-to-use-GObject-from-GIR.patch
+    "${FILES}"/0002-build-Require-pygobject-3.0.patch
+)
+
+AT_M4DIR=( 'm4' )
+
+src_prepare() {
+    default
+
+    edo gtkdocize --copy
+    edo gnome-doc-prepare --automake --force --copy
+    edo intltoolize --force --copy
+    eautoreconf
+}
 
 src_configure() {
     local plugins=
