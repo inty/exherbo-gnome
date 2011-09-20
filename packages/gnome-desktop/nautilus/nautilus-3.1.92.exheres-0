@@ -9,7 +9,7 @@ HOMEPAGE="http://live.gnome.org/Nautilus"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="exif gobject-introspection gtk-doc"
+MYOPTIONS="exif gobject-introspection gtk-doc tracker [[ description = [ add tracker support ] ]]"
 
 DEPENDENCIES="
     build:
@@ -26,20 +26,20 @@ DEPENDENCIES="
         gnome-desktop/gsettings-desktop-schemas
         x11-libs/libnotify[>=0.7]
         exif? ( media-libs/libexif[>=0.6.20] )
+        tracker? ( app-pim/tracker:0.12 )
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
         gnome-desktop/gnome-disk-utility [[ note = [ required for disk management ] ]]
     suggestion:
         gnome-desktop/gnome-icon-theme[>=1.1.91]
-        app-pim/tracker[>=0.8]
 "
 
 RESTRICT="test" # requires X
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --disable-packagekit --disable-xmp )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'exif libexif'
-                                       'gobject-introspection introspection' )
+                                       'gobject-introspection introspection' 'tracker' )
 
 pkg_postinst() {
     default
