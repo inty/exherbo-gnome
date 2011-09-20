@@ -1,7 +1,7 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=".tar.xz" ] gconf gsettings
+require gnome.org [ suffix=.tar.xz ] gconf gsettings
 
 SUMMARY="Miscellaneous utilities for the GNOME desktop"
 HOMEPAGE="http://live.gnome.org/GnomeUtils"
@@ -21,7 +21,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.29.14]
         x11-libs/gtk+:3[>=2.91.1]
-        gnome-platform/GConf:2
+        gnome-platform/GConf:2 [[ note = [ for gsearchtool ] ]]
         gnome-desktop/gsettings-desktop-schemas
         x11-libs/libXext
         x11-libs/libX11
