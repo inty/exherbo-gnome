@@ -11,6 +11,7 @@ SLOT="0"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="
 afc [[ description = [ add support for accessing AFC (Apple File Connection) filesystems ] ]]
+afp [[ description = [ add support for accessing AFP (Apple Filing Protocol) shares ] ]]
 archive [[ description = [ add support for reading compressed archives supported by libarchive ] ]]
 avahi bash-completion bluetooth
 cdda
@@ -28,13 +29,14 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc )
     build+run:
-        dev-libs/glib:2[>=2.27.4]
+        dev-libs/glib:2[>=2.29.14]
         sys-apps/dbus[>=1.0]
         sys-fs/udev[>=145][glib]
         net-misc/openssh
         dev-libs/libxml2
         afc? ( app-pda/libimobiledevice[>=1.1.0]
                dev-libs/libplist[>=0.15] )
+        afp? ( dev-libs/libgcrypt[>=1.2.2] )
         archive? ( app-arch/libarchive )
         avahi? ( net-dns/avahi[>=0.6][dbus] )
         bluetooth? ( dev-libs/expat
@@ -51,9 +53,9 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-hal' '--enable-udev' '--enable-gudev' '--disable-bluray' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'archive' 'avahi' 'bash-completion' 'bluetooth obexftp'
-                                       'cdda' 'doc gtk-doc' 'fuse' 'gphoto2' 'http' 'keyring'
-                                       'monitor gdu' 'samba' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'afc' 'afp' 'archive' 'avahi' 'bash-completion' 
+                                       'bluetooth obexftp' 'cdda' 'doc gtk-doc' 'fuse' 'gphoto2'
+                                       'http' 'keyring' 'monitor gdu' 'samba' )
 
 src_install() {
     default
