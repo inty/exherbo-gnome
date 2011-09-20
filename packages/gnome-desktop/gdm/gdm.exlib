@@ -58,6 +58,11 @@ gdm_src_install() {
         edo rmdir "${IMAGE}"/var/lib/gdm/.config/{dconf,}
     fi
 
+    # dconf lock directory
+    if ever at_least 3.1 ; then
+        keepdir /etc/dconf/db/gdm.d/locks
+    fi
+
     if ever at_least 3.1.90 ; then
         edo rmdir "${IMAGE}/var/lib/gdm/.local/share/applications"  \
                   "${IMAGE}/var/lib/gdm/.local/share"               \
