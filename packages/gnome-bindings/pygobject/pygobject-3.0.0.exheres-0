@@ -10,17 +10,15 @@ HOMEPAGE="http://www.pygtk.org"
 LICENCES="LGPL-2.1"
 SLOT="3"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS="cairo doc"
+MYOPTIONS="cairo"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config
-        doc? ( dev-libs/libxslt
-               app-text/docbook-xml-dtd:4.1.2 )
     build+run:
         dev-libs/glib:2[>=2.24.0]
         dev-libs/libffi[>=3.0]
-        gnome-desktop/gobject-introspection:1[>=0.10.2]
+        gnome-desktop/gobject-introspection:1[>=1.29.0]
         cairo? ( dev-python/pycairo[>=1.2.0] )
 "
 
@@ -28,7 +26,7 @@ AT_M4DIR=( m4 )
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-check-for-cairo.patch" )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cairo 'doc docs' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cairo )
 
 # FIXME tests fail and leave a running dbus-daemon process
 RESTRICT="test"
