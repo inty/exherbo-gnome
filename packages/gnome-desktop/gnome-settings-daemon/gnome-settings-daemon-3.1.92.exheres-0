@@ -72,3 +72,4 @@ pkg_postrm() {
     gsettings_exlib_compile_gsettings_schemas
     gtk-icon-cache_pkg_postrm
 }
+
