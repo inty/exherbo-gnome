@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=".tar.xz" ] gsettings gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
 
 SUMMARY="Media Player for the GNOME Desktop"
 HOMEPAGE="http://projects.gnome.org/totem"
@@ -17,6 +17,7 @@ MYOPTIONS="
     media-player-keys [[ description = [ build media keys control plugin ] ]]
     nautilus
     python [[ description = [ add support for plugins written in python ] ]]
+    youtube [[ description = [ build a plugin to view youtube videos ] ]]
 "
 
 DEPENDENCIES="
@@ -50,6 +51,9 @@ DEPENDENCIES="
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
                   gnome-bindings/pygobject:3[>=2.90.3] )
+        youtube? ( gnome-desktop/libgdata[>=0.9.1]
+                   gnome-desktop/libsoup:2.4
+                   media-plugins/gst-plugins-good:0.10[gstreamer_plugins:soup] )
     recommendation:
         gnome-desktop/gnome-icon-theme-symbolic [[ description = [ icons for the buttons ] ]]
 "
@@ -58,7 +62,6 @@ DEPENDENCIES="
 # lirc
 # opensubtitles
 # publish
-# youtube -- gnome-desktop/libgdata[>= 0.9.1]
 # zeitgeist-dp
 
 src_configure() {
@@ -72,6 +75,7 @@ src_configure() {
     plugins+=,screensaver
     plugins+=,screenshot
     plugins+=,skipto
+    plugins+=,youtube
 
     pythonplugins+=dbusservice
     pythonplugins+=,iplayer
