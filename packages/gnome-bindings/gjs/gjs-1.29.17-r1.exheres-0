@@ -27,7 +27,9 @@ DEPENDENCIES="
         dev-lang/python:* [[ note = [ required to build tests ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch"
+                              "${FILES}/20cfbeb9744a8d44b8e9dcce23d0c8e0f26842a1.patch"
+                              "${FILES}/059f6a13bb5ed18060aa27bbe900575e6966efb0.patch" )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-js-package=mozilla-js' )
 
 src_test() {
