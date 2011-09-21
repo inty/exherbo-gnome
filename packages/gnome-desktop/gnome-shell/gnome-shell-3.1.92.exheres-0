@@ -26,7 +26,9 @@ DEPENDENCIES="
         sys-devel/gettext[>=0.17]
     build+run:
         x11-libs/clutter:1[>=1.7.5][gobject-introspection]
-        gnome-bindings/gjs:1[>=1.29.15]
+        gnome-bindings/gjs:1[>=1.29.17-r1] [[
+            note = [ the dependency is really 1.29.18, but it hasnt been released yet ]
+        ]]
         dev-lang/python:*[>=2.5] [[ note = [ for gnome-shell-extension-tool ] ]]
         dev-libs/dbus-glib:1
         dev-libs/glib[>=2.25.9]
@@ -66,6 +68,7 @@ DEPENDENCIES="
         gnome-desktop/libgnomekbd[gobject-introspection] [[ note = [ for keyboard status applet ] ]]
         gnome-desktop/caribou
         gnome-desktop/gdm[gobject-introspection]
+        x11-libs/pango[gobject-introspection] [[ note = [ silent dependency in userMenu.js ] ]]
     recommendation:
         fonts/cantarell-fonts [[
             description = [ The default font for GNOME3 ]
