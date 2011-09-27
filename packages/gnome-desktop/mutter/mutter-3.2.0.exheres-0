@@ -2,7 +2,7 @@
 # Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gconf
+require gnome.org [ suffix=.tar.xz ] gconf
 
 SUMMARY="Clutter and metacity based compositing window manager"
 
