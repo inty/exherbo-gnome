@@ -22,7 +22,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=2.91.1][gobject-introspection?]
         gjs? ( gnome-bindings/gjs:1[>=1.29.16] )
         python? ( dev-lang/python:*[>=2.5.2]
-                  gnome-bindings/pygobject:3[>=2.90.2][gobject-introspection(+)?] )
+                  gnome-bindings/pygobject:3[>=2.90.2] )
         seed? ( gnome-bindings/seed[>=2.91.91] )
 "
 
