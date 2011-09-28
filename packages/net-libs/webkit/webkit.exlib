@@ -18,6 +18,11 @@ src_compile() {
 src_install() {
     gsettings_src_install
     edo find "${IMAGE}" -depth -type d -empty -delete
+
+    if ever at_least 1.5 ; then
+        insinto /usr/share/webkitgtk-${SLOT}/gdb/
+        doins "${WORK}"/Tools/gdb/*.py
+    fi
 }
 
 
