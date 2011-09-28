@@ -20,12 +20,12 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
-        base/clutter-gst:1.0[>=1.0.0]
         base/clutter-gtk:1.0[>=0.91.8]
         base/libgee:1.0[>=0.6.0]
         dev-libs/glib:2[>=2.28]
         gnome-desktop/gnome-desktop:3.0[>=2.91.6]
         gnome-desktop/librsvg:2[>=2.32.0]
+        media-libs/clutter-gst:1.0[>=1.0.0]
         media-libs/gstreamer:0.10[>=0.10.32]
         media-libs/libcanberra[>=0.26][gtk3]
         media-plugins/gnome-video-effects
