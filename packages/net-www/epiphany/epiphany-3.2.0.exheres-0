@@ -28,7 +28,7 @@ DEPENDENCIES="
         x11-libs/libSM
         dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
-        net-libs/webkit:3.0[>=1.5.1]
+        net-libs/webkit:3.0[>=1.6.1]
         gnome-desktop/libsoup:2.4[gconf][>=2.33.1]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
