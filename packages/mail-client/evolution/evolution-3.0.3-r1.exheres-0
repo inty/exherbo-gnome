@@ -56,8 +56,8 @@ DEPENDENCIES="
 "
 #        champlain? ( x11-libs/libchamplain:0.8[gtk] )
 #        clutter? (
-#            base/clutter:1
-#            base/clutter-gtk:1.0[>=0.90]
+#            x11-libs/clutter:1
+#            x11-libs/clutter-gtk:1.0[>=0.90]
 #            x11-libs/mx:1.0
 #        )
 

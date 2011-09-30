@@ -20,7 +20,6 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
-        base/clutter-gtk:1.0[>=0.91.8]
         base/libgee:1.0[>=0.6.0]
         dev-libs/glib:2[>=2.28]
         gnome-desktop/gnome-desktop:3.0[>=2.91.6]
@@ -33,6 +32,7 @@ DEPENDENCIES="
         sys-fs/udev[glib]
         x11-libs/cairo[>=1.10]
         x11-libs/clutter:1[>=1.6.1]
+        x11-libs/clutter-gtk:1.0[>=0.91.8]
         x11-libs/gtk+:3[>=2.99.4]
         x11-libs/libX11
         x11-libs/libXtst

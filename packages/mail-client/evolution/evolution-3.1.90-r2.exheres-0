@@ -49,8 +49,8 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=3.0.2]
         x11-misc/shared-mime-info[>=0.22]
         clutter? (
-            base/clutter-gtk:1.0[>=0.90]
             x11-libs/clutter:1
+            x11-libs/clutter-gtk:1.0[>=0.90]
             x11-libs/mx:1.0
         )
         gstreamer? ( media-libs/gstreamer:0.10 )
