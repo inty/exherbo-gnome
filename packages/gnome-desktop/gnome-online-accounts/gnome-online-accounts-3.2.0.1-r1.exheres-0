@@ -20,6 +20,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.29.5]
         x11-libs/gtk+:3[>=3.0.0]
         net-libs/webkit:3.0
+        gnome-desktop/libsoup:2.4[>=2.26]
         core/json-glib
         gnome-desktop/gnome-keyring:1
         x11-libs/libnotify[>=0.7]
