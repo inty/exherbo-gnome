@@ -38,7 +38,8 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0[>=2.0.0]
         gnome-desktop/libsoup:2.4[>=2.31.2]
         gnome-desktop/libgdata[>=0.9.1]
-        gnome-desktop/gnome-online-accounts[>=0.9.4]
+        dev-libs/liboauth[>=0.9.4]
+        gnome-desktop/gnome-online-accounts[>=3.1.1]
         gnome-desktop/libgnome-keyring:1[>=2.20.1]
         sys-libs/db:=
         dev-libs/nspr
@@ -52,10 +53,9 @@ DEPENDENCIES="
         weather? ( gnome-desktop/libgweather:3.0[>=2.90.0] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ipv6=yes' '--enable-largefile'
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-ipv6=yes' '--enable-goa' '--enable-largefile'
                                '--enable-nntp' '--enable-ssl' '--enable-smime'
-                               '--without-sunldap' '--disable-vala-bindings'
-                               '--enable-backtraces' )
+                               '--without-sunldap' '--enable-backtraces' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'calendar'
                                        'gobject-introspection introspection'
                                        'gtk-doc' 'vapi vala-bindings' 'weather' )
