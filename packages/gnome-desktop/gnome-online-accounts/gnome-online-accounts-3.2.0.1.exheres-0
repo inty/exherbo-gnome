@@ -7,7 +7,7 @@ SUMMARY="interfaces for applications and libraries in GNOME to access the user's
 
 LICENCES="LGPL-2"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gobject-introspection gtk-doc"
 
 DEPENDENCIES="
