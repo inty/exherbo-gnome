@@ -7,7 +7,7 @@ DOWNLOADS="http://p11-glue.freedesktop.org/releases/${PNVR}.tar.gz"
 
 LICENCES="BSD-3"
 SLOT="1"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS="gtk-doc"
 
 DEPENDENCIES="
