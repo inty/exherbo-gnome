@@ -18,6 +18,8 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.29.15]
+    run:
+        gnome-bindings/pygobject:3
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
