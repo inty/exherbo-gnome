@@ -13,7 +13,6 @@ PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
     cups   [[ description = [ add support for managing printers ] ]]
     cheese [[ description = [ add support for adding user account images using cheese ] ]]
-    networkmanager
 "
 
 DEPENDENCIES="
@@ -36,6 +35,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.74]
         gnome-desktop/gnome-desktop:3.0[>=3.1.0]
         gnome-desktop/gnome-settings-daemon[>=2.91.94]
+        net-apps/NetworkManager[>=0.8.992]
         gnome-desktop/gnome-online-accounts
         sys-apps/upower[>=0.9.1]
         sys-apps/colord[>=0.1.8]
@@ -49,7 +49,6 @@ DEPENDENCIES="
         cheese? ( gnome-desktop/cheese[>=2.91.91.1]
                   media-libs/gstreamer:0.10 )
         cups? ( net-print/cups[>=1.4] )
-        networkmanager? ( net-apps/NetworkManager[>=0.8.992] )
     suggestion:
         sys-apps/accountsservice [[ description = [ Required for the User Accounts panel ] ]]
         gnome-desktop/gnome-icon-theme-symbolic [[
@@ -59,7 +58,7 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-update-mimedb --without-libsocialweb )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' 'networkmanager network-manager' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cheese' )
 
 pkg_postinst() {
     freedesktop-mime_update_mime_database
