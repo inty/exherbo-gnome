@@ -8,28 +8,15 @@ if ever is_scm ; then
     require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
 fi
 
-export_exlib_phases src_prepare src_configure pkg_postinst
-
 # NOTE: EXTENSIONS and EXTENSIONS_DESC must have the same number of elements!
-# EXTENSIONS_DESC[0] describes EXTENSIONS[0], ...
-EXTENSIONS=(
-    alternate-tab
-    alternative-status-menu
-    auto-move-windows
-    dock
-    gajim
-    user-theme
-    windowsNavigator
-)
-EXTENSIONS_DESC=(
-'A replacement for Alt-Tab, allows to cycle between windows and does not group by application'
-'Replaces Shell Status Menu with one showing Suspend/Hibernate and Power Off as separate items'
-'Move applications to specific workspaces when they create windows'
-'A dock for the GNOME Shell -- displays favorite and running applications'
-'Display Gajim incoming chats as notifications in the Shell message tray.'
-'Load shell themes from user directory'
-'Allow keyboard selection of windows and workspaces in overlay mode'
-)
+# it's required to specify at least one extension
+myexparam extensions[]
+myexparam extensions_desc[]
+
+exparam -v EXTENSIONS extensions[@]
+exparam -v EXTENSIONS_DESC extensions_desc[@]
+
+export_exlib_phases src_prepare src_configure pkg_postinst
 
 SUMMARY="Extensions to modify and extend GNOME Shell functionality and behavior"
 HOMEPAGE="http://www.gnome.org/"

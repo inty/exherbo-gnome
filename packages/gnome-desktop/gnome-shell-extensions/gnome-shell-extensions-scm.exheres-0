@@ -1,7 +1,28 @@
 # Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-shell-extensions
+# NOTE: EXTENSIONS and EXTENSIONS_DESC must have the same number of elements!
+# EXTENSIONS_DESC[0] describes EXTENSIONS[0], ...
+EXTENSIONS=(
+'alternate-tab'
+'alternative-status-menu'
+'auto-move-windows'
+'dock'
+'gajim'
+'user-theme'
+'windowsNavigator'
+)
+EXTENSIONS_DESC=(
+'A replacement for Alt-Tab, allows to cycle between windows and does not group by application"'
+'Replaces Shell Status Menu with one showing Suspend/Hibernate and Power Off as separate items'
+'Move applications to specific workspaces when they create windows'
+'A dock for the GNOME Shell -- displays favorite and running applications'
+'Display Gajim incoming chats as notifications in the Shell message tray.'
+'Load shell themes from user directory'
+'Allow keyboard selection of windows and workspaces in overlay mode'
+)
+
+require gnome-shell-extensions [ extensions=[ "${EXTENSIONS[@]}" ] extensions_desc=[ "${EXTENSIONS_DESC[@]}" ] ]
 
 SLOT="0"
 PLATFORMS="~amd64"
