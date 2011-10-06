@@ -37,8 +37,6 @@ gnome-shell-extensions_src_prepare() {
     fi
 }
 
-# xrandr-indicator: bug 634253, fixed, need gjs 1.29.0
-# gnome-desktop/gnome-desktop:3.0[>=2.91.6][gobject-introspection]
 gnome-shell-extensions_src_configure() {
     local ext extensions
 
