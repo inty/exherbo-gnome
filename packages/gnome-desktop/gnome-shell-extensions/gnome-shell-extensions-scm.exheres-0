@@ -36,5 +36,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.26] [[ note = [ For GSettings ] ]]
     run:
         gnome-desktop/gnome-shell[>=3.1.91]
+    suggestion:
+        gnome-desktop/gnome-tweak-tool [[ description = [ Enable/disable extensions ] ]]
 "
 

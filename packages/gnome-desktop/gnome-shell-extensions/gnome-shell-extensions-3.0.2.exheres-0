@@ -38,3 +38,14 @@ DEPENDENCIES="
         gnome-desktop/gnome-shell[>=3.0]
 "
 
+pkg_postinst(){
+    gnome-shell-extensions_pkg_postinst
+
+    ewarn "Installed plugins are automatically enabled."
+    ewarn
+    ewarn "# gsettings set org.gnome.shell disabled-extensions \\"
+    ewarn "#    \"['extension_name@gnome-shell-extensions.gnome.org', ... ]\""
+    ewarn
+    ewarn "Where 'extension_name' is the same as the option name."
+}
+
