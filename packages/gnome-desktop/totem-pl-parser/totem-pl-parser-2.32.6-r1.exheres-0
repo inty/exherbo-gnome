@@ -20,7 +20,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.24.0]
         dev-libs/libxml2
-        gnome-desktop/libsoup:2.4
+        gnome-desktop/libsoup:2.4[gconf]
         net-utils/gmime:2.4
         libarchive? ( app-arch/libarchive[>=2.8.4] )
 "
