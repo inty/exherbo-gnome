@@ -19,8 +19,16 @@ DEPENDENCIES="
         )
     build+run:
         dev-cpp/libsigc++:2
-        x11-libs/cairo[>=1.8.0]
+        x11-libs/cairo[>=1.10.0]
+    test:
+        dev-libs/boost[>=1.33.1]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docs' )
+# needs static libs of Boost::Unit_Test_Framework
+RESTRICT="test"
+
+src_configure() {
+    econf $(option_enable doc documentation) \
+        $(expecting_tests && echo '--enable-tests')
+}
 
