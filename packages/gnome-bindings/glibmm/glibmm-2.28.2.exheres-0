@@ -27,7 +27,7 @@ UPSTREAM_DOCUMENTATION="
 DEPENDENCIES="
     build+run:
         dev-cpp/libsigc++:2[>=2.0.0]
-        dev-libs/glib:2[>=2.24.0]
+        dev-libs/glib:2[>=2.28.0]
     build:
         dev-util/pkg-config[>=0.20]
         doc? ( dev-lang/perl:*[>=5.6.0] )
