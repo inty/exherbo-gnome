@@ -1,0 +1,33 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings
+
+SUMMARY="System monitor for the GNOME desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.41.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.20]
+        sys-devel/gettext[>=0.17]
+    build+run:
+        dev-libs/glib:2[>=2.28]
+        gnome-desktop/libgtop:2[>=2.28.2]
+        gnome-desktop/libwnck:3.0[>=2.91.0]
+        x11-libs/gtk+:3[>=3.0]
+        gnome-desktop/gnome-icon-theme[>=2.31]
+        gnome-bindings/gtkmm:3[>=2.99]
+        dev-libs/libxml2[>=2.0]
+        gnome-desktop/librsvg:2[>=2.12]
+        gnome-bindings/glibmm:2.4[>=2.27]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-schemas-compile' '--disable-scrollkeeper' )
+
