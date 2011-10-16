@@ -1,0 +1,53 @@
+From a3914bf614b5fd0e3d7b82d9514e516f97e677f8 Mon Sep 17 00:00:00 2001
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Tue, 7 Jun 2011 14:19:30 +0200
+Subject: [PATCH 1/2] xul nightly: conditionnally adapt to
+ JS_SetScriptStackQuota removal
+
+In https://hg.mozilla.org/mozilla-central/rev/707cefa34478
+upstream removed JS_SetSciptStackQuota
+Don't try to use it if it's not available
+
+https://bugzilla.gnome.org/show_bug.cgi?id=652041
+
+Signed-off-by: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+
+Conflicts:
+
+	configure.ac
+---
+ configure.ac  |    1 +
+ gjs/context.c |    2 ++
+ 2 files changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 6fd8fb4..582daf0 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -165,6 +165,7 @@ dnl xulrunner 2.2 checks
+ AC_CHECK_LIB([mozjs], [JS_CLASS_TRACE], AC_DEFINE([HAVE_JS_CLASS_TRACE], [1], [Define if we still have JS_CLASS_TRACE]),, [$JS_LIBS])
+ AC_CHECK_LIB([mozjs], [JS_DestroyScript], AC_DEFINE([HAVE_JS_DESTROYSCRIPT], [1], [Define if we still have JS_DestroyScript]),, [$JS_LIBS])
+ AC_CHECK_LIB([mozjs], [JS_DecodeUTF8], AC_DEFINE([HAVE_JS_DECODEUTF8], [1], [Define if we have JS_DecodeUTF8]),, [$JS_LIBS])
++AC_CHECK_LIB([mozjs], [JS_SetScriptStackQuota], AC_DEFINE([HAVE_JS_SETSCRIPTSTACKQUOTA], [1], [Define if we have JS_SetScriptStackQuota]),)
+ 
+ AC_MSG_CHECKING([for mozilla-js >= 2 ])
+ if `$PKG_CONFIG --exists $JS_PACKAGE '>=' 2`; then
+diff --git a/gjs/context.c b/gjs/context.c
+index 758a25a..c656f62 100644
+--- a/gjs/context.c
++++ b/gjs/context.c
+@@ -549,9 +549,11 @@ gjs_context_constructor (GType                  type,
+ 
+     JS_BeginRequest(js_context->context);
+ 
++#ifdef HAVE_JS_SETSCRIPTSTACKQUOTA
+     /* same as firefox, see discussion at
+      * https://bugzilla.mozilla.org/show_bug.cgi?id=420869 */
+     JS_SetScriptStackQuota(js_context->context, 100*1024*1024);
++#endif
+ 
+     /* JSOPTION_DONT_REPORT_UNCAUGHT: Don't send exceptions to our
+      * error report handler; instead leave them set.  This allows us
+-- 
+1.7.7
+

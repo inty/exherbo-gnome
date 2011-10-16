@@ -27,8 +27,12 @@ DEPENDENCIES="
         dev-lang/python:* [[ note = [ required to build tests ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/fix-tests-dbus-launch.patch
-                              "${FILES}"/${PNV}-xulrunner-{5,6}.patch )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/fix-tests-dbus-launch.patch
+    "${FILES}"/${PNV}-xulrunner-{5,6}.patch
+    "${FILES}"/0001-xul-nightly-conditionnally-adapt-to-JS_SetScriptStac.patch
+    "${FILES}"/0002-xul-nightly-Conditionally-adapt-to-JS_ClearNewbornRo.patch
+)
 
 src_test() {
     unset DBUS_SESSION_BUS_ADDRESS

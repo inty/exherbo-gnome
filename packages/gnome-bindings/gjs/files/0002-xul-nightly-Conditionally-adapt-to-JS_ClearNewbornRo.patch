@@ -1,0 +1,51 @@
+From 6ab09363b88bd92f2972622f03b06f70e60c41e4 Mon Sep 17 00:00:00 2001
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Tue, 7 Jun 2011 15:08:38 +0200
+Subject: [PATCH 2/2] xul nightly: Conditionally adapt to JS_ClearNewbornRoots
+ removal
+
+In https://hg.mozilla.org/mozilla-central/rev/3783e5f4a417 upstream
+removed JS_ClearNewbornRoots(); don't try to use it if it's not
+available.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=652041
+
+Signed-off-by: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+
+Conflicts:
+
+	configure.ac
+---
+ configure.ac           |    1 +
+ gjs/jsapi-util-array.c |    2 ++
+ 2 files changed, 3 insertions(+), 0 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 582daf0..1dbd88d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -166,6 +166,7 @@ AC_CHECK_LIB([mozjs], [JS_CLASS_TRACE], AC_DEFINE([HAVE_JS_CLASS_TRACE], [1], [D
+ AC_CHECK_LIB([mozjs], [JS_DestroyScript], AC_DEFINE([HAVE_JS_DESTROYSCRIPT], [1], [Define if we still have JS_DestroyScript]),, [$JS_LIBS])
+ AC_CHECK_LIB([mozjs], [JS_DecodeUTF8], AC_DEFINE([HAVE_JS_DECODEUTF8], [1], [Define if we have JS_DecodeUTF8]),, [$JS_LIBS])
+ AC_CHECK_LIB([mozjs], [JS_SetScriptStackQuota], AC_DEFINE([HAVE_JS_SETSCRIPTSTACKQUOTA], [1], [Define if we have JS_SetScriptStackQuota]),)
++AC_CHECK_LIB([mozjs], [JS_ClearNewbornRoots], AC_DEFINE([HAVE_JS_CLEARNEWBORNROOTS], [1], [Define if we have JS_ClearNewbornRoots]),)
+ 
+ AC_MSG_CHECKING([for mozilla-js >= 2 ])
+ if `$PKG_CONFIG --exists $JS_PACKAGE '>=' 2`; then
+diff --git a/gjs/jsapi-util-array.c b/gjs/jsapi-util-array.c
+index dbbd96e..bcccf13 100644
+--- a/gjs/jsapi-util-array.c
++++ b/gjs/jsapi-util-array.c
+@@ -311,7 +311,9 @@ gjstest_test_func_gjs_jsapi_util_array(void)
+         gjs_rooted_array_append(context, array, value);
+     }
+ 
++#ifdef HAVE_JS_CLEARNEWBORNROOTS
+     JS_ClearNewbornRoots(context);
++#endif
+     JS_GC(context);
+ 
+     for (i = 0; i < N_ELEMS; i++) {
+-- 
+1.7.7
+
