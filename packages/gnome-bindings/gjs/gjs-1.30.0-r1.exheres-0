@@ -17,7 +17,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
     build+run:
         dev-libs/glib:2[>=2.26.0] [[ note = [ needs gdbus ] ]]
-        dev-libs/xulrunner:=[>=2.0] [[ note = [ require 2.0 instead of 1.9.2 to prevent breakage ] ]]
+        dev-libs/xulrunner:=[>=7.0] [[ note = [ conditionnally JS_SetScriptStackQuota check ] ]]
         gnome-desktop/gobject-introspection[>=1.29.17]
         x11-libs/cairo
         dev-libs/dbus-glib:1
