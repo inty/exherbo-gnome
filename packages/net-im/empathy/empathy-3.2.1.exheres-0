@@ -39,7 +39,7 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10
         dev-libs/libxml2:2.0
         net-im/telepathy-farsight[>=0.0.14]
-        net-im/telepathy-glib[>=0.15.5]
+        net-im/telepathy-glib[>=0.16.0]
         net-im/telepathy-logger:0.2[>=0.2.10]
         x11-libs/libX11
         x11-libs/gtk+:3[>=3.0.2]
