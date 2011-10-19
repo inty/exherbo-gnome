@@ -42,7 +42,7 @@ DEPENDENCIES="
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/libsoup:2.4
-        gnome-desktop/mutter[>=3.0.0][gobject-introspection]
+        gnome-desktop/mutter[>=3.2.1][gobject-introspection]
         media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
         media-libs/libcanberra
         media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
