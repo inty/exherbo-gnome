@@ -7,7 +7,7 @@ fi
 
 require gnome-2 systemd-service
 
-export_exlib_phases pkg_setup src_install
+export_exlib_phases src_install
 
 SUMMARY="GTK+ based login manager"
 HOMEPAGE="http://live.gnome.org/GDM"
@@ -23,11 +23,6 @@ DEPENDENCIES="
         x11-server/xorg-server [[ description = [ Requires an X server ] ]]
 "
 
-gdm_pkg_setup() {
-    default
-    exdirectory --allow /run        # GDM_XAUTH_DIR
-}
-
 gdm_src_install() {
     default
 
@@ -37,19 +32,11 @@ gdm_src_install() {
     keepdir /var/log/gdm            # GDM_LOG_DIR
     keepdir /var/cache/gdm
 
-    # GDM_XAUTH_DIR
-    if ever at_least 3.1.91 ; then
-        keepdir /run/gdm
-    else
-        keepdir /var/run/gdm
-    fi
+    # GDM_XAUTH_DIR is created automatically
+    edo rmdir "${IMAGE}"/run/{gdm/,}
 
     # GDM_SCREENSHOT_DIR
-    if ever at_least 3.1.91 ; then
-        keepdir /var/tmp
-    else
-        keepdir /var/run/gdm/greeter
-    fi
+    keepdir /var/tmp
 
     edo chmod g+w "${IMAGE}"/var/lib/gdm
     edo chown gdm:gdm "${IMAGE}"/var/lib/gdm
