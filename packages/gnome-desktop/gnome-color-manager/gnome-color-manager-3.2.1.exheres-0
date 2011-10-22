@@ -20,7 +20,7 @@ DEPENDENCIES="
        dev-util/pkg-config[>=0.20]
        man-pages? ( app-doc/docbook2X dev-libs/libxslt )
     build+run:
-        dev-libs/glib:2[>=2.25.9]
+        dev-libs/glib:2[>=2.30.0]
         x11-libs/libXrandr
         x11-libs/gtk+:3[>=2.91]
         media-libs/lcms2[>=2.2]
