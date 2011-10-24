@@ -2,8 +2,9 @@
 # Distributed under the terms of the GNU General Purpose License v2
 
 require gnome.org [ suffix=.tar.xz ] gnome-2 systemd-service
+ever at_least 3.2 && require gsettings
 
-export_exlib_phases src_install
+export_exlib_phases src_install pkg_postinst pkg_postrm
 
 SUMMARY="GTK+ based login manager"
 HOMEPAGE="http://live.gnome.org/GDM"
@@ -20,7 +21,12 @@ DEPENDENCIES="
 "
 
 gdm_src_install() {
-    default
+    # GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL is not being used, so ignore gnome-2_src_install
+    if ever at_least 3.2; then
+        gsettings_src_install
+    else
+        default
+    fi
 
     edo rmdir "${IMAGE}/var/gdm"
 
@@ -51,5 +57,17 @@ gdm_src_install() {
     fi
 
     install_systemd_files
+}
+
+gdm_pkg_postinst() {
+    ever at_least 3.2 && gsettings_pkg_postinst
+    gnome-2_pkg_postinst
+    edo dconf update
+}
+
+gdm_pkg_postrm() {
+    ever at_least 3.2 && gsettings_pkg_postrm
+    gnome-2_pkg_postrm
+    edo dconf update
 }
 
