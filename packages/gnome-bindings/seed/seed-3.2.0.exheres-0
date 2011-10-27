@@ -1,0 +1,50 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+
+SUMMARY="GNOME JavaScript bindings"
+DESCRIPTION="
+Seed is a library and interpreter, dynamically bridging (through gobject-introspection) the WebKit
+JavaScriptCore engine with the GObject type system. In a more concrete sense, Seed enables you to
+immediately write applications around a significant portion of the GNOME platform, and easily embed
+JavaScript as a scripting language in your GObject library.
+"
+HOMEPAGE="http://live.gnome.org/Seed"
+
+LICENCES="LGPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    dbus   [[ description = [ Enable the DBus module ] ]]
+    gtk-doc
+    sqlite [[ description = [ Enable the sqlite module ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        dev-libs/libffi
+        net-libs/webkit:3.0
+        gnome-desktop/gobject-introspection:1[>=0.6.3]
+        gnome-bindings/gnome-js-common
+        x11-libs/cairo
+        x11-libs/gtk+:3
+        sys-libs/readline
+        dev-libs/libxml2
+        dev-libs/mpfr
+        dbus? ( dev-libs/dbus-glib:1
+                sys-apps/dbus )
+        sqlite? ( dev-db/sqlite:3 )
+"
+
+RESTRICT="test" # Requires itself
+
+BUGS_TO="spoonb@exherbo.org"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-example-module' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc 'sqlite sqlite-module' )
+
