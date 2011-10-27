@@ -10,6 +10,7 @@ LICENCES="GPL-2"
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="avahi gobject-introspection gtk-doc networkmanager
+js [[ description = [ JavaScript support for extensions ] requires = [ gobject-introspection ] ]]
 nss [[ description = [ support migrating passwords from gecko based browsers ] ]]
 "
 
@@ -36,6 +37,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1[>=0.35]
         app-text/iso-codes[>=0.35]
         avahi? ( net-dns/avahi[>=0.6.22] )
+        js? ( gnome-bindings/seed[>=2.27.91] )
         networkmanager? ( net-apps/NetworkManager )
         nss? ( dev-libs/nss )
     run:
@@ -47,7 +49,7 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo'
                                '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gtk-doc'
-                                       'gobject-introspection introspection'
+                                       'gobject-introspection introspection' 'js seed'
                                        'networkmanager network-manager' 'nss' )
 
 src_install() {
