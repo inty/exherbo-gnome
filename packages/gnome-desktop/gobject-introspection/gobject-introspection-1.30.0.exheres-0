@@ -23,6 +23,8 @@ DEPENDENCIES="
         x11-libs/cairo
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/f8f6d038680260a7b4ff963d26e51b3cf90a3ba7.patch )
+
 src_configure() {
     econf $(option_enable gtk-doc) \
           $(expecting_tests --recommended && echo '--enable-tests' || echo '--disable-tests')
