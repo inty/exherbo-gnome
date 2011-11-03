@@ -27,6 +27,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.20.3]
         doc? ( dev-doc/gtk-doc[>=1.14] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
+        python? ( dev-python/pylint )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
