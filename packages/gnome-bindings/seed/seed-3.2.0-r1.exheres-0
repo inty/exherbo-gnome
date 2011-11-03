@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org [ suffix=.tar.xz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="GNOME JavaScript bindings"
 DESCRIPTION="
@@ -40,6 +41,8 @@ DEPENDENCIES="
                 sys-apps/dbus )
         sqlite? ( dev-db/sqlite:3 )
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/1ec48efc03df9368a59f501dfd1de9c9b15f016c.patch )
 
 RESTRICT="test" # Requires itself
 
