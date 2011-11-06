@@ -76,7 +76,6 @@ src_configure() {
     plugins+=,screensaver
     plugins+=,screenshot
     plugins+=,skipto
-    plugins+=,youtube
 
     pythonplugins+=dbusservice
     pythonplugins+=,iplayer
@@ -89,6 +88,7 @@ src_configure() {
     option media-player-keys    && plugins+=,media-player-keys
     option nautilus             && plugins+=,save-file
     option python               && plugins+=,${pythonplugins}
+    option youtube              && plugins+=,youtube
 
     unset DISPLAY
     unset DBUS_SESSION_BUS_ADDRESS
