@@ -1,0 +1,23 @@
+# Copyright 2011 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+if ever at_least 1.30 ; then
+    require gnome.org [ suffix=.tar.xz ]
+else
+    require gnome.org
+fi
+
+SUMMARY="JavaScript bindings for GNOME"
+HOMEPAGE="http://www.gnome.org"
+
+gjs_src_test() {
+    unset DISPLAY
+    unset DBUS_SESSION_BUS_ADDRESS
+
+    esandbox allow_net 'unix-abstract:/tmp/dbus-root-*'
+    default
+    esandbox disallow_net 'unix-abstract:/tmp/dbus-root-*'
+}
+
+export_exlib_phases src_test
+

@@ -1,10 +1,8 @@
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
-
-SUMMARY="JavaScript bindings for GNOME"
-HOMEPAGE="http://www.gnome.org"
+require gjs
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 LICENCES="MIT || ( MPL-1.1 LGPL-2 GPL-2 )"
 SLOT="1"
@@ -27,17 +25,8 @@ DEPENDENCIES="
         dev-lang/python:* [[ note = [ required to build tests ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/fix-tests-dbus-launch.patch
-    "${FILES}"/${PNV}-xulrunner-{5,6}.patch
-    "${FILES}"/0001-xul-nightly-conditionnally-adapt-to-JS_SetScriptStac.patch
-    "${FILES}"/0002-xul-nightly-Conditionally-adapt-to-JS_ClearNewbornRo.patch
-)
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch"
+                              "${FILES}"/${PNV}-xulrunner-{5,6}.patch
+                              "${FILES}/0001-xul-nightly-conditionnally-adapt-to-JS_SetScriptStac.patch"
+                              "${FILES}/0002-xul-nightly-Conditionally-adapt-to-JS_ClearNewbornRo.patch" )
 
-src_test() {
-    unset DBUS_SESSION_BUS_ADDRESS
-    unset DISPLAY
-    esandbox allow_net 'unix-abstract:/tmp/dbus-root-*'
-    default
-    esandbox disallow_net 'unix-abstract:/tmp/dbus-root-*'
-}
