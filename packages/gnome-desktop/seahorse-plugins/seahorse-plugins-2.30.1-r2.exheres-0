@@ -24,7 +24,8 @@ DEPENDENCIES="
         app-crypt/gpgme[>=1.0]
         gnome-desktop/libgnome-keyring:1[>=2.25.5]
         dev-libs/dbus-glib:1[>=0.35]
-        gnome-desktop/seahorse[>=${PV}]
+        || ( dev-libs/libcryptui
+             gnome-desktop/seahorse[>=${PV}&<3.2] )
         applet? ( gnome-desktop/gnome-panel[>=2.9.4] )
         eds? ( gnome-desktop/evolution-data-server:1.2[>=1.7.90] )
         gedit? ( app-editors/gedit[>=2.20] )
