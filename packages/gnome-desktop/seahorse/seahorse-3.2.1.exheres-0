@@ -29,6 +29,7 @@ DEPENDENCIES="
         ldap? ( net-directory/openldap[>=2.4.21] )
     suggestion:
         gnome-desktop/seahorse-plugins[>=2.25.0]
+        gnome-desktop/seahorse-sharing [[ description = [ Share your public keys ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
