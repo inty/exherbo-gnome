@@ -1,0 +1,27 @@
+# Copyright 2011 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+require gsettings
+
+SUMMARY="Take pictures of your screen"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.22]
+        dev-util/intltool[>=0.40.0]
+    build+run:
+        !gnome-desktop/gnome-utils[<3.3.0]
+        x11-libs/libXext
+        x11-libs/libX11
+        dev-libs/glib:2[>=2.31.0]
+        x11-libs/gtk+:3[>=3.0.0]
+        media-libs/libcanberra[gtk3]
+"
+
