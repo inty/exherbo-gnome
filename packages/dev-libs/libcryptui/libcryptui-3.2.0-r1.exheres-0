@@ -25,6 +25,7 @@ DEPENDENCIES="
         gnome-desktop/libgnome-keyring:1[>=2.25.5]
         x11-libs/gtk+:3[>=2.90.0]
         libnotify? ( x11-libs/libnotify[>=0.3] )
+        !gnome-desktop/seahorse[<3.2]  [[ description = [ File collision ] ]]
 "
 
 src_configure() {
