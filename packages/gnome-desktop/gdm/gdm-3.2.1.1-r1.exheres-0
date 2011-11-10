@@ -47,7 +47,10 @@ DEPENDENCIES="
         gnome-desktop/gnome-shell
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.32.0.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-add-daemonise-support-to-gdm-2.32.0.patch
+    "${FILES}"/9c354795892b8c5fd661a35653991a88fabc76bf.patch
+)
 
 src_configure() {
     econf "--localstatedir=/var"                                \
