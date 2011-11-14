@@ -14,6 +14,7 @@ MYOPTIONS="gobject-introspection gtk-doc"
 DEPENDENCIES="
     build:
         app-text/docbook-xml-dtd:4.3
+        dev-lang/vala:0.14[>=0.13.2]
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.21]
         sys-devel/gettext[>=0.17]
@@ -25,19 +26,19 @@ DEPENDENCIES="
         gnome-desktop/gnome-desktop:3.0[>=2.91.6]
         gnome-desktop/librsvg:2[>=2.32.0]
         media-libs/clutter-gst:1.0[>=1.0.0]
-        media-libs/gstreamer:0.10[>=0.10.32]
+        media-libs/gstreamer:0.10[>=0.10.32][gobject-introspection?]
         media-libs/libcanberra[>=0.26][gtk3]
         media-plugins/gnome-video-effects
         media-plugins/gst-plugins-base:0.10[>=0.10.32]
         sys-fs/udev[glib]
         x11-libs/cairo[>=1.10]
-        x11-libs/clutter:1[>=1.6.1]
+        x11-libs/clutter:1[>=1.6.1][gobject-introspection?]
         x11-libs/clutter-gtk:1.0[>=0.91.8]
         x11-libs/gtk+:3[>=2.99.4]
         x11-libs/libX11
         x11-libs/libXtst
         x11-libs/mx:1.0
-        x11-libs/pango[>=1.28.0]
+        x11-libs/pango[>=1.28.0][gobject-introspection?]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
