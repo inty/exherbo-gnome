@@ -1,7 +1,7 @@
 # Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org python [ python_dep=2.6 ]
+require gnome.org python [ python_dep=2.6 ] freedesktop-desktop
 
 SUMMARY="A tool to customize GNOME 3 options."
 HOMEPAGE="http://live.gnome.org/GnomeTweakTool"
