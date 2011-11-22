@@ -1,0 +1,61 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] freedesktop-desktop gsettings gtk-icon-cache
+
+SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
+HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
+
+LICENCES="( GPL-2 LGPL-2.1 )"
+SLOT="1"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gtk-doc gobject-introspection"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+        dev-libs/libxml2 [[ note = [ required for xmllint ] ]]
+    build+run:
+        dev-libs/glib:2[>=2.29.90]
+        x11-libs/gtk+:3[>=2.91.3]
+        ( x11-libs/libXi
+          x11-libs/libX11 ) [[ note = [ for the input helper ] ]]
+        x11-libs/libnotify[>=0.7.0]
+    run:
+        group/plugdev [[ note = [ for rfkill udev rules ] ]]
+        net-wireless/bluez[>=4.36]
+        gnome-desktop/gnome-control-center[>=2.90.1] [[ note = [ dependency resolved at run time ] ]]
+    recommendation:
+        net-wireless/obexd [[ description = [ Required for bluetooth-sendto ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-desktop-update --disable-icon-update
+                               --disable-moblin --disable-nautilus-sendto )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( "gtk-doc" 'gobject-introspection introspection' )
+
+src_install() {
+    default
+
+    insinto /etc/udev/rules.d/
+    doins "${FILES}/90-gnome-bluetooth-rfkill.rules"
+}
+
+pkg_postinst() {
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+    gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
+}
+
+pkg_postrm() {
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+    gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
+}
+
