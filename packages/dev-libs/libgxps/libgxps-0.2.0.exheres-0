@@ -1,0 +1,34 @@
+# Copyright 2011 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+
+SUMMARY="XPS Document Library"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS="cms gobject-introspection jpeg tiff"
+
+DEPENDENCIES="
+    build:
+        dev-libs/libxslt [[ note = [ required for man page generation ] ]]
+        dev-util/pkg-config[>=0.20]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.10.1] )
+    build+run:
+        dev-libs/glib:2[>=2.24]
+        x11-libs/cairo[>=1.10.0]
+        app-arch/libarchive[>=2.8.0]
+        x11-libs/freetype:2
+        media-libs/libpng [[ note = [ automagic dependency ] ]]
+        cms? ( media-libs/lcms2 )
+        jpeg? ( media-libs/jpeg )
+        tiff? ( media-libs/tiff )
+    test:
+        x11-libs/gtk+:3
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cms libcms2' 'jpeg libjpeg' 'tiff libtiff' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+
+
