@@ -5,7 +5,12 @@ require gsettings
 
 SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
-DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
+
+if ever at_least 1.7.2 ; then
+    DOWNLOADS="http://webkitgtk.org/${PNV}.tar.xz"
+else
+    DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
+fi
 
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
@@ -20,5 +25,4 @@ src_install() {
     gsettings_src_install
     edo find "${IMAGE}" -depth -type d -empty -delete
 }
-
 

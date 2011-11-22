@@ -6,7 +6,9 @@ require webkit
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug [[ description = [ debug build of webkit (not recommended for daily usage) ] ]]
-doc gobject-introspection
+doc
+experimental [[ description = [ enable experimental HTML5 features ] ]]
+gobject-introspection
 pango [[ description = [ use pango for the font backend (experimental) ] ]]
 spell
 webgl [[ description = [ add support for WebGL (experimental) ] ]]"
@@ -41,13 +43,19 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/r101067.patch" )
+
 src_configure() {
-    econf '--with-gtk=3.0'                                        \
-          '--enable-debug-symbols'                                \
-          "--with-font-backend=$(optionv pango || echo freetype)" \
-          $(option_enable debug debug-features)                   \
-          $(option_enable doc gtk-doc)                            \
-          $(option_enable gobject-introspection introspection)    \
-          $(option_enable webgl)
+    econf '--with-gtk=3.0'                                          \
+          '--enable-debug-symbols'                                  \
+          "--with-font-backend=$(optionv pango || echo freetype)"   \
+          $(option_enable debug debug-features)                     \
+          $(option_enable doc gtk-doc)                              \
+          $(option_enable experimental microdata)                   \
+          $(option_enable experimental video-track)                 \
+          $(option_enable experimental web-audio)                   \
+          $(option_enable gobject-introspection introspection)      \
+          $(option_enable webgl)                                    \
+          $(option_enable webgl 3d-rendering)
 }
 
