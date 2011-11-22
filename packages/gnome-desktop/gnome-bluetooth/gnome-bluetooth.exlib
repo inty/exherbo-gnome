@@ -1,0 +1,39 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+if ever at_least 3.2 ; then
+    require gnome.org [ suffix=.tar.xz ]
+else
+    require gnome.org
+fi
+
+require freedesktop-desktop gsettings gtk-icon-cache
+
+SUMMARY="A fork of bluez-gnome focused on integration with the GNOME Desktop"
+HOMEPAGE="http://live.gnome.org/GnomeBluetooth"
+
+gnome-bluetooth_src_install() {
+    default
+
+    insinto /etc/udev/rules.d/
+    doins "${FILES}/90-gnome-bluetooth-rfkill.rules"
+}
+
+gnome-bluetooth_pkg_postinst() {
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+    gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
+}
+
+gnome-bluetooth_pkg_postrm() {
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+    gsettings_exlib_compile_gsettings_schemas
+
+    nonfatal edo udevadm trigger --subsystem-match=misc --action=change
+}
+
+export_exlib_phases src_install pkg_postinst pkg_postrm
+
