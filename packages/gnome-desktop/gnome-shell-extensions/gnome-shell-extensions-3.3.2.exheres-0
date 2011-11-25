@@ -1,0 +1,39 @@
+# Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+declare -A MYEXTENSIONS
+MYEXTENSIONS[alternate-tab]='A replacement for Alt-Tab, allows to cycle between windows and does not group by application"'
+MYEXTENSIONS[alternative-status-menu]='Replaces Shell Status Menu with one showing Suspend/Hibernate and Power Off as separate items'
+MYEXTENSIONS[apps-menu]='Gnome 2 style menu for applications'
+MYEXTENSIONS[auto-move-windows]='Move applications to specific workspaces when they create windows'
+MYEXTENSIONS[dock]='A dock for the GNOME Shell -- displays favorite and running applications'
+MYEXTENSIONS[drive-menu]='A status menu for accessing and unmounting removable devices'
+MYEXTENSIONS[gajim]='Display Gajim incoming chats as notifications in the Shell message tray.'
+MYEXTENSIONS[native-window-placement]='Arrange windows in overview in a more native way'
+MYEXTENSIONS[places-menu]='Status menu for quickly navigating places in the system'
+MYEXTENSIONS[systemMonitor]='System Monitor'
+MYEXTENSIONS[user-theme]='Load shell themes from user directory'
+MYEXTENSIONS[windowsNavigator]='Allow keyboard selection of windows and workspaces in overlay mode'
+MYEXTENSIONS[workspace-indicator]='Indicator in which workspace you are and give you the possibility of switching to another one'
+MYEXTENSIONS[xrandr-indicator]='System status menu for rotating monitors (overrides gnome-settings-daemon)'
+
+require gnome-shell-extensions [ extensions=[ "${!MYEXTENSIONS[@]}" ] extensions_desc=[ "${MYEXTENSIONS[@]}" ] ]
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.26]
+        dev-util/pkg-config[>=0.22]
+    build+run:
+        dev-libs/glib:2[>=2.26] [[ note = [ For GSettings ] ]]
+        systemMonitor? ( gnome-desktop/libgtop:2[>=2.28.3] )
+        xrandr-indicator? ( gnome-desktop/gnome-desktop:3.0[>=2.91.6] )
+    run:
+        gnome-desktop/gnome-shell[=$(ever range 1-2)*]
+    suggestion:
+        gnome-desktop/gnome-tweak-tool [[ description = [ Enable/disable extensions ] ]]
+"
+
