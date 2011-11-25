@@ -22,7 +22,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
-        dev-libs/glib:2[>=2.29.10]
+        dev-libs/glib:2[>=2.31.2]
         x11-libs/gtk+:3[>=3.0.2]
         x11-libs/libICE
         x11-libs/libX11
@@ -45,6 +45,8 @@ DEPENDENCIES="
         net-apps/NetworkManager[>=0.8.9997]
         net-plugins/epiphany-extensions[>=2.27]
 "
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/13592e1c5b788c8739ff251d98aa8f6ae8e6ad96.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo'
                                '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
