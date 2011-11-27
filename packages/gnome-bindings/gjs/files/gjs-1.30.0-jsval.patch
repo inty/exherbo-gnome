@@ -1,0 +1,454 @@
+Source: written by Pierre Lejeune, from Exherbo
+Upstream: submitted, Gnome Bug #664506
+Reason: Fix comparisons with JSVAL_VOID and JSVAL_NULL
+
+--- a/modules/console.c	2011-07-20 19:47:20.000000000 +0200
++++ b/modules/console.c	2011-11-20 18:24:01.840847311 +0100
+@@ -224,7 +224,7 @@
+         if (JS_GetPendingException(context, &result)) {
+             str = JS_ValueToString(context, result);
+             JS_ClearPendingException(context);
+-        } else if (result == JSVAL_VOID) {
++        } else if (JSVAL_IS_VOID(result)) {
+             goto next;
+         } else {
+             str = JS_ValueToString(context, result);
+--- a/gjs/byteArray.c	2011-07-20 19:47:20.000000000 +0200
++++ b/gjs/byteArray.c	2011-11-20 18:25:17.713851453 +0100
+@@ -775,7 +775,7 @@
+             goto out;
+         }
+ 
+-        if (elem == JSVAL_VOID)
++        if (JSVAL_IS_VOID(elem))
+             continue;
+ 
+         if (!gjs_value_to_byte(context, elem, &b))
+--- a/gjs/importer.c	2011-07-20 19:47:20.000000000 +0200
++++ b/gjs/importer.c	2011-11-20 18:29:32.529304245 +0100
+@@ -534,7 +534,7 @@
+             goto out;
+         }
+ 
+-        if (elem == JSVAL_VOID)
++        if (JSVAL_IS_VOID(elem))
+             continue;
+ 
+         if (!JSVAL_IS_STRING(elem)) {
+@@ -566,7 +566,7 @@
+                                         module_obj,
+                                         name,
+                                         &obj_val)) {
+-                if (obj_val != JSVAL_VOID &&
++                if (!JSVAL_IS_VOID(obj_val) &&
+                     JS_DefineProperty(context, obj,
+                                       name, obj_val,
+                                       NULL, NULL,
+@@ -793,7 +793,7 @@
+                 return JS_FALSE;
+             }
+ 
+-            if (elem == JSVAL_VOID)
++            if (JSVAL_IS_VOID(elem))
+                 continue;
+ 
+             if (!JSVAL_IS_STRING(elem)) {
+@@ -868,7 +868,7 @@
+             return JS_FALSE;
+         }
+ 
+-        if (*state_p == JSVAL_NULL) /* Iterating prototype */
++        if (JSVAL_IS_NULL(*state_p)) /* Iterating prototype */
+             return JS_TRUE;
+ 
+         iter = JSVAL_TO_PRIVATE(*state_p);
+@@ -890,7 +890,7 @@
+     }
+ 
+     case JSENUMERATE_DESTROY: {
+-        if (state_p && *state_p != JSVAL_NULL) {
++        if (state_p && !JSVAL_IS_NULL(*state_p)) {
+             iter = JSVAL_TO_PRIVATE(*state_p);
+ 
+             importer_iterator_free(iter);
+--- a/gjs/jsapi-util.c	2011-09-16 05:02:08.000000000 +0200
++++ b/gjs/jsapi-util.c	2011-11-20 18:41:16.012333621 +0100
+@@ -407,7 +407,7 @@
+ 
+     JS_EndRequest(context);
+ 
+-    return value != JSVAL_VOID;
++    return !JSVAL_IS_VOID(value);
+ }
+ 
+ /* Returns whether the object had the property; if the object did
+@@ -434,7 +434,7 @@
+     if (value_p)
+         *value_p = value;
+ 
+-    if (value != JSVAL_VOID) {
++    if (!JSVAL_IS_VOID(value)) {
+         JS_ClearPendingException(context); /* in case JS_GetProperty() was on crack */
+         JS_EndRequest(context);
+         return TRUE;
+@@ -550,7 +550,7 @@
+                                          class_copy->base.name, &value))
+             goto error;
+     }
+-    g_assert(value != JSVAL_VOID);
++    g_assert(!JSVAL_IS_VOID(value));
+     g_assert(prototype != NULL);
+ 
+     /* Now manually define our constructor with a sane name, in the
+@@ -1277,7 +1277,7 @@
+ {
+     if (JSVAL_IS_NULL(value)) {
+         return "null";
+-    } else if (value == JSVAL_VOID) {
++    } else if (JSVAL_IS_VOID(value)) {
+         return "undefined";
+     } else if (JSVAL_IS_INT(value)) {
+         return "integer";
+--- a/gjs/native.c	2011-06-23 02:01:16.000000000 +0200
++++ b/gjs/native.c	2011-11-20 19:19:11.479628791 +0100
+@@ -82,7 +82,7 @@
+     jsval value;
+ 
+     if (gjs_object_get_property(context, module_obj, "__parentModule__", &value) &&
+-        value != JSVAL_NULL &&
++        !JSVAL_IS_NULL(value) &&
+         JSVAL_IS_OBJECT(value)) {
+         return JSVAL_TO_OBJECT(value);
+     } else {
+--- a/gi/boxed.cg	2011-08-13 10:10:49.000000000 +0200
++++ b/gi/boxed.c	2011-11-21 19:06:41.034903356 +0100
+@@ -1267,7 +1267,7 @@
+ 
+     constructor = NULL;
+     gjs_object_get_property(context, in_object, constructor_name, &value);
+-    if (value != JSVAL_VOID) {
++    if (!JSVAL_IS_VOID(value)) {
+         if (!JSVAL_IS_OBJECT(value)) {
+             gjs_throw(context, "Property '%s' does not look like a constructor",
+                       constructor_name);
+--- a/gi/value.c	2011-06-23 02:01:16.000000000 +0200
++++ b/gi/value.c	2011-11-21 21:26:54.048184150 +0100
+@@ -124,7 +124,7 @@
+     gjs_closure_invoke(closure, argc, argv, &rval);
+ 
+     if (return_value != NULL) {
+-        if (rval == JSVAL_VOID) {
++        if (JSVAL_IS_VOID(rval)) {
+             /* something went wrong invoking, error should be set already */
+             goto cleanup;
+         }
+--- a/gjs/compat.h	2011-07-20 19:47:20.000000000 +0200
++++ b/gjs/compat.h	2011-11-21 21:35:08.389116492 +0100
+@@ -60,7 +60,7 @@
+  */
+ #ifndef JSID_VOID
+ #define JSID_VOID JSVAL_VOID
+-#define JSID_IS_VOID(id) (id == JSVAL_VOID)
++#define JSID_IS_VOID(id) JSVAL_IS_VOID(id)
+ #define INT_TO_JSID(i) ((jsid) INT_TO_JSVAL(i))
+ #endif
+ 
+--- a/modules/dbus-exports.c	2011-07-25 19:53:59.000000000 +0200
++++ b/modules/dbus-exports.c	2011-11-21 21:38:06.874394083 +0100
+@@ -252,7 +252,7 @@
+ 
+     dbus_message_iter_init_append(reply, &arg_iter);
+ 
+-    if (rval == JSVAL_VOID || g_str_equal(signature, "")) {
++    if (JSVAL_IS_VOID(rval) || g_str_equal(signature, "")) {
+         /* We don't want to send anything in these cases so skip the
+          * marshalling altogether.
+          */
+@@ -681,7 +681,7 @@
+ 
+         gjs_object_get_property(context, obj, elements[i], &value);
+ 
+-        if (value == JSVAL_VOID ||
++        if (JSVAL_IS_VOID(value) ||
+             JSVAL_IS_NULL(value) ||
+             !JSVAL_IS_OBJECT(value)) {
+             obj = NULL;
+@@ -701,7 +701,7 @@
+     if (obj != NULL) {
+         gjs_object_get_property(context, obj, "-impl-", &value);
+ 
+-        if (value == JSVAL_VOID ||
++        if (JSVAL_IS_VOID(value) ||
+             JSVAL_IS_NULL(value) ||
+             !JSVAL_IS_OBJECT(value)) {
+             obj = NULL;
+@@ -724,7 +724,7 @@
+                             method_name,
+                             method_value);
+ 
+-    if (*method_value == JSVAL_VOID ||
++    if (JSVAL_IS_VOID(*method_value) ||
+         JSVAL_IS_NULL(*method_value) ||
+         !JSVAL_IS_OBJECT(*method_value)) {
+         return JS_FALSE;
+@@ -772,7 +772,7 @@
+      * have any properties so there's no case where
+      * we actually want to use it.
+      */
+-    if (iface_val == JSVAL_VOID &&
++    if (JSVAL_IS_VOID(iface_val) &&
+         strcmp(iface, DBUS_INTERFACE_PROPERTIES) == 0) {
+         gjs_debug(GJS_DEBUG_DBUS,
+                   "Changing interface to work around GNOME bug 569933");
+@@ -785,7 +785,7 @@
+         }
+     }
+ 
+-    if (iface_val == JSVAL_VOID) {
++    if (JSVAL_IS_VOID(iface_val)) {
+         /* NOT an exception ... object simply lacks the interface */
+         return JS_TRUE;
+     }
+@@ -938,7 +938,7 @@
+         return JS_FALSE;
+     }
+ 
+-    if (properties_array_val == JSVAL_VOID) {
++    if (JSVAL_IS_VOID(properties_array_val)) {
+         /* NOT an exception ... interface simply has no properties */
+         return JS_TRUE;
+     }
+@@ -949,7 +949,7 @@
+         property_val = JSVAL_VOID;
+         if (!JS_GetElement(context, JSVAL_TO_OBJECT(properties_array_val),
+                            i, &property_val) ||
+-            property_val == JSVAL_VOID) {
++            JSVAL_IS_VOID(property_val)) {
+             gjs_throw(context,
+                       "Error accessing element %d of properties array",
+                       i);
+@@ -1150,7 +1150,7 @@
+     dbus_message_iter_open_container(&iter, DBUS_TYPE_ARRAY,
+                                      "{sv}", &dict_iter);
+ 
+-    if (properties_array_val != JSVAL_VOID) {
++    if (!JSVAL_IS_VOID(properties_array_val)) {
+         for (i = 0; i < length; ++i) {
+             jsval property_val;
+             PropertyDetails details;
+@@ -1162,7 +1162,7 @@
+             property_val = JSVAL_VOID;
+             if (!JS_GetElement(context, JSVAL_TO_OBJECT(properties_array_val),
+                                i, &property_val) ||
+-                property_val == JSVAL_VOID) {
++                JSVAL_IS_VOID(property_val)) {
+                 gjs_throw(context,
+                           "Error accessing element %d of properties array",
+                           i);
+--- a/modules/cairo.c	2011-07-25 19:53:59.000000000 +0200
++++ b/modules/cairo.c	2011-11-21 21:41:03.299724248 +0100
+@@ -52,73 +52,73 @@
+ 
+     obj = gjs_cairo_context_create_proto(context, module,
+                                          "Context", NULL);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+     gjs_cairo_context_init(context);
+ 
+     obj = gjs_cairo_surface_create_proto(context, module,
+                                          "Surface", NULL);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+     surface_proto = JSVAL_TO_OBJECT(obj);
+ 
+     obj = gjs_cairo_image_surface_create_proto(context, module,
+                                                "ImageSurface", surface_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+     gjs_cairo_image_surface_init(context, JSVAL_TO_OBJECT(obj));
+ 
+ #if CAIRO_HAS_PS_SURFACE
+     obj = gjs_cairo_ps_surface_create_proto(context, module,
+                                             "PSSurface", surface_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ #endif
+ 
+ #if CAIRO_HAS_PDF_SURFACE
+     obj = gjs_cairo_pdf_surface_create_proto(context, module,
+                                              "PDFSurface", surface_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ #endif
+ 
+ #if CAIRO_HAS_SVG_SURFACE
+     obj = gjs_cairo_svg_surface_create_proto(context, module,
+                                              "SVGSurface", surface_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ #endif
+ 
+     obj = gjs_cairo_pattern_create_proto(context, module,
+                                          "Pattern", NULL);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+     pattern_proto = JSVAL_TO_OBJECT(obj);
+ 
+     obj = gjs_cairo_gradient_create_proto(context, module,
+                                          "Gradient", pattern_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+     gradient_proto = JSVAL_TO_OBJECT(obj);
+ 
+     obj = gjs_cairo_linear_gradient_create_proto(context, module,
+                                                  "LinearGradient", gradient_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ 
+     obj = gjs_cairo_radial_gradient_create_proto(context, module,
+                                                  "RadialGradient", gradient_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ 
+     obj = gjs_cairo_surface_pattern_create_proto(context, module,
+                                                  "SurfacePattern", pattern_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ 
+     obj = gjs_cairo_solid_pattern_create_proto(context, module,
+                                                "SolidPattern", pattern_proto);
+-    if (obj == JSVAL_NULL)
++    if (JSVAL_IS_NULL(obj))
+         return JS_FALSE;
+ 
+     return JS_TRUE;
+--- a/modules/cairo-context.c	2011-07-25 19:53:59.000000000 +0200
++++ b/modules/cairo-context.c	2011-11-21 21:42:25.547546610 +0100
+@@ -574,7 +574,7 @@
+         if (!JS_GetElement(context, dashes, i, &elem)) {
+             goto out;
+         }
+-        if (elem == JSVAL_VOID)
++        if (JSVAL_IS_VOID(elem))
+             continue;
+ 
+         if (!JS_ValueToNumber(context, elem, &b))
+--- a/modules/dbus-values.c	2011-07-25 19:53:59.000000000 +0200
++++ b/modules/dbus-values.c	2011-11-21 21:47:33.965377614 +0100
+@@ -794,14 +794,14 @@
+                             "_dbus_signatures",
+                             &prop_signatures);
+ 
+-    if (prop_signatures != JSVAL_VOID &&
++    if (!JSVAL_IS_VOID(prop_signatures) &&
+         !JSVAL_IS_OBJECT(prop_signatures)) {
+         gjs_throw(context,
+                   "_dbus_signatures prop must be an object");
+         return JS_FALSE;
+     }
+ 
+-    if (prop_signatures != JSVAL_VOID &&
++    if (!JSVAL_IS_VOID(prop_signatures) &&
+         dbus_signature_iter_get_current_type(&dict_value_sig_iter) !=
+         DBUS_TYPE_VARIANT) {
+         gjs_throw(context,
+@@ -839,13 +839,13 @@
+ 
+         /* see if this prop has a forced signature */
+         value_signature = NULL;
+-        if (prop_signatures != JSVAL_VOID) {
++        if (!JSVAL_IS_VOID(prop_signatures)) {
+             jsval signature_value;
+             signature_value = JSVAL_VOID;
+             gjs_object_get_property(context,
+                                     JSVAL_TO_OBJECT(prop_signatures),
+                                     name, &signature_value);
+-            if (signature_value != JSVAL_VOID) {
++            if (!JSVAL_IS_VOID(signature_value)) {
+                 value_signature = gjs_string_get_ascii(context,
+                                                                signature_value);
+                 if (value_signature == NULL) {
+@@ -1020,7 +1020,7 @@
+             if (!append_dict(context, iter, sig_iter, obj))
+                 return JS_FALSE;
+         }
+-    } else if (value == JSVAL_VOID) {
++    } else if (JSVAL_IS_VOID(value)) {
+         gjs_debug(GJS_DEBUG_DBUS, "Can't send void (undefined) values over dbus");
+         gjs_throw(context, "Can't send void (undefined) values over dbus");
+         return JS_FALSE;
+--- a/gi/function.c	2011-08-30 04:31:42.000000000 +0200
++++ b/gi/function.c	2011-11-21 21:50:24.383861812 +0100
+@@ -257,7 +257,7 @@
+ {
+     GjsCallbackTrampoline *trampoline;
+ 
+-    if (function == JSVAL_NULL) {
++    if (JSVAL_IS_NULL(function)) {
+         return NULL;
+     }
+ 
+--- a/gi/union.c	2011-06-23 02:01:16.000000000 +0200
++++ b/gi/union.c	2011-11-21 21:52:23.062715937 +0100
+@@ -511,7 +511,7 @@
+     if (constructor_p) {
+         *constructor_p = NULL;
+         gjs_object_get_property(context, in_object, constructor_name, &value);
+-        if (value != JSVAL_VOID) {
++        if (!JSVAL_IS_VOID(value)) {
+             if (!JSVAL_IS_OBJECT(value)) {
+                 gjs_throw(context, "Property '%s' does not look like a constructor",
+                           constructor_name);
+--- a/gi/param.c	2011-06-10 00:31:56.000000000 +0200
++++ b/gi/param.c	2011-11-21 21:53:02.885660241 +0100
+@@ -309,7 +309,7 @@
+     constructor_name = "ParamSpec";
+ 
+     gjs_object_get_property(context, in_object, constructor_name, &value);
+-    if (value != JSVAL_VOID) {
++    if (!JSVAL_IS_VOID(value)) {
+         JSObject *constructor;
+ 
+         if (!JSVAL_IS_OBJECT(value)) {
+--- a/gi/object.c	2011-09-17 16:03:19.000000000 +0200
++++ b/gi/object.c	2011-11-21 21:53:45.015543340 +0100
+@@ -1404,7 +1404,7 @@
+      */
+     gjs_object_get_property(context, in_object, constructor_name, &value);
+     constructor = NULL;
+-    if (value != JSVAL_VOID) {
++    if (!JSVAL_IS_VOID(value)) {
+        if (!JSVAL_IS_OBJECT(value)) {
+             gjs_throw(context, "Property '%s' does not look like a constructor",
+                       constructor_name);
+--- a/gjs/jsapi-util-error.c	2011-07-20 19:47:20.000000000 +0200
++++ b/gjs/jsapi-util-error.c	2011-11-21 21:54:38.629121912 +0100
+@@ -219,7 +219,7 @@
+ 
+     exc = JSVAL_VOID;
+     JS_GetPendingException(context, &exc);
+-    g_assert(exc != JSVAL_VOID);
++    g_assert(!JSVAL_IS_VOID(exc));
+ 
+     value = JSVAL_VOID;
+     JS_GetProperty(context, JSVAL_TO_OBJECT(exc), "message",
+@@ -264,7 +264,7 @@
+ 
+     exc = JSVAL_VOID;
+     JS_GetPendingException(context, &exc);
+-    g_assert(exc != JSVAL_VOID);
++    g_assert(!JSVAL_IS_VOID(exc));
+     g_assert(exc == previous);
+ 
+     JS_RemoveValueRoot(context, &previous);
