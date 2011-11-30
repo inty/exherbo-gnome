@@ -43,7 +43,7 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/r101067.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/r101067.patch" "${FILES}/r101393.patch" )
 
 src_configure() {
     econf '--with-gtk=3.0'                                          \

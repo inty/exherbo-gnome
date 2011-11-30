@@ -1,0 +1,14 @@
+Reason: Fix crash on error due to download being cleared without being cancelled
+Upstream: Yes
+Source: https://bugs.webkit.org/show_bug.cgi?id=72883
+--- 
+Index: trunk/Source/WebKit/gtk/webkit/webkitdownload.cpp
+===================================================================
+--- trunk/Source/WebKit/gtk/webkit/webkitdownload.cpp	(revision 100769)
++++ trunk/Source/WebKit/gtk/webkit/webkitdownload.cpp	(revision 101393)
+@@ -942,4 +942,5 @@
+     webkit_download_set_response(m_download, response);
+     if (response.httpStatusCode() >= 400) {
++        m_download->priv->resourceHandle->cancel();
+         webkit_download_error(m_download, ResourceError(errorDomainDownload, response.httpStatusCode(),
+                                                         response.url().string(), response.httpStatusText()));
