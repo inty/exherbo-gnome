@@ -46,7 +46,8 @@ DEPENDENCIES="
         net-plugins/epiphany-extensions[>=2.27]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/13592e1c5b788c8739ff251d98aa8f6ae8e6ad96.patch" )
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/13592e1c5b788c8739ff251d98aa8f6ae8e6ad96.patch"
+                              "${FILES}/0001-web-view-fix-icon-names.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo'
                                '--with-ca-file=/etc/ssl/certs/ca-certificates.crt' )
