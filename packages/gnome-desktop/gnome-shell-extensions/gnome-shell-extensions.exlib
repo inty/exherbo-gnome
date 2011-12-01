@@ -1,15 +1,9 @@
 # Copyright 2011 Brett Witherspoon <spoonb@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-if ever at_least 3.3.0 ; then
-    require gnome.org [ suffix=.tar.xz ]
-else
-    require gnome.org
-fi
+require gnome.org gsettings
 
-require gsettings
-
-if ever is_scm || [[ $(( $(ever range 2-2) % 2 )) -ne 0 ]] ; then
+if ever is_scm ; then
     require scm-git
     require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.10 1.11 ] ]
 fi
