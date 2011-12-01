@@ -37,6 +37,9 @@ EXTENSIONS_DESC=(
 )
 
 require gnome-shell-extensions [ extensions=[ "${EXTENSIONS[@]}" ] extensions_desc=[ "${EXTENSIONS_DESC[@]}" ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+DOWNLOADS="http://dev.exherbo.org/~sepek/distfiles/${PNV}.tar.gz"
 
 SLOT="0"
 PLATFORMS="~amd64"
@@ -55,4 +58,9 @@ DEPENDENCIES="
     suggestion:
         gnome-desktop/gnome-tweak-tool [[ description = [ Enable/disable extensions ] ]]
 "
+
+src_prepare() {
+    autotools_src_prepare
+    edo intltoolize --force --copy
+}
 
