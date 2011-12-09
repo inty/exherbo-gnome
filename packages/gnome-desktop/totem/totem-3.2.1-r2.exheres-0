@@ -27,7 +27,6 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.20.3]
         doc? ( dev-doc/gtk-doc[>=1.14] )
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
-        python? ( dev-python/pylint )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
@@ -55,6 +54,8 @@ DEPENDENCIES="
         youtube? ( gnome-desktop/libgdata[>=0.9.1]
                    gnome-desktop/libsoup:2.4
                    media-plugins/gst-plugins-good:0.10[gstreamer_plugins:soup] )
+    test:
+        python? ( dev-python/pylint )
     recommendation:
         gnome-desktop/gnome-icon-theme-symbolic [[ description = [ icons for the buttons ] ]]
 "
