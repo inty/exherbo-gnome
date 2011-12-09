@@ -34,7 +34,7 @@ DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-check-for-cairo.patch" )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cairo )
 
-# FIXME tests fail and leave a running dbus-daemon process
+# needs X
 RESTRICT="test"
 
 src_compile() {
