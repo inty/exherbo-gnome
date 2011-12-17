@@ -1,0 +1,260 @@
+From 7f938c2334fbc55d7041a86bbf9ee9169d3c4c53 Mon Sep 17 00:00:00 2001
+From: Dan Winship <danw@gnome.org>
+Date: Sat, 22 Oct 2011 21:59:07 +0000
+Subject: SoupRequestHTTP: don't complete send() until after sniffing
+
+If the session has a SoupContentSniffer (and it's not disabled for
+this message), wait until content-sniffed is emitted before completing
+send()/send_async(). Remove the faked content-sniffed emissions from
+the cache codepaths, since they should no longer be needed.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=663451
+---
+diff --git a/libsoup/soup-http-input-stream.c b/libsoup/soup-http-input-stream.c
+index 43c30a9..45f181c 100644
+--- a/libsoup/soup-http-input-stream.c
++++ b/libsoup/soup-http-input-stream.c
+@@ -27,6 +27,8 @@
+ #include <gio/gio.h>
+ 
+ #include "soup-http-input-stream.h"
++#include "soup-headers.h"
++#include "soup-content-sniffer.h"
+ #include "soup-session.h"
+ 
+ G_DEFINE_TYPE (SoupHTTPInputStream, soup_http_input_stream, G_TYPE_INPUT_STREAM)
+@@ -53,6 +55,8 @@ typedef struct {
+ 	gsize caller_bufsize, caller_nread;
+ 	GAsyncReadyCallback outstanding_callback;
+ 	GSimpleAsyncResult *result;
++
++	char *sniffed_content_type;
+ } SoupHTTPInputStreamPrivate;
+ #define SOUP_HTTP_INPUT_STREAM_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), SOUP_TYPE_HTTP_INPUT_STREAM, SoupHTTPInputStreamPrivate))
+ 
+@@ -85,6 +89,7 @@ static gboolean soup_http_input_stream_close_finish (GInputStream         *strea
+ 						     GError              **error);
+ 
+ static void soup_http_input_stream_got_headers (SoupMessage *msg, gpointer stream);
++static void soup_http_input_stream_content_sniffed (SoupMessage *msg, const char *content_type, GHashTable *params, gpointer stream);
+ static void soup_http_input_stream_got_chunk (SoupMessage *msg, SoupBuffer *chunk, gpointer stream);
+ static void soup_http_input_stream_restarted (SoupMessage *msg, gpointer stream);
+ static void soup_http_input_stream_finished (SoupMessage *msg, gpointer stream);
+@@ -98,6 +103,7 @@ soup_http_input_stream_finalize (GObject *object)
+ 	g_object_unref (priv->session);
+ 
+ 	g_signal_handlers_disconnect_by_func (priv->msg, G_CALLBACK (soup_http_input_stream_got_headers), stream);
++	g_signal_handlers_disconnect_by_func (priv->msg, G_CALLBACK (soup_http_input_stream_content_sniffed), stream);
+ 	g_signal_handlers_disconnect_by_func (priv->msg, G_CALLBACK (soup_http_input_stream_got_chunk), stream);
+ 	g_signal_handlers_disconnect_by_func (priv->msg, G_CALLBACK (soup_http_input_stream_restarted), stream);
+ 	g_signal_handlers_disconnect_by_func (priv->msg, G_CALLBACK (soup_http_input_stream_finished), stream);
+@@ -106,6 +112,8 @@ soup_http_input_stream_finalize (GObject *object)
+ 	g_queue_foreach (priv->leftover_queue, (GFunc) soup_buffer_free, NULL);
+ 	g_queue_free (priv->leftover_queue);
+ 
++	g_free (priv->sniffed_content_type);
++
+ 	if (G_OBJECT_CLASS (soup_http_input_stream_parent_class)->finalize)
+ 		(*G_OBJECT_CLASS (soup_http_input_stream_parent_class)->finalize)(object);
+ }
+@@ -143,6 +151,20 @@ soup_http_input_stream_queue_message (SoupHTTPInputStream *stream)
+ 
+ 	priv->got_headers = priv->finished = FALSE;
+ 
++	if (soup_session_get_feature_for_message (priv->session, SOUP_TYPE_CONTENT_SNIFFER, priv->msg)) {
++		g_signal_connect (priv->msg, "content_sniffed",
++				  G_CALLBACK (soup_http_input_stream_content_sniffed), stream);
++	} else {
++		g_signal_connect (priv->msg, "got_headers",
++				  G_CALLBACK (soup_http_input_stream_got_headers), stream);
++	}
++	g_signal_connect (priv->msg, "got_chunk",
++			  G_CALLBACK (soup_http_input_stream_got_chunk), stream);
++	g_signal_connect (priv->msg, "restarted",
++			  G_CALLBACK (soup_http_input_stream_restarted), stream);
++	g_signal_connect (priv->msg, "finished",
++			  G_CALLBACK (soup_http_input_stream_finished), stream);
++
+ 	/* Add an extra ref since soup_session_queue_message steals one */
+ 	g_object_ref (priv->msg);
+ 	soup_session_queue_message (priv->session, priv->msg, NULL, NULL);
+@@ -189,16 +211,6 @@ soup_http_input_stream_new (SoupSession *session, SoupMessage *msg)
+ 	priv->async_context = soup_session_get_async_context (session);
+ 	priv->msg = g_object_ref (msg);
+ 
+-	g_signal_connect (msg, "got_headers",
+-			  G_CALLBACK (soup_http_input_stream_got_headers), stream);
+-	g_signal_connect (msg, "got_chunk",
+-			  G_CALLBACK (soup_http_input_stream_got_chunk), stream);
+-	g_signal_connect (msg, "restarted",
+-			  G_CALLBACK (soup_http_input_stream_restarted), stream);
+-	g_signal_connect (msg, "finished",
+-			  G_CALLBACK (soup_http_input_stream_finished), stream);
+-
+-	soup_http_input_stream_queue_message (stream);
+ 	return (GInputStream *)stream;
+ }
+ 
+@@ -227,6 +239,30 @@ soup_http_input_stream_got_headers (SoupMessage *msg, gpointer stream)
+ }
+ 
+ static void
++soup_http_input_stream_content_sniffed (SoupMessage *msg, const char *content_type,
++					GHashTable *params, gpointer stream)
++{
++	SoupHTTPInputStreamPrivate *priv = SOUP_HTTP_INPUT_STREAM_GET_PRIVATE (stream);
++	GString *sniffed_type;
++
++	sniffed_type = g_string_new (content_type);
++	if (params) {
++		GHashTableIter iter;
++		gpointer key, value;
++
++		g_hash_table_iter_init (&iter, params);
++		while (g_hash_table_iter_next (&iter, &key, &value)) {
++			g_string_append (sniffed_type, "; ");
++			soup_header_g_string_append_param (sniffed_type, key, value);
++		}
++	}
++	g_free (priv->sniffed_content_type);
++	priv->sniffed_content_type = g_string_free (sniffed_type, FALSE);
++
++	soup_http_input_stream_got_headers (msg, stream);
++}
++
++static void
+ soup_http_input_stream_got_chunk (SoupMessage *msg, SoupBuffer *chunk_buffer,
+ 				  gpointer stream)
+ {
+@@ -439,6 +475,8 @@ soup_http_input_stream_send (SoupHTTPInputStream  *httpstream,
+ 
+ 	g_return_val_if_fail (SOUP_IS_HTTP_INPUT_STREAM (httpstream), FALSE);
+ 
++	soup_http_input_stream_queue_message (httpstream);
++
+ 	if (!g_input_stream_set_pending (istream, error))
+ 		return FALSE;
+ 
+@@ -586,6 +624,8 @@ soup_http_input_stream_send_async (SoupHTTPInputStream *httpstream,
+ 
+ 	g_return_if_fail (SOUP_IS_HTTP_INPUT_STREAM (httpstream));
+ 
++	soup_http_input_stream_queue_message (httpstream);
++
+ 	if (!g_input_stream_set_pending (istream, &error)) {
+ 		g_simple_async_report_take_gerror_in_idle (G_OBJECT (httpstream),
+ 							   callback,
+@@ -745,3 +785,15 @@ soup_http_input_stream_get_message (SoupHTTPInputStream *httpstream)
+ 	SoupHTTPInputStreamPrivate *priv = SOUP_HTTP_INPUT_STREAM_GET_PRIVATE (httpstream);
+ 	return priv->msg ? g_object_ref (priv->msg) : NULL;
+ }
++
++const char *
++soup_http_input_stream_get_content_type (SoupHTTPInputStream *httpstream)
++{
++	SoupHTTPInputStreamPrivate *priv = SOUP_HTTP_INPUT_STREAM_GET_PRIVATE (httpstream);
++
++	if (priv->sniffed_content_type)
++		return priv->sniffed_content_type;
++	else
++		return soup_message_headers_get_content_type (priv->msg->response_headers, NULL);
++
++}
+diff --git a/libsoup/soup-http-input-stream.h b/libsoup/soup-http-input-stream.h
+index 940d0a1..b6c598c 100644
+--- a/libsoup/soup-http-input-stream.h
++++ b/libsoup/soup-http-input-stream.h
+@@ -72,6 +72,8 @@ gboolean      soup_http_input_stream_send_finish (SoupHTTPInputStream  *httpstre
+ 
+ SoupMessage  *soup_http_input_stream_get_message (SoupHTTPInputStream  *httpstream);
+ 
++const char   *soup_http_input_stream_get_content_type (SoupHTTPInputStream  *httpstream);
++
+ G_END_DECLS
+ 
+ #endif /* __SOUP_HTTP_INPUT_STREAM_H__ */
+diff --git a/libsoup/soup-request-http.c b/libsoup/soup-request-http.c
+index b58f970..d4a2c20 100644
+--- a/libsoup/soup-request-http.c
++++ b/libsoup/soup-request-http.c
+@@ -32,7 +32,6 @@
+ #include "soup-request-http.h"
+ #include "soup-cache.h"
+ #include "soup-cache-private.h"
+-#include "soup-content-sniffer.h"
+ #include "soup-http-input-stream.h"
+ #include "soup-message.h"
+ #include "soup-session.h"
+@@ -42,6 +41,7 @@ G_DEFINE_TYPE (SoupRequestHTTP, soup_request_http, SOUP_TYPE_REQUEST)
+ 
+ struct _SoupRequestHTTPPrivate {
+ 	SoupMessage *msg;
++	char *content_type;
+ };
+ 
+ static void
+@@ -89,6 +89,7 @@ soup_request_http_send (SoupRequest          *request,
+ 		g_object_unref (httpstream);
+ 		return NULL;
+ 	}
++	http->priv->content_type = g_strdup (soup_http_input_stream_get_content_type (SOUP_HTTP_INPUT_STREAM (httpstream)));
+ 	return httpstream;
+ }
+ 
+@@ -126,6 +127,7 @@ http_input_stream_ready_cb (GObject *source, GAsyncResult *result, gpointer user
+ 	GError *error = NULL;
+ 
+ 	if (soup_http_input_stream_send_finish (httpstream, result, &error)) {
++		sadata->http->priv->content_type = g_strdup (soup_http_input_stream_get_content_type (httpstream));
+ 		g_simple_async_result_set_op_res_gpointer (sadata->simple, httpstream, g_object_unref);
+ 	} else {
+ 		g_simple_async_result_take_error (sadata->simple, error);
+@@ -151,11 +153,10 @@ conditional_get_ready_cb (SoupSession *session, SoupMessage *msg, gpointer user_
+ 
+ 			soup_message_got_headers (sadata->original);
+ 
+-			if (soup_session_get_feature_for_message (session, SOUP_TYPE_CONTENT_SNIFFER, sadata->original)) {
+-				const char *content_type =
+-					soup_message_headers_get_content_type (sadata->original->response_headers, NULL);
+-				soup_message_content_sniffed (sadata->original, content_type, NULL);
+-			}
++			/* FIXME: this is wrong; the cache won't have
++			 * the sniffed type.
++			 */
++			sadata->http->priv->content_type = g_strdup (soup_message_headers_get_content_type (sadata->original->response_headers, NULL));
+ 
+ 			g_simple_async_result_complete (sadata->simple);
+ 
+@@ -177,9 +178,6 @@ static gboolean
+ idle_return_from_cache_cb (gpointer data)
+ {
+ 	SendAsyncData *sadata = data;
+-	SoupSession *session;
+-
+-	session = soup_request_get_session (SOUP_REQUEST (sadata->http));
+ 
+ 	g_simple_async_result_set_op_res_gpointer (sadata->simple,
+ 						   g_object_ref (sadata->stream), g_object_unref);
+@@ -187,10 +185,7 @@ idle_return_from_cache_cb (gpointer data)
+ 	/* Issue signals  */
+ 	soup_message_got_headers (sadata->http->priv->msg);
+ 
+-	if (soup_session_get_feature_for_message (session, SOUP_TYPE_CONTENT_SNIFFER, sadata->http->priv->msg)) {
+-		const char *content_type = soup_message_headers_get_content_type (sadata->http->priv->msg->response_headers, NULL);
+-		soup_message_content_sniffed (sadata->http->priv->msg, content_type, NULL);
+-	}
++	sadata->http->priv->content_type = g_strdup (soup_message_headers_get_content_type (sadata->http->priv->msg->response_headers, NULL));
+ 
+ 	g_simple_async_result_complete (sadata->simple);
+ 
+@@ -288,7 +283,7 @@ soup_request_http_get_content_type (SoupRequest *request)
+ {
+ 	SoupRequestHTTP *http = SOUP_REQUEST_HTTP (request);
+ 
+-	return soup_message_headers_get_content_type (http->priv->msg->response_headers, NULL);
++	return http->priv->content_type;
+ }
+ 
+ static const char *http_schemes[] = { "http", "https", NULL };
+--
+cgit v0.9.0.2

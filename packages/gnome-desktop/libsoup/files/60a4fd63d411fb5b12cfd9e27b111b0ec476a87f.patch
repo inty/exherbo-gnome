@@ -1,0 +1,1009 @@
+From 60a4fd63d411fb5b12cfd9e27b111b0ec476a87f Mon Sep 17 00:00:00 2001
+From: Dan Winship <danw@gnome.org>
+Date: Wed, 30 Nov 2011 20:59:55 +0000
+Subject: Require glib 2.31 and update to new thread APIs
+
+---
+diff --git a/configure.ac b/configure.ac
+index b3a9a48..b839ec4 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -72,9 +72,9 @@ dnl ***********************
+ dnl *** Checks for glib ***
+ dnl ***********************
+ 
+-AM_PATH_GLIB_2_0(2.30.0,,,gobject gio)
++AM_PATH_GLIB_2_0(2.31.0,,,gobject gio)
+ if test "$GLIB_LIBS" = ""; then
+-   AC_MSG_ERROR(GLIB 2.30.0 or later is required to build libsoup)
++   AC_MSG_ERROR(GLIB 2.31.0 or later is required to build libsoup)
+ fi
+ GLIB_CFLAGS="$GLIB_CFLAGS -DG_DISABLE_SINGLE_INCLUDES"
+ 
+diff --git a/docs/reference/Makefile.am b/docs/reference/Makefile.am
+index 5de8935..f21e710 100644
+--- a/docs/reference/Makefile.am
++++ b/docs/reference/Makefile.am
+@@ -16,7 +16,7 @@ DOC_SOURCE_DIR=../../libsoup
+ SCAN_OPTIONS=--deprecated-guards=LIBSOUP_DISABLE_DEPRECATED --rebuild-types
+ 
+ # Extra options to supply to gtkdoc-scangobj.
+-SCANGOBJ_OPTIONS=--type-init-func 'g_type_init(); g_thread_init(NULL)'
++SCANGOBJ_OPTIONS=
+ 
+ # Extra options to supply to gtkdoc-mkdb.
+ MKDB_OPTIONS=--sgml-mode --output-format=xml
+diff --git a/libsoup/soup-address.c b/libsoup/soup-address.c
+index 42b777d..1ac2d32 100644
+--- a/libsoup/soup-address.c
++++ b/libsoup/soup-address.c
+@@ -51,7 +51,7 @@ typedef struct {
+ 	char *name, *physical;
+ 	guint port;
+ 
+-	GMutex *lock;
++	GMutex lock;
+ 	GSList *async_lookups;
+ } SoupAddressPrivate;
+ #define SOUP_ADDRESS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), SOUP_TYPE_ADDRESS, SoupAddressPrivate))
+@@ -116,7 +116,7 @@ soup_address_init (SoupAddress *addr)
+ {
+ 	SoupAddressPrivate *priv = SOUP_ADDRESS_GET_PRIVATE (addr);
+ 
+-	priv->lock = g_mutex_new ();
++	g_mutex_init (&priv->lock);
+ }
+ 
+ static void
+@@ -132,7 +132,7 @@ finalize (GObject *object)
+ 	if (priv->physical)
+ 		g_free (priv->physical);
+ 
+-	g_mutex_free (priv->lock);
++	g_mutex_clear (&priv->lock);
+ 
+ 	G_OBJECT_CLASS (soup_address_parent_class)->finalize (object);
+ }
+@@ -819,14 +819,14 @@ resolve_sync_internal (SoupAddress *addr, GCancellable *cancellable, GError **er
+ 	 * priv->sockaddr and priv->name, unlock it around the
+ 	 * blocking op, and then re-lock it to modify @addr.
+ 	 */
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 	if (!priv->sockaddr) {
+ 		GList *addrs;
+ 
+-		g_mutex_unlock (priv->lock);
++		g_mutex_unlock (&priv->lock);
+ 		addrs = g_resolver_lookup_by_name (resolver, priv->name,
+ 						   cancellable, &my_err);
+-		g_mutex_lock (priv->lock);
++		g_mutex_lock (&priv->lock);
+ 
+ 		status = update_addrs (addr, addrs, my_err);
+ 		g_resolver_free_addresses (addrs);
+@@ -834,18 +834,18 @@ resolve_sync_internal (SoupAddress *addr, GCancellable *cancellable, GError **er
+ 		GInetAddress *gia;
+ 		char *name;
+ 
+-		g_mutex_unlock (priv->lock);
++		g_mutex_unlock (&priv->lock);
+ 		gia = soup_address_make_inet_address (addr);
+ 		name = g_resolver_lookup_by_address (resolver, gia,
+ 						     cancellable, &my_err);
+ 		g_object_unref (gia);
+-		g_mutex_lock (priv->lock);
++		g_mutex_lock (&priv->lock);
+ 
+ 		status = update_name (addr, name, my_err);
+ 		g_free (name);
+ 	} else
+ 		status = SOUP_STATUS_OK;
+-	g_mutex_unlock (priv->lock);
++	g_mutex_unlock (&priv->lock);
+ 
+ 	if (my_err)
+ 		g_propagate_error (error, my_err);
+@@ -905,9 +905,9 @@ soup_address_is_resolved (SoupAddress *addr)
+ 	g_return_val_if_fail (SOUP_IS_ADDRESS (addr), FALSE);
+ 	priv = SOUP_ADDRESS_GET_PRIVATE (addr);
+ 
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 	resolved = priv->sockaddr && priv->name;
+-	g_mutex_unlock (priv->lock);
++	g_mutex_unlock (&priv->lock);
+ 
+ 	return resolved;
+ }
+diff --git a/libsoup/soup-directory-input-stream.c b/libsoup/soup-directory-input-stream.c
+index 48f6f4d..3fe946b 100644
+--- a/libsoup/soup-directory-input-stream.c
++++ b/libsoup/soup-directory-input-stream.c
+@@ -61,7 +61,7 @@ soup_directory_input_stream_parse_info (SoupDirectoryInputStream *stream,
+ 	xml_string = g_markup_escape_text (file_name, -1);
+ 	escaped = g_uri_escape_string (file_name, NULL, FALSE);
+ 	path = g_strconcat (stream->uri, G_DIR_SEPARATOR_S, escaped, NULL);
+-	size = g_format_size_for_display (g_file_info_get_size (info));
++	size = g_format_size (g_file_info_get_size (info));
+ 	g_file_info_get_modification_time (info, &modified);
+ 	modification_time = g_date_time_new_from_timeval_local (&modified);
+ 	time = g_date_time_format (modification_time, "%X %x");
+diff --git a/libsoup/soup-logger.c b/libsoup/soup-logger.c
+index b159e67..536f327 100644
+--- a/libsoup/soup-logger.c
++++ b/libsoup/soup-logger.c
+@@ -98,7 +98,7 @@ typedef struct {
+ 	/* We use a mutex so that if requests are being run in
+ 	 * multiple threads, we don't mix up the output.
+ 	 */
+-	GMutex             *lock;
++	GMutex             lock;
+ 
+ 	GQuark              tag;
+ 	GHashTable         *ids;
+@@ -125,7 +125,7 @@ soup_logger_init (SoupLogger *logger)
+ {
+ 	SoupLoggerPrivate *priv = SOUP_LOGGER_GET_PRIVATE (logger);
+ 
+-	priv->lock = g_mutex_new ();
++	g_mutex_init (&priv->lock);
+ 	priv->tag = g_quark_from_static_string (g_strdup_printf ("SoupLogger-%p", logger));
+ 	priv->ids = g_hash_table_new (NULL, NULL);
+ }
+@@ -144,7 +144,7 @@ finalize (GObject *object)
+ 	if (priv->printer_dnotify)
+ 		priv->printer_dnotify (priv->printer_data);
+ 
+-	g_mutex_free (priv->lock);
++	g_mutex_clear (&priv->lock);
+ 
+ 	G_OBJECT_CLASS (soup_logger_parent_class)->finalize (object);
+ }
+@@ -587,7 +587,7 @@ got_informational (SoupMessage *msg, gpointer user_data)
+ 	SoupLogger *logger = user_data;
+ 	SoupLoggerPrivate *priv = SOUP_LOGGER_GET_PRIVATE (logger);
+ 
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 
+ 	print_response (logger, msg);
+ 	soup_logger_print (logger, SOUP_LOGGER_LOG_MINIMAL, ' ', "");
+@@ -612,7 +612,7 @@ got_informational (SoupMessage *msg, gpointer user_data)
+ 		soup_logger_print (logger, SOUP_LOGGER_LOG_MINIMAL, ' ', "");
+ 	}
+ 
+-	g_mutex_unlock (priv->lock);
++	g_mutex_unlock (&priv->lock);
+ }
+ 
+ static void
+@@ -621,12 +621,12 @@ got_body (SoupMessage *msg, gpointer user_data)
+ 	SoupLogger *logger = user_data;
+ 	SoupLoggerPrivate *priv = SOUP_LOGGER_GET_PRIVATE (logger);
+ 
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 
+ 	print_response (logger, msg);
+ 	soup_logger_print (logger, SOUP_LOGGER_LOG_MINIMAL, ' ', "");
+ 
+-	g_mutex_unlock (priv->lock);
++	g_mutex_unlock (&priv->lock);
+ }
+ 
+ static void
+diff --git a/libsoup/soup-message-queue.c b/libsoup/soup-message-queue.c
+index d324597..0fc655f 100644
+--- a/libsoup/soup-message-queue.c
++++ b/libsoup/soup-message-queue.c
+@@ -29,7 +29,7 @@
+ struct _SoupMessageQueue {
+ 	SoupSession *session;
+ 
+-	GMutex *mutex;
++	GMutex mutex;
+ 	SoupMessageQueueItem *head, *tail;
+ };
+ 
+@@ -40,7 +40,7 @@ soup_message_queue_new (SoupSession *session)
+ 
+ 	queue = g_slice_new0 (SoupMessageQueue);
+ 	queue->session = session;
+-	queue->mutex = g_mutex_new ();
++	g_mutex_init (&queue->mutex);
+ 	return queue;
+ }
+ 
+@@ -49,7 +49,7 @@ soup_message_queue_destroy (SoupMessageQueue *queue)
+ {
+ 	g_return_if_fail (queue->head == NULL);
+ 
+-	g_mutex_free (queue->mutex);
++	g_mutex_clear (&queue->mutex);
+ 	g_slice_free (SoupMessageQueue, queue);
+ }
+ 
+@@ -119,7 +119,7 @@ soup_message_queue_append (SoupMessageQueue *queue, SoupMessage *msg,
+ 	 */
+ 	item->ref_count = 1;
+ 
+-	g_mutex_lock (queue->mutex);
++	g_mutex_lock (&queue->mutex);
+ 	if (queue->head) {
+ 		queue->tail->next = item;
+ 		item->prev = queue->tail;
+@@ -127,7 +127,7 @@ soup_message_queue_append (SoupMessageQueue *queue, SoupMessage *msg,
+ 	} else
+ 		queue->head = queue->tail = item;
+ 
+-	g_mutex_unlock (queue->mutex);
++	g_mutex_unlock (&queue->mutex);
+ 	return item;
+ }
+ 
+@@ -154,13 +154,13 @@ soup_message_queue_item_ref (SoupMessageQueueItem *item)
+ void
+ soup_message_queue_item_unref (SoupMessageQueueItem *item)
+ {
+-	g_mutex_lock (item->queue->mutex);
++	g_mutex_lock (&item->queue->mutex);
+ 
+ 	/* Decrement the ref_count; if it's still non-zero OR if the
+ 	 * item is still in the queue, then return.
+ 	 */
+ 	if (--item->ref_count || !item->removed) {
+-		g_mutex_unlock (item->queue->mutex);
++		g_mutex_unlock (&item->queue->mutex);
+ 		return;
+ 	}
+ 
+@@ -174,7 +174,7 @@ soup_message_queue_item_unref (SoupMessageQueueItem *item)
+ 	else
+ 		item->queue->tail = item->prev;
+ 
+-	g_mutex_unlock (item->queue->mutex);
++	g_mutex_unlock (&item->queue->mutex);
+ 
+ 	/* And free it */
+ 	g_signal_handlers_disconnect_by_func (item->msg,
+@@ -206,7 +206,7 @@ soup_message_queue_lookup (SoupMessageQueue *queue, SoupMessage *msg)
+ {
+ 	SoupMessageQueueItem *item;
+ 
+-	g_mutex_lock (queue->mutex);
++	g_mutex_lock (&queue->mutex);
+ 
+ 	item = queue->tail;
+ 	while (item && (item->removed || item->msg != msg))
+@@ -215,7 +215,7 @@ soup_message_queue_lookup (SoupMessageQueue *queue, SoupMessage *msg)
+ 	if (item)
+ 		item->ref_count++;
+ 
+-	g_mutex_unlock (queue->mutex);
++	g_mutex_unlock (&queue->mutex);
+ 	return item;
+ }
+ 
+@@ -236,7 +236,7 @@ soup_message_queue_first (SoupMessageQueue *queue)
+ {
+ 	SoupMessageQueueItem *item;
+ 
+-	g_mutex_lock (queue->mutex);
++	g_mutex_lock (&queue->mutex);
+ 
+ 	item = queue->head;
+ 	while (item && item->removed)
+@@ -245,7 +245,7 @@ soup_message_queue_first (SoupMessageQueue *queue)
+ 	if (item)
+ 		item->ref_count++;
+ 
+-	g_mutex_unlock (queue->mutex);
++	g_mutex_unlock (&queue->mutex);
+ 	return item;
+ }
+ 
+@@ -266,7 +266,7 @@ soup_message_queue_next (SoupMessageQueue *queue, SoupMessageQueueItem *item)
+ {
+ 	SoupMessageQueueItem *next;
+ 
+-	g_mutex_lock (queue->mutex);
++	g_mutex_lock (&queue->mutex);
+ 
+ 	next = item->next;
+ 	while (next && next->removed)
+@@ -274,7 +274,7 @@ soup_message_queue_next (SoupMessageQueue *queue, SoupMessageQueueItem *item)
+ 	if (next)
+ 		next->ref_count++;
+ 
+-	g_mutex_unlock (queue->mutex);
++	g_mutex_unlock (&queue->mutex);
+ 	soup_message_queue_item_unref (item);
+ 	return next;
+ }
+@@ -292,7 +292,7 @@ soup_message_queue_remove (SoupMessageQueue *queue, SoupMessageQueueItem *item)
+ {
+ 	g_return_if_fail (!item->removed);
+ 
+-	g_mutex_lock (queue->mutex);
++	g_mutex_lock (&queue->mutex);
+ 	item->removed = TRUE;
+-	g_mutex_unlock (queue->mutex);
++	g_mutex_unlock (&queue->mutex);
+ }
+diff --git a/libsoup/soup-session-sync.c b/libsoup/soup-session-sync.c
+index 42612b6..e0d023e 100644
+--- a/libsoup/soup-session-sync.c
++++ b/libsoup/soup-session-sync.c
+@@ -48,8 +48,8 @@
+  **/
+ 
+ typedef struct {
+-	GMutex *lock;
+-	GCond *cond;
++	GMutex lock;
++	GCond cond;
+ } SoupSessionSyncPrivate;
+ #define SOUP_SESSION_SYNC_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), SOUP_TYPE_SESSION_SYNC, SoupSessionSyncPrivate))
+ 
+@@ -70,8 +70,8 @@ soup_session_sync_init (SoupSessionSync *ss)
+ {
+ 	SoupSessionSyncPrivate *priv = SOUP_SESSION_SYNC_GET_PRIVATE (ss);
+ 
+-	priv->lock = g_mutex_new ();
+-	priv->cond = g_cond_new ();
++	g_mutex_init (&priv->lock);
++	g_cond_init (&priv->cond);
+ }
+ 
+ static void
+@@ -79,8 +79,8 @@ finalize (GObject *object)
+ {
+ 	SoupSessionSyncPrivate *priv = SOUP_SESSION_SYNC_GET_PRIVATE (object);
+ 
+-	g_mutex_free (priv->lock);
+-	g_cond_free (priv->cond);
++	g_mutex_clear (&priv->lock);
++	g_cond_clear (&priv->cond);
+ 
+ 	G_OBJECT_CLASS (soup_session_sync_parent_class)->finalize (object);
+ }
+@@ -255,10 +255,10 @@ process_queue_item (SoupMessageQueueItem *item)
+ 	item->state = SOUP_MESSAGE_STARTING;
+ 	do {
+ 		if (item->paused) {
+-			g_mutex_lock (priv->lock);
++			g_mutex_lock (&priv->lock);
+ 			while (item->paused)
+-				g_cond_wait (priv->cond, priv->lock);
+-			g_mutex_unlock (priv->lock);
++				g_cond_wait (&priv->cond, &priv->lock);
++			g_mutex_unlock (&priv->lock);
+ 		}
+ 
+ 		switch (item->state) {
+@@ -295,13 +295,13 @@ process_queue_item (SoupMessageQueueItem *item)
+ 			break;
+ 
+ 		case SOUP_MESSAGE_AWAITING_CONNECTION:
+-			g_mutex_lock (priv->lock);
++			g_mutex_lock (&priv->lock);
+ 			do {
+ 				get_connection (item);
+ 				if (item->state == SOUP_MESSAGE_AWAITING_CONNECTION)
+-					g_cond_wait (priv->cond, priv->lock);
++					g_cond_wait (&priv->cond, &priv->lock);
+ 			} while (item->state == SOUP_MESSAGE_AWAITING_CONNECTION);
+-			g_mutex_unlock (priv->lock);
++			g_mutex_unlock (&priv->lock);
+ 			break;
+ 
+ 		case SOUP_MESSAGE_READY:
+@@ -320,7 +320,7 @@ process_queue_item (SoupMessageQueueItem *item)
+ 			item->state = SOUP_MESSAGE_FINISHED;
+ 			soup_message_finished (item->msg);
+ 			soup_session_unqueue_item (session, item);
+-			g_cond_broadcast (priv->cond);
++			g_cond_broadcast (&priv->cond);
+ 			break;
+ 
+ 		default:
+@@ -366,6 +366,7 @@ queue_message (SoupSession *session, SoupMessage *msg,
+ 	       SoupSessionCallback callback, gpointer user_data)
+ {
+ 	SoupMessageQueueItem *item;
++	GThread *thread;
+ 
+ 	SOUP_SESSION_CLASS (soup_session_sync_parent_class)->
+ 		queue_message (g_object_ref (session), msg, callback, user_data);
+@@ -373,7 +374,9 @@ queue_message (SoupSession *session, SoupMessage *msg,
+ 	item = soup_message_queue_lookup (soup_session_get_queue (session), msg);
+ 	g_return_if_fail (item != NULL);
+ 
+-	g_thread_create (queue_message_thread, item, FALSE, NULL);
++	thread = g_thread_new ("SoupSessionSync:queue_message",
++			       queue_message_thread, item);
++	g_thread_unref (thread);
+ }
+ 
+ static guint
+@@ -398,10 +401,10 @@ cancel_message (SoupSession *session, SoupMessage *msg, guint status_code)
+ {
+ 	SoupSessionSyncPrivate *priv = SOUP_SESSION_SYNC_GET_PRIVATE (session);
+ 
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 	SOUP_SESSION_CLASS (soup_session_sync_parent_class)->cancel_message (session, msg, status_code);
+-	g_cond_broadcast (priv->cond);
+-	g_mutex_unlock (priv->lock);
++	g_cond_broadcast (&priv->cond);
++	g_mutex_unlock (&priv->lock);
+ }
+ 
+ static void
+@@ -449,7 +452,7 @@ flush_queue (SoupSession *session)
+ 	 * try to cancel those requests as well, since we'd likely
+ 	 * just end up looping forever.)
+ 	 */
+-	g_mutex_lock (priv->lock);
++	g_mutex_lock (&priv->lock);
+ 	do {
+ 		done = TRUE;
+ 		for (item = soup_message_queue_first (queue);
+@@ -460,9 +463,9 @@ flush_queue (SoupSession *session)
+ 		}
+ 
+ 		if (!done)
+-			g_cond_wait (priv->cond, priv->lock);
++			g_cond_wait (&priv->cond, &priv->lock);
+ 	} while (!done);
+-	g_mutex_unlock (priv->lock);
++	g_mutex_unlock (&priv->lock);
+ 
+ 	g_hash_table_destroy (current);
+ }
+@@ -472,7 +475,7 @@ kick (SoupSession *session)
+ {
+ 	SoupSessionSyncPrivate *priv = SOUP_SESSION_SYNC_GET_PRIVATE (session);
+ 
+-	g_mutex_lock (priv->lock);
+-	g_cond_broadcast (priv->cond);
+-	g_mutex_unlock (priv->lock);
++	g_mutex_lock (&priv->lock);
++	g_cond_broadcast (&priv->cond);
++	g_mutex_unlock (&priv->lock);
+ }
+diff --git a/libsoup/soup-session.c b/libsoup/soup-session.c
+index 16b150a..94b50a2 100644
+--- a/libsoup/soup-session.c
++++ b/libsoup/soup-session.c
+@@ -98,7 +98,7 @@ typedef struct {
+ 	 * new SoupSessionHost, or adding/removing a connection.
+ 	 * Must not emit signals or destroy objects while holding it.
+ 	 */
+-	GMutex *host_lock;
++	GMutex host_lock;
+ 
+ 	GMainContext *async_context;
+ 	gboolean use_thread_context;
+@@ -185,7 +185,7 @@ soup_session_init (SoupSession *session)
+ 
+ 	priv->queue = soup_message_queue_new (session);
+ 
+-	priv->host_lock = g_mutex_new ();
++	g_mutex_init (&priv->host_lock);
+ 	priv->hosts = g_hash_table_new_full (soup_uri_host_hash,
+ 					     soup_uri_host_equal,
+ 					     NULL, (GDestroyNotify)free_host);
+@@ -240,7 +240,7 @@ finalize (GObject *object)
+ 
+ 	soup_message_queue_destroy (priv->queue);
+ 
+-	g_mutex_free (priv->host_lock);
++	g_mutex_clear (&priv->host_lock);
+ 	g_hash_table_destroy (priv->hosts);
+ 	g_hash_table_destroy (priv->conns);
+ 
+@@ -1651,7 +1651,7 @@ soup_session_cleanup_connections (SoupSession *session,
+ 	gpointer conn, host;
+ 	SoupConnectionState state;
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	g_hash_table_iter_init (&iter, priv->conns);
+ 	while (g_hash_table_iter_next (&iter, &conn, &host)) {
+ 		state = soup_connection_get_state (conn);
+@@ -1659,7 +1659,7 @@ soup_session_cleanup_connections (SoupSession *session,
+ 		    (prune_idle && state == SOUP_CONNECTION_IDLE))
+ 			conns = g_slist_prepend (conns, g_object_ref (conn));
+ 	}
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 
+ 	if (!conns)
+ 		return FALSE;
+@@ -1680,12 +1680,12 @@ free_unused_host (gpointer user_data)
+ 	SoupSessionHost *host = (SoupSessionHost *) user_data;
+ 	SoupSessionPrivate *priv = SOUP_SESSION_GET_PRIVATE (host->session);
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	/* This will free the host in addition to removing it from the
+ 	 * hash table
+ 	 */
+ 	g_hash_table_remove (priv->hosts, host->uri);
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 
+ 	return FALSE;
+ }
+@@ -1697,7 +1697,7 @@ connection_disconnected (SoupConnection *conn, gpointer user_data)
+ 	SoupSessionPrivate *priv = SOUP_SESSION_GET_PRIVATE (session);
+ 	SoupSessionHost *host;
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 
+ 	host = g_hash_table_lookup (priv->conns, conn);
+ 	if (host) {
+@@ -1725,7 +1725,7 @@ connection_disconnected (SoupConnection *conn, gpointer user_data)
+ 	g_signal_handlers_disconnect_by_func (conn, connection_disconnected, session);
+ 	priv->num_conns--;
+ 
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 	g_object_unref (conn);
+ }
+ 
+@@ -1779,13 +1779,13 @@ soup_session_get_connection (SoupSession *session,
+ 		return TRUE;
+ 	}
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 
+ 	host = get_host_for_message (session, item->msg);
+ 	for (conns = host->connections; conns; conns = conns->next) {
+ 		if (soup_connection_get_state (conns->data) == SOUP_CONNECTION_IDLE) {
+ 			soup_connection_set_state (conns->data, SOUP_CONNECTION_IN_USE);
+-			g_mutex_unlock (priv->host_lock);
++			g_mutex_unlock (&priv->host_lock);
+ 			item->conn = g_object_ref (conns->data);
+ 			soup_message_set_https_status (item->msg, item->conn);
+ 			return TRUE;
+@@ -1797,18 +1797,18 @@ soup_session_get_connection (SoupSession *session,
+ 	 * is somewhat arbitrary...
+ 	 */
+ 	if (num_pending > host->num_messages / 2) {
+-		g_mutex_unlock (priv->host_lock);
++		g_mutex_unlock (&priv->host_lock);
+ 		return FALSE;
+ 	}
+ 
+ 	if (host->num_conns >= priv->max_conns_per_host) {
+-		g_mutex_unlock (priv->host_lock);
++		g_mutex_unlock (&priv->host_lock);
+ 		return FALSE;
+ 	}
+ 
+ 	if (priv->num_conns >= priv->max_conns) {
+ 		*try_pruning = TRUE;
+-		g_mutex_unlock (priv->host_lock);
++		g_mutex_unlock (&priv->host_lock);
+ 		return FALSE;
+ 	}
+ 
+@@ -1855,7 +1855,7 @@ soup_session_get_connection (SoupSession *session,
+ 		host->keep_alive_src = NULL;
+ 	}
+ 
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 	item->conn = g_object_ref (conn);
+ 	return TRUE;
+ }
+@@ -1888,10 +1888,10 @@ soup_session_unqueue_item (SoupSession          *session,
+ 
+ 	soup_message_queue_remove (priv->queue, item);
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	host = get_host_for_message (session, item->msg);
+ 	host->num_messages--;
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 
+ 	/* g_signal_handlers_disconnect_by_func doesn't work if you
+ 	 * have a metamarshal, meaning it doesn't work with
+@@ -1959,10 +1959,10 @@ queue_message (SoupSession *session, SoupMessage *msg,
+ 
+ 	item = soup_message_queue_append (priv->queue, msg, callback, user_data);
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	host = get_host_for_message (session, item->msg);
+ 	host->num_messages++;
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 
+ 	if (!(soup_message_get_flags (msg) & SOUP_MESSAGE_NO_REDIRECT)) {
+ 		soup_message_add_header_handler (
+@@ -2234,11 +2234,11 @@ soup_session_abort (SoupSession *session)
+ 	SOUP_SESSION_GET_CLASS (session)->flush_queue (session);
+ 
+ 	/* Close all connections */
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	conns = NULL;
+ 	g_hash_table_foreach (priv->conns, gather_conns, &conns);
+ 
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 	for (c = conns; c; c = c->next) {
+ 		soup_connection_disconnect (c->data);
+ 		g_object_unref (c->data);
+@@ -2278,10 +2278,10 @@ soup_session_prepare_for_uri (SoupSession *session, SoupURI *uri)
+ 
+ 	priv = SOUP_SESSION_GET_PRIVATE (session);
+ 
+-	g_mutex_lock (priv->host_lock);
++	g_mutex_lock (&priv->host_lock);
+ 	host = get_host_for_uri (session, uri);
+ 	addr = g_object_ref (host->addr);
+-	g_mutex_unlock (priv->host_lock);
++	g_mutex_unlock (&priv->host_lock);
+ 
+ 	soup_address_resolve_async (addr,
+ 				    soup_session_get_async_context (session),
+diff --git a/libsoup/soup-socket.c b/libsoup/soup-socket.c
+index e1f7434..088ce0e 100644
+--- a/libsoup/soup-socket.c
++++ b/libsoup/soup-socket.c
+@@ -87,7 +87,7 @@ typedef struct {
+ 	GSource        *read_src, *write_src;
+ 	GByteArray     *read_buf;
+ 
+-	GMutex *iolock, *addrlock;
++	GMutex iolock, addrlock;
+ 	guint timeout;
+ 
+ 	GCancellable *connect_cancel;
+@@ -109,8 +109,8 @@ soup_socket_init (SoupSocket *sock)
+ 	SoupSocketPrivate *priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+ 	priv->non_blocking = TRUE;
+-	priv->addrlock = g_mutex_new ();
+-	priv->iolock = g_mutex_new ();
++	g_mutex_init (&priv->addrlock);
++	g_mutex_init (&priv->iolock);
+ }
+ 
+ static void
+@@ -174,8 +174,8 @@ finalize (GObject *object)
+ 	if (priv->read_buf)
+ 		g_byte_array_free (priv->read_buf, TRUE);
+ 
+-	g_mutex_free (priv->addrlock);
+-	g_mutex_free (priv->iolock);
++	g_mutex_clear (&priv->addrlock);
++	g_mutex_clear (&priv->iolock);
+ 
+ 	G_OBJECT_CLASS (soup_socket_parent_class)->finalize (object);
+ }
+@@ -1134,12 +1134,12 @@ soup_socket_disconnect (SoupSocket *sock)
+ 	if (priv->connect_cancel) {
+ 		g_cancellable_cancel (priv->connect_cancel);
+ 		return;
+-	} else if (g_mutex_trylock (priv->iolock)) {
++	} else if (g_mutex_trylock (&priv->iolock)) {
+ 		if (priv->conn)
+ 			disconnect_internal (sock);
+ 		else
+ 			already_disconnected = TRUE;
+-		g_mutex_unlock (priv->iolock);
++		g_mutex_unlock (&priv->iolock);
+ 	} else {
+ 		/* Another thread is currently doing IO, so
+ 		 * we can't close the socket. So just shutdown
+@@ -1204,7 +1204,7 @@ soup_socket_get_local_address (SoupSocket *sock)
+ 	g_return_val_if_fail (SOUP_IS_SOCKET (sock), NULL);
+ 	priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+-	g_mutex_lock (priv->addrlock);
++	g_mutex_lock (&priv->addrlock);
+ 	if (!priv->local_addr) {
+ 		GSocketAddress *addr;
+ 		struct sockaddr_storage sa;
+@@ -1216,7 +1216,7 @@ soup_socket_get_local_address (SoupSocket *sock)
+ 		priv->local_addr = soup_address_new_from_sockaddr ((struct sockaddr *)&sa, sa_len);
+ 		g_object_unref (addr);
+ 	}
+-	g_mutex_unlock (priv->addrlock);
++	g_mutex_unlock (&priv->addrlock);
+ 
+ 	return priv->local_addr;
+ }
+@@ -1237,7 +1237,7 @@ soup_socket_get_remote_address (SoupSocket *sock)
+ 	g_return_val_if_fail (SOUP_IS_SOCKET (sock), NULL);
+ 	priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+-	g_mutex_lock (priv->addrlock);
++	g_mutex_lock (&priv->addrlock);
+ 	if (!priv->remote_addr) {
+ 		GSocketAddress *addr;
+ 		struct sockaddr_storage sa;
+@@ -1249,7 +1249,7 @@ soup_socket_get_remote_address (SoupSocket *sock)
+ 		priv->remote_addr = soup_address_new_from_sockaddr ((struct sockaddr *)&sa, sa_len);
+ 		g_object_unref (addr);
+ 	}
+-	g_mutex_unlock (priv->addrlock);
++	g_mutex_unlock (&priv->addrlock);
+ 
+ 	return priv->remote_addr;
+ }
+@@ -1382,12 +1382,12 @@ soup_socket_read (SoupSocket *sock, gpointer buffer, gsize len,
+ 
+ 	priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+-	g_mutex_lock (priv->iolock);
++	g_mutex_lock (&priv->iolock);
+ 	if (priv->read_buf)
+ 		status = read_from_buf (sock, buffer, len, nread);
+ 	else
+ 		status = read_from_network (sock, buffer, len, nread, cancellable, error);
+-	g_mutex_unlock (priv->iolock);
++	g_mutex_unlock (&priv->iolock);
+ 
+ 	return status;
+ }
+@@ -1438,7 +1438,7 @@ soup_socket_read_until (SoupSocket *sock, gpointer buffer, gsize len,
+ 
+ 	priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+-	g_mutex_lock (priv->iolock);
++	g_mutex_lock (&priv->iolock);
+ 
+ 	*got_boundary = FALSE;
+ 
+@@ -1455,7 +1455,7 @@ soup_socket_read_until (SoupSocket *sock, gpointer buffer, gsize len,
+ 		read_buf->len = prev_len + *nread;
+ 
+ 		if (status != SOUP_SOCKET_OK) {
+-			g_mutex_unlock (priv->iolock);
++			g_mutex_unlock (&priv->iolock);
+ 			return status;
+ 		}
+ 	}
+@@ -1477,7 +1477,7 @@ soup_socket_read_until (SoupSocket *sock, gpointer buffer, gsize len,
+ 	match_len = p - read_buf->data;
+ 	status = read_from_buf (sock, buffer, MIN (len, match_len), nread);
+ 
+-	g_mutex_unlock (priv->iolock);
++	g_mutex_unlock (&priv->iolock);
+ 	return status;
+ }
+ 
+@@ -1532,14 +1532,14 @@ soup_socket_write (SoupSocket *sock, gconstpointer buffer,
+ 
+ 	priv = SOUP_SOCKET_GET_PRIVATE (sock);
+ 
+-	g_mutex_lock (priv->iolock);
++	g_mutex_lock (&priv->iolock);
+ 
+ 	if (!priv->conn) {
+-		g_mutex_unlock (priv->iolock);
++		g_mutex_unlock (&priv->iolock);
+ 		return SOUP_SOCKET_EOF;
+ 	}
+ 	if (priv->write_src) {
+-		g_mutex_unlock (priv->iolock);
++		g_mutex_unlock (&priv->iolock);
+ 		return SOUP_SOCKET_WOULD_BLOCK;
+ 	}
+ 
+@@ -1554,14 +1554,14 @@ soup_socket_write (SoupSocket *sock, gconstpointer buffer,
+ 	}
+ 
+ 	if (my_nwrote > 0) {
+-		g_mutex_unlock (priv->iolock);
++		g_mutex_unlock (&priv->iolock);
+ 		g_clear_error (&my_err);
+ 		*nwrote = my_nwrote;
+ 		return SOUP_SOCKET_OK;
+ 	}
+ 
+ 	if (g_error_matches (my_err, G_IO_ERROR, G_IO_ERROR_WOULD_BLOCK)) {
+-		g_mutex_unlock (priv->iolock);
++		g_mutex_unlock (&priv->iolock);
+ 		g_clear_error (&my_err);
+ 
+ 		priv->write_src =
+@@ -1571,7 +1571,7 @@ soup_socket_write (SoupSocket *sock, gconstpointer buffer,
+ 		return SOUP_SOCKET_WOULD_BLOCK;
+ 	}
+ 
+-	g_mutex_unlock (priv->iolock);
++	g_mutex_unlock (&priv->iolock);
+ 	g_propagate_error (error, my_err);
+ 	return SOUP_SOCKET_ERROR;
+ }
+diff --git a/tests/context-test.c b/tests/context-test.c
+index c1884de..673ae21 100644
+--- a/tests/context-test.c
++++ b/tests/context-test.c
+@@ -97,8 +97,8 @@ server_callback (SoupServer *server, SoupMessage *msg,
+ static gboolean idle_start_test1_thread (gpointer loop);
+ static gpointer test1_thread (gpointer user_data);
+ 
+-static GCond *test1_cond;
+-static GMutex *test1_mutex;
++static GCond test1_cond;
++static GMutex test1_mutex;
+ static GMainLoop *test1_loop;
+ 
+ static void
+@@ -110,37 +110,31 @@ do_test1 (int n, gboolean use_thread_context)
+ 	else
+ 		debug_printf (1, "(Using SOUP_SESSION_ASYNC_CONTEXT)\n");
+ 
+-	test1_cond = g_cond_new ();
+-	test1_mutex = g_mutex_new ();
+-
+ 	test1_loop = g_main_loop_new (NULL, FALSE);
+ 	g_idle_add (idle_start_test1_thread, GINT_TO_POINTER (use_thread_context));
+ 	g_main_loop_run (test1_loop);
+ 	g_main_loop_unref (test1_loop);
+-
+-	g_mutex_free (test1_mutex);
+-	g_cond_free (test1_cond);
+ }
+ 
+ static gboolean
+ idle_start_test1_thread (gpointer use_thread_context)
+ {
+-	GTimeVal time;
++	guint64 time;
+ 	GThread *thread;
+ 
+-	g_mutex_lock (test1_mutex);
+-	thread = g_thread_create (test1_thread, use_thread_context, TRUE, NULL);
++	g_mutex_lock (&test1_mutex);
++	thread = g_thread_new ("test1_thread", test1_thread, use_thread_context);
+ 
+-	g_get_current_time (&time);
+-	time.tv_sec += 5;
+-	if (g_cond_timed_wait (test1_cond, test1_mutex, &time))
++	time = g_get_monotonic_time () + 5000000;
++	if (g_cond_wait_until (&test1_cond, &test1_mutex, time))
+ 		g_thread_join (thread);
+ 	else {
+ 		debug_printf (1, "  timeout!\n");
++		g_thread_unref (thread);
+ 		errors++;
+ 	}
+ 
+-	g_mutex_unlock (test1_mutex);
++	g_mutex_unlock (&test1_mutex);
+ 	g_main_loop_quit (test1_loop);
+ 	return FALSE;
+ }
+@@ -161,8 +155,8 @@ test1_thread (gpointer use_thread_context)
+ 	GMainLoop *loop;
+ 
+ 	/* Wait for main thread to be waiting on test1_cond */
+-	g_mutex_lock (test1_mutex);
+-	g_mutex_unlock (test1_mutex);
++	g_mutex_lock (&test1_mutex);
++	g_mutex_unlock (&test1_mutex);
+ 
+ 	async_context = g_main_context_new ();
+ 	if (use_thread_context) {
+@@ -206,7 +200,7 @@ test1_thread (gpointer use_thread_context)
+ 	soup_test_session_abort_unref (session);
+ 	g_free (uri);
+ 
+-	g_cond_signal (test1_cond);
++	g_cond_signal (&test1_cond);
+ 
+ 	if (use_thread_context)
+ 		g_main_context_pop_thread_default (async_context);
+diff --git a/tests/misc-test.c b/tests/misc-test.c
+index 907e338..495c33f 100644
+--- a/tests/misc-test.c
++++ b/tests/misc-test.c
+@@ -20,7 +20,7 @@
+ 
+ SoupServer *server;
+ SoupURI *base_uri;
+-GMutex *server_mutex;
++GMutex server_mutex;
+ 
+ static gboolean
+ auth_callback (SoupAuthDomain *auth_domain, SoupMessage *msg,
+@@ -122,8 +122,8 @@ server_callback (SoupServer *server, SoupMessage *msg,
+ 	 * need to hold it through the whole function, so it's simpler
+ 	 * to just release it right away.
+ 	 */
+-	g_mutex_lock (server_mutex);
+-	g_mutex_unlock (server_mutex);
++	g_mutex_lock (&server_mutex);
++	g_mutex_unlock (&server_mutex);
+ 
+ 	soup_message_headers_append (msg->response_headers,
+ 				     "X-Handled-By", "server_callback");
+@@ -826,7 +826,7 @@ static int msgs_done;
+ static gboolean
+ idle_start_server (gpointer data)
+ {
+-	g_mutex_unlock (server_mutex);
++	g_mutex_unlock (&server_mutex);
+ 	return FALSE;
+ }
+ 
+@@ -861,7 +861,7 @@ do_max_conns_test_for_session (SoupSession *session)
+ 
+ 	max_conns_loop = g_main_loop_new (NULL, TRUE);
+ 
+-	g_mutex_lock (server_mutex);
++	g_mutex_lock (&server_mutex);
+ 
+ 	g_signal_connect (session, "request-started",
+ 			  G_CALLBACK (max_conns_request_started), NULL);
+@@ -973,7 +973,7 @@ do_cancel_while_reading_test_for_session (SoupSession *session)
+ 	if (SOUP_IS_SESSION_ASYNC (session))
+ 		g_timeout_add (100, cancel_message_timeout, msg);
+ 	else
+-		thread = g_thread_create (cancel_message_thread, msg, TRUE, NULL);
++		thread = g_thread_new ("cancel_message_thread", cancel_message_thread, msg);
+ 
+ 	soup_session_send_message (session, msg);
+ 
+@@ -1013,8 +1013,6 @@ main (int argc, char **argv)
+ 
+ 	test_init (argc, argv, NULL);
+ 
+-	server_mutex = g_mutex_new ();
+-
+ 	server = soup_test_server_new (TRUE);
+ 	soup_server_add_handler (server, NULL, server_callback, NULL, NULL);
+ 	base_uri = soup_uri_new ("http://127.0.0.1/");
+@@ -1041,7 +1039,6 @@ main (int argc, char **argv)
+ 
+ 	soup_uri_free (base_uri);
+ 	soup_test_server_quit_unref (server);
+-	g_mutex_free (server_mutex);
+ 
+ 	test_cleanup ();
+ 	return errors != 0;
+diff --git a/tests/requester-test.c b/tests/requester-test.c
+index 2c578af..c556540 100644
+--- a/tests/requester-test.c
++++ b/tests/requester-test.c
+@@ -185,8 +185,9 @@ do_thread_test (const char *uri)
+ 
+ 	debug_printf (1, "Streaming in another thread\n");
+ 
+-	thread = g_thread_create ((GThreadFunc)do_test_with_context,
+-				  (gpointer)uri, TRUE, NULL);
++	thread = g_thread_new ("do_test_with_context",
++			       (GThreadFunc)do_test_with_context,
++			       (gpointer)uri);
+ 	g_thread_join (thread);
+ }
+ 
+diff --git a/tests/test-utils.c b/tests/test-utils.c
+index 05eaba0..47f1db0 100644
+--- a/tests/test-utils.c
++++ b/tests/test-utils.c
+@@ -296,8 +296,7 @@ test_server_new (gboolean in_own_thread, gboolean ssl)
+ 	if (in_own_thread) {
+ 		GThread *thread;
+ 
+-		thread = g_thread_create (run_server_thread, server,
+-					  TRUE, NULL);
++		thread = g_thread_new ("server_thread", run_server_thread, server);
+ 		g_object_set_data (G_OBJECT (server), "thread", thread);
+ 	} else
+ 		soup_server_run_async (server);
+--
+cgit v0.9.0.2
