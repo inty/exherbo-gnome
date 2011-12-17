@@ -46,3 +46,7 @@ src_configure() {
           $(option_enable wml)
 }
 
+src_install() {
+  default
+  rm -r "${IMAGE}"/usr/libexec
+}
