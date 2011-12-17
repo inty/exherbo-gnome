@@ -31,6 +31,7 @@ AT_M4DIR=( build/autotools )
 
 src_prepare() {
     edo sed -e s/-Werror// -i configure.ac
+    expatch "${FILES}"/unique-1.1.6-fix-with-newer-glib.patch
     autotools_src_prepare
 }
 
