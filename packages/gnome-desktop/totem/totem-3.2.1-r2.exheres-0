@@ -106,3 +106,13 @@ src_configure() {
               $(option_enable python)
 }
 
+pkg_postrm() {
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+}
+
+pkg_postinst() {
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+}
+
