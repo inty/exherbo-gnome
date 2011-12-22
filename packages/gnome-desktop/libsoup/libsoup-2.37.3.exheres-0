@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz pnv="${PN}-2.37.2" ]
+require gnome.org [ suffix=.tar.xz ]
 
 SUMMARY="HTTP library implemented in C"
 HOMEPAGE="http://live.gnome.org/LibSoup"
@@ -24,17 +24,7 @@ DEPENDENCIES="
                  gnome-desktop/libgnome-keyring:1 )
 "
 
-WORK="${WORKBASE}/${PN}-2.37.2"
-
 RESTRICT="test" # network violations
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/9afab51d38c0c7d75ce0fb50902b729f1450bbd3.patch"
-                              "${FILES}/60a4fd63d411fb5b12cfd9e27b111b0ec476a87f.patch"
-                              "${FILES}/8477cbf40e28260d8101637eb7319deaec0af853.patch"
-                              "${FILES}/c524540f1eb7c1d68597227ab677b47345bc54b5.patch"
-                              "${FILES}/3b11e881fcf4cb7026604aac9d93b6497e48d0ed.patch"
-                              "${FILES}/7f938c2334fbc55d7041a86bbf9ee9169d3c4c53.patch"
-                              "${FILES}/5cbfc48caf76ced2e28ee06c9e40523273601dc6.patch" )
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--without-ntlm-auth' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'gconf gnome' )
