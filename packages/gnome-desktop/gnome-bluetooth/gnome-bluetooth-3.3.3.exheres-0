@@ -27,7 +27,6 @@ DEPENDENCIES="
     run:
         group/plugdev [[ note = [ for rfkill udev rules ] ]]
         net-wireless/bluez[>=4.36]
-        gnome-desktop/gnome-control-center[>=2.90.1] [[ note = [ dependency resolved at run time ] ]]
     recommendation:
         net-wireless/obexd [[ description = [ Required for bluetooth-sendto ] ]]
 "
