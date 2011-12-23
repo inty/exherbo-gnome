@@ -30,7 +30,7 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1
         dev-libs/glib:2[>=2.30.0]
         net-im/farsight2:0.10
-        net-im/folks[>=0.6.2]
+        net-im/folks[>=0.6.6]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gnome-keyring:1[>=2.91.4]
         dev-libs/gnutls[>=2.8.5]
@@ -38,8 +38,8 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.32]
         media-plugins/gst-plugins-base:0.10
         dev-libs/libxml2:2.0
-        net-im/telepathy-farsight[>=0.0.14]
-        net-im/telepathy-glib[>=0.16.0]
+        net-im/telepathy-farsight[>=0.0.18]
+        net-im/telepathy-glib[>=0.17.3]
         net-im/telepathy-logger:0.2[>=0.2.10]
         x11-libs/libX11
         x11-libs/gtk+:3[>=3.0.2]
