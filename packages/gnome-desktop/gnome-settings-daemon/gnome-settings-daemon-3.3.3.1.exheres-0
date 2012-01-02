@@ -18,7 +18,7 @@ DEPENDENCIES="
         x11-proto/kbproto
     build+run:
         dev-libs/glib:2[>=2.29.14]
-        x11-libs/gtk+:3[>=2.99.3]
+        x11-libs/gtk+:3[>=3.3.4]
         gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
         gnome-desktop/gnome-desktop:3.0[>=3.3.1]
         media-libs/lcms2[>=2.2]
