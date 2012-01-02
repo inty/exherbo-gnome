@@ -55,7 +55,7 @@ src_prepare() {
     default
 
     # undeclared identifier, bug id 651873
-    edo sed -ie 's/, package_name);/, GCM_PREFS_PACKAGE_NAME_COLOR_PROFILES_EXTRA);/' "${WORK}/src/cc-color-panel.c"
+    edo sed -i -e 's/, package_name);/, GCM_PREFS_PACKAGE_NAME_COLOR_PROFILES_EXTRA);/' "${WORK}/src/cc-color-panel.c"
 }
 
 src_install() {
