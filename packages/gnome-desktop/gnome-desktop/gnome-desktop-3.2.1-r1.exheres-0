@@ -22,7 +22,7 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXrandr[>=1.2]
         x11-libs/gdk-pixbuf:2.0[>=2.21.3]
-        x11-libs/gtk+:3[>=3.0]
+        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         dev-libs/glib:2[>=2.19.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.4]
         x11-libs/libXext[>=1.2]

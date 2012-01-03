@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org gsettings
+require gnome.org [ suffix=.tar.xz ] gsettings
 
 SUMMARY="Document viewer for the GNOME Desktop"
 DESCRIPTION="
@@ -26,6 +26,7 @@ MYOPTIONS="gobject-introspection gtk-doc
     nautilus   [[ description = [ Build Nautilus extensions ] ]]
     postscript [[ description = [ Enable support for PostScript format ] ]]
     tiff       [[ description = [ Enable support for multi-page TIFF format ] ]]
+    xps        [[ description = [ enable support for XPS documents ] ]]
 "
 
 DEPENDENCIES="
@@ -38,13 +39,13 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.13] )
     build+run:
-        x11-libs/gtk+:3[>=3.0.2]
+        x11-libs/gtk+:3[>=3.0.2][gobject-introspection?]
         dev-libs/glib:2[>=2.25.11]
         dev-libs/libxml2:2.0[>=2.5.0]
         gnome-desktop/gnome-icon-theme[>=2.17.1]
         x11-libs/libX11
         x11-libs/cairo[>=1.10.0]
-        app-text/poppler[>=0.16.0][cairo][glib]
+        app-text/poppler[>=0.18.0][cairo][glib]
         dvi? ( app-text/libspectre[>=0.2.0]
                app-text/texlive )
         djvu? ( app-text/djvu[>=3.5.17] )
@@ -53,16 +54,15 @@ DEPENDENCIES="
         nautilus?  ( gnome-desktop/nautilus[>=2.91.4] )
         postscript? ( app-text/libspectre[>=0.2.0] )
         tiff? ( media-libs/tiff[>=3.6] )
+        xps? ( dev-libs/libgxps[>=0.2.0] )
     run:
         x11-misc/shared-mime-info
 "
-#       gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
 
 RESTRICT="test" # requires X and dogtail
 
-# Upstream says introspection isn't ready yet (revisit after 3.0)
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-introspection' '--enable-pdf' '--enable-comics' '--disable-xps' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-pdf' '--enable-comics' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( keyring )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'djvu' 'dvi' 'gobject-introspection introspection' 'gtk-doc' 'nautilus'
-                                       'postscript ps' 'tiff' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'djvu' 'dvi' 'gobject-introspection introspection' 'gtk-doc'
+                                       'nautilus' 'postscript ps' 'tiff' 'xps' )
 

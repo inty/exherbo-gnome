@@ -37,7 +37,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils[>=0.3.2]
         gtk-doc? ( dev-doc/gtk-doc[>=1.13] )
     build+run:
-        x11-libs/gtk+:3[>=3.0.2]
+        x11-libs/gtk+:3[>=3.0.2][gobject-introspection?]
         dev-libs/glib:2[>=2.25.11]
         dev-libs/libxml2:2.0[>=2.5.0]
         gnome-desktop/gnome-icon-theme[>=2.17.1]

@@ -25,7 +25,7 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0[>=2.6.0]
         x11-libs/libSM
         x11-libs/libICE
-        x11-libs/gtk+:3[>=3.0.0]
+        x11-libs/gtk+:3[>=3.0.0][gobject-introspection?]
         x11-libs/libnotify[>=0.6.1]
         media-libs/libcanberra[>=0.1][gtk3]
         nautilus? ( gnome-desktop/nautilus[>=2.91.90] )

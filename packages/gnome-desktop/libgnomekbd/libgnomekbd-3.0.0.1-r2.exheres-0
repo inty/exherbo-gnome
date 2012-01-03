@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings
+require gnome.org gsettings
 
 SUMMARY="Library for Keyboard Management"
 HOMEPAGE="http://www.gnome.org/"
@@ -18,7 +18,7 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
     build+run:
         dev-libs/glib:2[>=2.18]
-        x11-libs/gtk+:3[>=2.91.7]
+        x11-libs/gtk+:3[>=2.91.7][gobject-introspection?]
         x11-libs/libxklavier[>=5.1]
         x11-libs/libX11
 "
