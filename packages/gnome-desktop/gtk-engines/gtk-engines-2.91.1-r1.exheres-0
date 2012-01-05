@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org easy-multibuild
 
 SUMMARY="Theme engines for GTK+ 2.0"
 HOMEPAGE="http://www.gnome.org/"
@@ -9,14 +9,14 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="LGPL-2"
 SLOT="3"
 PLATFORMS="~amd64 ~ppc64 ~x86"
-MYOPTIONS=""
+MYOPTIONS="multibuild_c: 32 64"
 
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.35.0]
     build+run:
-        x11-libs/gtk+:3[>=2.91.0]
+        x11-libs/gtk+:3[>=2.91.0][multibuild_c:*(?)?]
 "
 
 RESTRICT="test" # requires X
