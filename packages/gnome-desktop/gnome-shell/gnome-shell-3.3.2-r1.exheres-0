@@ -77,6 +77,8 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0996174b3d13f367cf9f5888e4a0b55e509df686.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-introspection' '--disable-jhbuild-wrapper-script'
                                '--with-ca-certificates=/usr/share/ca-certificates/' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc )

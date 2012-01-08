@@ -19,7 +19,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.24]
         x11-libs/cairo[>=1.10.0]
         app-arch/libarchive[>=2.8.0]
-        x11-libs/freetype:2
+        media-libs/freetype:2
         media-libs/libpng [[ note = [ automagic dependency ] ]]
         cms? ( media-libs/lcms2 )
         jpeg? ( media-libs/jpeg )

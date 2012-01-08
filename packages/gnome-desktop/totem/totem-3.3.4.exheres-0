@@ -10,14 +10,13 @@ LICENCES="GPL-2"
 SLOT="1.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="
-    bluetooth [[ description = [ build bluetooth control plugin ] ]]
     brasero [[ description = [ build CD authoring plugin ] ]]
     chapters [[ description = [ build DVD chapter plugin ] ]]
     doc gobject-introspection
     media-player-keys [[ description = [ build media keys control plugin ] ]]
     nautilus
     python [[ description = [ add support for plugins written in python ] ]]
-    youtube [[ description = [ build a plugin to view youtube videos ] ]]
+    vegas [[ description = [ build vegas browser plugin ] ]]
 "
 
 DEPENDENCIES="
@@ -45,15 +44,11 @@ DEPENDENCIES="
         ( x11-libs/libSM
           x11-libs/libICE ) [[ note = [ for x11 (xsmp) smclient backend ] ]]
         dev-libs/libpeas:1.0[>=1.1.0][python?]
-        bluetooth? ( net-wireless/bluez )
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
                   gnome-bindings/pygobject:3[>=2.90.3] )
-        youtube? ( gnome-desktop/libgdata[>=0.9.1]
-                   gnome-desktop/libsoup:2.4
-                   media-plugins/gst-plugins-good:0.10[gstreamer_plugins:soup] )
     test:
         python? ( dev-python/pylint )
     recommendation:
@@ -83,13 +78,11 @@ src_configure() {
     pythonplugins+=,opensubtitles
     pythonplugins+=,pythonconsole
 
-    option bluetooth            && plugins+=,bemused
     option chapters             && plugins+=,chapters
     option brasero              && plugins+=,brasero-disc-recorder
     option media-player-keys    && plugins+=,media-player-keys
     option nautilus             && plugins+=,save-file
     option python               && plugins+=,${pythonplugins}
-    option youtube              && plugins+=,youtube
 
     unset DISPLAY
     unset DBUS_SESSION_BUS_ADDRESS
@@ -97,13 +90,12 @@ src_configure() {
     GST_REGISTRY="${TEMP}/.gstreamer-0.10"                          \
         econf '--enable-easy-codec-installation'                    \
               "--with-plugins=${plugins}"                           \
-              '--disable-browser-plugins'                           \
-              '--with-dbus'                                         \
               '--disable-vala'                                      \
               $(option_enable doc gtk-doc)                          \
               $(option_enable gobject-introspection introspection)  \
               $(option_enable nautilus)                             \
-              $(option_enable python)
+              $(option_enable python)                               \
+              $(option_enable vegas vegas-plugin) $(option_enable vegas browser-plugins)
 }
 
 pkg_postrm() {

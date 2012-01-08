@@ -7,11 +7,9 @@ SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS="debug [[ description = [ debug build of webkit (not recommended for daily usage) ] ]]
 doc
-experimental [[ description = [ enable experimental HTML5 features ] ]]
 gobject-introspection
 pango [[ description = [ use pango for the font backend (experimental) ] ]]
-spell
-webgl [[ description = [ add support for WebGL (experimental) ] ]]"
+spell"
 
 DEPENDENCIES="
     build:
@@ -22,14 +20,15 @@ DEPENDENCIES="
     build+run:
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
-        dev-libs/glib:2[>=2.27.4]
+        dev-libs/glib:2[>=2.27.90]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
         dev-libs/libxml2:2.0[>=2.6]
         x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         x11-libs/cairo[>=1.10]
         x11-libs/libXrender
         x11-libs/libXt
-        gnome-desktop/libsoup:2.4[>=2.33.6][gobject-introspection?]
+        x11-dri/mesa
+        gnome-desktop/libsoup:2.4[>=2.37.2.1][gobject-introspection?]
         dev-libs/libxslt[>=1.1.7]
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]
@@ -37,13 +36,10 @@ DEPENDENCIES="
         spell? ( app-spell/enchant[>=0.22] )
         pango? ( x11-libs/pango[>=1.21.0] )
         !pango? ( media-libs/freetype:2
-                  media-libs/fontconfig )
-        webgl? ( x11-dri/mesa )
+                  media-libs/fontconfig[>=2.4] )
 "
 
 RESTRICT="test" # requires X
-
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/r101067.patch" "${FILES}/r101393.patch" )
 
 src_configure() {
     econf '--with-gtk=3.0'                                          \
@@ -51,11 +47,6 @@ src_configure() {
           "--with-font-backend=$(optionv pango || echo freetype)"   \
           $(option_enable debug debug-features)                     \
           $(option_enable doc gtk-doc)                              \
-          $(option_enable experimental microdata)                   \
-          $(option_enable experimental video-track)                 \
-          $(option_enable experimental web-audio)                   \
-          $(option_enable gobject-introspection introspection)      \
-          $(option_enable webgl)                                    \
-          $(option_enable webgl 3d-rendering)
+          $(option_enable gobject-introspection introspection)
 }
 

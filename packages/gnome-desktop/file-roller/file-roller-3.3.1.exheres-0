@@ -1,0 +1,27 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings
+
+SUMMARY="UI for extracting files"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="nautilus"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+    build+run:
+        x11-libs/gtk+:3[>=3.0.2]
+        dev-libs/glib:2[>=2.29.14]
+        nautilus? ( gnome-desktop/nautilus[>=2.22.2] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-magic' ) # '--disable-deprecated' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'nautilus nautilus-actions' )
+
