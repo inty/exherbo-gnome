@@ -59,8 +59,7 @@ src_prepare() {
     edo intltoolize --automake --copy
 
     edo pushd "${WORK}/data"
-    sydboxcmd 'net/whitelist/bind/unix-abstract:///tmp/dbus-*'
-    edo "${WORK}/data/make-dconf-override-db.sh"
+    esandbox allow_net 'unix-abstract:///tmp/dbus-*'
     edo popd
 }
 

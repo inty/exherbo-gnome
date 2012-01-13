@@ -35,7 +35,11 @@ gdm_src_install() {
     keepdir /var/cache/gdm
 
     # GDM_XAUTH_DIR is created automatically
-    edo rmdir "${IMAGE}"/run/{gdm/,}
+    if ever is_scm; then
+        edo rmdir "${IMAGE}"/var/run/{gdm/{greeter/,},}
+    else
+        edo rmdir "${IMAGE}"/run/{gdm/,}
+    fi
 
     # GDM_SCREENSHOT_DIR
     keepdir /var/tmp
