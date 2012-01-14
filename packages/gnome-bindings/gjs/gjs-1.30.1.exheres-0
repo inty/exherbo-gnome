@@ -26,7 +26,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch"
-                              "${FILES}/${PNV}-jsval.patch" )
+                              "${FILES}/${PN}-1.30.0-jsval.patch" )
 
 src_configure() {
     local js_package='mozilla-js'
