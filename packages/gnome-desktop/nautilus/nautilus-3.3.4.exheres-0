@@ -20,8 +20,8 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
-        x11-libs/gtk+:3[>=3.1.6][gobject-introspection?]
-        dev-libs/glib:2[>=2.31.4]
+        x11-libs/gtk+:3[>=3.3.7][gobject-introspection?]
+        dev-libs/glib:2[>=2.31.9]
         gnome-desktop/gnome-desktop:3.0[>=3.0.0]
         dev-libs/libxml2:2.0[>=2.7.8]
         x11-libs/libX11
