@@ -49,6 +49,8 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/e8209e7b221a4a108c132fa3a8ad27e9a8018a6d.patch" )
+
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-sm'
     '--enable-startup-notification'
