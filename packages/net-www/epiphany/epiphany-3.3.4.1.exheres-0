@@ -23,13 +23,13 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
         dev-libs/glib:2[>=2.31.2]
-        x11-libs/gtk+:3[>=3.0.2]
+        x11-libs/gtk+:3[>=3.3.7]
         x11-libs/libICE
         x11-libs/libX11
         x11-libs/libSM
         dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
-        net-libs/webkit:3.0[>=1.6.1]
+        net-libs/webkit:3.0[>=1.7.3]
         gnome-desktop/libsoup:2.4[gconf][>=2.37.1]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
