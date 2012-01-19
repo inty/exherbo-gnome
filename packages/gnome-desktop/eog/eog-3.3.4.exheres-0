@@ -41,8 +41,6 @@ DEPENDENCIES="
         ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/deb2b63128a14dbec75c165e041c6da5023bf54e.patch" )
-
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cms' 'exif libexif' 'jpeg libjpeg' 'svg librsvg' 'xmp' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
