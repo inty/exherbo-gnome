@@ -9,7 +9,11 @@ MYOPTIONS="debug [[ description = [ debug build of webkit (not recommended for d
 doc
 gobject-introspection
 pango [[ description = [ use pango for the font backend (experimental) ] ]]
-spell"
+spell
+( clutter [[ description = [ enable accelerated rendering via Clutter ] ]]
+  opengl [[ description = [ enable accelerated rendering via OpenGL ] ]]
+  cairo [[ description = [ enable accelerated rendering via Cairo ] ]] ) [[ number-selected = at-most-one ]]
+"
 
 DEPENDENCIES="
     build:
@@ -33,7 +37,10 @@ DEPENDENCIES="
         dev-db/sqlite:3[>=3.0]
         media-libs/gstreamer:0.10[>=0.10]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
+        clutter? ( x11-libs/clutter:1[>=1.8.2]
+                   x11-libs/clutter-gtk:1.0[>=1.0.2] )
         spell? ( app-spell/enchant[>=0.22] )
+        opengl? ( x11-dri/mesa )
         pango? ( x11-libs/pango[>=1.21.0] )
         !pango? ( media-libs/freetype:2
                   media-libs/fontconfig[>=2.4] )
@@ -42,11 +49,22 @@ DEPENDENCIES="
 RESTRICT="test" # requires X
 
 src_configure() {
-    econf '--with-gtk=3.0'                                          \
-          '--enable-debug-symbols'                                  \
-          "--with-font-backend=$(optionv pango || echo freetype)"   \
-          $(option_enable debug debug-features)                     \
-          $(option_enable doc gtk-doc)                              \
+    local accelerated_compositing=no
+
+    if option clutter ; then
+        accelerated_compositing=clutter
+    elif option opengl ; then
+        accelerated_compositing=opengl
+    elif option cairo ; then
+        accelerated_compositing=cairo
+    fi
+
+    econf '--with-gtk=3.0'                                              \
+          '--enable-debug-symbols'                                      \
+          "--with-font-backend=$(optionv pango || echo freetype)"       \
+          "--with-accelerated-compositing=${accelerated_compositing}"   \
+          $(option_enable debug debug-features)                         \
+          $(option_enable doc gtk-doc)                                  \
           $(option_enable gobject-introspection introspection)
 }
 
