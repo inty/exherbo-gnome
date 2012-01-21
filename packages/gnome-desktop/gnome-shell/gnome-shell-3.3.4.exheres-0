@@ -18,7 +18,7 @@ DEPENDENCIES="
         x11-libs/clutter:1[>=1.7.5][gobject-introspection]
         gnome-bindings/gjs:1[>=1.29.18]
         dev-lang/python:*[>=2.5] [[ note = [ for gnome-shell-extension-tool ] ]]
-        dev-libs/glib[>=2.31.0]
+        dev-libs/glib[>=2.31.6]
         dev-libs/libcroco[>=0.6.2]
         dev-libs/libxml2
         gnome-desktop/evolution-data-server[>=2.91.6][calendar][gobject-introspection]
@@ -30,16 +30,17 @@ DEPENDENCIES="
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/libsoup:2.4
+        x11-dri/mesa
         gnome-desktop/mutter[>=3.3.3][gobject-introspection]
         media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
         media-libs/libcanberra
         media-plugins/gst-plugins-base:0.10[>=0.10.16] [[ note = automagic ]]
         media-sound/pulseaudio
-        net-im/telepathy-glib[>=0.15.5][gobject-introspection]
+        net-im/telepathy-glib[>=0.15.6][gobject-introspection]
         net-im/telepathy-logger:0.2[>=0.2.4][gobject-introspection]
         sys-auth/polkit:1[>=0.100][gobject-introspection]
         x11-libs/gdk-pixbuf:2.0[gobject-introspection]
-        x11-libs/gtk+:3[>=3.0.0][gobject-introspection]
+        x11-libs/gtk+:3[>=3.3.9][gobject-introspection]
         net-im/folks[>=0.5.2]
         x11-libs/libX11
         x11-libs/libXfixes
