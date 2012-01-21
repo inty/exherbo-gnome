@@ -15,10 +15,11 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.19]
         dev-util/intltool[>=0.40.0]
+    build+run:
+        x11-libs/gtk+:3[>=3.3.3]
+        gnome-desktop/librsvg:2
     run:
         dev-libs/glib:2
-        x11-libs/gtk+:3[>=3.1.18]
-        gnome-desktop/librsvg:2
     recommendation:
         fonts/cantarell-fonts [[ description = [ default Adwaita theme font ] ]]
         gnome-desktop/gtk-engines:2 [[
