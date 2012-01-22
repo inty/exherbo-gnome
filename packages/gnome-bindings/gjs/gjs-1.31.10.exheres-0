@@ -6,7 +6,7 @@ require gjs
 LICENCES="MIT || ( MPL-1.1 LGPL-2 GPL-2 )"
 SLOT="1"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="spidermonkey [[ description = [ Build against standalone SpiderMonkey instead of XULRunner ] ]]"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build:
@@ -19,18 +19,10 @@ DEPENDENCIES="
         dev-libs/dbus-glib:1
         sys-apps/dbus
         sys-libs/readline
-        spidermonkey? ( dev-libs/spidermonkey )
-        !spidermonkey? ( dev-libs/xulrunner:=[>=7.0] [[ note = [ conditionnally JS_SetScriptStackQuota check ] ]] )
+        dev-libs/spidermonkey
     test:
         dev-lang/python:* [[ note = [ required to build tests ] ]]
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch"
-                              "${FILES}/${PN}-1.30.0-jsval.patch" )
-
-src_configure() {
-    local js_package='mozilla-js'
-    option spidermonkey && js_package='mozjs185'
-    econf --with-js-package=${js_package}
-}
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch" )
 
