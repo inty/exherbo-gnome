@@ -30,7 +30,7 @@ DEPENDENCIES="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( VALAC=$(type -P valac-0.14)
-                               '--disable-gtk3-module' '--disable-gtk2-module' )
+                               '--enable-gtk3-module' '--disable-gtk2-module' )
 
 src_install() {
     gsettings_src_install
