@@ -24,7 +24,7 @@ DEPENDENCIES="
         media-libs/lcms2[>=2.2]
         x11-libs/libnotify[>=0.7.3] [[ note = [ automagic dependency ] ]]
         sys-fs/udev[glib] [[ note = [ for gudev ] ]]
-        x11-libs/libwacom[>=0.2]
+        x11-libs/libwacom[~0.2] [[ note = [ API breakage ] ]]
         x11-libs/libX11
         x11-libs/libXi
         x11-libs/libXfixes
