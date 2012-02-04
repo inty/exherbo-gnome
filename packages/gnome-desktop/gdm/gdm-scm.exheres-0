@@ -10,7 +10,7 @@ require scm-git
 DOWNLOADS=""
 
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="consolekit
+MYOPTIONS="consolekit gobject-introspection
 tcpd [[ description = [ use tcp-wrappers to secure xdcmp requests ] requires = [ xdmcp ] ]]
 xdmcp [[ description = [ add support for network fowarding of GDM for logins ] ]]
 xinerama"
@@ -19,23 +19,24 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        gnome-desktop/gnome-doc-utils[>=0.2.3] [[ note = [ required for gnome-doc-prepare ] ]]
-        gnome-desktop/gnome-power-manager [[ note = [ required to generate dconf db ] ]]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.12] )
     build+run:
-        dev-libs/glib:2[>=2.27.4]
+        dev-libs/glib:2[>=2.29.3]
         dev-libs/dbus-glib:1[>=0.74]
         x11-libs/gtk+:3[>=2.91.1]
         media-libs/libcanberra[>=0.4][gtk3]
         gnome-platform/GConf:2[>=2.31.3]
         sys-apps/upower[>=0.9.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
         media-libs/fontconfig[>=2.5]
-        sys-apps/accountsservice[>=0.6.3]
+        sys-apps/accountsservice[>=0.6.12][gobject-introspection] [[ note = [ required by gnome-shell ] ]]
+        dev-libs/nss[>=3.11.1]
         x11-libs/libxklavier[>=4.0] [[ note = [ automagic dependency, needs a patch if we want to optionalise it ] ]]
         app-text/iso-codes
         sys-libs/pam
         ( x11-libs/libX11
           x11-libs/libXau
           x11-libs/libXext
+          x11-libs/libXrandr
           x11-libs/libXft
           x11-libs/libXi ) [[ note = [ X dependencies ] ]]
         consolekit? ( sys-auth/ConsoleKit )
@@ -47,6 +48,8 @@ DEPENDENCIES="
         gnome-desktop/gnome-settings-daemon
     test:
         dev-libs/check[>=0.9.4]
+    recommendation:
+        gnome-desktop/gnome-shell
 "
 
 DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/0001-add-daemonise-support-to-gdm-2.32.0.patch" )
@@ -64,16 +67,19 @@ src_prepare() {
 }
 
 src_configure() {
-    econf "--localstatedir=/var"                    \
-          $(option_with xinerama)                   \
-          $(option_with xdmcp)                      \
-          $(option_with tcpd tcp-wrappers)          \
-          $(option_with consolekit console-kit)     \
-          "--with-default-path=/bin:/usr/bin"       \
-          "--with-lang-file=/etc/env.d/02locale"    \
-          "--with-dmconfdir=/etc/X11/dm"            \
-          "--enable-ipv6"                           \
-          "--without-selinux"                       \
-          "--without-libaudit"
+    econf "--localstatedir=/var"                                \
+          $(option_with xinerama)                               \
+          $(option_with xdmcp)                                  \
+          $(option_with tcpd tcp-wrappers)                      \
+          $(option_with consolekit console-kit)                 \
+          $(option_enable gobject-introspection introspection)  \
+          "--with-default-path=/bin:/usr/bin"                   \
+          "--with-lang-file=/etc/env.d/02locale"                \
+          "--with-dmconfdir=/etc/X11/dm"                        \
+          "--enable-ipv6"                                       \
+          "--without-selinux"                                   \
+          "--without-libaudit"                                  \
+          "--with-screenshot-dir=/var/tmp/"                     \
+          "--with-xauth-dir=/run/gdm/"
 }
 

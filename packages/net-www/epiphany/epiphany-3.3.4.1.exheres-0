@@ -1,0 +1,73 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings freedesktop-desktop gtk-icon-cache
+
+SUMMARY="GTK+ based Web Browser"
+HOMEPAGE="http://projects.gnome.org/epiphany"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="avahi gobject-introspection gtk-doc
+js [[ description = [ JavaScript support for extensions ] requires = [ gobject-introspection ] ]]
+nss [[ description = [ support migrating passwords from gecko based browsers ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
+    build+run:
+        dev-libs/glib:2[>=2.31.2]
+        x11-libs/gtk+:3[>=3.3.7]
+        x11-libs/libICE
+        x11-libs/libX11
+        x11-libs/libSM
+        dev-libs/libxml2[>=2.6.12]
+        dev-libs/libxslt[>=1.1.7]
+        net-libs/webkit:3.0[>=1.7.3]
+        gnome-desktop/libsoup:2.4[gconf][>=2.37.1]
+        gnome-desktop/libgnome-keyring:1[>=2.26.0]
+        gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
+        x11-libs/libnotify[>=0.5.1]
+        app-text/iso-codes[>=0.35]
+        avahi? ( net-dns/avahi[>=0.6.22] )
+        js? ( gnome-bindings/seed[>=2.27.91] )
+        nss? ( dev-libs/nss )
+    run:
+        gnome-desktop/gnome-icon-theme
+        gnome-desktop/gnome-icon-theme-symbolic
+    suggestion:
+        net-apps/NetworkManager[>=0.8.9997]
+        net-plugins/epiphany-extensions[>=2.27]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-distributor-name=exherbo' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'avahi zeroconf' 'gtk-doc'
+                                       'gobject-introspection introspection' 'nss' 'js seed' )
+
+src_install() {
+    gsettings_src_install
+    edo rmdir "${IMAGE}/usr/share/epiphany/art"
+    option gtk-doc ||
+        edo rmdir "${IMAGE}"/usr/share/gtk-doc/html/epiphany \
+                  "${IMAGE}"/usr/share/gtk-doc/html          \
+                  "${IMAGE}"/usr/share/gtk-doc
+}
+
+pkg_postinst() {
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
+
+pkg_postrm() {
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+

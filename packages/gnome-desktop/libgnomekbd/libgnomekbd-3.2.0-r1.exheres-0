@@ -1,0 +1,27 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings
+
+SUMMARY="Library for Keyboard Management"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gobject-introspection"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.35.0]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.7] )
+    build+run:
+        dev-libs/glib:2[>=2.18]
+        x11-libs/gtk+:3[>=2.91.7][gobject-introspection?]
+        x11-libs/libxklavier[>=5.1]
+        x11-libs/libX11
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+

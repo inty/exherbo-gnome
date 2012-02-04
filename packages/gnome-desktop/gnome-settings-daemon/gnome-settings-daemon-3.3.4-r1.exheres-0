@@ -1,0 +1,71 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
+
+SUMMARY="Settings Daemon"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="3.0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="cups policykit smartcard"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        dev-util/intltool[>=0.37.1]
+        x11-proto/kbproto
+    build+run:
+        dev-libs/glib:2[>=2.29.14]
+        x11-libs/gtk+:3[>=3.3.4]
+        gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
+        gnome-desktop/gnome-desktop:3.0[>=3.3.4]
+        media-libs/lcms2[>=2.2]
+        x11-libs/libnotify[>=0.7.3] [[ note = [ automagic dependency ] ]]
+        sys-fs/udev[glib] [[ note = [ for gudev ] ]]
+        x11-libs/libwacom[~0.2] [[ note = [ API breakage ] ]]
+        x11-libs/libX11
+        x11-libs/libXi
+        x11-libs/libXfixes
+        media-libs/fontconfig
+        gnome-desktop/libgnomekbd[>=2.91.90]
+        x11-libs/libxklavier[>=5.0]
+        media-sound/pulseaudio[>=0.9.16]
+        media-libs/libcanberra[gtk3]
+        sys-apps/colord[>=0.1.9]
+        sys-apps/upower[>=0.9.1]
+        cups? ( net-print/cups )
+        policykit? ( sys-auth/polkit[>=0.97]
+                     sys-apps/dbus[>=1.1.2]
+                     dev-libs/dbus-glib:1[>=0.74] )
+        smartcard? ( dev-libs/nss[>=3.11.2] )
+    recommendation:
+        gnome-desktop/gnome-icon-theme-symbolic [[ description = [ explicitly uses symbolic icons ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-gudev' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'policykit polkit' 'smartcard smartcard-support' )
+
+RESTRICT="test" # requires X
+
+src_install() {
+    gsettings_src_install
+
+    keepdir "/etc/gnome-settings-daemon/xrandr"
+    option !policykit && edo rmdir \
+        "${IMAGE}"/usr/share/dbus-1/system-services \
+        "${IMAGE}"/usr/share/polkit-1/{actions/,} \
+        "${IMAGE}"/etc/dbus-1/{system.d/,}
+}
+
+pkg_postinst() {
+    gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postinst
+}
+
+pkg_postrm() {
+    gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postrm
+}
+
