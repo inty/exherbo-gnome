@@ -59,6 +59,8 @@ DEPENDENCIES="
         gnome-desktop/gnome-tweak-tool [[ description = [ Enable/disable extensions ] ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/6405b010207e45d6bceedbdf65f98c6b8ccd07d0.patch )
+
 src_prepare() {
     autotools_src_prepare
     edo intltoolize --force --copy
