@@ -29,6 +29,7 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PNV}-VTE_META_MASK-fix.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-deprecation' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
 
