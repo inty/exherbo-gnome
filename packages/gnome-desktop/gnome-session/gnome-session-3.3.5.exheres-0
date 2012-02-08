@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="doc"
+MYOPTIONS="doc systemd"
 
 DEPENDENCIES="
     build:
@@ -34,6 +34,7 @@ DEPENDENCIES="
         x11-libs/libXrender
         x11-dri/mesa
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7] [[ note = [ See GNOME bug #641686 ] ]]
+        systemd? ( sys-apps/systemd sys-auth/polkit )
     recommendation:
         sys-auth/ConsoleKit
         gnome-desktop/polkit-gnome
@@ -44,7 +45,7 @@ DEPENDENCIES="
         ) [[ *description = [ minimum requirements for the default session ] ]]
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docbook-docs' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc docbook-docs' 'systemd' )
 
 pkg_postinst() {
     gsettings_pkg_postinst
