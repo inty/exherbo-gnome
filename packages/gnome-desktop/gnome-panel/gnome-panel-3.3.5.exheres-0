@@ -26,8 +26,9 @@ DEPENDENCIES="
         x11-libs/gdk-pixbuf:2.0[>=2.7.1]
         x11-libs/pango[>=1.15.4]
         x11-libs/cairo[>=1.0.0]
-        dev-libs/glib:2[>=2.25.12]
+        dev-libs/glib:2[>=2.31.14]
         gnome-desktop/gnome-desktop:3.0[>=2.91.0]
+        sys-auth/polkit [[ note = [ required for the clock applet ] ]]
         gnome-platform/GConf:2[>=2.6.1][gobject-introspection?]
         gnome-desktop/gnome-menus:3.0[>=3.1.4]
         gnome-desktop/dconf
