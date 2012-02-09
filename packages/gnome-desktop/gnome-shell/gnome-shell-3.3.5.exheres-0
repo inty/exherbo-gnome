@@ -16,6 +16,7 @@ DEPENDENCIES="
         gtk-doc? ( dev-doc/gtk-doc[>=1.15] )
     build+run:
         x11-libs/clutter:1[>=1.7.5][gobject-introspection]
+        x11-dri/mesa
         gnome-bindings/gjs:1[>=1.29.18]
         dev-lang/python:*[>=2.5] [[ note = [ for gnome-shell-extension-tool ] ]]
         dev-libs/glib[>=2.31.6]
@@ -30,7 +31,6 @@ DEPENDENCIES="
         gnome-desktop/gobject-introspection[>=0.10.1]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.7]
         gnome-desktop/libsoup:2.4
-        x11-dri/mesa
         gnome-desktop/mutter[>=3.3.3][gobject-introspection]
         media-libs/gstreamer:0.10[>=0.10.16] [[ note = automagic ]]
         media-libs/libcanberra
