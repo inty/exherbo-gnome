@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.8.0]
     build+run:
-        x11-libs/gtk+:3[>=3.3.3][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.3.7][gobject-introspection?]
         x11-libs/pango[>=1.2.0]
         x11-libs/cairo[>=1.10.0]
         gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
