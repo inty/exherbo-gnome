@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENCES="GPL-2"
 SLOT="3.0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="cups policykit smartcard"
+MYOPTIONS="cups smartcard systemd [[ description = [ use systemd for session tracking ] ]]"
 
 DEPENDENCIES="
     build:
@@ -24,7 +24,7 @@ DEPENDENCIES="
         media-libs/lcms2[>=2.2]
         x11-libs/libnotify[>=0.7.3] [[ note = [ automagic dependency ] ]]
         sys-fs/udev[glib] [[ note = [ for gudev ] ]]
-        x11-libs/libwacom[~0.2] [[ note = [ API breakage ] ]]
+        x11-libs/libwacom[>=0.3]
         x11-libs/libX11
         x11-libs/libXi
         x11-libs/libXfixes
@@ -34,29 +34,22 @@ DEPENDENCIES="
         media-sound/pulseaudio[>=0.9.16]
         media-libs/libcanberra[gtk3]
         sys-apps/colord[>=0.1.9]
-        sys-apps/upower[>=0.9.1]
+        sys-apps/upower[>=0.9.11]
         cups? ( net-print/cups )
-        policykit? ( sys-auth/polkit[>=0.97]
-                     sys-apps/dbus[>=1.1.2]
-                     dev-libs/dbus-glib:1[>=0.74] )
         smartcard? ( dev-libs/nss[>=3.11.2] )
+        systemd? ( sys-apps/systemd )
     recommendation:
         gnome-desktop/gnome-icon-theme-symbolic [[ description = [ explicitly uses symbolic icons ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-packagekit' '--enable-gudev' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'policykit polkit' 'smartcard smartcard-support' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'cups' 'smartcard smartcard-support' 'systemd' )
 
 RESTRICT="test" # requires X
 
 src_install() {
     gsettings_src_install
-
     keepdir "/etc/gnome-settings-daemon/xrandr"
-    option !policykit && edo rmdir \
-        "${IMAGE}"/usr/share/dbus-1/system-services \
-        "${IMAGE}"/usr/share/polkit-1/{actions/,} \
-        "${IMAGE}"/etc/dbus-1/{system.d/,}
 }
 
 pkg_postinst() {
