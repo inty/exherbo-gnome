@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz ] gnome-2
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
 
 SUMMARY="Window Manager for the GNOME environment"
 HOMEPAGE="http://www.gnome.org/"
@@ -18,12 +18,12 @@ DEPENDENCIES="
         app-text/docbook-xml-dtd:4.5
         doc? ( dev-doc/gtk-doc[>=0.9] )
     build+run:
-        x11-libs/gtk+:2[>=2.20.0]
+        x11-libs/gtk+:2[>=2.24.0]
         x11-libs/pango[>=1.2.0][X]
+        gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
         media-libs/libcanberra[gtk]
-        gnome-platform/GConf:2[>=1.2]
         x11-libs/startup-notification[>=0.7]
-        dev-libs/glib:2[>=2.6]
+        dev-libs/glib:2[>=2.25.10]
         x11-libs/libXcomposite[>=0.2]
         gnome-desktop/zenity
         xinerama? ( x11-libs/libXinerama )
@@ -31,4 +31,16 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' '--enable-compositor' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' xinerama )
+
+pkg_postinst() {
+    default
+    gtk_icon_cache_exlib_update_theme_cache
+    gsettings_exlib_compile_gsettings_schemas
+}
+
+pkg_postrm() {
+    default
+    gtk_icon_cache_exlib_update_theme_cache
+    gsettings_exlib_compile_gsettings_schemas
+}
 
