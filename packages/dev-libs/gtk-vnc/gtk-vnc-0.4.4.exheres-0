@@ -1,4 +1,5 @@
 # Copyright 2009 Wulf C. Krueger <philantrop@exherbo.org>
+# Copyright 2012 Calvin Walton <calvin.walton@kepstin.ca>
 # Distributed under the terms of the GNU General Public License v2
 
 require gtk-vnc
@@ -6,13 +7,18 @@ require gtk-vnc
 SLOT="2.0"
 PLATFORMS="~amd64 ~x86"
 
-MYOPTIONS="gobject-introspection sasl"
+MYOPTIONS="
+    gobject-introspection
+    sasl
+    vala [[ description = [ Install vala bindings ] requires = [ gobject-introspection ] ]]
+"
 
 DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.4] )
+        vala? ( dev-lang/vala[>=0.14.1] ) [[ note = [ tested with 0.14 and up ] ]]
     build+run:
         dev-libs/glib:2[>=2.10.0]
         x11-libs/gdk-pixbuf:2.0[>=2.10.0]
@@ -20,15 +26,15 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.2.0]
         dev-libs/gnutls[>=1.4.0]
         x11-libs/gtk+:3[>=3.0.0]
+        sasl? ( net-libs/cyrus-sasl )
         !dev-libs/gtk-vnc:1 [[
             description = [ Libraries and binaries collide with these slots ]
             resolution = uninstall-blocked-after
         ]]
-        sasl? ( net-libs/cyrus-sasl )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-coroutine=gthread' '--without-libview'
-                               '--disable-plugin' '--with-gtk=3.0' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-plugin' '--with-coroutine=gthread' '--with-gtk=3.0'
+                               '--without-libview' )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( sasl )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' 'vala' )
 
