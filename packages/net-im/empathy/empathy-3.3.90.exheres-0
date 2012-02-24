@@ -25,11 +25,9 @@ DEPENDENCIES="
         dev-libs/libxslt
         dev-lang/python:*[>=2.3]
         dev-util/pkg-config[>=0.20]
-        gnome-desktop/gnome-doc-utils[>=0.17.3]
     build+run:
         dev-libs/dbus-glib:1
         dev-libs/glib:2[>=2.30.0]
-        net-im/farsight2:0.10
         net-im/folks[>=0.6.6]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gnome-keyring:1[>=2.91.4]
@@ -38,8 +36,12 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.32]
         media-plugins/gst-plugins-base:0.10
         dev-libs/libxml2:2.0
-        net-im/telepathy-farsight[>=0.0.18]
-        net-im/telepathy-glib[>=0.17.3]
+        net-im/farstream:0.1
+        net-im/telepathy-farstream[>=0.2.1]
+        x11-libs/clutter:1[>=1.7.14]
+        x11-libs/clutter-gtk:1.0
+        media-libs/clutter-gst:1.0
+        net-im/telepathy-glib[>=0.17.5]
         net-im/telepathy-logger:0.2[>=0.2.10]
         x11-libs/libX11
         x11-libs/gtk+:3[>=3.0.2]
@@ -62,10 +64,13 @@ DEPENDENCIES="
         net-im/telepathy-mission-control[>=5.1.2]
     recommendation:
         net-im/telepathy-salut
+    suggestion:
+        net-im/telepathy-haze [[ description = [ support for MSN ] ]]
+        gnome-desktop/gnome-contacts
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-geocode --disable-location --disable-meego
-                               --disable-call --disable-call-logs --enable-goa )
+                               --disable-call-logs --enable-goa )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'eds' 'networkmanager connectivity nm' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'geolocation map' 'nautilus-sendto' spell 'udev gudev' )
 
