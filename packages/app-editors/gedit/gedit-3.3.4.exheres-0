@@ -1,0 +1,58 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-desktop
+
+SUMMARY="Editor for the GNOME environment"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gtk-doc python spell"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
+    build+run:
+        dev-libs/libxml2[>=2.5.0]
+        dev-libs/glib:2[>=2.27.92]
+        x11-libs/gtk+:3[>=3.1.6][gobject-introspection]
+        gnome-desktop/gtksourceview:3.0[>=2.91.8][gobject-introspection]
+        dev-libs/libpeas:1.0[>=1.1.0][python?]
+        gnome-desktop/gsettings-desktop-schemas
+        x11-libs/libSM[>=1.0.0]
+        x11-libs/libICE
+        gnome-desktop/gobject-introspection[>=0.9.3]
+        python? ( dev-lang/python:*
+                  gnome-bindings/pygobject:3[>=3.0.0]
+                  x11-libs/gtk+:3[>=3.0.0][gobject-introspection] )
+        spell? ( app-spell/enchant[>=1.2.0]
+                 app-text/iso-codes[>=0.35] )
+    suggestion:
+        gnome-desktop/gedit-plugins [[ description = [ Plugins for additional features ] ]]
+"
+
+RESTRICT="test" # uses X
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-updater' '--disable-zeitgeist' '--enable-introspection' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( gtk-doc python spell )
+
+src_install() {
+    gsettings_src_install
+    edo rmdir "${IMAGE}"/usr/share/gedit/plugins/changecase
+}
+
+pkg_postrm() {
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+
+pkg_postinst() {
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
+
