@@ -17,16 +17,18 @@ DEPENDENCIES="
         dev-util/intltool[>=0.37.1]
         x11-proto/kbproto
     build+run:
-        dev-libs/glib:2[>=2.29.14]
+        dev-libs/glib:2[>=2.31.0]
         x11-libs/gtk+:3[>=3.3.4]
         gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
         gnome-desktop/gnome-desktop:3.0[>=3.3.4]
         media-libs/lcms2[>=2.2]
         x11-libs/libnotify[>=0.7.3] [[ note = [ automagic dependency ] ]]
         sys-fs/udev[glib] [[ note = [ for gudev ] ]]
-        x11-libs/libwacom[>=0.3]
+        ( x11-libs/libwacom[>=0.3]
+          x11-drivers/xf86-input-wacom ) [[ note = [ no way to disable this unnecessary dependency ] ]]
         x11-libs/libX11
         x11-libs/libXi
+        x11-libs/libXtst
         x11-libs/libXfixes
         media-libs/fontconfig
         gnome-desktop/libgnomekbd[>=2.91.90]
