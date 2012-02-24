@@ -22,8 +22,8 @@ DEPENDENCIES="
     build+run:
         x11-libs/libICE
         x11-libs/libSM
-        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
-        x11-libs/gdk-pixbuf:2.0[>=2.7.1]
+        x11-libs/gtk+:3[>=3.3.8][gobject-introspection?]
+        x11-libs/gdk-pixbuf:2.0[>=2.25.2]
         x11-libs/pango[>=1.15.4]
         x11-libs/cairo[>=1.0.0]
         dev-libs/glib:2[>=2.31.14]
