@@ -54,7 +54,7 @@ DEPENDENCIES="
         cheese? ( gnome-desktop/cheese[>=2.91.91.1] )
         eds? ( gnome-desktop/evolution-data-server:1.2 )
         geolocation? ( x11-libs/clutter-gtk:1.0
-                       x11-libs/libchamplain:0.12 )
+                       x11-libs/libchamplain:0.14 )
         nautilus-sendto? ( gnome-desktop/nautilus-sendto[>=2.90] )
         networkmanager? ( net-apps/NetworkManager[>=0.7.0] )
         spell? ( app-spell/enchant[>=1.2.0]
