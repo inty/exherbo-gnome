@@ -26,6 +26,7 @@ DEPENDENCIES="
         gnome-desktop/yelp-xsl[>=3.1.4]
         app-arch/xz[>=4.9]
         x11-libs/pango[X]
+        dev-util/itstool
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-lzma' '--enable-bz2' )
