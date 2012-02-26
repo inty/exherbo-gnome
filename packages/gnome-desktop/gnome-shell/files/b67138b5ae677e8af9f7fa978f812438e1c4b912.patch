@@ -1,0 +1,46 @@
+From ad9cd17bc33f16566ebb93a9b98f1be6e4968cac Mon Sep 17 00:00:00 2001
+From: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+Date: Fri, 17 Feb 2012 20:48:25 +0100
+Subject: [PATCH] pokit-agent: fix segfault when we we fail to get the current
+ session
+
+When using systemd, polkit doesn't set the error even when returning false in g_initable_init
+
+Signed-off-by: Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+
+https://bugzilla.gnome.org/show_bug.cgi?id=670319
+---
+ src/shell-polkit-authentication-agent.c |   17 ++++++++++++-----
+ 1 files changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/src/shell-polkit-authentication-agent.c b/src/shell-polkit-authentication-agent.c
+index ad59486..f274382 100644
+--- a/src/shell-polkit-authentication-agent.c
++++ b/src/shell-polkit-authentication-agent.c
+@@ -110,11 +110,18 @@ shell_polkit_authentication_agent_init (ShellPolkitAuthenticationAgent *agent)
+                                                       &error);
+   if (subject == NULL)
+     {
+-      g_warning ("Error getting session for the process we are in: %s (%s %d)",
+-                 error->message,
+-                 g_quark_to_string (error->domain),
+-                 error->code);
+-      g_error_free (error);
++      if (error) /* polkit version 104 and older don't properly set error on failure */
++        {
++          g_warning ("Error getting session for the process we are in: %s (%s %d)",
++                     error->message,
++                     g_quark_to_string (error->domain),
++                     error->code);
++          g_error_free (error);
++        }
++      else
++        {
++          g_warning ("Error getting session for the process we are in");
++        }
+       goto out;
+     }
+ 
+-- 
+1.7.8.1
+

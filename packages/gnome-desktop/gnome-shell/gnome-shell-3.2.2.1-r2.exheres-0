@@ -79,6 +79,7 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/b67138b5ae677e8af9f7fa978f812438e1c4b912.patch )
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-introspection' '--disable-jhbuild-wrapper-script'
                                '--with-ca-certificates=/usr/share/ca-certificates/' )
 
