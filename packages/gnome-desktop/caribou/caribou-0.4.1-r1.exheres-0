@@ -14,7 +14,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.23]
         dev-util/intltool[>=0.35.0]
-        dev-lang/vala:0.14
+        dev-lang/vala:*[>=0.14]
     build+run:
         dev-libs/glib:2[>=2.27.5]
         gnome-bindings/pygobject:3[>=2.90.3]
@@ -29,8 +29,7 @@ DEPENDENCIES="
 "
 
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( VALAC=$(type -P valac-0.14)
-                               '--enable-gtk3-module' '--disable-gtk2-module' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk3-module' '--disable-gtk2-module' )
 
 src_install() {
     gsettings_src_install
