@@ -12,7 +12,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        dev-lang/vala:0.14[>=0.14.0]
+        dev-lang/vala:*[>=0.14.0]
         dev-util/intltool[>=0.40]
         dev-util/pkg-config
         sys-devel/gettext[>=0.17]
