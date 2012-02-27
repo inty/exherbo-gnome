@@ -17,6 +17,9 @@ spell
 
 DEPENDENCIES="
     build:
+        dev-lang/perl:*
+        dev-lang/python:*
+        sys-devel/bison
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.10] )
@@ -61,6 +64,7 @@ src_configure() {
 
     econf '--with-gtk=3.0'                                              \
           '--with-gstreamer=0.10'                                       \
+          '--disable-geolocation'                                       \
           '--enable-debug-symbols'                                      \
           "--with-font-backend=$(optionv pango || echo freetype)"       \
           "--with-accelerated-compositing=${accelerated_compositing}"   \
