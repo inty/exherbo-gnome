@@ -1,0 +1,38 @@
+# Copyright 2009 Sateem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Tools for GIR"
+HOMEPAGE="http://live.gnome.org/GObjectIntrospection"
+
+LICENCES="( LGPL-2 GPL-2 )"
+SLOT="1"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gtk-doc"
+
+AT_M4DIR=( m4 )
+
+DEPENDENCIES="
+    build:
+        app-doc/gtk-doc-autotools[>=1.12]
+        dev-util/pkg-config[>=0.20]
+        gtk-doc? ( dev-doc/gtk-doc[>=1.12] )
+    build+run:
+        dev-libs/glib:2[>=2.29.7]
+        dev-libs/libffi
+        dev-lang/python:*[>=2.5]
+    test:
+        x11-libs/cairo
+"
+
+src_prepare() {
+    edo gtkdocize --copy
+    autotools_src_prepare
+}
+
+src_configure() {
+    econf $(option_enable gtk-doc) \
+          $(expecting_tests --recommended && echo '--enable-tests' || echo '--disable-tests')
+}
+
