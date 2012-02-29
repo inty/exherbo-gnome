@@ -1,0 +1,27 @@
+# Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gjs autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+LICENCES="MIT || ( MPL-1.1 LGPL-2 GPL-2 )"
+SLOT="1"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+        dev-util/pkg-config[>=0.20]
+    build+run:
+        dev-libs/glib:2[>=2.31.0]
+        gnome-desktop/gobject-introspection:1[>=1.31.11]
+        x11-libs/cairo
+        sys-apps/dbus
+        sys-libs/readline
+        dev-libs/spidermonkey
+    test:
+        dev-lang/python:* [[ note = [ required to build tests ] ]]
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/fix-tests-dbus-launch.patch" )
+
