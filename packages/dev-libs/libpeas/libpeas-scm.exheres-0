@@ -32,12 +32,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-seed' '--disable-python' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc gtk-doc' )
 
 src_prepare() {
-    edo mkdir "${WORK}/m4"
-
     edo sed -e 's/GNOME_COMPILE_WARNINGS/dnl &/'        \
             -e 's/GNOME_MAINTAINER_MODE_DEFINES/dnl &/' \
             -i "${WORK}/configure.ac"
 
+    edo autopoint
     edo intltoolize --force --copy
     edo gtkdocize --copy
     autotools_src_prepare
