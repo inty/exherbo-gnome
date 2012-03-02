@@ -65,6 +65,6 @@ src_prepare() {
 
 src_install() {
     gsettings_src_install
-    edo rmdir "${IMAGE}/usr/share/epiphany/art"
+    option gtk-doc || edo rmdir "${IMAGE}"/usr/share/gtk-doc/{html/{epiphany,},}
 }
 
