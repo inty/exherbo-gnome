@@ -145,7 +145,7 @@ src_install() {
     default
 
     if ! optionq gtk && ! optionq ncurses; then
-        edo find ${IMAGE} -type d -empty -delete
+        edo find "${IMAGE}" -type d -empty -delete
     fi
 }
 
