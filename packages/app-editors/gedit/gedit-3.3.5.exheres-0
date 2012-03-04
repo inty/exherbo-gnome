@@ -18,7 +18,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/libxml2[>=2.5.0]
         dev-libs/glib:2[>=2.27.92]
-        x11-libs/gtk+:3[>=3.1.6][gobject-introspection]
+        x11-libs/gtk+:3[>=3.3.15][gobject-introspection]
         gnome-desktop/gtksourceview:3.0[>=2.91.8][gobject-introspection]
         dev-libs/libpeas:1.0[>=1.1.0][python?]
         gnome-desktop/gsettings-desktop-schemas
