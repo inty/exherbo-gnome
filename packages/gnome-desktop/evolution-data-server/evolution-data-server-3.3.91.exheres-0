@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz ]
+require gnome.org [ suffix=.tar.xz ] gsettings
 
 SUMMARY="Backend store for contact data"
 HOMEPAGE="http://projects.gnome.org/evolution"
