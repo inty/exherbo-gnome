@@ -34,6 +34,7 @@ DEPENDENCIES="
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
         x11-libs/libnotify[>=0.5.1]
+        dev-db/sqlite:3
         app-text/iso-codes[>=0.35]
         avahi? ( net-dns/avahi[>=0.6.22] )
         js? ( gnome-bindings/seed[>=2.27.91] )
