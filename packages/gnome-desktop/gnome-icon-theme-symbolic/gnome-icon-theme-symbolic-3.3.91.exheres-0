@@ -1,0 +1,18 @@
+# Copyright 2010-2011 Brett Witherspoon <spoonb@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-icon-theme-symbolic
+
+LICENCES="CCPL-Attribution-ShareAlike-3.0"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.19]
+        x11-apps/icon-naming-utils[>=0.8.7]
+    run:
+        gnome-desktop/gnome-icon-theme[>=0.10]
+"
+
