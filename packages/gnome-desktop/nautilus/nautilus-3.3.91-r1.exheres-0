@@ -29,7 +29,7 @@ DEPENDENCIES="
         x11-libs/libnotify[>=0.7]
         exif? ( media-libs/libexif[>=0.6.20] )
         xmp? ( media-libs/exempi[>=2.1.0] )
-        tracker? ( app-pim/tracker:0.12 )
+        tracker? ( app-pim/tracker:=[>=0.12&<0.15] )
     run:
         gnome-desktop/gvfs[>=1.0.3]
     recommendation:
