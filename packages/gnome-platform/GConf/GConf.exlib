@@ -6,6 +6,7 @@ if ever at_least 3.1.90 ; then
 else
     require gnome.org
 fi
+require easy-multibuild
 
 export_exlib_phases src_install
 
@@ -13,7 +14,7 @@ SUMMARY="GConf(iguration)"
 HOMEPAGE="http://projects.gnome.org/gconf"
 
 GConf_src_install() {
-    default
+    easy-multibuild_src_install
 
     hereenvd 80gconf-schemas << EOF
 CONFIG_PROTECT_MASK="/etc/gconf/schemas"

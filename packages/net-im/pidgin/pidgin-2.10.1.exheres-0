@@ -47,12 +47,6 @@ MYOPTIONS="
     ssl
     spell
     eds
-
-    (
-        gtk
-        ncurses
-    ) [[ number-selected = at-least-one ]]
-
     (
         gstreamer
         spell
@@ -146,6 +140,14 @@ UPSTREAM_DOCUMENTATION="
     http://developer.pidgin.im/wiki/Using%20Pidgin
     http://developer.pidgin.im/wiki/FAQ
 "
+
+src_install() {
+    default
+
+    if ! optionq gtk && ! optionq ncurses; then
+        edo find "${IMAGE}" -type d -empty -delete
+    fi
+}
 
 src_test() {
     # See http://developer.pidgin.im/ticket/12548

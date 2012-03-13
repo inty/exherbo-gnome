@@ -6,7 +6,7 @@ require gsettings
 SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 
-if ever at_least 1.7.2 ; then
+if ever at_least 1.6.3 ; then
     DOWNLOADS="http://webkitgtk.org/${PNV}.tar.xz"
 else
     DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
@@ -15,9 +15,11 @@ fi
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
 src_compile() {
-    edo mkdir -p "${WORK}/DerivedSources/webkit"    \
-                 "${WORK}/DerivedSources/WebCore"   \
-                 "${WORK}/DerivedSources/ANGLE"
+    edo mkdir -p "${WORK}/DerivedSources/webkit"                        \
+                 "${WORK}/DerivedSources/WebCore"                       \
+                 "${WORK}/DerivedSources/ANGLE"                         \
+                 "${WORK}/DerivedSources/WebKit2/webkit2gtk/webkit2"    \
+                 "${WORK}/DerivedSources/InjectedBundle"
     default
 }
 

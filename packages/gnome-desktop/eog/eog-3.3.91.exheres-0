@@ -1,0 +1,58 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-desktop
+
+SUMMARY="Image Viewer"
+HOMEPAGE="http://projects.gnome.org/eog"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="exif gobject-introspection gtk-doc jpeg svg
+    cms [[ description = [ Colour management support ] ]]
+    xmp [[ description = [ Support for XMP metadata ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.3] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        x11-libs/gtk+:3[>=3.3.6]
+        dev-libs/glib:2[>=2.31.0]
+        gnome-desktop/gnome-desktop:3.0[>=2.91.2]
+        gnome-desktop/gnome-icon-theme[>=2.19.1]
+        x11-misc/shared-mime-info[>=0.20]
+        gnome-desktop/gsettings-desktop-schemas[>=2.91.92]
+        dev-libs/libpeas:1.0[>=0.7.4]
+        dev-libs/libxml2:2.0[>=2.0]
+        cms? ( media-libs/lcms2 )
+        exif? ( media-libs/libexif[>=0.6.14] )
+        jpeg? ( media-libs/jpeg[>=8] )
+        svg? ( gnome-desktop/librsvg[>=2.26.0] )
+        xmp? ( media-libs/exempi:2.0[>=1.99.5] )
+        !gnome-desktop/eog:3.0[<=3.0.0] [[
+            description = [ slot has been moved ]
+            resolution = uninstall-blocked-after
+        ]]
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'cms' 'exif libexif' 'jpeg libjpeg' 'svg librsvg' 'xmp' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gtk-doc' 'gobject-introspection introspection' )
+
+pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+}
+

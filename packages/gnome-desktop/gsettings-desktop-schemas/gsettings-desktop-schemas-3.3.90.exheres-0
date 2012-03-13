@@ -1,0 +1,22 @@
+# Copyright © 2010 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings
+
+SUMMARY="Shared GSettings schemas for the GNOME desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="gobject-introspection"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        sys-devel/gettext
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=1.31.0] )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+
