@@ -1,4 +1,4 @@
-Upstream: no, #201649
+Upstream: no, #663779
 Note: this seems to be only a workaround, meta key handling in vte seems to be broken by design
 
 From 180dcc578e13c6096e277fb853e7162db640f207 Mon Sep 17 00:00:00 2001
