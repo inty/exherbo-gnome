@@ -1,0 +1,26 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gconf
+
+SUMMARY="Terminal Application for the GNOME Desktop"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.40.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.2]
+    build+run:
+        dev-libs/vte:3.0[>=0.30.0]
+        dev-libs/glib:2[>=2.25.12]
+        x11-libs/gtk+:3[>=3.0.0]
+        gnome-platform/GConf:2[>=2.31.3]
+        gnome-desktop/gsettings-desktop-schemas[>=0.1.0]
+"
+
