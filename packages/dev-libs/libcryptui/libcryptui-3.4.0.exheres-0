@@ -1,0 +1,45 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require freedesktop-mime gnome.org [ suffix=.tar.xz ] gsettings
+
+SUMMARY="Library for OpenPGP prompts"
+
+LICENCES=""
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gobject-introspection gtk-doc libnotify"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config
+        sys-devel/gettext
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+    build+run:
+        app-crypt/gnupg[=2.0*]
+        app-crypt/gpgme[>=1.0]
+        dev-libs/dbus-glib:1[>=0.35]
+        dev-libs/glib:2[>=2.26] [[ note = [ For gsettings ] ]]
+        gnome-desktop/libgnome-keyring:1[>=2.25.5]
+        x11-libs/gtk+:3[>=2.90.0][gobject-introspection?]
+        x11-libs/libICE
+        x11-libs/libSM
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.4] )
+        libnotify? ( x11-libs/libnotify[>=0.3] )
+        !gnome-desktop/seahorse[<3.2]  [[ description = [ File collision ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-update-mime-database' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' 'gtk-doc' 'libnotify' )
+
+pkg_postrm() {
+    freedesktop-mime_pkg_postrm
+    gsettings_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-mime_pkg_postinst
+    gsettings_pkg_postinst
+}
+
