@@ -20,7 +20,6 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
         dev-libs/glib:2[>=2.19.0]
@@ -28,6 +27,7 @@ DEPENDENCIES="
         dev-libs/liboauth[>=0.9.4]
         gnome-desktop/libsoup:2.4[>=2.26.1][gconf?][gobject-introspection?]
         x11-libs/gdk-pixbuf:2.0[>=2.14] [[ note = [ automagic dependency ] ]]
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gconf gnome' 'gobject-introspection introspection'
