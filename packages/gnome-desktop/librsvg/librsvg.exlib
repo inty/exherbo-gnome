@@ -44,7 +44,7 @@ else
 DEPENDENCIES+="
     build:
         x11-libs/gtk+:3[>=3.0.0]
-        dev-libs/libxml2[>=2.7.0]
+        dev-libs/libxml2:2.0[>=2.7.0]
         x11-libs/pango[>=1.16.0]
 "
 fi
