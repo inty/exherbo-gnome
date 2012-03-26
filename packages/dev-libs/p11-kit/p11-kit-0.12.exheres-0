@@ -12,6 +12,7 @@ MYOPTIONS="gtk-doc"
 
 DEPENDENCIES="
     build:
+        sys-devel/gettext
         gtk-doc? ( dev-doc/gtk-doc[>=1.15] )
 "
 
