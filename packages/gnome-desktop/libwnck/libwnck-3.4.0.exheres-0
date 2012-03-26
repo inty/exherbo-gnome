@@ -16,14 +16,14 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         dev-util/intltool[>=0.40.6]
         doc? ( dev-doc/gtk-doc[>=1.9] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.14] )
     build+run:
         x11-libs/startup-notification[>=0.4]
         x11-libs/libX11
         x11-libs/libXres
         x11-libs/libXext
-        x11-libs/gtk+:3[>=3.0]
+        x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         dev-libs/glib:2[>=2.16.0]
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.14] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-startup-notification' )
