@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz ] python [ python_dep=2.3 ]
+require gnome.org [ suffix=.tar.xz ] python [ python_dep=2.3 ] freedesktop-desktop
 
 SUMMARY="Menus for GNOME Panel"
 HOMEPAGE="http://www.gnome.org/"
@@ -15,9 +15,9 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.29.15]
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
     run:
         gnome-bindings/pygobject:3
 "
