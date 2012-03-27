@@ -14,7 +14,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
     build+run:
         dev-libs/glib:2[>=2.31.0]
-        gnome-desktop/gobject-introspection[>=1.29.17]
+        gnome-desktop/gobject-introspection[>=1.31.22]
         x11-libs/cairo
         dev-libs/dbus-glib:1
         sys-apps/dbus
