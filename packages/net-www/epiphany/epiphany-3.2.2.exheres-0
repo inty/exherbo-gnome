@@ -19,23 +19,23 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
     build+run:
         dev-libs/glib:2[>=2.29.10]
-        x11-libs/gtk+:3[>=3.0.2]
+        x11-libs/gtk+:3[>=3.0.2][gobject-introspection?]
         x11-libs/libICE
         x11-libs/libX11
         x11-libs/libSM
         dev-libs/libxml2[>=2.6.12]
         dev-libs/libxslt[>=1.1.7]
-        net-libs/webkit:3.0[>=1.6.1]
-        gnome-desktop/libsoup:2.4[gconf][>=2.33.1]
+        net-libs/webkit:3.0[>=1.6.1][gobject-introspection?]
+        gnome-desktop/libsoup:2.4[gconf][>=2.33.1][gobject-introspection?]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gsettings-desktop-schemas[>=0.0.2]
         x11-libs/libnotify[>=0.5.1]
         app-text/iso-codes[>=0.35]
         avahi? ( net-dns/avahi[>=0.6.22] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
         js? ( gnome-bindings/seed[>=2.27.91] )
         nss? ( dev-libs/nss )
     run:
