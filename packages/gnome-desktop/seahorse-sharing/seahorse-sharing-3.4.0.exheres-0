@@ -1,0 +1,25 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gtk-icon-cache
+
+SUMMARY="Sharing of PGP public keys via DNS-SD and HKP"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        sys-devel/gettext
+    build+run:
+        app-crypt/gnupg[=2.0*]
+        app-crypt/gpgme[>=1.0]
+        dev-libs/glib:2
+        gnome-desktop/libsoup:2.4
+        net-dns/avahi[>=0.6]
+        x11-libs/gtk+:3[>=3.0]
+"
+
