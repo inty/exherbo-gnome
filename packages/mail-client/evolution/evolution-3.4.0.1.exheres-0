@@ -27,7 +27,7 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.40.0]
         dev-util/pkg-config
-        gnome-desktop/gnome-doc-utils[>=0.3.2]
+        gnome-desktop/gnome-doc-utils[>=0.20.10]
         sys-devel/gettext[>=0.17]
         gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
     build+run:
