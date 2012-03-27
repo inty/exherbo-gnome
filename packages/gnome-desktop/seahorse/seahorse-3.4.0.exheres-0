@@ -1,0 +1,59 @@
+# Copyright 2008, 2009 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-mime
+
+SUMMARY="Keyring and PGP manager"
+HOMEPAGE="http://live.gnome.org/Seahorse"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="avahi ldap [[ description = [ Publish and retrieve keys via LDAP ] ]]"
+
+DEPENDENCIES="
+    build:
+        app-text/scrollkeeper-dtd
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        gnome-desktop/gnome-doc-utils[>=0.3.1]
+    build+run:
+        app-crypt/gnupg[=2.0*]
+        app-crypt/gpgme[>=1.0]
+        dev-libs/glib:2[>=2.26] [[ note = [ for gsettings ] ]]
+        gnome-desktop/gcr[>=3.3.4]
+        gnome-desktop/gnome-keyring:1[>=3.1.5]
+        gnome-desktop/libgnome-keyring:1[>=2.25.5]
+        gnome-desktop/libsoup:2.4
+        x11-libs/gtk+:3[>=2.90.0]
+        avahi? ( net-dns/avahi[>=0.6] )
+        ldap? ( net-directory/openldap[>=2.4.21] )
+    suggestion:
+        gnome-desktop/seahorse-plugins[>=2.25.0]
+        gnome-desktop/seahorse-sharing [[ description = [ Share your public keys ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-update-mime-database'
+    '--disable-schemas-compile'
+    '--enable-pgp'
+    '--enable-hkp'
+    '--enable-pkcs11'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'avahi sharing'
+    'ldap'
+)
+
+pkg_postrm() {
+    freedesktop-mime_update_mime_database
+    gsettings_pkg_postrm
+    gtk-icon-cache_pkg_postrm
+}
+
+pkg_postinst() {
+    freedesktop-mime_update_mime_database
+    gsettings_pkg_postinst
+    gtk-icon-cache_pkg_postinst
+}
+
