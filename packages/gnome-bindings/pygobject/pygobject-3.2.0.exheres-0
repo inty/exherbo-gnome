@@ -1,0 +1,44 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Purpose License v2
+
+require gnome.org [ suffix=.tar.xz ] python [ python_dep=2.5.2 ]
+
+SUMMARY="Python Bindings for GObject"
+HOMEPAGE="http://www.pygtk.org"
+
+LICENCES="LGPL-2.1"
+SLOT="3"
+PLATFORMS="~amd64 ~ppc64 ~x86"
+MYOPTIONS="cairo"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+       !gnome-bindings/pygobject:2[<2.28.6-r3] [[
+            description = [ Versions before 2.28.6-r2 might install introspection-based bindings ]
+            resolution = manual
+        ]]
+        dev-libs/glib:2[>=2.31.0]
+        dev-libs/libffi[>=3.0]
+        gnome-desktop/gobject-introspection:1[>=1.31.20]
+        cairo? ( dev-python/pycairo[>=1.2.0] )
+        !gnome-bindings/pygobject:2[gobject-introspection]
+            [[ description = [ file collision ] ]]
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( cairo )
+
+# needs X
+RESTRICT="test"
+
+src_compile() {
+    python_disable_pyc
+    default
+}
+
+src_install() {
+    default
+    python_bytecompile
+}
+
