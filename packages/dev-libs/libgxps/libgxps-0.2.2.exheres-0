@@ -5,7 +5,7 @@ require gnome.org [ suffix=.tar.xz ]
 
 SUMMARY="XPS Document Library"
 
-LICENCES="LGPL-2"
+LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~x86"
 MYOPTIONS="cms gobject-introspection jpeg tiff"
