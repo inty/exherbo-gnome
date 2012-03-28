@@ -36,7 +36,6 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.3.2]
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.13] )
     build+run:
         x11-libs/gtk+:3[>=3.0.2][gobject-introspection?]
@@ -49,6 +48,7 @@ DEPENDENCIES="
         dvi? ( app-text/libspectre[>=0.2.0]
                app-text/texlive )
         djvu? ( app-text/djvu[>=3.5.17] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6] )
         keyring? ( gnome-desktop/libgnome-keyring:1
                    gnome-desktop/gnome-keyring:1[>=2.22.0] )
         nautilus?  ( gnome-desktop/nautilus[>=2.91.4] )

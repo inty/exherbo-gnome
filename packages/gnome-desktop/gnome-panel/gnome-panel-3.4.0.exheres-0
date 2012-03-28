@@ -18,13 +18,12 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.6]
         gnome-desktop/gnome-doc-utils
         gtk-doc? ( dev-doc/gtk-doc[>=1.0] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         x11-libs/libICE
         x11-libs/libSM
         x11-libs/gtk+:3[>=3.3.8][gobject-introspection?]
-        x11-libs/gdk-pixbuf:2.0[>=2.25.2]
-        x11-libs/pango[>=1.15.4]
+        x11-libs/gdk-pixbuf:2.0[>=2.25.2][gobject-introspection?]
+        x11-libs/pango[>=1.15.4][gobject-introspection?]
         x11-libs/cairo[>=1.0.0]
         dev-libs/glib:2[>=2.31.14]
         gnome-desktop/gnome-desktop:3.0[>=2.91.0]
@@ -38,6 +37,7 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libXau
         x11-libs/libXrandr[>=1.2.0]
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
         eds? ( gnome-desktop/evolution-data-server:1.2[>=2.91.2][calendar(+)] )
         networkmanager? ( net-apps/NetworkManager[>=0.6] )
         telepathy? ( net-im/telepathy-glib[>=0.14.0] )

@@ -18,7 +18,6 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.19]
         dev-util/intltool[>=0.40.1]
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.4] )
     build+run:
         x11-libs/gtk+:3[>=3.3.7][gobject-introspection?]
         dev-libs/glib:2[>=2.31.9]
@@ -28,6 +27,7 @@ DEPENDENCIES="
         gnome-desktop/gsettings-desktop-schemas
         x11-libs/libnotify[>=0.7]
         exif? ( media-libs/libexif[>=0.6.20] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.4] )
         xmp? ( media-libs/exempi[>=2.1.0] )
         tracker? ( app-pim/tracker:=[>=0.12&<0.15] )
     run:
