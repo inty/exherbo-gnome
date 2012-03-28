@@ -15,13 +15,13 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
         gtk-doc? ( dev-doc/gtk-doc[>=1.10] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.5] )
     build+run:
         dev-libs/glib:2[>=2.31.7]
         dev-libs/glib-networking[gnutls]
         dev-libs/libxml2:2.0
         gconf? ( dev-db/sqlite:3
                  gnome-desktop/libgnome-keyring:1 )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
 "
 
 RESTRICT="test" # network violations
