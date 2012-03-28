@@ -48,9 +48,8 @@ DEPENDENCIES="
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
-                  gnome-bindings/pygobject:3[>=2.90.3] )
-    test:
-        python? ( dev-python/pylint )
+                  gnome-bindings/pygobject:3[>=2.90.3]
+                  dev-python/pylint )
     recommendation:
         gnome-desktop/gnome-icon-theme-symbolic [[ description = [ icons for the buttons ] ]]
 "
