@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings freedesktop-mime
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-mime
 
 SUMMARY="File Manager for GNOME"
 HOMEPAGE="http://live.gnome.org/Nautilus"
@@ -19,7 +19,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.1]
         gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
     build+run:
-        x11-libs/gtk+:3[>=3.3.7][gobject-introspection?]
+        x11-libs/gtk+:3[>=3.3.17][gobject-introspection?]
         dev-libs/glib:2[>=2.31.9]
         gnome-desktop/gnome-desktop:3.0[>=3.0.0]
         dev-libs/libxml2:2.0[>=2.7.8]
@@ -48,11 +48,13 @@ pkg_postinst() {
     default
     freedesktop-mime_update_mime_database
     gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postinst
 }
 
 pkg_postrm() {
     default
     freedesktop-mime_update_mime_database
     gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postrm
 }
 
