@@ -27,7 +27,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=3.3.5]
         dev-libs/glib:2[>=2.31.0]
         dev-libs/libxml2:2.0
-        gnome-desktop/gsettings-desktop-schemas[>=3.3.0]
+        gnome-desktop/gsettings-desktop-schemas[>=3.3.91]
         x11-libs/libnotify[>=0.7.3]
         gnome-desktop/gnome-menus:3.0
         sys-apps/dbus[>=1.0]
