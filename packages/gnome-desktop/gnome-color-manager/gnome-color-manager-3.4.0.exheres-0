@@ -14,11 +14,12 @@ MYOPTIONS="
     man-pages [[ description = [ Build and install man pages ] ]]
 "
 
+# clutter/3d-support needs mash
 DEPENDENCIES="
     build:
-       dev-util/intltool[>=0.35.0]
-       dev-util/pkg-config[>=0.20]
-       man-pages? ( app-doc/docbook2X dev-libs/libxslt )
+        dev-util/intltool[>=0.35.0]
+        dev-util/pkg-config[>=0.20]
+        man-pages? ( app-doc/docbook2X dev-libs/libxslt )
     build+run:
         dev-libs/glib:2[>=2.31.10]
         x11-libs/libXrandr
