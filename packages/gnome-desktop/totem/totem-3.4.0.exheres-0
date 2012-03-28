@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-desktop
 
 SUMMARY="Media Player for the GNOME Desktop"
 HOMEPAGE="http://projects.gnome.org/totem"
@@ -25,7 +25,6 @@ DEPENDENCIES="
         dev-util/intltool[>=0.40.0]
         gnome-desktop/gnome-doc-utils[>=0.20.3]
         doc? ( dev-doc/gtk-doc[>=1.14] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.30]
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
@@ -46,6 +45,7 @@ DEPENDENCIES="
         dev-libs/libpeas:1.0[>=1.1.0][python?]
         brasero? ( dev-libs/libxml2:2.0[>=2.6.0] )
         chapters? ( dev-libs/libxml2:2.0[>=2.6.0] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.7] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.3] )
         python? ( dev-lang/python:*[>=2.3]
                   gnome-bindings/pygobject:3[>=2.90.3] )
@@ -101,10 +101,12 @@ src_configure() {
 pkg_postrm() {
     gsettings_pkg_postrm
     gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
 }
 
 pkg_postinst() {
     gsettings_pkg_postinst
     gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
 }
 
