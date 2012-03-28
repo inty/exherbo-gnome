@@ -22,7 +22,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/libX11
         media-libs/libcanberra[gtk3][>=0.13]
-        x11-libs/gdk-pixbuf[>=2.23.0]
+        x11-libs/gdk-pixbuf:2.0[>=2.23.0]
         x11-libs/libXxf86misc
         x11-libs/gtk+:3[>=3.3.5]
         dev-libs/glib:2[>=2.31.0]
@@ -30,7 +30,6 @@ DEPENDENCIES="
         gnome-desktop/gsettings-desktop-schemas[>=3.3.91]
         x11-libs/libnotify[>=0.7.3]
         gnome-desktop/gnome-menus:3.0
-        sys-apps/dbus[>=1.0]
         gnome-desktop/gnome-desktop:3.0[>=3.1.0]
         media-libs/fontconfig
         gnome-desktop/gnome-settings-daemon[>=3.3.91]
