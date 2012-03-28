@@ -17,13 +17,13 @@ DEPENDENCIES="
     build:
         dev-util/intltool[>=0.35.0]
         doc? ( dev-doc/gtk-doc[>=1.14] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.14] )
     build+run:
         dev-libs/glib:2[>=2.31.0]
         dev-libs/libxml2
         gnome-desktop/libsoup:2.4[gconf]
         net-utils/gmime:2.4
         amazon? ( dev-libs/libgcrypt )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.14] )
         libarchive? ( app-arch/libarchive[>=2.8.4] )
 "
 
