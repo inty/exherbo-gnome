@@ -16,7 +16,6 @@ DEPENDENCIES="
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.20]
         gnome-desktop/gnome-doc-utils[>=0.2.1]
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
         gtk-doc? ( dev-doc/gtk-doc[>=1.12] )
     build+run:
         media-libs/gstreamer:0.10[>=0.10.15]
@@ -28,6 +27,7 @@ DEPENDENCIES="
         x11-libs/gtk+:3[>=3.0.0][gobject-introspection?]
         x11-libs/libnotify[>=0.6.1]
         media-libs/libcanberra[>=0.1][gtk3]
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.6.3] )
         nautilus? ( gnome-desktop/nautilus[>=2.91.90] )
         playlist? ( gnome-desktop/totem-pl-parser[>=2.29.1] )
         tracker? ( app-pim/tracker:=[>=0.10.0&<0.15] )
