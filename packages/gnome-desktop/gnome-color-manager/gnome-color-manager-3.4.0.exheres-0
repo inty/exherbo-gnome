@@ -1,7 +1,7 @@
 # Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache freedesktop-desktop
 
 SUMMARY="GNOME Color Profile Tools"
 HOMEPAGE="http://www.gnome.org/projects/gnome-color-manager"
@@ -51,11 +51,13 @@ src_install() {
 }
 
 pkg_postinst() {
+    freedesktop-desktop_pkg_postinst
     gsettings_pkg_postinst
     gtk-icon-cache_pkg_postinst
 }
 
 pkg_postrm() {
+    freedesktop-desktop_pkg_postrm
     gsettings_pkg_postrm
     gtk-icon-cache_pkg_postrm
 }
