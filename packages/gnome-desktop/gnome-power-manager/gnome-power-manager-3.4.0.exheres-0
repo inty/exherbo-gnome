@@ -17,7 +17,7 @@ DEPENDENCIES="
         dev-util/pkg-config[>=0.20]
         man-pages? ( app-text/docbook-utils )
     build+run:
-        dev-libs/glib:2[>=2.25.9]
+        dev-libs/glib:2[>=2.31.10]
         x11-libs/gtk+:3[>=2.91.7]
         gnome-desktop/gnome-keyring:1[>=0.6.0]
         x11-libs/cairo[>=1.0.0]
