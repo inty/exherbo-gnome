@@ -1,7 +1,7 @@
 # Copyright 2010 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ]
+require gnome.org [ suffix=.tar.xz ] test-dbus-daemon
 
 SUMMARY="A library to integrate with the gnome-keyring system"
 HOMEPAGE="http://www.gnome.org/"
@@ -21,6 +21,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.16]
         sys-apps/dbus[>=1.0]
         dev-libs/libgcrypt[>=1.2.2]
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=1.30.0] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' 'gtk-doc' )
