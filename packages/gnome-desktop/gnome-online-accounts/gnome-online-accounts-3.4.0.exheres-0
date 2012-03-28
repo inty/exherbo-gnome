@@ -27,8 +27,6 @@ DEPENDENCIES="
         net-libs/rest
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/c98cd071769cabcd3de965c970ebe8a1bc981642.patch" )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-google' '--enable-twitter' '--enable-yahoo'
                                '--enable-facebook' '--enable-windows-live' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' gtk-doc )
