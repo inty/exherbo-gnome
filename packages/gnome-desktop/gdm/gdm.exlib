@@ -1,8 +1,9 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Purpose License v2
 
-require gnome.org [ suffix=.tar.xz ] gnome-2 systemd-service
+require gnome.org [ suffix=.tar.xz ] systemd-service
 ever at_least 3.2 && require gsettings
+ever at_least 3.4 && require gtk-icon-cache || require gnome-2
 
 export_exlib_phases src_install pkg_postinst pkg_postrm
 
@@ -61,13 +62,13 @@ gdm_src_install() {
 
 gdm_pkg_postinst() {
     ever at_least 3.2 && gsettings_pkg_postinst
-    gnome-2_pkg_postinst
+    ever at_least 3.4 && gtk-icon-cache_pkg_postinst || gnome-2_pkg_postinst
     edo dconf update
 }
 
 gdm_pkg_postrm() {
     ever at_least 3.2 && gsettings_pkg_postrm
-    gnome-2_pkg_postrm
+    ever at_least 3.4 && gtk-icon-cache_pkg_postrm || gnome-2_pkg_postrm
     edo dconf update
 }
 
