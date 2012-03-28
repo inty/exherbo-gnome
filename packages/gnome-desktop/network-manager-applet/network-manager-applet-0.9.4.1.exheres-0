@@ -1,0 +1,38 @@
+# Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ]
+require gnome-2
+
+SUMMARY="A panel applet to configure networking via NetworkManager"
+HOMEPAGE="http://www.gnome.org/projects/NetworkManager"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="bluetooth [[ description = [ add support for bluetooth DUN ] ]]"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        dev-util/intltool[>=0.40.0]
+        sys-devel/gettext
+    build+run:
+        app-text/iso-codes
+        dev-libs/glib:2[>=2.16]
+        dev-libs/dbus-glib:1[>=0.74]
+        net-apps/NetworkManager[>=0.9.4]
+        x11-libs/gtk+:3[>=2.91.4]
+        gnome-platform/GConf:2
+        gnome-desktop/libgnome-keyring:1
+        x11-libs/libnotify[>=0.7]
+        sys-apps/dbus[>=1.2.6]
+        bluetooth? ( gnome-desktop/gnome-bluetooth:1[>=2.27.6] )
+    recommendation:
+        gnome-desktop/gnome-keyring:1
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/0c997a95d5b82ea6733e001478db1e2490b49575.patch )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-gtkver=3' '--disable-more-warnings' )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( bluetooth )
+
