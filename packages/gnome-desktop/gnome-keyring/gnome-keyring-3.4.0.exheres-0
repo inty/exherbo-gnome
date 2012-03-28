@@ -33,8 +33,9 @@ DEPENDENCIES="
 
 RESTRICT="test" # requires X
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' '--enable-gpg-agent'
-                               '--disable-tests' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--with-root-certs=/usr/share/ca-certificates/' 
+                               '--with-ca-certificates=/etc/ssl/certs/ca-certificates.crt'
+                               '--enable-gpg-agent' '--disable-tests' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam gtk-doc )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'caps libcap-ng' "pam pam-dir /${LIBDIR}/security" )
 
