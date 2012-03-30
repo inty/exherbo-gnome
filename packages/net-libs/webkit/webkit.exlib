@@ -7,9 +7,9 @@ SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
 
 if ever at_least 1.6.3 ; then
-    DOWNLOADS="http://webkitgtk.org/${PNV}.tar.xz"
+    DOWNLOADS="http://webkitgtk.org/releases/${PNV}.tar.xz"
 else
-    DOWNLOADS="http://webkitgtk.org/${PNV}.tar.gz"
+    DOWNLOADS="http://webkitgtk.org/releases/${PNV}.tar.gz"
 fi
 
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
