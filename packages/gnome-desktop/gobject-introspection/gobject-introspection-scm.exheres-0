@@ -30,6 +30,7 @@ DEPENDENCIES="
 src_prepare() {
     edo gtkdocize --copy
     autotools_src_prepare
+    edo cp "${WORK}"/misc/pre-commit "${WORK}"/.git/hooks/
 }
 
 src_configure() {
