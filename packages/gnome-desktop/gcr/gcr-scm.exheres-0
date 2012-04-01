@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
-gsettings freedesktop-mime freedesktop-desktop gtk-icon-cache test-dbus-daemon
+require gsettings freedesktop-mime freedesktop-desktop gtk-icon-cache test-dbus-daemon
 
 SUMMARY="A library for bits of crypto UI and parsing etc."
 HOMEPAGE="http://www.gnome.org/"
