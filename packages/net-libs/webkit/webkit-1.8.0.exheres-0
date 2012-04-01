@@ -23,12 +23,12 @@ DEPENDENCIES="
         dev-util/gperf
         dev-util/pkg-config[>=0.20]
         doc? ( dev-doc/gtk-doc[>=1.10] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
     build+run:
         media-libs/jpeg[>=6b]
         media-libs/libpng[>=1.2]
         dev-libs/glib:2[>=2.31.2]
         dev-libs/icu [[ note = [ remove when glib unicode backend is recommended ] ]]
+        sys-libs/zlib
         dev-libs/libxml2:2.0[>=2.6]
         x11-libs/gtk+:3[>=3.0][gobject-introspection?]
         x11-libs/cairo[>=1.10]
@@ -42,6 +42,7 @@ DEPENDENCIES="
         media-plugins/gst-plugins-base:0.10[>=0.10.30]
         clutter? ( x11-libs/clutter:1[>=1.8.2]
                    x11-libs/clutter-gtk:1.0[>=1.0.2] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.5] )
         spell? ( app-spell/enchant[>=0.22] )
         opengl? ( x11-dri/mesa )
         pango? ( x11-libs/pango[>=1.21.0] )
@@ -50,6 +51,8 @@ DEPENDENCIES="
 "
 
 RESTRICT="test" # requires X
+
+DEFAULT_SRC_PREPARE_PATCHES=( -p0 "${FILES}"/${PNV}-fix-disable-geolocation.patch )
 
 src_configure() {
     local accelerated_compositing=no
@@ -65,10 +68,10 @@ src_configure() {
     econf '--with-gtk=3.0'                                              \
           '--with-gstreamer=0.10'                                       \
           '--disable-geolocation'                                       \
-          '--enable-debug-symbols'                                      \
           "--with-font-backend=$(optionv pango || echo freetype)"       \
           "--with-accelerated-compositing=${accelerated_compositing}"   \
           $(option_enable debug debug-features)                         \
+          $(option_enable debug debug-symbols)                          \
           $(option_enable doc gtk-doc)                                  \
           $(option_enable gobject-introspection introspection)
 }
