@@ -11,7 +11,7 @@ SLOT="2"
 PLATFORMS="~amd64 ~ppc64 ~x86"
 MYOPTIONS="doc glade"
 
-REMOTE_IDS="freshmeat:pygtk pypi:pygtk"
+REMOTE_IDS="freshmeat:pygtk pypi:PyGTK"
 UPSTREAM_CHANGELOG="http://svn.gnome.org/svn/pygtk/trunk/ChangeLog [[ lang = en ]]"
 UPSTREAM_DOCUMENTATION="
     ${HOMEPAGE}/tutorial.html [[ lang = en description = [ Tutorial ] ]]
