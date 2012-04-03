@@ -14,7 +14,9 @@ HOMEPAGE="http://live.gnome.org/libgdata"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
-MYOPTIONS="gconf gobject-introspection gtk-doc"
+MYOPTIONS="gobject-introspection gtk-doc
+    gnome [[ description = [ Transparent proxy support through GNOME ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -25,12 +27,14 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.19.0]
         dev-libs/libxml2:2.0
         dev-libs/liboauth[>=0.9.4]
-        gnome-desktop/libsoup:2.4[>=2.26.1][gconf?][gobject-introspection?]
+        gnome-desktop/libsoup:2.4[>=2.26.1][gobject-introspection?]
         x11-libs/gdk-pixbuf:2.0[>=2.14] [[ note = [ automagic dependency ] ]]
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.9.7] )
+        x11-libs/gtk+:3
+        gnome? ( gnome-desktop/libsoup:2.4[gconf] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.9.7] )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gconf gnome' 'gobject-introspection introspection'
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gnome' 'gobject-introspection introspection'
                                        'gtk-doc' )
 
 RESTRICT="test" # requires internet connections
