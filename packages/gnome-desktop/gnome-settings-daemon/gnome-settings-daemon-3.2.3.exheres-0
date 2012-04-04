@@ -1,7 +1,7 @@
 # Copyright 2008 Saleem Abdulrasool <compnerd@compnerd.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gsettings gtk-icon-cache
+require gnome.org [ suffix=.tar.xz ] gsettings gtk-icon-cache
 
 SUMMARY="Settings Daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -17,7 +17,7 @@ DEPENDENCIES="
         dev-util/intltool[>=0.37.1]
     build+run:
         dev-libs/glib:2[>=2.29.14]
-        x11-libs/gtk+:3[>=2.99.3]
+        x11-libs/gtk+:3[>=3.1.10]
         gnome-platform/GConf:2 [[ note = [ bug #639347 ] ]]
         gnome-desktop/gsettings-desktop-schemas[>=0.1.2]
         gnome-desktop/gnome-desktop:3.0[>=3.1.5]
