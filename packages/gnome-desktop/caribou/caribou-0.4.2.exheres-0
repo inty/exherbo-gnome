@@ -28,12 +28,17 @@ DEPENDENCIES="
         gnome-desktop/gobject-introspection[>=0.10.7]
 "
 
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-gtk3-module' '--disable-gtk2-module' )
 
-src_install() {
-    gsettings_src_install
+src_configure() {
+    local vala_package= vala_minor= vala_slot=
 
-    rmdir "${IMAGE}/usr/include/libcaribou" "${IMAGE}/usr/include"
+    vala_package=$(best_version dev-lang/vala)
+    vala_package=${vala_package%%:*}
+    vala_minor=$(ever range 2-2 ${vala_package##dev-lang/vala-})
+    vala_slot=$(awk "BEGIN { printf \"%.f\", ( 2 * ${vala_minor} + 1 ) / 2 }")
+
+    export VALAC=/usr/bin/valac-0.${vala_slot}
+    default
 }
 
