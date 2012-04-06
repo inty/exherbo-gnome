@@ -38,11 +38,11 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0
         net-im/farstream:0.1
         net-im/telepathy-farstream[>=0.2.1]
-        x11-libs/clutter:1[>=1.8.0]
+        x11-libs/clutter:1[>=1.10.0]
         x11-libs/clutter-gtk:1.0[>=0.90.3]
         media-libs/clutter-gst:1.0[>=1.5.2]
-        net-im/telepathy-glib[>=0.17.5]
-        net-im/telepathy-logger:0.2[>=0.2.10]
+        net-im/telepathy-glib[>=0.18.0]
+        net-im/telepathy-logger:0.2[>=0.2.13]
         x11-libs/libX11
         x11-libs/gtk+:3[>=3.3.6]
         media-libs/libcanberra[>=0.25][gtk3]
@@ -61,16 +61,20 @@ DEPENDENCIES="
                  app-text/iso-codes[>=0.35] )
         udev? ( sys-fs/udev[glib] )
     run:
-        net-im/telepathy-mission-control[>=5.1.2]
+        net-im/telepathy-mission-control[>=5.12.0]
     recommendation:
-        net-im/telepathy-salut
+        net-im/telepathy-salut[>=0.8.0] [[
+            description = [ Chat with peoples in the same network via avahi ]
+        ]]
     suggestion:
-        net-im/telepathy-haze [[ description = [ support for MSN ] ]]
+        net-im/telepathy-gabble[>=0.16.0] [[ description = [ Support for XMPP alias Jabber ] ]]
+        net-im/telepathy-haze[>=0.6.0] [[
+            description = [ Support for several IM protocols via libpurble ]
+        ]]
         gnome-desktop/gnome-contacts
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-geocode --disable-location --disable-meego
-                               --disable-call-logs --enable-goa )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-geocode --disable-location --disable-meego --enable-goa )
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'eds' 'networkmanager connectivity nm' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'geolocation map' 'nautilus-sendto' spell 'udev gudev' )
 
