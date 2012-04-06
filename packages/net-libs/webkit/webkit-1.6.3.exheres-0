@@ -43,8 +43,8 @@ RESTRICT="test" # requires X
 
 src_configure() {
     econf '--with-gtk=3.0'                                        \
-          '--enable-debug-symbols'                                \
           "--with-font-backend=$(optionv pango || echo freetype)" \
+          $(option_enable debug debug-symbols)                    \
           $(option_enable debug debug-features)                   \
           $(option_enable doc gtk-doc)                            \
           $(option_enable gobject-introspection introspection)    \
