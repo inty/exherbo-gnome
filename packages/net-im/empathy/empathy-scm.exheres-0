@@ -16,8 +16,8 @@ MYOPTIONS="
     geolocation     [[ description = [ Displays your buddies on a map and transmit your position, for
                                        now just the display part ] ]]
     nautilus-sendto [[ description = [ Build plugin for nautilus-sendto ] ]]
-    networkmanager
     spell
+    udev            [[ description = [ use udev for camera monitoring ] ]]
 "
 
 DEPENDENCIES="
@@ -30,8 +30,7 @@ DEPENDENCIES="
         gnome-desktop/yelp-tools
     build+run:
         dev-libs/dbus-glib:1
-        dev-libs/glib:2[>=2.30.0]
-        net-im/farstream
+        dev-libs/glib:2[>=2.32.0]
         net-im/folks[>=0.6.6]
         gnome-desktop/libgnome-keyring:1[>=2.26.0]
         gnome-desktop/gnome-keyring:1[>=2.91.4]
@@ -40,38 +39,48 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.32]
         media-plugins/gst-plugins-base:0.10
         dev-libs/libxml2:2.0
+        net-im/farstream:0.1
         net-im/telepathy-farstream[>=0.2.1]
-        net-im/telepathy-glib[>=0.17.5]
-        net-im/telepathy-logger:0.2[>=0.2.10]
-        media-libs/clutter-gst[>=1.5.2]
-        x11-libs/clutter[>=1.8.0]
+        x11-libs/clutter:1[>=1.10.0]
+        x11-libs/clutter-gtk:1.0[>=0.90.3]
+        media-libs/clutter-gst:1.0[>=1.5.2]
+        net-im/telepathy-glib[>=0.18.0]
+        net-im/telepathy-logger:0.2[>=0.2.13]
         x11-libs/libX11
         x11-libs/gtk+:3[>=3.3.6]
         media-libs/libcanberra[>=0.25][gtk3]
         x11-libs/libnotify[>=0.7.0]
-        gnome-desktop/gnome-control-center[>=2.90.1]
-        gnome-desktop/gnome-online-accounts[>=3.3.0]
+        media-sound/pulseaudio
         net-libs/webkit:3.0[>=1.3.13]
+        gnome-desktop/libsoup:2.4
+        gnome-desktop/gnome-online-accounts[>=3.3.0]
         cheese? ( gnome-desktop/cheese[>=2.91.91.1] )
         eds? ( gnome-desktop/evolution-data-server:1.2 )
         geolocation? ( x11-libs/clutter-gtk:1.0
-                       x11-libs/libchamplain:0.12 )
+                       x11-libs/libchamplain:0.12[>=0.12.1] )
         nautilus-sendto? ( gnome-desktop/nautilus-sendto[>=2.90] )
-        networkmanager? ( net-apps/NetworkManager[>=0.7.0] )
         spell? ( app-spell/enchant[>=1.2.0]
                  app-text/iso-codes[>=0.35] )
+        udev? ( sys-fs/udev[glib] )
     run:
-        net-im/telepathy-mission-control[>=5.1.2]
+        net-im/telepathy-mission-control[>=5.12.0]
     recommendation:
-        net-im/telepathy-salut
+        net-im/telepathy-salut[>=0.8.0] [[
+            description = [ Chat with peoples in the same network via avahi ]
+        ]]
+    suggestion:
+        net-im/telepathy-gabble[>=0.16.0] [[ description = [ Support for XMPP alias Jabber ] ]]
+        net-im/telepathy-haze[>=0.6.0] [[
+            description = [ Support for several IM protocols via libpurble ]
+        ]]
+        gnome-desktop/gnome-contacts
 "
 
 AT_M4DIR=( m4 )
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-geocode' '--disable-location' '--disable-meego'
-                               '--disable-call-logs' )
-DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'eds' 'networkmanager connectivity nm' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'geolocation map' 'nautilus-sendto' 'spell' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-geocode --disable-location --enable-goa )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( 'eds' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'geolocation map' 'nautilus-sendto' spell 'udev gudev' )
 
 src_prepare() {
     edo gnome-doc-prepare --automake --force --copy
