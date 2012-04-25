@@ -3,7 +3,7 @@
 
 SUMMARY="Web Browser Engine based on WebKit"
 HOMEPAGE="http://www.webkit.org/"
-DOWNLOADS="http://webkitgtk.org/releases/webkit-${PV}.tar.gz"
+DOWNLOADS="http://webkitgtk.org/releases/webkit-${PV}.tar.xz"
 
 LICENCES="LGPL-2 LGPL-2.1 BSD-3"
 
